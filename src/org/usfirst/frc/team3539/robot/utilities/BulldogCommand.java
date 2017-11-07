@@ -10,37 +10,58 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public abstract class BulldogCommand extends Command
 {
-	String name;
-	
 	public BulldogCommand(String name)
 	{
 		super(name);
-		this.name = name;
 	}
 	
-	/**
-	 * Initialize the command
-	 * 
-	 * @param name - Name of the command being initialized
-	 */
-	protected void initialize(String name)
+	public BulldogCommand(String name, double timeout)
+	{
+		super(name, timeout);
+	}
+	
+	protected void initialize()
 	{
 		super.initialize();
-		BulldogLogger.getInstance().logCommand(this.name + " Initialized");
+		bInit();
+		BulldogLogger.getInstance().logCommand(getName() + " Initialized");
 	}
 	
-	/**
-	 * Clean up
-	 * 
-	 * @param name - Name of the Command that is ended
-	 */
-	protected void end(String name)
+	protected abstract void bInit();
+	
+	protected void execute()
+	{
+		super.execute();
+		bExecute();
+		//BulldogLogger.getInstance().logCommand(getName() + " Initialized");
+	}
+	
+	protected abstract void bExecute();
+	
+	protected boolean isFinished()
+	{
+		boolean esketit = bIsFinished(); //80 on my wrist
+		//BulldogLogger.getInstance().logCommand(getName() + " isFinished: " + esketit);
+		return esketit;
+	}
+	
+	protected abstract boolean bIsFinished();
+	
+	protected void end()
 	{
 		super.end();
-		BulldogLogger.getInstance().logCommand(this.name + " Ended");
-		//BulldogLogger.getInstance().logDebug("Ending " + name);
+		bEnd();
+		BulldogLogger.getInstance().logCommand(getName() + " Ended");
 	}
 	
+	protected abstract void bEnd();
 	
+	protected void interrupted()
+	{
+		super.interrupted();
+		bInterrupted();
+		BulldogLogger.getInstance().logCommand(getName() + " Interrupted");
+	}
 	
+	protected abstract void bInterrupted();
 }

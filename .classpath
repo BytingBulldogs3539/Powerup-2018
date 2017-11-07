@@ -2,14 +2,14 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
-	<classpathentry exported="true" kind="var" path="wpilib" sourcepath="/wpilib.sources">
+	<classpathentry kind="lib" path="lib/CTRLib.jar"/>
+	<classpathentry kind="lib" path="lib/cscore.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/3539/wpilib/java/current/javadoc/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/3539/Documents/GitHub/FRC-3539/doc/javadoc/"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry exported="true" kind="var" path="networktables" sourcepath="networktables.sources"/>
-	<classpathentry exported="true" kind="var" path="opencv" sourcepath="opencv.sources"/>
-	<classpathentry exported="true" kind="var" path="cscore" sourcepath="cscore.sources"/>
-	<classpathentry kind="lib" path="lib/CTRLib.jar"/>
+	<classpathentry kind="lib" path="lib/NetworkTables.jar"/>
+	<classpathentry kind="lib" path="lib/opencv.jar"/>
+	<classpathentry kind="lib" path="lib/WPILib.jar" sourcepath="lib/cscore.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
