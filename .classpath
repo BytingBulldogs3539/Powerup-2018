@@ -10,6 +10,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/NetworkTables.jar"/>
 	<classpathentry kind="lib" path="lib/opencv.jar"/>
-	<classpathentry kind="lib" path="lib/WPILib.jar" sourcepath="lib/cscore.jar"/>
+	<classpathentry kind="lib" path="lib/WPILib.jar" sourcepath="srcs/WPILib-sources.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
