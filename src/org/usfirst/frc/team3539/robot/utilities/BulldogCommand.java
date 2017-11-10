@@ -5,9 +5,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  * Base class for all Commands for Team 3539
  * 
- * @author Programming team
+ * @author FRC-3539
  *
+ * @version 3.539
  */
+
 public abstract class BulldogCommand extends Command
 {
 	public BulldogCommand(String name)

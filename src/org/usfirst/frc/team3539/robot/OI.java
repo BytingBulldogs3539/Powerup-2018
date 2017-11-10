@@ -10,27 +10,27 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI
 {
-	public Joystick controller1 = new Joystick(RobotMap.controllerOnePort);
-	public Joystick controller2 = new Joystick(RobotMap.controllerTwoPort);
+	public Joystick controller1 = new Joystick(RobotMap.DRIVER);
+	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
 
-	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.buttonx);
-	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.buttony);
-	public JoystickButton oneA = new JoystickButton(controller1, RobotMap.buttona);
-	public JoystickButton oneB = new JoystickButton(controller1, RobotMap.buttonb);
+	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
+	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
+	public JoystickButton oneA = new JoystickButton(controller1, RobotMap.A);
+	public JoystickButton oneB = new JoystickButton(controller1, RobotMap.B);
 
-	public JoystickButton twoX = new JoystickButton(controller2, RobotMap.buttonx);
-	public JoystickButton twoY = new JoystickButton(controller2, RobotMap.buttony);
-	public JoystickButton twoA = new JoystickButton(controller2, RobotMap.buttona);
-	public JoystickButton twoB = new JoystickButton(controller2, RobotMap.buttonb);
+	public JoystickButton twoX = new JoystickButton(controller2, RobotMap.X);
+	public JoystickButton twoY = new JoystickButton(controller2, RobotMap.Y);
+	public JoystickButton twoA = new JoystickButton(controller2, RobotMap.A);
+	public JoystickButton twoB = new JoystickButton(controller2, RobotMap.B);
 	
-	public JoystickButton oneBL = new JoystickButton(controller1, RobotMap.bumperl);
-	public JoystickButton oneBR = new JoystickButton(controller1, RobotMap.bumperr);
+	public JoystickButton oneBL = new JoystickButton(controller1, RobotMap.BL);
+	public JoystickButton oneBR = new JoystickButton(controller1, RobotMap.BR);
 	
-	public JoystickButton twoBL = new JoystickButton(controller2, RobotMap.bumperl);
-	public JoystickButton twoBR = new JoystickButton(controller2, RobotMap.bumperr);
+	public JoystickButton twoBL = new JoystickButton(controller2, RobotMap.BL);
+	public JoystickButton twoBR = new JoystickButton(controller2, RobotMap.BR);
 	
-	public JoystickButton oneS = new JoystickButton(controller1, RobotMap.buttonStart);
-	public JoystickButton twoS = new JoystickButton(controller2, RobotMap.buttonStart);
+	public JoystickButton oneS = new JoystickButton(controller1, RobotMap.START);
+	public JoystickButton twoS = new JoystickButton(controller2, RobotMap.START);
 	
 	public JoystickButton oneTL = new JoystickButton(controller1, RobotMap.LEFT_TRIGGER);
 	public JoystickButton oneTR = new JoystickButton(controller1, RobotMap.RIGHT_TRIGGER);
@@ -38,11 +38,11 @@ public class OI
 	public JoystickButton twoTL = new JoystickButton(controller2, RobotMap.LEFT_TRIGGER);
 	public JoystickButton twoTR = new JoystickButton(controller2, RobotMap.RIGHT_TRIGGER);
 
-	public JoystickButton oneLS = new JoystickButton(controller1, RobotMap.buttonLS);
-	public JoystickButton oneRS = new JoystickButton(controller1, RobotMap.buttonRS);
+	public JoystickButton oneLS = new JoystickButton(controller1, RobotMap.LS);
+	public JoystickButton oneRS = new JoystickButton(controller1, RobotMap.RS);
 	
-	public JoystickButton twoLS = new JoystickButton(controller2, RobotMap.buttonLS);
-	public JoystickButton twoRS = new JoystickButton(controller2, RobotMap.buttonRS);
+	public JoystickButton twoLS = new JoystickButton(controller2, RobotMap.LS);
+	public JoystickButton twoRS = new JoystickButton(controller2, RobotMap.RS);
 
 	public OI()
 	{

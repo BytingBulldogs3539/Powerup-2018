@@ -15,7 +15,7 @@ import java.io.*;
  * Logging class for all Team 3539 file logging Somewhat similiar to Log4J
  * 
  * @author Kevin Hein
- * @author Programmers of 3539
+ * @author FRC-3539
  * 
  * @version 3.539
  *
