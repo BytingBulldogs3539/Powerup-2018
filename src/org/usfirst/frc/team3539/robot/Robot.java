@@ -11,17 +11,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team3539.robot.utilities.BulldogLogger;
 
 /**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
+ * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
+ * project, you must also update the manifest file in the resource directory.
  **/
 
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static Raspberry raspberry;
 
 	public static Compressor c;
 	public static OI oi;
@@ -32,29 +28,24 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
+		BulldogLogger.getInstance().logInfo("robotInit");
 		c = new Compressor(RobotMap.compressor);
 
 		oi = new OI();
-
-		raspberry = new Raspberry();
 
 		SmartInit();
 		Update();
 
 		// camera = CameraServer.getInstance().startAutomaticCapture();
 		// camera.setResolution(480, 360);
-
-		BulldogLogger.getInstance().logInfo("Starting robotInit");
 	}
 
 	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
+	 * This function is called once each time the robot enters Disabled mode. You can use it to reset any subsystem information you want to clear when the robot is disabled.
 	 **/
 	public void disabledInit()
 	{
-		//BulldogLogger.getInstance().finishLogging();
+		// BulldogLogger.getInstance().finishLogging();
 
 		Scheduler.getInstance().run();
 
@@ -107,20 +98,16 @@ public class Robot extends IterativeRobot
 
 	public void Update()
 	{
-		raspberry.Update();
 	}
 
 	public void SmartInit()
 	{
-		raspberry.SmartInit();
-
 		autonChooser = new SendableChooser<Command>();
 
 		SmartDashboard.putData("Auton mode", autonChooser);
-		//autonChooser.addDefault("No Auton, Default", new VoidCommand());
-		//autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
+		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
+		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
 		SmartDashboard.putData(Scheduler.getInstance());
-		
 	}
 }
