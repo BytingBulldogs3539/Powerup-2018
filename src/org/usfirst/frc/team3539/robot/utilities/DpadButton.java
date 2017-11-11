@@ -1,98 +1,48 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class DpadButton extends Button
 {
-	double angle;
 	double neededAngle;
-	Command command;
-	private Joystick controller;
-	private boolean isPressed;
+	private GenericHID joystick;
 	
-	public DpadButton(String direction ,Command mycommand, Joystick mycontroller)
+	enum Direction
 	{
-		isPressed = false;
-		controller = mycontroller;
-		command = mycommand;
-		angle = controller.getPOV();
+		UP,DOWN,LEFT,RIGHT
+	}
+	public DpadButton(Direction direction, GenericHID joystick)
+	{
 	    neededAngle = 1;
-	
-	    if (direction.toLowerCase() == "up")         
-	    { 
+	    this.joystick = joystick;
+	    
+	    switch(direction)
+	    {
+	    case UP:
 	    	neededAngle = 0; 
+	    	break;
+	    case DOWN:
+	    	neededAngle = 180;
+	    	break;
+	    case LEFT:
+	    	neededAngle = 270;
+	    	break;
+	    case RIGHT:
+	    	neededAngle = 90;
+	    	break;
 	    }
-		else if (direction.toLowerCase() == "right")
-		{ 
-			neededAngle = 90;
-		}
-		else if (direction.toLowerCase() == "down")  
-		{
-			neededAngle = 180; 
-		}
-		else if (direction.toLowerCase() == "left") 
-		{ 
-			neededAngle = 270;
-		}
 	}
-	
-	public DpadButton(String direction, Joystick mycontroller)
-    {
-	    command = null;
-        isPressed = false;
-        controller = mycontroller;
-        angle = controller.getPOV();
-        neededAngle = 1;
-    
-        if (direction.toLowerCase() == "up")         
-        { 
-            neededAngle = 0; 
-        }
-        else if (direction.toLowerCase() == "right")
-        { 
-            neededAngle = 90;
-        }
-        else if (direction.toLowerCase() == "down")  
-        {
-            neededAngle = 180; 
-        }
-        else if (direction.toLowerCase() == "left") 
-        { 
-            neededAngle = 270;
-        }
-    }
-	
-	public void setCommand(Command command)
-	{
-	    this.command = command;
-	}
-	
 	public boolean get()
-	{
-		return checkValue();
-	}
-	
-	public boolean checkValue()
-	{
-		angle = controller.getPOV();
-	
-		if (angle == neededAngle && isPressed == false)
+	{ 
+		
+		if (joystick.getPOV() == neededAngle)
 		{
-			if (command != null)
-				Scheduler.getInstance().add(command);
-			isPressed = true;	
+			return true;	
 		}
 		else
 		{
-			if (isPressed == true) 
-			{ 
-			    isPressed = false; 
-			}
+			return false;
 		}
-		
-		return isPressed;
 	}
 }
