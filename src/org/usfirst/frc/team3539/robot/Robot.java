@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.reporting.BulldogLogger;
+
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,8 +9,6 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team3539.robot.utilities.BulldogLogger;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
-		BulldogLogger.getInstance().logInfo("robotInit");
+		BulldogLogger.getInstance().logEvent("robotInit");
 		c = new Compressor(RobotMap.compressor);
 
 		oi = new OI();
@@ -59,7 +59,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		BulldogLogger.getInstance().logInfo("autonomousInit");
+		BulldogLogger.getInstance().logEvent("autonomousInit");
 		Update();
 
 		autonMode = (Command) autonChooser.getSelected();
@@ -78,7 +78,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-		BulldogLogger.getInstance().logInfo("teleopInit");
+		BulldogLogger.getInstance().logEvent("teleopInit");
 		System.out.println("teleopInit");
 	}
 
