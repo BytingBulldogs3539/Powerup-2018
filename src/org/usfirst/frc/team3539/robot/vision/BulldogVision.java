@@ -1,8 +1,8 @@
-package org.usfirst.frc.team3539.robot;
+package org.usfirst.frc.team3539.robot.vision;
 
-import org.usfirst.frc.team3539.robot.utilities.BulldogTables;
+import org.usfirst.frc.team3539.robot.network.BulldogTables;
 
-public class ByteVision
+public class BulldogVision
 {
 	private double offset = 0;
 	private double angle = 0;
@@ -10,7 +10,7 @@ public class ByteVision
 	private int camera = 0;
 	private boolean isRed = false;
 
-	public ByteVision()
+	public BulldogVision()
 	{
 		BulldogTables.getInstance().putNumber("angle", angle);
 		BulldogTables.getInstance().putNumber("offset", offset);
