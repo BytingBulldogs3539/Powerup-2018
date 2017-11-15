@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
+import org.usfirst.frc.team3539.robot.reporting.BulldogCommand;
+
 /**
  * @author Ivan IV
  */

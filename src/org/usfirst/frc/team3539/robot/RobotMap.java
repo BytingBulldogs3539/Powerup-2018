@@ -48,6 +48,11 @@ public class RobotMap
 
 	// PCM
 	public static final int pcm = 0;
+	
+	// LOGGING
+	public static final String RIO_DIR = "/home/lvuser/logs/";
+	public static final String FLASH_DIR = "/u/";
+	
 
 	//////////////////////// PRACTICE BOT/////////////////////
 
