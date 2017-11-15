@@ -1,58 +1,44 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
-import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+
+/**
+ * Button Wrapper to allow triggers to be used as boolean buttons
+ * 
+ * @author FRC-3539
+ *
+ * @since 02/02/17
+ */
+
+//TODO: Add method to pull actual trigger values
+//TODO: Add setRange(double range) method
 
 public class TriggerButton extends Button
 {
 	private int triggerAxis;
-	private Joystick controller;
-	private Command command;
-	public boolean triggerValue;
+	private GenericHID joystick;
+	public boolean isTriggered;
 
-	public TriggerButton(int axis, Joystick joystick)
+	public TriggerButton(int axis, GenericHID joystick)
 	{
 		triggerAxis = axis;
-		controller = joystick;
-		triggerValue = false;
-		this.command = null;
-	}
-
-	public TriggerButton(int axis, Joystick joystick, Command command)
-	{
-		triggerAxis = axis;
-		controller = joystick;
-		triggerValue = false;
-		this.command = command;
+		this.joystick = joystick;
 	}
 
 	@Override
 	public boolean get()
 	{
-		return checkValue();
-	}
-	
-	public void setCommand(Command command)
-	{
-		this.command = command;
+		if (joystick.getRawAxis(triggerAxis) > .75)
+		{
+			isTriggered = true;
+
+		}
+		else if (joystick.getRawAxis(triggerAxis) < .1)
+		{
+			isTriggered = false;
+		}
+		return isTriggered;
 	}
 
-	public boolean checkValue()
-	{
-		if(controller.getRawAxis(triggerAxis) > .75 && triggerValue == false)
-		{
-			triggerValue = true;
-			if(command != null)
-			{
-				Scheduler.getInstance().add(command);
-			}
-		}
-		else if(controller.getRawAxis(triggerAxis) < .1 && triggerValue == true)
-		{
-			triggerValue = false;
-		}
-		return triggerValue;
-	}
 }

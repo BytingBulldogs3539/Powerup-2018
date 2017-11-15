@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.reporting.BulldogLogger;
+import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;

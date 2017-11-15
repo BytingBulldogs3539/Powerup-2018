@@ -1,12 +1,18 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
-import org.usfirst.frc.team3539.robot.reporting.BulldogCommand;
+import org.usfirst.frc.team3539.robot.bytewrapper.ByteCommand;
 
 /**
- * @author Ivan IV
+ * Example ByteCommand that gives a small explanation to the design inside our code base
+ * 
+ * @author FRC-3539
+ *
+ * @since 07/07/17
  */
 
-public class STARTERCOMMAND extends BulldogCommand
+// TODO: Proof read
+
+public class STARTERCOMMAND extends ByteCommand
 {
 
 	public STARTERCOMMAND() // Constructor; Called when you deploy the code
@@ -34,7 +40,7 @@ public class STARTERCOMMAND extends BulldogCommand
 
 		// methods here will run every 20ms while the isFinished() is false
 	}
-	
+
 	@Override
 	protected boolean bIsFinished()
 	{

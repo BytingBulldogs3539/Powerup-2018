@@ -9,8 +9,8 @@ package org.usfirst.frc.team3539.robot;
 public class RobotMap
 {
 	// CONTROLLER PORT
-	public static final int controllerOnePort = 1;
-	public static final int controllerTwoPort = 0;
+	public static final int DRIVER = 1;
+	public static final int OPERATOR = 0;
 
 	// CONTROLLER AXIS
 	public static final int X_AxisL = 0;
@@ -23,19 +23,19 @@ public class RobotMap
 	public static final int LEFT_TRIGGER = 2;
 
 	// BUTTON
-	public static final int buttona = 1;
-	public static final int buttonb = 2;
-	public static final int buttonx = 3;
-	public static final int buttony = 4;
+	public static final int A = 1;
+	public static final int B = 2;
+	public static final int X = 3;
+	public static final int Y = 4;
 	
-	public static final int buttonStart = 8;
+	public static final int START = 8;
 	
-	public static final int buttonLS = 9;
-	public static final int buttonRS = 10;
+	public static final int LS = 9;
+	public static final int RS = 10;
 
 	// BUMPER
-	public static final int bumperl = 5;
-	public static final int bumperr = 6;
+	public static final int BL = 5;
+	public static final int BR = 6;
 
 	// DRIVE
 	public static final int lfMotorTalon = 0;
