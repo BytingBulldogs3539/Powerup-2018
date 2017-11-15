@@ -1,20 +1,19 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import org.usfirst.frc.team3539.robot.RobotMap;
 
 public class BulldogConfig 
 {
 	String savePlace = "/home/lvuser/config/";
 	JSONObject write = new JSONObject();
 	JSONParser parser = new JSONParser();
-	Object obj;
+	Object read;
 	JSONObject jsonObject;
 	enum saveLocation
 	{
@@ -22,41 +21,47 @@ public class BulldogConfig
 	}
 	public BulldogConfig(saveLocation location)
 	{
-		if (location == saveLocation.USB)
+		try
 		{
-			savePlace = "/u/";
+			this.read = parser.parse(new FileReader(RobotMap.FLASH_DIR));
+			System.out.println("==========================================================");
+			System.out.println(" FILE IS ON THE USB STICK");
+			System.out.println("==========================================================");
 		}
-		try {
-
-            this.obj = parser.parse(new FileReader(savePlace));
-
-            this.jsonObject = (JSONObject) obj;
-
-        } 
-        catch (FileNotFoundException e) 
-        {
-            e.printStackTrace();
-        } 
-        catch (IOException e) 
-        {
-            e.printStackTrace();
-        }
-        catch (ParseException e) 
-        {
-            e.printStackTrace();
-        }
 		
+		catch (Exception e)
+		{
+			try
+			{
+				this.read = parser.parse(new FileReader(RobotMap.RIO_DIR));
+				System.out.println("==========================================================");
+				System.out.println(" FILE IS ON THE ROBORIO");
+				System.out.println("==========================================================");
+
+			}
+			catch (Exception ee)
+			{
+				System.out.println("WARNING!!! YOU SHOULD NEVER SEE THIS EVER: JSON ERROR!");
+				e.printStackTrace();
+				ee.printStackTrace();
+			}
+		}
+
 	}
+
+	@SuppressWarnings("unchecked")
 	public void updateInt(String name, int number)
 	{
 		write.put(name,number);
 		write();
 	}
+	@SuppressWarnings("unchecked")
 	public void updateString(String name, String text)
 	{
 		write.put(name,text);
 		write();
 	}
+	@SuppressWarnings("unchecked")
 	public void updateInt(String name, boolean torf)
 	{
 		write.put(name,torf);
