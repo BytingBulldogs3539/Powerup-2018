@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.utilities;
+package org.usfirst.frc.team3539.robot.reporting;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -15,11 +15,13 @@ public abstract class BulldogCommand extends Command
 	public BulldogCommand(String name)
 	{
 		super(name);
+		BulldogLogger.getInstance().logCommand(getName() + " Constructed");
 	}
 	
 	public BulldogCommand(String name, double timeout)
 	{
 		super(name, timeout);
+		BulldogLogger.getInstance().logCommand(getName() + " Constructed");
 	}
 	
 	protected void initialize()
@@ -35,16 +37,14 @@ public abstract class BulldogCommand extends Command
 	{
 		super.execute();
 		bExecute();
-		//BulldogLogger.getInstance().logCommand(getName() + " Initialized");
+		BulldogLogger.getInstance().logCommand(getName() + " Executed");
 	}
 	
 	protected abstract void bExecute();
 	
 	protected boolean isFinished()
 	{
-		boolean esketit = bIsFinished(); //80 on my wrist
-		//BulldogLogger.getInstance().logCommand(getName() + " isFinished: " + esketit);
-		return esketit;
+		return bIsFinished();
 	}
 	
 	protected abstract boolean bIsFinished();
