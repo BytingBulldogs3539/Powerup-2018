@@ -11,75 +11,75 @@ import org.json.simple.parser.ParseException;
 
 public class BulldogConfig 
 {
-	String savePlace;
-	JSONObject cfg = new JSONObject();
+	String savePlace = "/home/lvuser/config/";
+	JSONObject write = new JSONObject();
 	JSONParser parser = new JSONParser();
-	Object read;
+	Object obj;
+	JSONObject jsonObject;
 	enum saveLocation
 	{
 		RIO,USB
 	}
 	public BulldogConfig(saveLocation location)
 	{
-		if (location == saveLocation.RIO)
-		{
-			savePlace = "/home/lvuser/config/";
-		}
 		if (location == saveLocation.USB)
 		{
-			savePlace= "/u/";
+			savePlace = "/u/";
 		}
-		try 
-		{
-			this.read = parser.parse(new FileReader(savePlace));
-		} 
-		catch (FileNotFoundException e) 
-		{
-			e.printStackTrace();
-		} 
-		catch (IOException e) 
-		{
-			e.printStackTrace();
-		} 
-		catch (ParseException e) 
-		{
-			e.printStackTrace();
-		}
+		try {
+
+            this.obj = parser.parse(new FileReader(savePlace));
+
+            this.jsonObject = (JSONObject) obj;
+
+        } 
+        catch (FileNotFoundException e) 
+        {
+            e.printStackTrace();
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        catch (ParseException e) 
+        {
+            e.printStackTrace();
+        }
 		
 	}
 	public void updateInt(String name, int number)
 	{
-		cfg.put(name,number);
+		write.put(name,number);
 		write();
 	}
 	public void updateString(String name, String text)
 	{
-		cfg.put(name,text);
+		write.put(name,text);
 		write();
 	}
 	public void updateInt(String name, boolean torf)
 	{
-		cfg.put(name,torf);
+		write.put(name,torf);
 		write();
 	}
 	public int getIntValue(String name)
 	{
-		return (Integer) cfg.get(name);
+		return (Integer) jsonObject.get(name);
 	}
 	public String getStringValue(String name)
 	{
-		return (String) cfg.get(name);
+		return (String) jsonObject.get(name);
 	}
 	public boolean name(String name)
 	{
-		return (Boolean) cfg.get(name);
+		return (Boolean) jsonObject.get(name);
 	}
 	
 	public void write()
 	{
 		try (FileWriter file = new FileWriter("savePlace")) 
         {
-            file.write(cfg.toJSONString());
+            file.write(write.toJSONString());
         } 
         catch (IOException e) 
         {
