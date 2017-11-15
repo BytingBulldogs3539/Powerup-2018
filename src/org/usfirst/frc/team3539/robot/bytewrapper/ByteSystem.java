@@ -1,16 +1,18 @@
-package org.usfirst.frc.team3539.robot.reporting;
+package org.usfirst.frc.team3539.robot.bytewrapper;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- * Base class for all Subsystems for Team 3539
+ * TODO: Add proper desc.
  * 
  * @author FRC-3539
- * 
- * @version 3.539
+ *
+ * @since 3/02/17
  */
 
-public abstract class BulldogSystem extends Subsystem
+// TODO: Review for major changes
+
+public abstract class ByteSystem extends Subsystem
 {
 	/**
 	 * Constructor - passes the System name up the chain
@@ -18,7 +20,7 @@ public abstract class BulldogSystem extends Subsystem
 	 * @param name
 	 *            - Name of the subsystem being constructor
 	 */
-	public BulldogSystem(String name)
+	public ByteSystem(String name)
 	{
 		super(name);
 	}

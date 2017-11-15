@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.reporting;
+package org.usfirst.frc.team3539.robot.logging;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,13 +8,23 @@ import java.text.SimpleDateFormat;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
 
+/**
+ * Combination of java.io.PrintStream and java.io.File to better encapsulate logging procedure
+ * 
+ * @author FRC-3539
+ *
+ * @since 11/12/17
+ */
+
+//TODO: Integrate methods for handling JSON data
+
 public class BulldogLog
 {
 	private PrintStream stream;
 	private File file;
 	private int logNum;
 
-	protected BulldogLog(String fileName, boolean isEnabled)
+	public BulldogLog(String fileName, boolean isEnabled)
 	{
 		if (isEnabled)
 		{
