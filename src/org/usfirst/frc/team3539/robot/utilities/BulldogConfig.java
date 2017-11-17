@@ -10,16 +10,22 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 
 public class BulldogConfig 
 {
+	/**
+	 * TODO: Add proper desc.
+	 * 
+	 * @author FRC-3539
+	 *
+	 * @since 11/13/17
+	 */
+
+	// TODO: Review for integration with logging and Dash
+	// TODO: Fix suppressed Warnings
 	String savePlace = "/home/lvuser/config/";
 	JSONObject write = new JSONObject();
 	JSONParser parser = new JSONParser();
 	Object read;
 	JSONObject jsonObject;
-	enum saveLocation
-	{
-		RIO,USB
-	}
-	public BulldogConfig(saveLocation location)
+	public BulldogConfig()
 	{
 		try
 		{

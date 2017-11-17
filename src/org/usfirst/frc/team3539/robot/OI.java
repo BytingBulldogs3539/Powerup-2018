@@ -1,6 +1,8 @@
 
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystick;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -12,7 +14,11 @@ public class OI
 {
 	public Joystick controller1 = new Joystick(RobotMap.DRIVER);
 	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
-
+	
+	public ByteJoystick controller3 = new ByteJoystick(3);
+	
+	public JoystickButton threeX = new JoystickButton(controller3, RobotMap.X);
+	
 	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
 	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
 	public JoystickButton oneA = new JoystickButton(controller1, RobotMap.A);
