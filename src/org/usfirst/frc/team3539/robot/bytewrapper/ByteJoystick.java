@@ -2,31 +2,82 @@ package org.usfirst.frc.team3539.robot.bytewrapper;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
+import org.usfirst.frc.team3539.robot.management.IManageable;
 
 import edu.wpi.first.wpilibj.Joystick;
 
-public class ByteJoystick extends Joystick
+/**
+ * Wrapper class for all Joysticks to implement logging, console output, and Dashboard interfacing
+ * 
+ * @author FRC-3539
+ *
+ * @since 11/16/17
+ */
+
+// TODO: Implement logging
+// TODO: Test
+
+public class ByteJoystick extends Joystick implements IManageable
 {
 
-	public ByteJoystick(int port) 
+	public ByteJoystick(int port)
 	{
 		super(port);
-		BulldogLogger.getInstance().logEvent("Joystick Creation"+port);
+		BulldogLogger.getInstance().logEvent(port + "Joystick Constructed");
 	}
+
 	public double getAxisRX()
 	{
-		return super.getRawAxis(RobotMap.X_AxisR);
+		return getRawAxis(RobotMap.X_AxisR);
 	}
+
 	public double getAxisRY()
 	{
-		return super.getRawAxis(RobotMap.Y_AxisR);
+		return getRawAxis(RobotMap.Y_AxisR);
 	}
+
 	public double getAxisLX()
 	{
-		return super.getRawAxis(RobotMap.X_AxisL);
+		return getRawAxis(RobotMap.X_AxisL);
 	}
+
 	public double getAxisLY()
 	{
-		return super.getRawAxis(RobotMap.Y_AxisL);
+		return getRawAxis(RobotMap.Y_AxisL);
+	}
+
+	@Override
+	public void register()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void setInterval()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void getInterval()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void poll()
+	{
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void close()
+	{
+		// TODO Auto-generated method stub
+
 	}
 }

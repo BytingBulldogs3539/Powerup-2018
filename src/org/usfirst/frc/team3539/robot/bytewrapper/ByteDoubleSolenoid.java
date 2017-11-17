@@ -18,45 +18,51 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class ByteDoubleSolenoid extends DoubleSolenoid implements IManageable
 {
-	private boolean isTriggered;
-	private boolean initialTrigger;
+	private boolean isTrigger;
 
-	public ByteDoubleSolenoid(int on, int off, boolean isTriggered)
+	public ByteDoubleSolenoid(int on, int off, boolean isTrigger)
 	{
 		super(RobotMap.pcm, on, off); // on, off
-		this.isTriggered = isTriggered;
-		this.initialTrigger = isTriggered;
+		defaultPosition(isTrigger);
+
 	}
 
 	public void toggle()
 	{
-		isTriggered = !isTriggered;
+		if (get() == DoubleSolenoid.Value.kOff)
+		{
+			defaultPosition(isTrigger);
+		}
+		else if (get() == DoubleSolenoid.Value.kReverse)
+		{
+			forward();
+		}
+		else if (get() == DoubleSolenoid.Value.kForward)
+		{
+			reverse();
+		}
+	}
 
-		if (isTriggered == true)
-		{
-			set(DoubleSolenoid.Value.kForward);
-		}
-		if (isTriggered == false)
-		{
-			set(DoubleSolenoid.Value.kReverse);
-		}
+	public void defaultPosition(boolean isTrigger)
+	{
+		if (isTrigger)
+			forward();
+		else
+			reverse();
 	}
 
 	public void forward()
 	{
-		isTriggered = true;
 		set(DoubleSolenoid.Value.kForward);
 	}
 
 	public void reverse()
 	{
-		isTriggered = false;
 		set(DoubleSolenoid.Value.kReverse);
 	}
 
 	public void disable()
 	{
-		isTriggered = initialTrigger;
 		set(DoubleSolenoid.Value.kOff);
 	}
 
