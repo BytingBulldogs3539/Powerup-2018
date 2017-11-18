@@ -13,7 +13,7 @@ import org.usfirst.frc.team3539.robot.management.IManageable;
 // TODO: Extend for all primitive types in BulldogTables
 // TODO: Fix link between BulldogTables
 
-public class BytePacket implements IManageable
+public abstract class BytePacket implements IManageable
 {
 	String key;
 
@@ -22,39 +22,40 @@ public class BytePacket implements IManageable
 		this.key = key;
 	}
 
+	abstract void bRegister();
+	abstract void bSetInterval();
+	abstract void bGetInterval();
+	abstract void bPoll();
+	abstract void bClose();
+	
 	@Override
 	public void register()
 	{
-		// TODO Auto-generated method stub
-
+		bRegister();
 	}
 
 	@Override
 	public void setInterval()
 	{
-		// TODO Auto-generated method stub
-
+		bSetInterval();
 	}
 
 	@Override
 	public void getInterval()
 	{
-		// TODO Auto-generated method stub
-
+		bGetInterval();
 	}
 
 	@Override
 	public void poll()
 	{
-		// TODO Auto-generated method stub
-
+		bPoll();
 	}
 
 	@Override
 	public void close()
 	{
-		// TODO Auto-generated method stub
-
+		bClose();
 	}
 
 }
