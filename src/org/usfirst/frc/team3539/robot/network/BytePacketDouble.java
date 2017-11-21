@@ -4,7 +4,7 @@ public class BytePacketDouble extends BytePacket
 {
 	double value;
 
-	protected BytePacketDouble(String key, double value)
+	public BytePacketDouble(String key, double value)
 	{
 		super(key);
 		this.value = value;
