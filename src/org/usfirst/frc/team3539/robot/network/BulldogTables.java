@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @since 11/12/17
  */
 
-// TODO: Fix link between BytePacket-Objects
+// TODO:
 
 public class BulldogTables
 {
@@ -29,15 +29,6 @@ public class BulldogTables
 
 		return bTable;
 	}
-
-	// public void getValue()
-	// {
-	// // TODO: Solve return type issue
-	// }
-	// public void putValue()
-	// {
-	// // TODO: Solve input type issue
-	// }
 
 	public void putNumber(String key, int value)
 	{

@@ -1,11 +1,9 @@
 package org.usfirst.frc.team3539.robot.vision;
 
 import org.usfirst.frc.team3539.robot.network.BulldogTables;
-import org.usfirst.frc.team3539.robot.network.BytePacketDouble;
 
 public class BulldogVision
 {
-	private BytePacketDouble upset;
 	private double offset = 0;
 	private double angle = 0;
 	private double distance = 0;
@@ -14,7 +12,6 @@ public class BulldogVision
 
 	public BulldogVision()
 	{
-		upset = new BytePacketDouble(null, 0);
 		BulldogTables.getInstance().putNumber("angle", angle);
 		BulldogTables.getInstance().putNumber("offset", offset);
 		BulldogTables.getInstance().putNumber("distance", distance);
