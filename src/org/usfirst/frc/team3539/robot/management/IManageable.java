@@ -11,8 +11,7 @@ package org.usfirst.frc.team3539.robot.management;
 
 public interface IManageable
 {
-
-	int interval = 50;
+	int interval = 5000;
 
 	abstract void register();
 

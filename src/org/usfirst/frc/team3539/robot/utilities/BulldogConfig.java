@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.logging;
+package org.usfirst.frc.team3539.robot.utilities;
 
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -8,23 +8,23 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.usfirst.frc.team3539.robot.RobotMap;
 
-/**
- * TODO: Add proper desc.
- * 
- * @author FRC-3539
- *
- * @since 11/13/17
- */
-
-// TODO: Review for integration with logging and Dash
-// TODO: Fix suppressed Warnings
-
-public class BulldogConfig
+public class BulldogConfig 
 {
-	JSONObject cfg = new JSONObject();
+	/**
+	 * TODO: Add proper desc.
+	 * 
+	 * @author FRC-3539
+	 *
+	 * @since 11/13/17
+	 */
+
+	// TODO: Review for integration with logging and Dash
+	// TODO: Fix suppressed Warnings
+	String savePlace = "/home/lvuser/config/";
+	JSONObject write = new JSONObject();
 	JSONParser parser = new JSONParser();
 	Object read;
-
+	JSONObject jsonObject;
 	public BulldogConfig()
 	{
 		try
@@ -34,6 +34,7 @@ public class BulldogConfig
 			System.out.println(" FILE IS ON THE USB STICK");
 			System.out.println("==========================================================");
 		}
+		
 		catch (Exception e)
 		{
 			try
@@ -57,49 +58,45 @@ public class BulldogConfig
 	@SuppressWarnings("unchecked")
 	public void updateInt(String name, int number)
 	{
-		cfg.put(name, number);
+		write.put(name,number);
 		write();
 	}
-
 	@SuppressWarnings("unchecked")
 	public void updateString(String name, String text)
 	{
-		cfg.put(name, text);
+		write.put(name,text);
 		write();
 	}
-
 	@SuppressWarnings("unchecked")
 	public void updateInt(String name, boolean torf)
 	{
-		cfg.put(name, torf);
+		write.put(name,torf);
 		write();
 	}
-
 	public int getIntValue(String name)
 	{
-		return (Integer) cfg.get(name);
+		return (Integer) jsonObject.get(name);
 	}
-
 	public String getStringValue(String name)
 	{
-		return (String) cfg.get(name);
+		return (String) jsonObject.get(name);
 	}
-
 	public boolean name(String name)
 	{
-		return (Boolean) cfg.get(name);
+		return (Boolean) jsonObject.get(name);
 	}
-
+	
 	public void write()
 	{
-		try (FileWriter file = new FileWriter("savePlace"))
-		{
-			file.write(cfg.toJSONString());
-		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-
+		try (FileWriter file = new FileWriter("savePlace")) 
+        {
+            file.write(write.toJSONString());
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+		
+		
 	}
 }
