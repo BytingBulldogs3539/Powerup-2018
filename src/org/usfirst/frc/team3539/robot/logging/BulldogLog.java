@@ -64,7 +64,7 @@ public class BulldogLog
 		}
 		else
 		{
-			System.out.println("WARNING!!! YOU SHOULD NEVER SEE THIS EVER!!! " + fileName);
+			System.out.println("WARNING!!! YOU SHOULD NEVER SEE THIS EVER!!! LOG NOT ENABLED " + fileName);
 		}
 	}
 

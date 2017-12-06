@@ -1,7 +1,10 @@
 
 package org.usfirst.frc.team3539.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
+import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystick;
+import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystickButton;
+import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
+
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -9,18 +12,18 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI
 {
-	public Joystick controller1 = new Joystick(RobotMap.DRIVER);
-	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
+	public ByteJoystick controller1 = new ByteJoystick(RobotMap.DRIVER);
+	public ByteJoystick controller2 = new ByteJoystick(RobotMap.OPERATOR);
 
 	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
 	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
 	public JoystickButton oneA = new JoystickButton(controller1, RobotMap.A);
 	public JoystickButton oneB = new JoystickButton(controller1, RobotMap.B);
 
-	public JoystickButton twoX = new JoystickButton(controller2, RobotMap.X);
-	public JoystickButton twoY = new JoystickButton(controller2, RobotMap.Y);
-	public JoystickButton twoA = new JoystickButton(controller2, RobotMap.A);
-	public JoystickButton twoB = new JoystickButton(controller2, RobotMap.B);
+	public ByteJoystickButton twoX = new ByteJoystickButton(controller2, RobotMap.X);
+	public ByteJoystickButton twoY = new ByteJoystickButton(controller2, RobotMap.Y);
+	public ByteJoystickButton twoA = new ByteJoystickButton(controller2, RobotMap.A);
+	public ByteJoystickButton twoB = new ByteJoystickButton(controller2, RobotMap.B);
 
 	public JoystickButton oneBL = new JoystickButton(controller1, RobotMap.BL);
 	public JoystickButton oneBR = new JoystickButton(controller1, RobotMap.BR);
@@ -45,5 +48,7 @@ public class OI
 
 	public OI()
 	{
+		twoA.whenPressed(new IntakeCommand(1));
+		twoA.whenReleased(new IntakeCommand(0));
 	}
 }

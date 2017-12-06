@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
+import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3539.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -18,6 +20,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
+	public static final DriveTrain driveTrain = new DriveTrain("driveTrain", true);
+	public static final Intake intake = new Intake("Intake", true);
 
 	public static Compressor c;
 	public static OI oi;
@@ -29,6 +33,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		BulldogLogger.getInstance().logEvent("robotInit");
+
 		c = new Compressor(RobotMap.compressor);
 
 		oi = new OI();

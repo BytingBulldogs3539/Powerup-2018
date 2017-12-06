@@ -19,7 +19,7 @@ public class DirectionalButton extends Button
 	private double neededAngle;
 	private GenericHID joystick;
 
-	enum Direction
+	public enum Direction
 	{
 		UP, DOWN, LEFT, RIGHT
 	}
