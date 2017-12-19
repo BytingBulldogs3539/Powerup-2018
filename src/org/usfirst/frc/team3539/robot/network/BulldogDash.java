@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3539.robot.network;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Singleton class for SmartDashboard display
  * 
@@ -23,6 +25,8 @@ public class BulldogDash
 	 */
 	private BulldogDash()
 	{
+		SmartDashboard.putBoolean("3539", false);
+		
 	}
 
 	public static BulldogDash getInstance()

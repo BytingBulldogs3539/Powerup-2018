@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  * @since 11/12/17
  */
 
-// TODO: Update toggle() with more favorable WPILIB methods
 // TODO: Implement logging
 
 public class ByteDoubleSolenoid extends DoubleSolenoid
