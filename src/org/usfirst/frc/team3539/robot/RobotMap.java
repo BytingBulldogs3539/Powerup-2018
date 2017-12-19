@@ -11,7 +11,8 @@ public class RobotMap
 	// CONTROLLER PORT
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
-
+	// Press F1 to refresh Controllers
+	
 	// CONTROLLER AXIS
 	public static final int X_AxisL = 0;
 	public static final int Y_AxisL = 1;
@@ -36,24 +37,36 @@ public class RobotMap
 	// BUMPER
 	public static final int BL = 5;
 	public static final int BR = 6;
+	
+	// PRINTLNLOG
+	public static final boolean shouldPrintInput = true;
+	public static final boolean shouldPrintEvent = true;
+	public static final boolean shouldPrintCommand = true;
+	public static final boolean shouldPrintSubsystem = true;
 
 	// DRIVE
-	public static final int lfMotorTalon = 0;
-	public static final int lbMotorTalon = 0;
-	public static final int rfMotorTalon = 0;
-	public static final int rbMotorTalon = 0;
+	public static final int lfMotorTalon = 6;
+	public static final int lbMotorTalon = 7;
+	public static final int rfMotorTalon = 4;
+	public static final int rbMotorTalon = 3;
+	
+	public static final int driveOn = 0;
+	public static final int driveOff = 1;
+	
+	// INTAKE
+	public static final int intakeMotorTalon = 5;
+	public static final int lockSolOn = 4;
+	public static final int lockSolOff = 5;
 
 	// AIR
-	public static final int compressor = 0;
+	public static final int compressor = 10;
 
 	// PCM
-	public static final int pcm = 0;
+	public static final int pcm = 10;
 	
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
-	
-	//GitHub test 11/14/2017
 
 	//////////////////////// PRACTICE BOT/////////////////////
 

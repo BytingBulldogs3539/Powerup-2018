@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
  * @since 11/12/17
  */
 
-// TODO:
+// TODO: Fix link between BytePacket-Objects
 
 public class BulldogTables
 {

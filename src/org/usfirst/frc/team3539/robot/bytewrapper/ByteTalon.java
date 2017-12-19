@@ -1,68 +1,73 @@
 package org.usfirst.frc.team3539.robot.bytewrapper;
 
-import org.usfirst.frc.team3539.robot.management.IManageable;
+import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
 
 import com.ctre.CANTalon;
 
-/**
- * Wrapper class for all Commands to implement logging, console output, and Dashboard interfacing
- * 
- * @author FRC-3539
- *
- * @since 11/17/17
- */
-
-// TODO: Implement logging
-// TODO: Test
-
-public class ByteTalon extends CANTalon implements IManageable
+public class ByteTalon extends CANTalon
 {
-	public ByteTalon(int channel)
+	private ByteSystem b;
+	private String name;
+	private boolean hasEncoder;
+
+	public ByteTalon(ByteSystem b, int deviceNumber, String name)
 	{
-		super(channel);
+		super(deviceNumber);
+		init(b, deviceNumber, name);
 	}
 
-	public void zero()
+	public ByteTalon(ByteSystem b, int deviceNumber, String name, int controlPeriodMs)
 	{
-		//TODO: tell logging that the encoder was zeroed
-		setPosition(0);
+		super(deviceNumber, controlPeriodMs);
+		init(b, deviceNumber, name);
+	}
+
+	public ByteTalon(ByteSystem b, int deviceNumber, String name, int controlPeriodMs, int enablePeriodMs)
+	{
+		super(deviceNumber, controlPeriodMs, enablePeriodMs);
+		init(b, deviceNumber, name);
+	}
+
+	private void init(ByteSystem b, int deviceNumber, String name)
+	{
+		this.b = b;
+		this.name = name;
+
+		hasEncoder = false;
+
+		BulldogLogger.getInstance().log(b, name + " ByteTalon ID: " + deviceNumber + " Constructed");
+	}
+
+	// VV idk when this gets called etc. Execute??? Outside timer??? Omar CTRE might be unhappy with 2 places accessing at once
+	public void logEncoderPosition()
+	{
+		if (hasEncoder)
+		{
+			BulldogLogger.getInstance().log(b, name + " EncoderP: " + this.getEncPosition());
+		}
+		else
+		{
+			BulldogLogger.getInstance().log(b, name + "hasEncoder: " + hasEncoder);
+			BulldogLogger.getInstance().logEvent(name + " HAS NO ENCODER SILLY!!!! (or it's disconnected)");
+		}
 	}
 	
-	
-	
-	
-	@Override
-	public void register()
+	public void logEncoderVelocity()
 	{
-		// TODO Auto-generated method stub
-
+		if (hasEncoder)
+		{
+			BulldogLogger.getInstance().log(b, name + " EncoderV: " + this.getEncVelocity());
+		}
+		else
+		{
+			BulldogLogger.getInstance().log(b, name + "hasEncoder: " + hasEncoder);
+			BulldogLogger.getInstance().logEvent(name + " HAS NO ENCODER SILLY!!!! (or it's disconnected)");
+		}
 	}
 
-	@Override
-	public void setInterval()
+	public void setEncoder(boolean hasEncoder)
 	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getInterval()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void poll()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void close()
-	{
-		// TODO Auto-generated method stub
-
+		BulldogLogger.getInstance().log(b, name + "hasEncoder: " + hasEncoder);
+		this.hasEncoder = hasEncoder;
 	}
 }
