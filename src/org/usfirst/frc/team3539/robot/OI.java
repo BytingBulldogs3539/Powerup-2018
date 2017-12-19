@@ -4,9 +4,7 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteDirectionalButton;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystick;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystickButton;
-import org.usfirst.frc.team3539.robot.commands.SolenoidTransToggle;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
-import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups that allow control of the robot.
@@ -59,8 +57,5 @@ public class OI
 
 	public OI()
 	{
-		twoA.whileHeld(new IntakeCommand(1));
-		onePadDown.whileHeld(new SolenoidTransToggle());
-		oneA.whenPressed(new SolenoidTransToggle());
 	}
 }

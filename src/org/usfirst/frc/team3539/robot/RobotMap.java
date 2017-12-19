@@ -44,20 +44,6 @@ public class RobotMap
 	public static final boolean shouldPrintCommand = true;
 	public static final boolean shouldPrintSubsystem = true;
 
-	// DRIVE
-	public static final int lfMotorTalon = 6;
-	public static final int lbMotorTalon = 7;
-	public static final int rfMotorTalon = 4;
-	public static final int rbMotorTalon = 3;
-	
-	public static final int driveOn = 0;
-	public static final int driveOff = 1;
-	
-	// INTAKE
-	public static final int intakeMotorTalon = 5;
-	public static final int lockSolOn = 4;
-	public static final int lockSolOff = 5;
-
 	// AIR
 	public static final int compressor = 10;
 

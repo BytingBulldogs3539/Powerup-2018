@@ -1,9 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
-import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team3539.robot.subsystems.Intake;
-import org.usfirst.frc.team3539.robot.subsystems.Solenoid;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,9 +19,6 @@ public class Robot extends IterativeRobot
 {
 	
 	// SUBSYSTEMS
-	public static final DriveTrain driveTrain = new DriveTrain("DriveTrain", true);
-	public static final Intake intake = new Intake("Intake", true);
-	public static final Solenoid solenoid =  new Solenoid("Solenoid",true);
 
 	public static Compressor c;
 	public static OI oi;
