@@ -1,22 +1,19 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteDoubleSolenoid;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteSystem;
+import org.usfirst.frc.team3539.robot.bytewrapper.ByteTalon;
 
 import com.ctre.CANTalon;
 
 public class Intake extends ByteSystem
 {
 	private CANTalon intakeMotor;
-	private ByteDoubleSolenoid lock;
 
 	public Intake(String name, boolean isEnabled)
 	{
 		super(name, isEnabled);
-		intakeMotor = new CANTalon(RobotMap.intakeMotorTalon);
-		
-		lock = new ByteDoubleSolenoid(this, RobotMap.lockSolOn, RobotMap.lockSolOff, false);
+		intakeMotor = new ByteTalon(this, RobotMap.intakeMotorTalon, "intakeMotorTalon");
 		
 		intakeMotor.configNominalOutputVoltage(0.0f, -0.0f);
 		intakeMotor.configPeakOutputVoltage(12.0f, -12.0f);
@@ -30,13 +27,5 @@ public class Intake extends ByteSystem
 		intakeMotor.set(power);
 	}
 
-	public void lockOff()
-	{
-		lock.reverse();
-	}
-
-	public void lockOn()
-	{
-		lock.forward();
-	}
+	
 }

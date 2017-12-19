@@ -3,32 +3,29 @@ package org.usfirst.frc.team3539.robot.commands;
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteCommand;
 
-/**
- *
- */
-public class DriveCommand extends ByteCommand
+public class SolenoidTransToggle extends ByteCommand
 {
-	public DriveCommand()
+	public SolenoidTransToggle()
 	{
-		super("DriveCommand");
-		requires(Robot.driveTrain);
+		super("SolenoidTransToggle");
+		requires(Robot.solenoid);
 	}
 
 	@Override
 	protected void bInit()
 	{
+		Robot.solenoid.toggleTrans();
 	}
 
 	@Override
 	protected void bExecute()
 	{
-		Robot.driveTrain.driveArcade(Robot.oi.controller1.getAxisLY(), Robot.oi.controller1.getAxisRX());
 	}
 
 	@Override
 	protected boolean bIsFinished()
 	{
-		return false;
+		return true;
 	}
 
 	@Override

@@ -2,56 +2,56 @@ package org.usfirst.frc.team3539.robot.bytewrapper;
 
 import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
 
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import edu.wpi.first.wpilibj.command.Command;
 
 public class ByteJoystickButton extends JoystickButton
 {
-	private GenericHID joystick;
+	private ByteJoystick joystick;
 	private int buttonNumber;
-	
-	public ByteJoystickButton(GenericHID joystick, int buttonNumber)
+	private String label;
+
+	public ByteJoystickButton(ByteJoystick joystick, int buttonNumber, String label)
 	{
 		super(joystick, buttonNumber);
 		this.joystick = joystick;
 		this.buttonNumber = buttonNumber;
-		BulldogLogger.getInstance().logEvent(joystick.getName() + " #: " + buttonNumber + " ByteJoystickButton Constructed");
+		this.label = label;
+		BulldogLogger.getInstance().logEvent("ByteJoystickButton Constructed " + joystick.getName() +  " #:" + buttonNumber + ":" + label);
 	}
 
-	public void whenPressed(final Command command)
+	public void whenPressed(final ByteCommand command)
 	{
-		BulldogLogger.getInstance().logInput(joystick.getName() + " #: " + buttonNumber + " whenPressed()");
+		BulldogLogger.getInstance().logInput(getPrefix(command) + "whenPressed()");
 		whenActive(command);
 	}
 
-	public void whileHeld(final Command command)
+	public void whileHeld(final ByteCommand command)
 	{
-		BulldogLogger.getInstance().logInput(joystick.getName() + " #: " + buttonNumber + " whileHeld()");
+		BulldogLogger.getInstance().logInput(getPrefix(command) + "whileHeld()");
 		whileActive(command);
 	}
 
-	public void whenReleased(final Command command)
+	public void whenReleased(final ByteCommand command)
 	{
-		BulldogLogger.getInstance().logInput(joystick.getName() + " #: " + buttonNumber + " whenReleased()");
+		BulldogLogger.getInstance().logInput(getPrefix(command) + "whenReleased()");
 		whenInactive(command);
 	}
 
-	public void toggleWhenPressed(final Command command)
+	public void toggleWhenPressed(final ByteCommand command)
 	{
-		BulldogLogger.getInstance().logInput(joystick.getName() + " #: " + buttonNumber + " toggleWhenPressed()");
+		BulldogLogger.getInstance().logInput(getPrefix(command) + "toggleWhenPressed()");
 		toggleWhenActive(command);
 	}
 
-	public void cancelWhenPressed(final Command command)
+	public void cancelWhenPressed(final ByteCommand command)
 	{
-		BulldogLogger.getInstance().logInput(joystick.getName() + " #: " + buttonNumber + " cancelWhenPressed()");
+		BulldogLogger.getInstance().logInput(getPrefix(command) + "cancelWhenPressed()");
 		cancelWhenActive(command);
 	}
-	
-	public String getButtonName(int buttonNumber)
+
+	private String getPrefix(ByteCommand command)
 	{
-		return "not sure how to do this yet";
+		return joystick.getName() + " #" + buttonNumber + ":" + label + " -> " + command.getName() + ".";
 	}
 
 }

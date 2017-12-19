@@ -34,7 +34,7 @@ public class IntakeCommand extends ByteCommand
 	@Override
 	protected void bEnd()
 	{
-		
+		Robot.intake.setMotorPower(0);
 	}
 
 	@Override

@@ -3,8 +3,14 @@ package org.usfirst.frc.team3539.robot.logging;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FilenameFilter;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
 
@@ -22,7 +28,8 @@ public class BulldogLog
 {
 	private PrintStream stream;
 	private File file;
-	private int logNum;
+	private int totalLines;
+	private int totalAttempts;
 
 	public BulldogLog(String fileName, boolean isEnabled)
 	{
@@ -38,8 +45,8 @@ public class BulldogLog
 				file = new File(RobotMap.FLASH_DIR + appendFileName);
 				stream = new PrintStream(new FileOutputStream(file));
 				System.out.println("==========================================================");
-				System.out.println(" FILE IS ON THE USB STICK");
-				System.out.println("==========================================================");
+				System.out.println(fileName + " FILE IS ON THE USB STICK");
+				System.out.println(">>>");
 
 			}
 			catch (FileNotFoundException e)
@@ -47,8 +54,8 @@ public class BulldogLog
 				try // If it fails, put file on RIO
 				{
 					System.out.println("==========================================================");
-					System.out.println(" FILE IS ON THE ROBORIO");
-					System.out.println("==========================================================");
+					System.out.println(fileName + " FILE IS ON THE ROBORIO");
+					System.out.println(">>>");
 
 					file = new File(RobotMap.RIO_DIR + appendFileName);
 					stream = new PrintStream(new FileOutputStream(file));
@@ -76,6 +83,7 @@ public class BulldogLog
 		{
 			stream.println(logMsg);
 			stream.flush();
+			totalLines++;
 		}
 		catch (Exception e)
 		{
@@ -86,8 +94,7 @@ public class BulldogLog
 		{
 			System.out.println(logMsg);
 		}
-
-		logNum++;
+		totalAttempts++;
 	}
 
 	private String getDate()
@@ -100,14 +107,79 @@ public class BulldogLog
 		return new SimpleDateFormat("HH:mm:ss:SSS").format(new java.util.Date());
 	}
 
-	public int getLogNum()
+	public int getTotalLines()
 	{
-		return logNum;
+		return totalLines;
+	}
+	
+	public int getTotalAttempts()
+	{
+		return totalAttempts;
 	}
 
 	public PrintStream getStream()
 	{
 		return stream;
+	}
+	
+	public static File getLastLogFile()
+	{
+		List<String> filenames = getAllLogFiles().stream().map(File::getName).collect(Collectors.toList());
+		filenames.sort(null);
+		if(filenames.isEmpty())
+			return null;
+		
+		String lastfile = filenames.get(filenames.size()-1);
+		return new File(getLogDirectory(), lastfile);	
+	}
+	
+	public static File getLogDirectory()
+	{
+		File base = determineMountPoint();
+		if (base == null)
+			return base;
+		
+		File logDir = new File(base,"logs"); //-----------------------------------------------------------
+		if (!logDir.exists())
+			logDir.mkdirs();
+		return logDir;
+	}
+	
+	public static File determineMountPoint()
+	{
+        char iter = 'z';
+        for (int i = 0; i < 16; i++) {
+        	System.out.println("thing: " + iter);
+            File f = new File("/" + iter);
+            if (f.exists() && f.isDirectory()) {
+                return f;
+            }
+            iter--;
+        }
+        return new File("C:\\test");		
+	}
+	
+	//public static Collection<File> getAllLogFolders()
+	//{
+	
+	public static Collection<File> getAllLogFiles()
+	{
+		FilenameFilter filter = new FilenameFilter()
+				{
+					@Override
+					public boolean accept(File dir, String name) {
+						// TODO Auto-generated method stub
+						String lc = name.toLowerCase();
+						return lc.matches("\\d\\d\\d\\d.log");
+					}
+				};
+		File logDir = getLogDirectory();
+		File[] files = logDir.listFiles(filter);
+		
+		if (files == null)
+			return new ArrayList<File>();
+		
+		return Arrays.asList(files);
 	}
 
 	public void exit()

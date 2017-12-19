@@ -40,14 +40,12 @@ public class BulldogLogger
 	 */
 	private BulldogLogger()
 	{
-		System.out.println("Started logging");
-		inputLog = new BulldogLog("inputLog", true);
-		eventLog = new BulldogLog("eventLog", true);
-		commandLog = new BulldogLog("commandLog", true);
+		System.out.println("*** BULLDOGLOGGER FIRST CALL ***");
+
+		eventLog = createLog("eventLog", true);
+		inputLog = createLog("inputLog", true);
+		commandLog = createLog("commandLog", true);
 		
-		logs.add(inputLog);
-		logs.add(eventLog);
-		logs.add(commandLog);
 	}
 
 	public static BulldogLogger getInstance()
@@ -59,6 +57,13 @@ public class BulldogLogger
 		}
 		else
 			return bl;
+	}
+	
+	public BulldogLog createLog(String name, boolean isEnabled)
+	{
+		BulldogLog log = new BulldogLog(name, isEnabled);
+		logs.add(log);
+		return log;
 	}
 
 	public void logEvent(String msg)
@@ -83,27 +88,35 @@ public class BulldogLogger
 
 	public void finishLogging()
 	{
-		int total = 0;
+		int totalLines = 0;
+		int totalAttempts = 0;
 		
 		for (BulldogLog bulldogLog : logs)
 		{
-			total += bulldogLog.getLogNum();
+			totalLines += bulldogLog.getTotalLines();
 		}
 		
-		total += 1;
+		//We do one additional line before we close the files but after we count so
+		//the following lines account for it
+		totalLines++;
+		totalAttempts++;
 		
-		String s = "We logged " + total + " things! log log log";
+		String s = "We logged " + totalLines + " things! with " + totalAttempts + "attempts. log! log! log!";
 
 		eventLog.log(s, true);
+		
+		if(totalLines != totalAttempts)
+		{
+			System.out.println("WARNING - DATA HAS FAILED TRY CATCH FOR FILE!!!!! - FIX ASAP");
+			System.out.println("WARNING - DATA HAS FAILED TRY CATCH FOR FILE!!!!! - FIX ASAP");
+			System.out.println("WARNING - DATA HAS FAILED TRY CATCH FOR FILE!!!!! - FIX ASAP");
+		}
 
 		for (BulldogLog bulldogLog : logs)
 		{
 			bulldogLog.exit();
 		}
-	}
-	
-	public void addLogArray(BulldogLog log)
-	{
-		logs.add(log);
+		
+		System.out.println("*** BULLDOGLOGGER LAST CALL ***");
 	}
 }

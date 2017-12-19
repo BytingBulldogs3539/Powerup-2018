@@ -28,8 +28,7 @@ public abstract class ByteSystem extends Subsystem
 	public ByteSystem(String name, boolean isEnabled)
 	{
 		super(name);
-		log = new BulldogLog(name, isEnabled);
-		BulldogLogger.getInstance().addLogArray(log);
+		log = BulldogLogger.getInstance().createLog(name, isEnabled);
 	}
 
 	/**

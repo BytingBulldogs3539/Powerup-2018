@@ -18,11 +18,13 @@ import edu.wpi.first.wpilibj.Joystick;
 
 public class ByteJoystick extends Joystick
 {
-
-	public ByteJoystick(int port)
+	private String name;
+	
+	public ByteJoystick(int port, String name)
 	{
 		super(port);
-		BulldogLogger.getInstance().logEvent(port + " Joystick Constructed");
+		this.name = name;
+		BulldogLogger.getInstance().logEvent(name + " " + port + " Joystick Constructed");
 	}
 
 	public double getAxisRX()
@@ -43,5 +45,10 @@ public class ByteJoystick extends Joystick
 	public double getAxisLY()
 	{
 		return getRawAxis(RobotMap.Y_AxisL);
+	}
+	
+	public String getName()
+	{
+		return name;
 	}
 }
