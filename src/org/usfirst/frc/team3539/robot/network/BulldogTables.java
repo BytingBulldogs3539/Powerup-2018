@@ -30,15 +30,6 @@ public class BulldogTables
 		return bTable;
 	}
 
-	// public void getValue()
-	// {
-	// // TODO: Solve return type issue
-	// }
-	// public void putValue()
-	// {
-	// // TODO: Solve input type issue
-	// }
-
 	public void putNumber(String key, int value)
 	{
 		table.putNumber(key, value);

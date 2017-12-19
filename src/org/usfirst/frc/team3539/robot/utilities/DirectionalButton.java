@@ -17,9 +17,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 public class DirectionalButton extends Button
 {
 	private double neededAngle;
+	private Direction direction;
 	private GenericHID joystick;
 
-	enum Direction
+	public enum Direction
 	{
 		UP, DOWN, LEFT, RIGHT
 	}
@@ -27,6 +28,7 @@ public class DirectionalButton extends Button
 	public DirectionalButton(Direction direction, GenericHID joystick)
 	{
 		neededAngle = 1;
+		this.direction = direction;
 		this.joystick = joystick;
 
 		switch (direction)
@@ -56,5 +58,10 @@ public class DirectionalButton extends Button
 		{
 			return false;
 		}
+	}
+	
+	public Direction getDirection()
+	{
+		return direction;
 	}
 }

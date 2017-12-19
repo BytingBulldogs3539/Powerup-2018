@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 // TODO: Append String to name to Diff. from PIDCommand
 
 public abstract class ByteCommand extends Command
-{
+{	
 	protected ByteCommand(String name)
 	{
 		super(name);
@@ -41,7 +41,7 @@ public abstract class ByteCommand extends Command
 	{
 		super.execute();
 		bExecute();
-		BulldogLogger.getInstance().logCommand(getName() + " Executed");
+		//BulldogLogger.getInstance().logCommand(getName() + " Executed");
 	}
 
 	protected abstract void bExecute();

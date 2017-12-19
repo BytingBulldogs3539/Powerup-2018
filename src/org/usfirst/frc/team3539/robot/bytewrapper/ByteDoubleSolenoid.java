@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3539.robot.bytewrapper;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.management.IManageable;
+import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
@@ -13,18 +13,22 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
  * @since 11/12/17
  */
 
-// TODO: Update toggle() with more favorable WPILIB methods
 // TODO: Implement logging
 
-public class ByteDoubleSolenoid extends DoubleSolenoid implements IManageable
+public class ByteDoubleSolenoid extends DoubleSolenoid
 {
 	private boolean isTrigger;
+	private ByteSystem b;
+	int on, off;
 
-	public ByteDoubleSolenoid(int on, int off, boolean isTrigger)
+	public ByteDoubleSolenoid(ByteSystem b, int on, int off, boolean isTrigger)
 	{
 		super(RobotMap.pcm, on, off); // on, off
+		this.on = on;
+		this.off = off;
+		this.b = b;
 		defaultPosition(isTrigger);
-
+		BulldogLogger.getInstance().log(b, "ByteDoubleSolenoid " + on + " " + off + " " + "Constructed");
 	}
 
 	public void toggle()
@@ -54,48 +58,18 @@ public class ByteDoubleSolenoid extends DoubleSolenoid implements IManageable
 	public void forward()
 	{
 		set(DoubleSolenoid.Value.kForward);
+		BulldogLogger.getInstance().log(b, "ByteDoubleSolenoid " + on + " " + off + " " + "Forward");
 	}
 
 	public void reverse()
 	{
 		set(DoubleSolenoid.Value.kReverse);
+		BulldogLogger.getInstance().log(b, "ByteDoubleSolenoid " + on + " " + off + " " + "Reverse");
 	}
 
 	public void disable()
 	{
 		set(DoubleSolenoid.Value.kOff);
-	}
-
-	@Override
-	public void register()
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void poll()
-	{
-		// TODO Auto-generated method stub
-	}
-
-	@Override
-	public void setInterval()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void getInterval()
-	{
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void close()
-	{
-		// TODO Auto-generated method stub
-
+		BulldogLogger.getInstance().log(b, "ByteDoubleSolenoid " + on + " " + off + " " + "Disable");
 	}
 }
