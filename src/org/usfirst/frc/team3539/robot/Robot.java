@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
+import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -19,6 +20,7 @@ public class Robot extends IterativeRobot
 {
 	
 	// SUBSYSTEMS
+	public static Drivetrain drivetrain = new Drivetrain("drivetrain", false);
 
 	public static Compressor c;
 	public static OI oi;

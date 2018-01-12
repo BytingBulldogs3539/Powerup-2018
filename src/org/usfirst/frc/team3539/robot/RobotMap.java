@@ -1,10 +1,8 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
+ * around.
  */
 public class RobotMap
 {
@@ -12,7 +10,7 @@ public class RobotMap
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
-	
+
 	// CONTROLLER AXIS
 	public static final int X_AxisL = 0;
 	public static final int Y_AxisL = 1;
@@ -28,16 +26,16 @@ public class RobotMap
 	public static final int B = 2;
 	public static final int X = 3;
 	public static final int Y = 4;
-	
+
 	public static final int START = 8;
-	
+
 	public static final int LS = 9;
 	public static final int RS = 10;
 
 	// BUMPER
 	public static final int BL = 5;
 	public static final int BR = 6;
-	
+
 	// PRINTLNLOG
 	public static final boolean shouldPrintInput = true;
 	public static final boolean shouldPrintEvent = true;
@@ -49,7 +47,13 @@ public class RobotMap
 
 	// PCM
 	public static final int pcm = 10;
-	
+
+	// DRIVETRAIN
+	public static final int lf = 1; // Left Front Drive Talon
+	public static final int lb = 2; // Left Back Drive Talon
+	public static final int rf = 6; // Right Front Drive Talon
+	public static final int rb = 5; // Right Back Drive Talon
+
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
@@ -58,4 +62,3 @@ public class RobotMap
 
 	//////////////////////// COMP BOT/////////////////////////
 }
-	
