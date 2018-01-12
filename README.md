@@ -1,2 +1,2 @@
-# FRC-3539
-Base Robot Code of the FRC Team 3539 Byting Bulldogs
+# 2018-Robot
+Code for 2018 robot of the FRC Team 3539 the Byting Bulldogs
