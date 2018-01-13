@@ -4,8 +4,6 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteSystem;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteTalon;
 
-import com.ctre.CANTalon.TalonControlMode;
-
 public class Drivetrain extends ByteSystem 
 {
 	ByteTalon lf, lb, rf, rb;
