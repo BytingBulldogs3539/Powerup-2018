@@ -33,5 +33,12 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Powerup-2018/doc/CTRE_Phoenix-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
+	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
+	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
+	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
+	<classpathentry kind="var" path="wpiutil" sourcepath="wpiutil.sources"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix-sources.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CTRE_Phoenix.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

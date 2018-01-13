@@ -1,8 +1,8 @@
 package org.usfirst.frc.team3539.robot.commands;
 
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveCommand extends ByteCommand
+public class DriveCommand extends Command
 {
 
 	protected DriveCommand(String name)
@@ -11,37 +11,9 @@ public class DriveCommand extends ByteCommand
 	}
 
 	@Override
-	protected void bInit()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void bExecute()
-	{
-		//Robot.drivetrain
-	}
-
-	@Override
-	protected boolean bIsFinished()
+	protected boolean isFinished()
 	{
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-	@Override
-	protected void bEnd()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	protected void bInterrupted()
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
 }

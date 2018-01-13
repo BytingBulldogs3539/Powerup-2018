@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.logging.BulldogLogger;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -31,8 +30,6 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
-		BulldogLogger.getInstance().logEvent("robotInit");
-
 		c = new Compressor(RobotMap.compressor);
 
 		oi = new OI();
@@ -63,7 +60,6 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		BulldogLogger.getInstance().logEvent("autonomousInit");
 		Update();
 
 		autonMode = (Command) autonChooser.getSelected();
@@ -82,7 +78,6 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-		BulldogLogger.getInstance().logEvent("teleopInit");
 		System.out.println("teleopInit");
 	}
 

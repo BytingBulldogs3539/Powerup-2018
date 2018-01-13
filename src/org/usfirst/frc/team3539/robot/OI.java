@@ -1,22 +1,22 @@
 
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteDirectionalButton;
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystick;
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteJoystickButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator interface to the commands and command groups that allow control of the robot.
  */
 public class OI
 {
-	public ByteJoystick controller1 = new ByteJoystick(RobotMap.DRIVER, "DRIVER  "); //Added spaces to fix spacing in logs
-	public ByteJoystick controller2 = new ByteJoystick(RobotMap.OPERATOR, "OPERATOR");
+	public Joystick controller1 = new Joystick(RobotMap.DRIVER); //Added spaces to fix spacing in logs
+	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
 
-	public ByteJoystickButton oneX = new ByteJoystickButton(controller1, RobotMap.X, "X");
-	public ByteJoystickButton oneY = new ByteJoystickButton(controller1, RobotMap.Y, "Y");
-	public ByteJoystickButton oneA = new ByteJoystickButton(controller1, RobotMap.A, "A");
+	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
+	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
+	public JoystickButton oneA = new JoystickButton(controller1, RobotMap.A);
 	public ByteJoystickButton oneB = new ByteJoystickButton(controller1, RobotMap.B, "B");
 
 	public ByteJoystickButton twoX = new ByteJoystickButton(controller2, RobotMap.X, "X");
