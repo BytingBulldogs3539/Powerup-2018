@@ -54,6 +54,9 @@ public class RobotMap
 	public static final int rf = 6; // Right Front Drive Talon
 	public static final int rb = 5; // Right Back Drive Talon
 
+	//LIFTER
+	public static final int LifterMotor=1;
+	
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
