@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot.commands;
 
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteCommand;
 
 public class DriveCommand extends ByteCommand
