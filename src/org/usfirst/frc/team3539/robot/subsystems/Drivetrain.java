@@ -4,38 +4,46 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteSystem;
 import org.usfirst.frc.team3539.robot.bytewrapper.ByteTalon;
 
-public class Drivetrain extends ByteSystem 
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
+import edu.wpi.first.wpilibj.command.Subsystem;
+
+public class Drivetrain extends Subsystem 
 {
-	ByteTalon lf, lb, rf, rb;
+	TalonSRX lf, lb, rf, rb;
 	
 	public Drivetrain(String name, boolean isEnabled)
 	{
-		super(name, isEnabled);
+		//super(name, isEnabled);
 		
 		//gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
-		lf = new ByteTalon(this, RobotMap.lf,"lf");
-		lb = new ByteTalon(this, RobotMap.lb,"lb");
-		rf = new ByteTalon(this, RobotMap.rf,"rf");
-		rb = new ByteTalon(this, RobotMap.rb,"rb");
+		lf = new TalonSRX(RobotMap.lf);
+		lb = new TalonSRX(RobotMap.lb);
+		rf = new TalonSRX(RobotMap.rf);
+		rb = new TalonSRX(RobotMap.rb);
+		
 
-		lf.changeControlMode(TalonControlMode.PercentVbus);
-		rf.changeControlMode(TalonControlMode.PercentVbus);
+		lf.set(ControlMode.PercentOutput, 0);
+		rf.set(ControlMode.PercentOutput, 0);
+		
+		//rf.changeControlMode(TalonControlMode.PercentVbus);
 		// rbMotor.changeControlMode(TalonControlMode.PercentVbus);
 		// lbMotor.changeControlMode(TalonControlMode.PercentVbus);
+	
+		//rb.changeControlMode(TalonControlMode.Follower);
+		//lb.changeControlMode(TalonControlMode.Follower);
 
-		rb.changeControlMode(TalonControlMode.Follower);
-		lb.changeControlMode(TalonControlMode.Follower);
-
-		rb.set(rf.getDeviceID());
-		lb.set(lf.getDeviceID());
+		rb.set(ControlMode.PercentOutput, 0);
+		lb.set(ControlMode.PercentOutput, 0);
 
 		//lf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		//rf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// lbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 
-		lf.configNominalOutputVoltage(0.0f, -0.0f);
+		lf.configOutputVoltage(0.0f, -0.0f);
 		lf.configPeakOutputVoltage(12.0f, -12.0f);
 
 		rf.configNominalOutputVoltage(0.0f, -0.0f);
@@ -61,6 +69,12 @@ public class Drivetrain extends ByteSystem
 	
 	public void driveArcade(double forward, double rotate)
 	{
+		
+	}
+
+	@Override
+	protected void initDefaultCommand() {
+		// TODO Auto-generated method stub
 		
 	}
 
