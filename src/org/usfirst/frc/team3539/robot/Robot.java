@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -18,10 +19,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-	
+
 	// SUBSYSTEMS
-	public static Drivetrain drivetrain;
+	public static Drivetrain drivetrain = new Drivetrain("drivetrain", false);
+	public static Intake intake;
 	public static Lifter lifter;
+  
 	public static Compressor c;
 	public static OI oi;
 	// public static UsbCamera camera;
@@ -34,6 +37,7 @@ public class Robot extends IterativeRobot
 		drivetrain = new Drivetrain("drivetrain", false);
 		lifter = new Lifter();
 		c = new Compressor(RobotMap.compressor);
+		intake = new Intake();
 		oi = new OI();
 		
 		SmartInit();

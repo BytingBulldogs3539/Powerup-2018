@@ -68,7 +68,7 @@ public class RobotMap
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
 
-	//////////////////////// PRACTICE BOT /////////////////////
+	//////////////////////// PRACTICE BOT/////////////////////
 
 	//////////////////////// COMP BOT /////////////////////////
 }
