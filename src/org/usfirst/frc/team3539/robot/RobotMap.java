@@ -60,8 +60,14 @@ public class RobotMap
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
+	
+	// INTAKE
+	public static final int intakeMotorTalon1 = /* Ayy put the talon nuber here */;
+	public static final int intakeMotorTalon2 = /* Ayy put the talon nuber here */;
 
 	//////////////////////// PRACTICE BOT/////////////////////
+	
+	
 
 	//////////////////////// COMP BOT/////////////////////////
 }
