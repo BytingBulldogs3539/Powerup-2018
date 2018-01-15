@@ -18,10 +18,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-	
+
 	// SUBSYSTEMS
 	public static Drivetrain drivetrain = new Drivetrain("drivetrain", false);
-	public static Intake intake = new Intake();
+	public static Intake intake;
 
 	public static Compressor c;
 	public static OI oi;
@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		c = new Compressor(RobotMap.compressor);
-
+		intake = new Intake();
 		oi = new OI();
 
 		SmartInit();

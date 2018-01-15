@@ -13,19 +13,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Intake extends Subsystem
 {
 
-	private TalonSRX intakeMotor1;
-	private TalonSRX intakeMotor2;
+	private TalonSRX intakeMotorLeft;
+	private TalonSRX intakeMotorRight;
 
 	public Intake()
 	{
-		intakeMotor1 = new TalonSRX(RobotMap.intakeMotorTalon1);
-		intakeMotor2 = new TalonSRX(RobotMap.intakeMotorTalon2);
+		intakeMotorLeft = new TalonSRX(RobotMap.lIntakeMotor);
+		intakeMotorRight = new TalonSRX(RobotMap.rIntakeMotor);
 	}
 
 	public void setMotorPower(double power)
 	{
-		intakeMotor1.set(ControlMode.PercentOutput, power);
-		intakeMotor2.set(ControlMode.PercentOutput, power);
+		intakeMotorLeft.set(ControlMode.PercentOutput, power);
+		intakeMotorRight.set(ControlMode.PercentOutput, -power);
 	}
 
 	public void initDefaultCommand()
