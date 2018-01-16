@@ -55,14 +55,14 @@ public class RobotMap
 	public static final int rb = 5; // Right Back Drive Talon
 
 	// INTAKE
-	public static final int lIntakeMotor = 3539; // I don't know what the actual Talon number will be
-	public static final int rIntakeMotor = 3539; // I don't know what the actual Talon number will be
+	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be
+	public static final int rIntakeMotor = 2; // I don't know what the actual Talon number will be
 	
 	// LIFTER
-	public static final int l1LifterMotor = 3539; // I don't know what the actual Talon number will be
-	public static final int l2LifterMotor = 3539; // I don't know what the actual Talon number will be
-	public static final int r1LifterMotor = 3539; // I don't know what the actual Talon number will be
-	public static final int r2LifterMotor = 3539; // I don't know what the actual Talon number will be
+	public static final int l1LifterMotor = 0; // I don't know what the actual Talon number will be
+	public static final int l2LifterMotor = 2; 
+	public static final int r1LifterMotor = 1; 
+	public static final int r2LifterMotor = 0; // I don't know what the actual Talon number will be
 	
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
