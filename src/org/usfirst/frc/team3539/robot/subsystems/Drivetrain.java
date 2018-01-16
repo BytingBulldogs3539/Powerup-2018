@@ -1,9 +1,6 @@
 package org.usfirst.frc.team3539.robot.subsystems;
-
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteSystem;
-import org.usfirst.frc.team3539.robot.bytewrapper.ByteTalon;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -43,35 +40,41 @@ public class Drivetrain extends Subsystem
 		// rbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// lbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 
-		lf.configOutputVoltage(0.0f, -0.0f);
-		lf.configPeakOutputVoltage(12.0f, -12.0f);
+		//lf.configOutputVoltage(0.0f, -0.0f);
+		//lf.configPeakOutputVoltage(12.0f, -12.0f);
+		//rf.configNominalOutputVoltage(0.0f, -0.0f);
+		//rf.configPeakOutputVoltage(12.0f, -12.0f);
+		
+		lf.configPeakOutputForward(.5, 1);
+		lf.configPeakOutputReverse(0, 1);
+		rf.configPeakOutputForward(.5, 1);
+		rf.configPeakOutputReverse(0, 1);
+		
+		//lf.configMaxOutputVoltage(12);
+		//rf.configMaxOutputVoltage(12);
+		//rf.setCurrentLimit(40);
+		//lf.setCurrentLimit(40);
+		
+		lf.configNominalOutputForward(.5, 1);
+		rf.configNominalOutputForward(.5, 1);
+		lf.configContinuousCurrentLimit(35, 0);
+		rf.configContinuousCurrentLimit(35, 0);
+		
+		lf.enableCurrentLimit(true);
+		rf.enableCurrentLimit(true);
 
-		rf.configNominalOutputVoltage(0.0f, -0.0f);
-		rf.configPeakOutputVoltage(12.0f, -12.0f);
-
-		lf.configMaxOutputVoltage(12);
-		rf.configMaxOutputVoltage(12);
-		rf.setCurrentLimit(40);
-		lf.setCurrentLimit(40);
-
-		lf.EnableCurrentLimit(true);
-		rf.EnableCurrentLimit(true);
-
-		//drive = new RobotDrive(lfMotor, rfMotor);
-		// drive = new RobotDrive(lfMotor, lbMotor, rfMotor, rbMotor);
-		//drive.setSafetyEnabled(false);
-
-		lf.setSafetyEnabled(false);
-		rf.setSafetyEnabled(false);
-		lb.setSafetyEnabled(false);
-		rb.setSafetyEnabled(false);
-	}
-	
-	public void driveArcade(double forward, double rotate)
-	{
 		
 	}
-
+	
+	public void driveTrain(double motor1, double motor2)
+	{
+		
+	    lf.set(ControlMode.PercentOutput, motor1);
+		rf.set(ControlMode.PercentOutput, motor2);
+		lb.set(ControlMode.PercentOutput, motor1);
+		rb.set(ControlMode.PercentOutput, motor2);
+	}
+	
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
