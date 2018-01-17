@@ -24,7 +24,7 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Lifter lifter = new Lifter();
 
-	public static Compressor c;
+	//public static Compressor c;
 	public static OI oi;
 	// public static UsbCamera camera;
 
@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
-		c = new Compressor(RobotMap.compressor);
+		//c = new Compressor(RobotMap.compressor);
 
 		oi = new OI();
 

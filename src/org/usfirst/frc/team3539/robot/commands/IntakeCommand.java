@@ -38,5 +38,7 @@ public class IntakeCommand extends Command
 
 	protected void interrupted()
 	{
+		end();
+		
 	}
 }
