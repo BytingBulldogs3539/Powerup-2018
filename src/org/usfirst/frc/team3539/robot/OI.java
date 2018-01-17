@@ -62,9 +62,10 @@ public class OI
 	{
 		twoPadUp.whileHeld(new LiftCommand());
 		twoPadDown.whileHeld(new LiftCommand());
-		twoA.whileHeld(new IntakeCommand());
-		twoX.whileHeld(new IntakeCommand());
-		twoY.whileHeld(new IntakeCommand());
-		twoB.whileHeld(new IntakeCommand());
+		
+		twoA.whileHeld(new IntakeCommand(1));
+		twoX.whileHeld(new IntakeCommand(-1));
+		twoY.whileHeld(new IntakeCommand(-.5));
+		twoB.whileHeld(new IntakeCommand(.5));
 	}
 }

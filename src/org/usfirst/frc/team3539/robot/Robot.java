@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,10 +20,10 @@ public class Robot extends IterativeRobot
 {
 
 	// SUBSYSTEMS
-	public static Drivetrain drivetrain = new Drivetrain("drivetrain", false);
-	public static Intake intake;
-	public static Lifter lifter;
-  
+	public static Drivetrain drivetrain = new Drivetrain();
+	public static Intake intake = new Intake();
+	public static Lifter lifter = new Lifter();
+
 	public static Compressor c;
 	public static OI oi;
 	// public static UsbCamera camera;
@@ -34,12 +33,10 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
-		drivetrain = new Drivetrain("drivetrain", false);
-		lifter = new Lifter();
 		c = new Compressor(RobotMap.compressor);
-		intake = new Intake();
+
 		oi = new OI();
-		
+
 		SmartInit();
 		Update();
 
@@ -97,8 +94,6 @@ public class Robot extends IterativeRobot
 	// This function is called periodically during test mode
 	public void testPeriodic()
 	{
-		Update();
-		LiveWindow.run();
 	}
 
 	public void Update()

@@ -1,20 +1,19 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Drivetrain extends Subsystem {
+public class Drivetrain extends Subsystem
+{
 	TalonSRX lf, lb, rf, rb;
 
-	public Drivetrain(String name, boolean isEnabled) {
-		// super(name, isEnabled);
-
+	public Drivetrain()
+	{
 		// gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-
+		
 		lf = new TalonSRX(RobotMap.lf);
 		lb = new TalonSRX(RobotMap.lb);
 		rf = new TalonSRX(RobotMap.rf);
@@ -23,35 +22,18 @@ public class Drivetrain extends Subsystem {
 		lf.set(ControlMode.PercentOutput, 0);
 		rf.set(ControlMode.PercentOutput, 0);
 
-		// rf.changeControlMode(TalonControlMode.PercentVbus);
-		// rbMotor.changeControlMode(TalonControlMode.PercentVbus);
-		// lbMotor.changeControlMode(TalonControlMode.PercentVbus);
-
-		// rb.changeControlMode(TalonControlMode.Follower);
-		// lb.changeControlMode(TalonControlMode.Follower);
-
-		rb.set(ControlMode.PercentOutput, 0);
-		lb.set(ControlMode.PercentOutput, 0);
+		rb.set(ControlMode.Follower, 0);
+		lb.set(ControlMode.Follower, 0);
 
 		// lf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// lbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 
-		// lf.configOutputVoltage(0.0f, -0.0f);
-		// lf.configPeakOutputVoltage(12.0f, -12.0f);
-		// rf.configNominalOutputVoltage(0.0f, -0.0f);
-		// rf.configPeakOutputVoltage(12.0f, -12.0f);
-
 		lf.configPeakOutputForward(.5, 1);
 		lf.configPeakOutputReverse(0, 1);
 		rf.configPeakOutputForward(.5, 1);
 		rf.configPeakOutputReverse(0, 1);
-
-		// lf.configMaxOutputVoltage(12);
-		// rf.configMaxOutputVoltage(12);
-		// rf.setCurrentLimit(40);
-		// lf.setCurrentLimit(40);
 
 		lf.configNominalOutputForward(.5, 1);
 		rf.configNominalOutputForward(.5, 1);
@@ -61,21 +43,17 @@ public class Drivetrain extends Subsystem {
 		lf.enableCurrentLimit(true);
 		rf.enableCurrentLimit(true);
 
-
 	}
 
-	public void driveTrain(double motor1, double motor2) {
-
-		lf.set(ControlMode.PercentOutput, motor1);
-		rf.set(ControlMode.PercentOutput, motor2);
-		lb.set(ControlMode.PercentOutput, motor1);
-		rb.set(ControlMode.PercentOutput, motor2);
+	public void drive(double left, double right)
+	{
+		lf.set(ControlMode.PercentOutput, left);
+		rf.set(ControlMode.PercentOutput, right);
 	}
 
 	@Override
-	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
-
+	protected void initDefaultCommand()
+	{
 	}
 
 }
