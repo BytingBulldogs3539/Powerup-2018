@@ -37,11 +37,19 @@ public class IntakeCommand extends Command
 
 		if (org.usfirst.frc.team3539.robot.Robot.oi.twoY.get())
 			org.usfirst.frc.team3539.robot.Robot.intake.setMotorPower(-2.5);// Go half speed out
+
 	}
 
 	protected boolean isFinished()
 	{
-		return false;
+		if (!org.usfirst.frc.team3539.robot.Robot.oi.twoA.get() && !org.usfirst.frc.team3539.robot.Robot.oi.twoB.get() && !org.usfirst.frc.team3539.robot.Robot.oi.twoX.get()&&!org.usfirst.frc.team3539.robot.Robot.oi.twoY.get())
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	protected void end()

@@ -28,16 +28,16 @@ public class Lifter extends Subsystem
 	{
 		l1liftMotor.set(ControlMode.PercentOutput, speed);
 		l2liftMotor.set(ControlMode.PercentOutput, speed);
-		r1liftMotor.set(ControlMode.PercentOutput, -speed);
-		r2liftMotor.set(ControlMode.PercentOutput, -speed);
+		r1liftMotor.set(ControlMode.PercentOutput, speed);
+		r2liftMotor.set(ControlMode.PercentOutput, speed);
 	}
 	
 	public void downLift(double speed)
 	{
 		l1liftMotor.set(ControlMode.PercentOutput, -speed);
 		l2liftMotor.set(ControlMode.PercentOutput, -speed);
-		r1liftMotor.set(ControlMode.PercentOutput, speed);
-		r2liftMotor.set(ControlMode.PercentOutput, speed);
+		r1liftMotor.set(ControlMode.PercentOutput, -speed);
+		r2liftMotor.set(ControlMode.PercentOutput, -speed);
 	}
 	
 	public void stop()
