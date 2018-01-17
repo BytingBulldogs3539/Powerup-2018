@@ -22,17 +22,17 @@ public class LiftCommand extends Command {
     protected void execute() {
     	if (Robot.oi.twoPadUp.get())
     	{
-    		Robot.lifter.upLift(.5);
+    		Robot.lifter.upLift(1);
     	}
-    	else if (Robot.oi.twoPadDown.get())
+    	else if (Robot.oi.twoA.get())
     	{
-    		Robot.lifter.downLift(-.5);
+    		Robot.lifter.downLift(1);
     	}
     } //Temp set for operator dPad
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Robot.oi.twoPadUp.get() || Robot.oi.twoPadDown.get())
+    	if (!Robot.oi.twoPadUp.get() && !Robot.oi.twoA.get())
     	{
     		return true;
     	}
@@ -42,10 +42,12 @@ public class LiftCommand extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	Robot.lifter.stop();
+    	System.out.println("Ended");
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
