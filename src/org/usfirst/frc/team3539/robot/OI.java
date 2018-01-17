@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
  */
 public class OI
 {
-	public Joystick controller1 = new Joystick(RobotMap.DRIVER); //Added spaces to fix spacing in logs
+	public Joystick controller1 = new Joystick(RobotMap.DRIVER); // Added spaces to fix spacing in logs
 	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
 
 	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
@@ -47,12 +47,12 @@ public class OI
 
 	public JoystickButton twoLS = new JoystickButton(controller2, RobotMap.LS);
 	public JoystickButton twoRS = new JoystickButton(controller2, RobotMap.RS);
-	
+
 	public DirectionalButton onePadLeft = new DirectionalButton(Direction.LEFT, controller1);
 	public DirectionalButton onePadRight = new DirectionalButton(Direction.RIGHT, controller1);
 	public DirectionalButton onePadUp = new DirectionalButton(Direction.UP, controller1);
 	public DirectionalButton onePadDown = new DirectionalButton(Direction.DOWN, controller1);
-	
+
 	public DirectionalButton twoPadLeft = new DirectionalButton(Direction.LEFT, controller2);
 	public DirectionalButton twoPadRight = new DirectionalButton(Direction.RIGHT, controller2);
 	public DirectionalButton twoPadUp = new DirectionalButton(Direction.UP, controller2);
@@ -60,9 +60,9 @@ public class OI
 
 	public OI()
 	{
-		twoPadUp.whileHeld(new LiftCommand());
-		twoPadDown.whileHeld(new LiftCommand());
-		
+		twoPadUp.whileHeld(new LiftCommand(1));
+		twoPadDown.whileHeld(new LiftCommand(-1));
+
 		twoA.whileHeld(new IntakeCommand(1));
 		twoX.whileHeld(new IntakeCommand(-1));
 		twoY.whileHeld(new IntakeCommand(-.5));

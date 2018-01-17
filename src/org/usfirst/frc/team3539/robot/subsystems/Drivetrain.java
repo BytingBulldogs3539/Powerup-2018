@@ -22,8 +22,8 @@ public class Drivetrain extends Subsystem
 		lf.set(ControlMode.PercentOutput, 0);
 		rf.set(ControlMode.PercentOutput, 0);
 
-		rb.set(ControlMode.Follower, 0);
-		lb.set(ControlMode.Follower, 0);
+		rb.set(ControlMode.Follower, rf.getDeviceID());
+		lb.set(ControlMode.Follower, lf.getDeviceID());
 
 		// lf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
