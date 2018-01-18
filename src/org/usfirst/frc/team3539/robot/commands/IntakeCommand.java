@@ -24,6 +24,7 @@ public class IntakeCommand extends Command
 
 	protected void execute()
 	{
+		
 	}
 
 	protected boolean isFinished()
@@ -39,6 +40,5 @@ public class IntakeCommand extends Command
 	protected void interrupted()
 	{
 		end();
-		
 	}
 }

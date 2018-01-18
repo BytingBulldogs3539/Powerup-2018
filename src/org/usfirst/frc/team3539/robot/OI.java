@@ -64,8 +64,8 @@ public class OI
 		twoPadDown.whileHeld(new LiftCommand(-1));
 
 		twoA.whileHeld(new IntakeCommand(1));
-		twoX.whileHeld(new IntakeCommand(-1));
+		twoX.whileHeld(new IntakeCommand(.5));
 		twoY.whileHeld(new IntakeCommand(-.5));
-		twoB.whileHeld(new IntakeCommand(.5));
+		twoB.whileHeld(new IntakeCommand(-1));
 	}
 }
