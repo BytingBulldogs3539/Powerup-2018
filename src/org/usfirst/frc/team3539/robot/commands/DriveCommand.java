@@ -18,6 +18,7 @@ public class DriveCommand extends Command
 	protected void execute()
 	{
 		Robot.drivetrain.driveTrain(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+		System.out.println("yaxisl" + RobotMap.Y_AxisL + "xaxisr" + RobotMap.X_AxisR);
 	}
 
 	@Override
