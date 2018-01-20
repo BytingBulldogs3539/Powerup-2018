@@ -29,6 +29,9 @@ public class Drivetrain extends Subsystem
 		// rf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// lbMotor.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		
+		lf.configOpenloopRamp(2, 0);
+		rf.configOpenloopRamp(2, 0);
 
 		lf.configPeakOutputForward(.5, 1);
 		lf.configPeakOutputReverse(0, 1);
