@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Drive 
+{
 	TalonSRX talon1,talon2,talon3,talon4,talon5,talon6;
 	DriveMode driveMode;
 	
