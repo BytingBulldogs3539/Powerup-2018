@@ -39,7 +39,7 @@ public class Drive
 		talon6=LeftBack;
 	}
 	
-	public void driveArcade(double axis0, double axis1)
+	public void driveArcade(double axis1, double axis0)
 	{
 	    double leftMotorSpeed;
 	    double rightMotorSpeed;

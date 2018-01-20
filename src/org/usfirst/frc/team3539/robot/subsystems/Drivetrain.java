@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -30,8 +31,8 @@ public class Drivetrain extends Subsystem
 		// rb.changeControlMode(TalonControlMode.Follower);
 		// lb.changeControlMode(TalonControlMode.Follower);
 
-		rb.set(ControlMode.PercentOutput, 0);
-		lb.set(ControlMode.PercentOutput, 0);
+		rb.set(ControlMode.Follower, rf.getDeviceID());
+		lf.set(ControlMode.Follower, lb.getDeviceID());
 
 		// lf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
 		// rf.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
@@ -43,14 +44,14 @@ public class Drivetrain extends Subsystem
 		// rf.configNominalOutputVoltage(0.0f, -0.0f);
 		// rf.configPeakOutputVoltage(12.0f, -12.0f);
 
-		lf.configPeakOutputForward(0, 1);
+		lf.configPeakOutputForward(1, 1);
 		lf.configPeakOutputReverse(-1, 1);
-		rf.configPeakOutputForward(0, 1);
+		rf.configPeakOutputForward(1, 1);
 		rf.configPeakOutputReverse(-1, 1);
 
-		lb.configPeakOutputForward(0, 1);
+		lb.configPeakOutputForward(1, 1);
 		lb.configPeakOutputReverse(-1, 1);
-		rb.configPeakOutputForward(0, 1);
+		rb.configPeakOutputForward(1, 1);
 		rb.configPeakOutputReverse(-1, 1);
 
 		// lf.configMaxOutputVoltage(12);
@@ -58,14 +59,16 @@ public class Drivetrain extends Subsystem
 		// rf.setCurrentLimit(40);
 		// lf.setCurrentLimit(40);
 
-		lf.configNominalOutputForward(.5, 1);
-		rf.configNominalOutputForward(.5, 1);
+		lf.configNominalOutputForward(0, 1);
+		rf.configNominalOutputForward(0, 1);
+		lb.configNominalOutputForward(0, 1);
+		rb.configNominalOutputForward(0, 1);
 		lf.configContinuousCurrentLimit(35, 0);
 		rf.configContinuousCurrentLimit(35, 0);
 
 		lf.enableCurrentLimit(true);
 		rf.enableCurrentLimit(true);
-		drive = new Drive(rf,lf);
+		drive = new Drive(rf,lb);
 	}
 	
 	public void driveArcade(double forward, double rotate)
