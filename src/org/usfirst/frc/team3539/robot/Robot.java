@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutoDrive;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
+import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -21,8 +23,10 @@ public class Robot extends IterativeRobot
 	
 	// SUBSYSTEMS
 	public static Drivetrain drivetrain;
+	
 	public static Lifter lifter;
-	public static Compressor c;
+	
+	//public static Compressor c;
 	public static OI oi;
 	// public static UsbCamera camera;
 
@@ -33,11 +37,13 @@ public class Robot extends IterativeRobot
 	{
 		drivetrain = new Drivetrain("drivetrain", false);
 		lifter = new Lifter();
-		c = new Compressor(RobotMap.compressor);
+	//	c = new Compressor(RobotMap.compressor);
 		oi = new OI();
 		
 		SmartInit();
 		Update();
+		
+		autonChooser.addDefault("Auto", new AutoDrive(100));
 
 		// camera = CameraServer.getInstance().startAutomaticCapture();
 		// camera.setResolution(480, 360);
@@ -69,6 +75,7 @@ public class Robot extends IterativeRobot
 		{
 			autonMode.start();
 		}
+		
 	}
 
 	// This function is called periodically during autonomous
