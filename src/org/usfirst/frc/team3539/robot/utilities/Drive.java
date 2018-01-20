@@ -3,7 +3,7 @@ package org.usfirst.frc.team3539.robot.utilities;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class Drive {
+public class Drive 
 	TalonSRX talon1,talon2,talon3,talon4,talon5,talon6;
 	DriveMode driveMode;
 	
@@ -44,28 +44,27 @@ public class Drive {
 	    double rightMotorSpeed;
 	    
 	    
-	    axis1 = limit(axis1);
 	    axis0 = limit(axis0);
+	    axis1 = limit(axis1);
 	    
 	    
-	    if (axis1 > 0.0) {
-	        if (axis0 > 0.0) {
-	          leftMotorSpeed = axis1 - axis0;
-	          rightMotorSpeed = Math.max(axis1, axis0);
+	    if (axis0 > 0.0) {
+	        if (axis1 > 0.0) {
+	          leftMotorSpeed = axis0 - axis1;
+	          rightMotorSpeed = Math.max(axis0, axis1);
 	        } else {
-	          leftMotorSpeed = Math.max(axis1, -axis0);
-	          rightMotorSpeed = axis1 + axis0;
+	          leftMotorSpeed = Math.max(axis0, -axis1);
+	          rightMotorSpeed = axis0 + axis1;
 	        }
 	      } else {
-	        if (axis0 > 0.0) {
-	          leftMotorSpeed = -Math.max(-axis1, axis0);
-	          rightMotorSpeed = axis1 + axis0;
+	        if (axis1 > 0.0) {
+	          leftMotorSpeed = -Math.max(-axis0, axis1);
+	          rightMotorSpeed = axis0 + axis1;
 	        } else {
-	          leftMotorSpeed = axis1 - axis0;
-	          rightMotorSpeed = -Math.max(-axis1, -axis0);
+	          leftMotorSpeed = axis0 - axis1;
+	          rightMotorSpeed = -Math.max(-axis0, -axis1);
 	        }
 	      }
-	    System.out.println(rightMotorSpeed +" "+leftMotorSpeed);
 	    setLeftRightMotorOutputs(rightMotorSpeed, leftMotorSpeed);
 	}
 	public void setLeftRightMotorOutputs(double right, double left)
