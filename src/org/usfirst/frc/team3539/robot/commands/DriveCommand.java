@@ -5,22 +5,38 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
+/**
+ *
+ */
 public class DriveCommand extends Command
 {
 
-	protected DriveCommand(String name)
+	public DriveCommand()
 	{
-		super(name);
+		requires(Robot.drivetrain);
+	}
+
+	protected void initialize()
+	{
 	}
 
 	protected void execute()
 	{
-		Robot.drivetrain.drive(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+		Robot.drivetrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
 	@Override
 	protected boolean isFinished()
 	{
 		return false;
+	}
+
+	protected void end()
+	{
+		Robot.drivetrain.stopDrive();
+	}
+
+	protected void interrupted()
+	{
 	}
 }

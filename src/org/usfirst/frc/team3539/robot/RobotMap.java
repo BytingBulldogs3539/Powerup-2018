@@ -49,10 +49,15 @@ public class RobotMap
 	public static final int pcm = 10;
 
 	// DRIVETRAIN
-	public static final int lf = 1; // Left Front Drive Talon
-	public static final int lb = 2; // Left Back Drive Talon
-	public static final int rf = 6; // Right Front Drive Talon
-	public static final int rb = 5; // Right Back Drive Talon
+	public static final int lf = 6; // Left Front Drive Talon
+	public static final int lb = 7; // Left Back Drive Talon
+	public static final int rf = 4; // Right Front Drive Talon
+	public static final int rb = 3; // Right Back Drive Talon
+	
+	public static double drivePea = .15;//00053;// .0005;
+	public static double driveEye = 0;//.0000000005;// 0;	
+	public static double driveDee = 0;// .000009;
+	
 
 	// INTAKE
 	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
@@ -25,7 +26,7 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Lifter lifter = new Lifter();
 
-	//public static Compressor c;
+	// public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
 
@@ -34,13 +35,11 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
-		//c = new Compressor(RobotMap.compressor);
-
 		oi = new OI();
 
 		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 		cameraOne.setResolution(480, 360);
-		
+
 		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
 		cameraTwo.setResolution(480, 360);
 	}
@@ -104,6 +103,7 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
+		autonChooser.addDefault("Auto", new AutonDrive(60));
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
