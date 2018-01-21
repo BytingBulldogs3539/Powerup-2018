@@ -13,16 +13,13 @@ public class DriveCommand extends Command
 
 	public DriveCommand()
 	{
-		// Use requires() here to declare subsystem dependencies
 		requires(Robot.drivetrain);
 	}
 
-	// Called just before this Command runs the first time
 	protected void initialize()
 	{
 	}
 
-	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
 		Robot.drivetrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
@@ -34,14 +31,11 @@ public class DriveCommand extends Command
 		return false;
 	}
 
-	// Called once after isFinished returns true
 	protected void end()
 	{
 		Robot.drivetrain.stopDrive();
 	}
 
-	// Called when another command which requires one or more of the same
-	// subsystems is scheduled to run
 	protected void interrupted()
 	{
 	}

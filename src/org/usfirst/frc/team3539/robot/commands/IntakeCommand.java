@@ -24,7 +24,6 @@ public class IntakeCommand extends Command
 
 	protected void execute()
 	{
-		
 	}
 
 	protected boolean isFinished()
