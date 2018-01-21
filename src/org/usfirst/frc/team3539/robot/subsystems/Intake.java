@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Intake extends Subsystem
 {
-
 	private TalonSRX intakeMotorLeft;
 	private TalonSRX intakeMotorRight;
 
@@ -31,5 +30,4 @@ public class Intake extends Subsystem
 	public void initDefaultCommand()
 	{
 	}
-
 }
