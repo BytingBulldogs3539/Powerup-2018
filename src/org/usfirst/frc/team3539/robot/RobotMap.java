@@ -56,7 +56,7 @@ public class RobotMap
 	
 	public static double drivePea = .15;//00053;// .0005;
 	public static double driveEye = 0;//.0000000005;// 0;	
-	public static double driveDee = .00005;// .000009;
+	public static double driveDee = 0;// .000009;
 	
 
 	// INTAKE

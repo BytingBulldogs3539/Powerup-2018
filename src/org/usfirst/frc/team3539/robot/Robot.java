@@ -106,7 +106,7 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("Auto", new AutonDrive(12));
+		autonChooser.addDefault("Auto", new AutonDrive(60));
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
