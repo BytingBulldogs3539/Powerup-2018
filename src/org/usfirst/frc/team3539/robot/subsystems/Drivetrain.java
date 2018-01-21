@@ -23,9 +23,6 @@ public class Drivetrain extends Subsystem
 		rf = new TalonSRX(RobotMap.rf);
 		rb = new TalonSRX(RobotMap.rb);
 		
-		
-		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 1);
-		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 1);
 
 		lf.configPeakOutputForward(1, 1);
 		lf.configPeakOutputReverse(-1, 1);
@@ -42,17 +39,30 @@ public class Drivetrain extends Subsystem
 		rf.configNominalOutputForward(0, 1);
 		lb.configNominalOutputForward(0, 1);
 		rb.configNominalOutputForward(0, 1);
+		
 		lf.configNominalOutputReverse(0, 1);
 		rf.configNominalOutputReverse(0, 1);
 		lb.configNominalOutputReverse(0, 1);
 		rb.configNominalOutputReverse(0, 1);
 
 		drive = new Drive(rf,rb,lf,lb);
+		
+		
+
+		
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		
+		lf.configAllowableClosedloopError(1000, 0, 10);
+		rf.configAllowableClosedloopError(1000, 0, 10);
 	}
-	
+	public void zeroEnc()
+	{
+		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
+		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+	}
 	public void driveArcade(double forward, double rotate)
 	{
-		System.out.println(forward+" "+rotate);
 		drive.driveArcade(forward, rotate);
 	}
 
@@ -72,17 +82,8 @@ public class Drivetrain extends Subsystem
 	}
 	public void setSetpoint(double setpoint)
 	{
-		lf.configAllowableClosedloopError(0, 1000, 1);
-		rf.configAllowableClosedloopError(0, 1000, 1);
 		lf.set(ControlMode.Position, setpoint);
-		rf.set(ControlMode.Position, setpoint);
-		
-	}
-
-	public void zeroEnc()
-	{
-		lf.getSensorCollection().setPulseWidthPosition(0, 1);
-		rf.getSensorCollection().setPulseWidthPosition(0, 1);
+		rf.set(ControlMode.Position, -setpoint);
 	}
 
 	public void stopDrive()
@@ -91,9 +92,9 @@ public class Drivetrain extends Subsystem
 		driveArcade(0,0);
 	}
 
-	public double intotic(int i)
+	public double intotic(double inches)
 	{
-		return (i/12.56)*4096;
+		return (inches/12.56)*4096;
 	}
 
 }

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AutonDrive extends Command {
 	double inches;
     public AutonDrive(double inches) {
+    	requires(Robot.drivetrain);
     	Robot.drivetrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
     	this.inches = inches;
     }
@@ -18,15 +19,21 @@ public class AutonDrive extends Command {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-    	Robot.drivetrain.setSetpoint(Robot.drivetrain.intotic(12));
+    	Robot.drivetrain.zeroEnc();
+    	Robot.drivetrain.setSetpoint(Robot.drivetrain.intotic(inches));
+    	System.out.println(inches);
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	
     }
+    
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
+    	
         return false;
     }
 

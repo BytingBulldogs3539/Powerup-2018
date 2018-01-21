@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 
@@ -31,6 +32,7 @@ public class Robot extends IterativeRobot
 
 	public void robotInit()
 	{
+		
 		drivetrain = new Drivetrain("drivetrain", false);
 		lifter = new Lifter();
 		c = new Compressor(RobotMap.compressor);
@@ -104,6 +106,7 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
+		autonChooser.addDefault("Auto", new AutonDrive(12));
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
