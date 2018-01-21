@@ -7,23 +7,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftCommand extends Command
+public class IntakeCommand extends Command
 {
 	double power;
-	
-	public LiftCommand(double power)
+
+	public IntakeCommand(double power)
 	{
-		requires(Robot.lifter);
+		requires(Robot.intake);
 		this.power = power;
 	}
 
 	protected void initialize()
 	{
-		Robot.lifter.lift(power);
+		Robot.intake.setMotorPower(power);
 	}
 
 	protected void execute()
 	{
+		
 	}
 
 	protected boolean isFinished()
@@ -33,7 +34,7 @@ public class LiftCommand extends Command
 
 	protected void end()
 	{
-		Robot.lifter.lift(0);
+		Robot.intake.setMotorPower(0);
 	}
 
 	protected void interrupted()

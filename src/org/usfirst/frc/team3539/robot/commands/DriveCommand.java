@@ -28,7 +28,7 @@ public class DriveCommand extends Command
 		Robot.drivetrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
-	// Make this return true when this Command no longer needs to run execute()
+	@Override
 	protected boolean isFinished()
 	{
 		return false;

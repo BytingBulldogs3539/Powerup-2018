@@ -13,10 +13,13 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Drivetrain extends Subsystem
 {
 	TalonSRX lf, lb, rf, rb;
+
 	Drive drive;
 
-	public Drivetrain(String name, boolean isEnabled)
+	public Drivetrain()
 	{
+		// gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+
 		lf = new TalonSRX(RobotMap.lf);
 		lb = new TalonSRX(RobotMap.lb);
 		rf = new TalonSRX(RobotMap.rf);
@@ -71,7 +74,7 @@ public class Drivetrain extends Subsystem
 		lf.config_kD(0, D, 1);
 		rf.config_kD(0, D, 1);
 	}
-
+		
 	public void setSetpoint(double setpoint)
 	{
 		lb.set(ControlMode.Follower, RobotMap.lf);
@@ -88,7 +91,7 @@ public class Drivetrain extends Subsystem
 		driveArcade(0, 0);
 	}
 
-	public double intotic(double inches)
+	public double inchToEncoder(double inches)
 	{
 		return (inches / 12.56) * 4096;
 	}

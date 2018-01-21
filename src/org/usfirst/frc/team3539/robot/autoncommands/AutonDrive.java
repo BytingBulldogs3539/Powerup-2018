@@ -8,41 +8,47 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AutonDrive extends Command {
+public class AutonDrive extends Command
+{
 	double inches;
-    public AutonDrive(double inches) {
-    	requires(Robot.drivetrain);
-    	Robot.drivetrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
-    	this.inches = inches;
-    }
 
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-    	Robot.drivetrain.zeroEnc();
-    	Robot.drivetrain.setSetpoint(Robot.drivetrain.intotic(inches));
-    	System.out.println(inches);
-    	
-    }
+	public AutonDrive(double inches)
+	{
+		requires(Robot.drivetrain);
+		Robot.drivetrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
+		this.inches = inches;
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	
-    }
-    
+	// Called just before this Command runs the first time
+	protected void initialize()
+	{
+		Robot.drivetrain.zeroEnc();
+		Robot.drivetrain.setSetpoint(Robot.drivetrain.inchToEncoder(inches));
+		System.out.println(inches);
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	
-        return false;
-    }
+	}
 
-    // Called once after isFinished returns true
-    protected void end() {
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute()
+	{
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	}
+
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished()
+	{
+
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	protected void end()
+	{
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted()
+	{
+	}
 }

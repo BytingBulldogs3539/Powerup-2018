@@ -2,13 +2,14 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 
-import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -19,30 +20,28 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-	
+
 	// SUBSYSTEMS
-	public static Drivetrain drivetrain;
-	public static Lifter lifter;
-	public static Compressor c;
+	public static Drivetrain drivetrain = new Drivetrain();
+	public static Intake intake = new Intake();
+	public static Lifter lifter = new Lifter();
+
+	// public static Compressor c;
 	public static OI oi;
-	// public static UsbCamera camera;
+	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
 
 	public void robotInit()
 	{
-		
-		drivetrain = new Drivetrain("drivetrain", false);
-		lifter = new Lifter();
-		c = new Compressor(RobotMap.compressor);
 		oi = new OI();
-		
-		SmartInit();
-		Update();
 
-		// camera = CameraServer.getInstance().startAutomaticCapture();
-		// camera.setResolution(480, 360);
+		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		cameraOne.setResolution(480, 360);
+
+		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+		cameraTwo.setResolution(480, 360);
 	}
 
 	/**
@@ -95,8 +94,6 @@ public class Robot extends IterativeRobot
 	// This function is called periodically during test mode
 	public void testPeriodic()
 	{
-		Update();
-		LiveWindow.run();
 	}
 
 	public void Update()
