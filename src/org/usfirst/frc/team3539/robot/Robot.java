@@ -4,7 +4,8 @@ import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 
-import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -26,7 +27,7 @@ public class Robot extends IterativeRobot
 
 	//public static Compressor c;
 	public static OI oi;
-	// public static UsbCamera camera;
+	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
@@ -37,11 +38,11 @@ public class Robot extends IterativeRobot
 
 		oi = new OI();
 
-		SmartInit();
-		Update();
-
-		// camera = CameraServer.getInstance().startAutomaticCapture();
-		// camera.setResolution(480, 360);
+		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		cameraOne.setResolution(480, 360);
+		
+		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+		cameraTwo.setResolution(480, 360);
 	}
 
 	/**
