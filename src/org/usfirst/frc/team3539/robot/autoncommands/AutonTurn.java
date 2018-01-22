@@ -1,57 +1,36 @@
 package org.usfirst.frc.team3539.robot.autoncommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.RobotMap;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AutonDrive extends Command
+public class AutonTurn extends Command
 {
-	double inches;
-
-	public AutonDrive(double inches)
-	{
+	double degrees;
+	public AutonTurn(double degrees) {
 		requires(Robot.drivetrain);
-		Robot.drivetrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
-		this.inches = inches;
-	}
+		this.degrees=degrees;
+    }
 
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		if(gameData.charAt(0) == 'L')
-		{
-			System.out.println("left auton");
-			//Put left auto code here
-		} else
-		{
-			System.out.println("right auton");
-			//Put right auto code here
-		}
-		
 		Robot.drivetrain.zeroEnc();
-		Robot.drivetrain.setSetpointDrive(Robot.drivetrain.inchToEncoder(inches));
-		System.out.println(inches);
-
+		Robot.drivetrain.setSetpointTurn(degrees);
+		System.out.println(degrees);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute()
 	{
-
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-
 		return false;
 	}
 

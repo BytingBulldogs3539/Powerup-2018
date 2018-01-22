@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
@@ -95,7 +96,8 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("Auto", new AutonDrive(60));
+		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
+		autonChooser.addObject("AutoTurn", new AutonTurn(90));
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
