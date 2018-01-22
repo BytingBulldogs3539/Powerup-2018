@@ -22,20 +22,7 @@ public class AutonDrive extends Command
 
 	// Called just before this Command runs the first time
 	protected void initialize()
-	{
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		if(gameData.charAt(0) == 'L')
-		{
-			System.out.println("left auton");
-			//Put left auto code here
-		} else
-		{
-			System.out.println("right auton");
-			//Put right auto code here
-		}
-		
+	{	
 		Robot.drivetrain.zeroEnc();
 		Robot.drivetrain.setSetpoint(Robot.drivetrain.inchToEncoder(inches));
 		System.out.println(inches);
