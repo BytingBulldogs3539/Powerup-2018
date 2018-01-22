@@ -8,6 +8,7 @@ import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -64,6 +65,19 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		String gameData;
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
+		
+		if(gameData.charAt(0) == 'L')
+		{
+			System.out.println("left auton");
+			//Put left auto code here
+		} else
+		{
+			System.out.println("right auton");
+			//Put right auto code here
+		}
+		
 		autonMode = (Command) autonChooser.getSelected();
 		if (autonMode != null)
 		{
