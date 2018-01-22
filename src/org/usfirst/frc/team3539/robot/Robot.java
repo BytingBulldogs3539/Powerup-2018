@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot
 
 	// public static Compressor c;
 	public static OI oi;
-	public static UsbCamera cameraOne, cameraTwo;
+	//public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
@@ -36,12 +36,13 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
+		SmartInit();
 
-		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-		cameraOne.setResolution(480, 360);
-
-		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-		cameraTwo.setResolution(480, 360);
+//		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+//		cameraOne.setResolution(480, 360);
+//
+//		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+//		cameraTwo.setResolution(480, 360);
 	}
 
 	/**
