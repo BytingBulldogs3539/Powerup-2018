@@ -58,13 +58,10 @@ public class Robot extends IterativeRobot
 	public void disabledPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Update();
 	}
 
 	public void autonomousInit()
 	{
-		Update();
-
 		autonMode = (Command) autonChooser.getSelected();
 		if (autonMode != null)
 		{
@@ -76,7 +73,6 @@ public class Robot extends IterativeRobot
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Update();
 	}
 
 	public void teleopInit()
@@ -88,15 +84,10 @@ public class Robot extends IterativeRobot
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Update();
 	}
 
 	// This function is called periodically during test mode
 	public void testPeriodic()
-	{
-	}
-
-	public void Update()
 	{
 	}
 
