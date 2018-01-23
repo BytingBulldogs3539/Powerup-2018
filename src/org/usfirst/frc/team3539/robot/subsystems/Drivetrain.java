@@ -15,6 +15,7 @@ public class Drivetrain extends Subsystem
 	TalonSRX lf, lb, rf, rb;
 
 	Drive drive;
+	int error = 1000;
 
 	public Drivetrain()
 	{
@@ -50,14 +51,31 @@ public class Drivetrain extends Subsystem
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		lf.configAllowableClosedloopError(1000, 0, 10);
-		rf.configAllowableClosedloopError(1000, 0, 10);
+		// lf.configClosedloopRamp(1, 10);
+		// rf.configClosedloopRamp(1, 10);
+
+		lf.configAllowableClosedloopError(error, 0, 10);
+		rf.configAllowableClosedloopError(error, 0, 10);
 	}
 
 	public void zeroEnc()
 	{
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		lf.getSensorCollection().setPulseWidthPosition(0, 10);
+		rf.getSensorCollection().setPulseWidthPosition(0, 10);
 		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
 		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+	}
+
+	public boolean lonTarget()
+	{
+		return false;
+	}
+
+	public boolean ronTarget()
+	{
+		return false;
 	}
 
 	public void driveArcade(double forward, double rotate)
@@ -77,6 +95,8 @@ public class Drivetrain extends Subsystem
 
 	public void setSetpointDrive(double setpointinches)
 	{
+		zeroEnc();
+
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
@@ -88,6 +108,10 @@ public class Drivetrain extends Subsystem
 
 	public void setSetpointTurn(double setpointdegrees)
 	{
+<<<<<<< HEAD
+=======
+		zeroEnc();
+>>>>>>> e752878c8965f76377a4ebb15be4f6e799878b0f
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);

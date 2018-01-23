@@ -22,6 +22,7 @@ public class AutonTurn extends Command
 		Robot.drivetrain.zeroEnc();
 		Robot.drivetrain.setSetpointTurn(degrees);
 		System.out.println(degrees);
+		
 	}
 
 	protected void execute()
@@ -30,11 +31,12 @@ public class AutonTurn extends Command
 
 	protected boolean isFinished()
 	{
-		return false;
+		return Robot.drivetrain.lonTarget()||Robot.drivetrain.ronTarget();
 	}
 
 	protected void end()
 	{
+		System.out.println("end");
 	}
 
 	protected void interrupted()

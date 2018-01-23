@@ -2,6 +2,9 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
+import org.usfirst.frc.team3539.robot.autongroups.test;
+
+import org.usfirst.frc.team3539.robot.subsystems.Distance;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
@@ -26,6 +29,7 @@ public class Robot extends IterativeRobot
 
 	// SUBSYSTEMS
 	public static Drivetrain drivetrain = new Drivetrain();
+	public static Distance distance = new Distance();
 	public static Intake intake = new Intake();
 	public static Lifter lifter = new Lifter();
 	public static Light light = new Light();
@@ -106,6 +110,7 @@ public class Robot extends IterativeRobot
 		autonChooser = new SendableChooser<Command>();
 		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90));
+		autonChooser.addObject("test", new test());
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
