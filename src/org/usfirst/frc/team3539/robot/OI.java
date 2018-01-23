@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftCommand;
+import org.usfirst.frc.team3539.robot.commands.LimitCommand;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 
@@ -67,5 +68,7 @@ public class OI
 		twoX.whileHeld(new IntakeCommand(.5));
 		twoY.whileHeld(new IntakeCommand(-.5));
 		twoB.whileHeld(new IntakeCommand(-1));
+		
+		oneA.whileHeld(new LimitCommand());
 	}
 }

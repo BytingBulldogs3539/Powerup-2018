@@ -5,9 +5,8 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
+import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
 
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -27,6 +26,7 @@ public class Robot extends IterativeRobot
 	public static Drivetrain drivetrain = new Drivetrain();
 	public static Intake intake = new Intake();
 	public static Lifter lifter = new Lifter();
+	public static LimitSwitch limit = new LimitSwitch();
 
 	// public static Compressor c;
 	public static OI oi;
