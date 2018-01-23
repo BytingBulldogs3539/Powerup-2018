@@ -1,9 +1,9 @@
 
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
-import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.BeamSensorCommand;
+import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
+import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 

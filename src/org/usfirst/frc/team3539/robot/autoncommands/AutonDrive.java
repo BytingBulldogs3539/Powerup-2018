@@ -14,15 +14,15 @@ public class AutonDrive extends Command
 
 	public AutonDrive(double inches)
 	{
-		requires(Robot.drivetrain);
-		Robot.drivetrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
+		requires(Robot.driveTrain);
+		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
 		this.inches = inches;
 	}
 
 	protected void initialize()
 	{	
-		Robot.drivetrain.zeroEnc();
-		Robot.drivetrain.setSetpointDrive(Robot.drivetrain.inchToEncoder(inches));
+		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
 		System.out.println(inches);
 	}
 
@@ -34,7 +34,7 @@ public class AutonDrive extends Command
 	protected boolean isFinished()
 	{
 
-		return Robot.drivetrain.lonTarget()||Robot.drivetrain.ronTarget();
+		return Robot.driveTrain.lonTarget()||Robot.driveTrain.ronTarget();
 	}
 
 	protected void end()

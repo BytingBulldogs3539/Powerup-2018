@@ -13,14 +13,14 @@ public class AutonTurn extends Command
 
 	public AutonTurn(double degrees)
 	{
-		requires(Robot.drivetrain);
+		requires(Robot.driveTrain);
 		this.degrees = degrees;
 	}
 
 	protected void initialize()
 	{
-		Robot.drivetrain.zeroEnc();
-		Robot.drivetrain.setSetpointTurn(degrees);
+		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.setSetpointTurn(degrees);
 		System.out.println(degrees);
 		
 	}
@@ -31,7 +31,7 @@ public class AutonTurn extends Command
 
 	protected boolean isFinished()
 	{
-		return Robot.drivetrain.lonTarget()||Robot.drivetrain.ronTarget();
+		return Robot.driveTrain.lonTarget()||Robot.driveTrain.ronTarget();
 	}
 
 	protected void end()

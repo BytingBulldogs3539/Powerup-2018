@@ -13,7 +13,7 @@ public class DriveCommand extends Command
 
 	public DriveCommand()
 	{
-		requires(Robot.drivetrain);
+		requires(Robot.driveTrain);
 	}
 
 	protected void initialize()
@@ -22,7 +22,7 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.drivetrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+		Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class DriveCommand extends Command
 
 	protected void end()
 	{
-		Robot.drivetrain.stopDrive();
+		Robot.driveTrain.stopDrive();
 	}
 
 	protected void interrupted()

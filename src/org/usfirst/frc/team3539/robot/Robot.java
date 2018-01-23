@@ -8,7 +8,6 @@ import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
-import org.usfirst.frc.team3539.robot.subsystems.LightBeam;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -28,11 +27,10 @@ public class Robot extends IterativeRobot
 {
 
 	// SUBSYSTEMS
-	public static DriveTrain drivetrain = new DriveTrain();
+	public static DriveTrain driveTrain = new DriveTrain();
 	public static RangeSystem rangeSystem = new RangeSystem();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
-	public static LightBeam lightBeam = new LightBeam();
 
 	// public static Compressor c;
 	public static OI oi;

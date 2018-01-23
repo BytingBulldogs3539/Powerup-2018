@@ -9,12 +9,12 @@ public class BeamSensorCommand extends Command
 
     public BeamSensorCommand() 
     {
-    	requires(Robot.lightBeam);	
+    	requires(Robot.elevator);	
     }
 
     protected void initialize() 
     {
-    	System.out.println(Robot.lightBeam.getBeam());
+    	System.out.println(Robot.elevator.isTriggered());
     }
 
     protected void execute() 
