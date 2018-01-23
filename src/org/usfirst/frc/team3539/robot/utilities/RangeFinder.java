@@ -1,14 +1,14 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
-import org.usfirst.frc.team3539.robot.subsystems.Distance;
+import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 
-public class Rangefinder extends Distance
+public class RangeFinder extends RangeSystem
 {
 	private AnalogInput rf;
 
-	public Rangefinder(int ID)
+	public RangeFinder(int ID)
 	{
 		rf = new AnalogInput(ID);
 	}

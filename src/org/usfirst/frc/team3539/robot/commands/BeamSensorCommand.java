@@ -4,17 +4,17 @@ import org.usfirst.frc.team3539.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class LightCommand extends Command 
+public class BeamSensorCommand extends Command 
 {
 
-    public LightCommand() 
+    public BeamSensorCommand() 
     {
-    	requires(Robot.light);	
+    	requires(Robot.lightBeam);	
     }
 
     protected void initialize() 
     {
-    	System.out.println(Robot.light.getBeam());
+    	System.out.println(Robot.lightBeam.getBeam());
     }
 
     protected void execute() 

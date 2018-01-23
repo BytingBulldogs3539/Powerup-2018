@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *
  */
-public class Lifter extends Subsystem
+public class Elevator extends Subsystem
 {
 	TalonSRX lOne, lTwo, rOne, rTwo;
 
-	public Lifter()
+	public Elevator()
 	{
 		lOne = new TalonSRX(RobotMap.l1LifterMotor);
 		lTwo = new TalonSRX(RobotMap.l2LifterMotor);
@@ -22,7 +22,7 @@ public class Lifter extends Subsystem
 		rTwo = new TalonSRX(RobotMap.r2LifterMotor);
 	}
 
-	public void lift(double speed)
+	public void setMotorPower(double speed)
 	{
 		lOne.set(ControlMode.PercentOutput, speed);
 		lTwo.set(ControlMode.PercentOutput, speed);

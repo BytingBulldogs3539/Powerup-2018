@@ -10,14 +10,14 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Drivetrain extends Subsystem
+public class DriveTrain extends Subsystem
 {
 	TalonSRX lf, lb, rf, rb;
 
 	Drive drive;
 	int error = 1000;
 
-	public Drivetrain()
+	public DriveTrain()
 	{
 		// gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
@@ -108,10 +108,7 @@ public class Drivetrain extends Subsystem
 
 	public void setSetpointTurn(double setpointdegrees)
 	{
-<<<<<<< HEAD
-=======
 		zeroEnc();
->>>>>>> e752878c8965f76377a4ebb15be4f6e799878b0f
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);

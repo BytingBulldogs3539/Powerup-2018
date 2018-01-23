@@ -7,19 +7,17 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftCommand extends Command
+public class RangeCommand extends Command
 {
-	double power;
-	
-	public LiftCommand(double power)
+
+	public RangeCommand()
 	{
-		requires(Robot.lifter);
-		this.power = power;
+		requires(Robot.rangeSystem);
 	}
 
 	protected void initialize()
 	{
-		Robot.lifter.lift(power);
+		System.out.println(Robot.rangeSystem.getDistance());
 	}
 
 	protected void execute()
@@ -28,12 +26,11 @@ public class LiftCommand extends Command
 
 	protected boolean isFinished()
 	{
-		return false;
+		return true;
 	}
 
 	protected void end()
 	{
-		Robot.lifter.lift(0);
 	}
 
 	protected void interrupted()

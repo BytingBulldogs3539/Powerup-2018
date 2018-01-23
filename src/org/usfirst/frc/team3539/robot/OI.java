@@ -2,8 +2,8 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
-import org.usfirst.frc.team3539.robot.commands.LiftCommand;
-import org.usfirst.frc.team3539.robot.commands.LightCommand;
+import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
+import org.usfirst.frc.team3539.robot.commands.BeamSensorCommand;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 
@@ -61,8 +61,8 @@ public class OI
 
 	public OI()
 	{
-		twoPadUp.whileHeld(new LiftCommand(1));
-		twoPadDown.whileHeld(new LiftCommand(-1));
+		twoPadUp.whileHeld(new ElevatorCommand(1));
+		twoPadDown.whileHeld(new ElevatorCommand(-1));
 
 		twoA.whileHeld(new IntakeCommand(1));
 		twoX.whileHeld(new IntakeCommand(.5));
@@ -70,6 +70,6 @@ public class OI
 		twoB.whileHeld(new IntakeCommand(-1));
 		
 		
-		oneX.whenPressed(new LightCommand());
+		oneX.whenPressed(new BeamSensorCommand());
 	}
 }
