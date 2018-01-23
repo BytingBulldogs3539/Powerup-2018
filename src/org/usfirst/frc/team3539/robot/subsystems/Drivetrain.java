@@ -15,6 +15,7 @@ public class Drivetrain extends Subsystem
 	TalonSRX lf, lb, rf, rb;
 
 	Drive drive;
+	int error = 1000;
 
 	public Drivetrain()
 	{
@@ -50,14 +51,31 @@ public class Drivetrain extends Subsystem
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		lf.configAllowableClosedloopError(1000, 0, 10);
-		rf.configAllowableClosedloopError(1000, 0, 10);
+		// lf.configClosedloopRamp(1, 10);
+		// rf.configClosedloopRamp(1, 10);
+
+		lf.configAllowableClosedloopError(error, 0, 10);
+		rf.configAllowableClosedloopError(error, 0, 10);
 	}
 
 	public void zeroEnc()
 	{
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		lf.getSensorCollection().setPulseWidthPosition(0, 10);
+		rf.getSensorCollection().setPulseWidthPosition(0, 10);
 		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
 		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+	}
+
+	public boolean lonTarget()
+	{
+		return false;
+	}
+
+	public boolean ronTarget()
+	{
+		return false;
 	}
 
 	public void driveArcade(double forward, double rotate)
@@ -74,9 +92,11 @@ public class Drivetrain extends Subsystem
 		lf.config_kD(0, D, 1);
 		rf.config_kD(0, D, 1);
 	}
-		
+
 	public void setSetpointDrive(double setpointinches)
 	{
+		zeroEnc();
+
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
@@ -85,9 +105,11 @@ public class Drivetrain extends Subsystem
 		lf.set(ControlMode.Position, setpointinches);
 		rf.set(ControlMode.Position, -setpointinches);
 	}
+
 	public void setSetpointTurn(double setpointdegrees)
 	{
-		
+		zeroEnc();
+
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
@@ -96,10 +118,12 @@ public class Drivetrain extends Subsystem
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
+
 	public double degreesToEnc(double degrees)
 	{
-		return inchToEncoder((RobotMap.robotCir/360)*degrees);
+		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
+
 	public void stopDrive()
 	{
 		driveArcade(0, 0);
@@ -109,12 +133,11 @@ public class Drivetrain extends Subsystem
 	{
 		return (inches / 12.56) * 4096;
 	}
-	
+
 	@Override
 	protected void initDefaultCommand()
 	{
 		setDefaultCommand(new DriveCommand());
 	}
-
 
 }

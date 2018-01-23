@@ -21,6 +21,7 @@ public class AutonTurn extends Command
 		Robot.drivetrain.zeroEnc();
 		Robot.drivetrain.setSetpointTurn(degrees);
 		System.out.println(degrees);
+		
 	}
 
 	// Called repeatedly when this Command is scheduled to run
@@ -31,12 +32,13 @@ public class AutonTurn extends Command
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished()
 	{
-		return false;
+		return Robot.drivetrain.lonTarget()||Robot.drivetrain.ronTarget();
 	}
 
 	// Called once after isFinished returns true
 	protected void end()
 	{
+		System.out.println("end");
 	}
 
 	// Called when another command which requires one or more of the same

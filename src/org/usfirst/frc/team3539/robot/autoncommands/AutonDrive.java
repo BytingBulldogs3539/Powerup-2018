@@ -39,12 +39,14 @@ public class AutonDrive extends Command
 	protected boolean isFinished()
 	{
 
-		return false;
+		return Robot.drivetrain.lonTarget()||Robot.drivetrain.ronTarget();
 	}
 
 	// Called once after isFinished returns true
 	protected void end()
 	{
+		System.out.println("end");
+
 	}
 
 	// Called when another command which requires one or more of the same
