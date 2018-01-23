@@ -2,11 +2,9 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
-<<<<<<< HEAD
 import org.usfirst.frc.team3539.robot.autongroups.test;
-=======
+
 import org.usfirst.frc.team3539.robot.subsystems.Distance;
->>>>>>> 5f70d1ccb51fb402a127555d1b3a51256c493b30
 import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
