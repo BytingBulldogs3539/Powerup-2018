@@ -32,7 +32,7 @@ public class Robot extends IterativeRobot
 
 	// public static Compressor c;
 	public static OI oi;
-	//public static UsbCamera cameraOne, cameraTwo;
+	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
@@ -42,22 +42,16 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 		SmartInit();
 
-//		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-//		cameraOne.setResolution(480, 360);
-//
-//		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-//		cameraTwo.setResolution(480, 360);
+		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		cameraOne.setResolution(480, 360);
+
+		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+		cameraTwo.setResolution(480, 360);
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode. You can use it to reset any subsystem information you want to clear when the robot is disabled.
-	 **/
 	public void disabledInit()
 	{
-		// BulldogLogger.getInstance().finishLogging();
-
 		Scheduler.getInstance().run();
-
 	}
 
 	public void disabledPeriodic()
@@ -69,17 +63,18 @@ public class Robot extends IterativeRobot
 	{
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		if(gameData.charAt(0) == 'L')
+
+		if (gameData.charAt(0) == 'L')
 		{
 			System.out.println("left auton");
-			//Put left auto code here
-		} else
+			// Put left auto code here
+		}
+		else
 		{
 			System.out.println("right auton");
-			//Put right auto code here
+			// Put right auto code here
 		}
-		
+
 		autonMode = (Command) autonChooser.getSelected();
 		if (autonMode != null)
 		{
@@ -87,7 +82,6 @@ public class Robot extends IterativeRobot
 		}
 	}
 
-	// This function is called periodically during autonomous
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
@@ -98,13 +92,11 @@ public class Robot extends IterativeRobot
 		System.out.println("teleopInit");
 	}
 
-	// This function is called periodically during operator control
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
 	}
 
-	// This function is called periodically during test mode
 	public void testPeriodic()
 	{
 	}

@@ -74,7 +74,7 @@ public class Drivetrain extends Subsystem
 		lf.config_kD(0, D, 1);
 		rf.config_kD(0, D, 1);
 	}
-		
+
 	public void setSetpointDrive(double setpointinches)
 	{
 		lb.set(ControlMode.Follower, RobotMap.lf);
@@ -85,9 +85,10 @@ public class Drivetrain extends Subsystem
 		lf.set(ControlMode.Position, setpointinches);
 		rf.set(ControlMode.Position, -setpointinches);
 	}
+
 	public void setSetpointTurn(double setpointdegrees)
 	{
-		
+
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
@@ -96,10 +97,12 @@ public class Drivetrain extends Subsystem
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
+
 	public double degreesToEnc(double degrees)
 	{
-		return inchToEncoder((RobotMap.robotCir/360)*degrees);
+		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
+
 	public void stopDrive()
 	{
 		driveArcade(0, 0);
@@ -109,12 +112,11 @@ public class Drivetrain extends Subsystem
 	{
 		return (inches / 12.56) * 4096;
 	}
-	
+
 	@Override
 	protected void initDefaultCommand()
 	{
 		setDefaultCommand(new DriveCommand());
 	}
-
 
 }
