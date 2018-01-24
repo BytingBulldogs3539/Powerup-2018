@@ -1,10 +1,17 @@
 
 package org.usfirst.frc.team3539.robot;
 
+<<<<<<< HEAD
 //import org.usfirst.frc.team3539.robot.commands.BeamSensorCommand;
 //import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 //import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 //import org.usfirst.frc.team3539.robot.commands.LimitCommand;
+=======
+import org.usfirst.frc.team3539.robot.commands.BeamSensorCommand;
+import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
+import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
+import org.usfirst.frc.team3539.robot.commands.LimitCommand;
+>>>>>>> 31fe3be4110d65406b7a4ee1975595cd28ee4408
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 

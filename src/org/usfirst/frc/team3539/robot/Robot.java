@@ -30,10 +30,17 @@ public class Robot extends IterativeRobot
 
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
+<<<<<<< HEAD
 	//public static RangeSystem rangeSystem = new RangeSystem();
 	//public static Intake intake = new Intake();
 	//public static LimitSwitch limit = new LimitSwitch();
 	//public static Elevator elevator = new Elevator();
+=======
+	public static RangeSystem rangeSystem = new RangeSystem();
+	public static Intake intake = new Intake();
+	public static LimitSwitch limit = new LimitSwitch();
+	public static Elevator elevator = new Elevator();
+>>>>>>> 31fe3be4110d65406b7a4ee1975595cd28ee4408
 
 	public static Compressor c;
 	public static OI oi;
