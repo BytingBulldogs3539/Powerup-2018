@@ -1,31 +1,31 @@
 package org.usfirst.frc.team3539.robot.commands;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class DriveCommand extends Command
+public class ElevatorCommand extends Command
 {
-
-	public DriveCommand()
+	double power;
+	
+	public ElevatorCommand(double power)
 	{
-		requires(Robot.driveTrain);
+		requires(Robot.elevator);
+		this.power = power;
 	}
 
 	protected void initialize()
 	{
+		Robot.elevator.setMotorPower(power);
 	}
 
 	protected void execute()
 	{
-		Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
-	@Override
 	protected boolean isFinished()
 	{
 		return false;
@@ -33,10 +33,11 @@ public class DriveCommand extends Command
 
 	protected void end()
 	{
-		Robot.driveTrain.stopDrive();
+		Robot.elevator.setMotorPower(0);
 	}
 
 	protected void interrupted()
 	{
+		end();
 	}
 }

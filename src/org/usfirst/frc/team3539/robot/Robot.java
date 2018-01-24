@@ -2,10 +2,17 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
-import org.usfirst.frc.team3539.robot.subsystems.Drivetrain;
+import org.usfirst.frc.team3539.robot.autongroups.TestGroup;
+
+import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
+import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
+<<<<<<< HEAD
 import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
+=======
+import org.usfirst.frc.team3539.robot.subsystems.Elevator;
+>>>>>>> e80f1011fab7bd64408d692280b4e5f35bfe53ae
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -23,14 +30,19 @@ public class Robot extends IterativeRobot
 {
 
 	// SUBSYSTEMS
-	public static Drivetrain drivetrain = new Drivetrain();
+	public static DriveTrain driveTrain = new DriveTrain();
+	public static RangeSystem rangeSystem = new RangeSystem();
 	public static Intake intake = new Intake();
+<<<<<<< HEAD
 	public static Lifter lifter = new Lifter();
 	public static LimitSwitch limit = new LimitSwitch();
+=======
+	public static Elevator elevator = new Elevator();
+>>>>>>> e80f1011fab7bd64408d692280b4e5f35bfe53ae
 
 	// public static Compressor c;
 	public static OI oi;
-	//public static UsbCamera cameraOne, cameraTwo;
+	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
@@ -40,22 +52,16 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 		SmartInit();
 
-//		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-//		cameraOne.setResolution(480, 360);
-//
-//		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-//		cameraTwo.setResolution(480, 360);
+		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		cameraOne.setResolution(480, 360);
+
+		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+		cameraTwo.setResolution(480, 360);
 	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode. You can use it to reset any subsystem information you want to clear when the robot is disabled.
-	 **/
 	public void disabledInit()
 	{
-		// BulldogLogger.getInstance().finishLogging();
-
 		Scheduler.getInstance().run();
-
 	}
 
 	public void disabledPeriodic()
@@ -67,17 +73,18 @@ public class Robot extends IterativeRobot
 	{
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
-		
-		if(gameData.charAt(0) == 'L')
+
+		if (gameData.charAt(0) == 'L')
 		{
 			System.out.println("left auton");
-			//Put left auto code here
-		} else
+			// Put left auto code here
+		}
+		else
 		{
 			System.out.println("right auton");
-			//Put right auto code here
+			// Put right auto code here
 		}
-		
+
 		autonMode = (Command) autonChooser.getSelected();
 		if (autonMode != null)
 		{
@@ -85,7 +92,6 @@ public class Robot extends IterativeRobot
 		}
 	}
 
-	// This function is called periodically during autonomous
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
@@ -96,13 +102,11 @@ public class Robot extends IterativeRobot
 		System.out.println("teleopInit");
 	}
 
-	// This function is called periodically during operator control
 	public void teleopPeriodic()
 	{
 		Scheduler.getInstance().run();
 	}
 
-	// This function is called periodically during test mode
 	public void testPeriodic()
 	{
 	}
@@ -112,6 +116,7 @@ public class Robot extends IterativeRobot
 		autonChooser = new SendableChooser<Command>();
 		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90));
+		autonChooser.addObject("test", new TestGroup());
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
