@@ -26,25 +26,25 @@ public class DriveTrain extends Subsystem
 		rf = new TalonSRX(RobotMap.rf);
 		rb = new TalonSRX(RobotMap.rb);
 
-		lf.configPeakOutputForward(1, 1);
-		lf.configPeakOutputReverse(-1, 1);
-		rf.configPeakOutputForward(1, 1);
-		rf.configPeakOutputReverse(-1, 1);
+		lf.configPeakOutputForward(1, 10);
+		lf.configPeakOutputReverse(-1, 10);
+		rf.configPeakOutputForward(1, 10);
+		rf.configPeakOutputReverse(-1, 10);
 
-		lb.configPeakOutputForward(1, 1);
-		lb.configPeakOutputReverse(-1, 1);
-		rb.configPeakOutputForward(1, 1);
-		rb.configPeakOutputReverse(-1, 1);
+		lb.configPeakOutputForward(1, 10);
+		lb.configPeakOutputReverse(-1, 10);
+		rb.configPeakOutputForward(1, 10);
+		rb.configPeakOutputReverse(-1, 10);
 
-		lf.configNominalOutputForward(0, 1);
-		rf.configNominalOutputForward(0, 1);
-		lb.configNominalOutputForward(0, 1);
-		rb.configNominalOutputForward(0, 1);
+		lf.configNominalOutputForward(0, 10);
+		rf.configNominalOutputForward(0, 10);
+		lb.configNominalOutputForward(0, 10);
+		rb.configNominalOutputForward(0, 10);
 
-		lf.configNominalOutputReverse(0, 1);
-		rf.configNominalOutputReverse(0, 1);
-		lb.configNominalOutputReverse(0, 1);
-		rb.configNominalOutputReverse(0, 1);
+		lf.configNominalOutputReverse(0, 10);
+		rf.configNominalOutputReverse(0, 10);
+		lb.configNominalOutputReverse(0, 10);
+		rb.configNominalOutputReverse(0, 10);
 
 		drive = new Drive(rf, rb, lf, lb);
 
@@ -54,8 +54,8 @@ public class DriveTrain extends Subsystem
 		// lf.configClosedloopRamp(1, 10);
 		// rf.configClosedloopRamp(1, 10);
 
-		lf.configAllowableClosedloopError(error, 0, 10);
-		rf.configAllowableClosedloopError(error, 0, 10);
+		lf.configAllowableClosedloopError(1000, 0, 100);
+		rf.configAllowableClosedloopError(1000, 0, 100);
 	}
 
 	public void zeroEnc()

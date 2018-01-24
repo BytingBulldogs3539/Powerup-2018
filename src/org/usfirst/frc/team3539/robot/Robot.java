@@ -7,12 +7,12 @@ import org.usfirst.frc.team3539.robot.autongroups.TestGroup;
 import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
-import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -30,13 +30,12 @@ public class Robot extends IterativeRobot
 
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
-	public static RangeSystem rangeSystem = new RangeSystem();
-	public static Intake intake = new Intake();
-	public static Lifter lifter = new Lifter();
-	public static LimitSwitch limit = new LimitSwitch();
-	public static Elevator elevator = new Elevator();
+	//public static RangeSystem rangeSystem = new RangeSystem();
+	//public static Intake intake = new Intake();
+	//public static LimitSwitch limit = new LimitSwitch();
+	//public static Elevator elevator = new Elevator();
 
-	// public static Compressor c;
+	public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
 
