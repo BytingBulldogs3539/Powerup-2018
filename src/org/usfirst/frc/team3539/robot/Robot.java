@@ -7,7 +7,6 @@ import org.usfirst.frc.team3539.robot.autongroups.TestGroup;
 import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
-import org.usfirst.frc.team3539.robot.subsystems.Lifter;
 import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 
@@ -32,7 +31,6 @@ public class Robot extends IterativeRobot
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static RangeSystem rangeSystem = new RangeSystem();
 	public static Intake intake = new Intake();
-	public static Lifter lifter = new Lifter();
 	public static LimitSwitch limit = new LimitSwitch();
 	public static Elevator elevator = new Elevator();
 
