@@ -20,7 +20,7 @@ public class AutonTurn extends Command
 
 	protected void initialize()
 	{
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
 
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointTurn(degrees);

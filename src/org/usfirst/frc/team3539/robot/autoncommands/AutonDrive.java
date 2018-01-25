@@ -16,17 +16,16 @@ public class AutonDrive extends Command
 	public AutonDrive(double inches)
 	{
 		requires(Robot.driveTrain);
-		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee);
+		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee,SmartDashboard.getNumber("F", 0));
 		this.inches = inches;
 	}
 
 	protected void initialize()
 	{	
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
 
 		Robot.driveTrain.zeroEnc();
-		//Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
-		Robot.driveTrain.DriveSpeed(0);
+		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
 		System.out.println(inches);
 	}
 

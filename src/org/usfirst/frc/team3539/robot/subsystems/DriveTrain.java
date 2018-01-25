@@ -55,8 +55,9 @@ public class DriveTrain extends Subsystem
 		// lf.configClosedloopRamp(1, 10);
 		// rf.configClosedloopRamp(1, 10);
 
-		lf.configAllowableClosedloopError(10, 0, 100);
-		rf.configAllowableClosedloopError(10, 0, 100);
+		lf.configAllowableClosedloopError(10, 0, 10);
+		rf.configAllowableClosedloopError(10, 0, 10);
+		
 	}
 
 	public void zeroEnc()
@@ -84,8 +85,10 @@ public class DriveTrain extends Subsystem
 		drive.driveArcade(forward, rotate);
 	}
 
-	public void setPID(double P, double I, double D)
+	public void setPID(double P, double I, double D, double F)
 	{
+		lf.config_kF(0, F, 1);
+		rf.config_kF(0, F, 1);
 		lf.config_kP(0, P, 1);
 		rf.config_kP(0, P, 1);
 		lf.config_kI(0, I, 1);
@@ -158,8 +161,8 @@ public class DriveTrain extends Subsystem
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
 		
-		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
-		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0)/100);
+		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0)/100);
 	}
 
 }

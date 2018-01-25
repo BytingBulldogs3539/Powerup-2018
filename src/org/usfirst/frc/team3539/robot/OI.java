@@ -2,6 +2,7 @@
 package org.usfirst.frc.team3539.robot;
 
 
+import org.usfirst.frc.team3539.robot.commands.BreakMode;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 
@@ -59,6 +60,7 @@ public class OI
 
 	public OI()
 	{
+		oneA.whileHeld(new BreakMode());
 //		twoPadUp.whileHeld(new ElevatorCommand(1));
 //		twoPadDown.whileHeld(new ElevatorCommand(-1));
 //

@@ -30,10 +30,10 @@ public class Robot extends IterativeRobot
 
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
-	//public static RangeSystem rangeSystem = new RangeSystem();
-	//public static Intake intake = new Intake();
-	//public static LimitSwitch limit = new LimitSwitch();
-	//public static Elevator elevator = new Elevator();
+	public static RangeSystem rangeSystem = new RangeSystem();
+	public static Intake intake = new Intake();
+	public static LimitSwitch limit = new LimitSwitch();
+	public static Elevator elevator = new Elevator();
 
 
 	public static Compressor c;
@@ -111,7 +111,7 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("AutoDrive", new AutonDrive(0));
+		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90));
 		autonChooser.addObject("test", new TestGroup());
 
