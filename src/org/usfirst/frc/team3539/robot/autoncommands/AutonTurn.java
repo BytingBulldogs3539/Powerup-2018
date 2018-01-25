@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.autoncommands;
 import org.usfirst.frc.team3539.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,8 @@ public class AutonTurn extends Command
 
 	protected void initialize()
 	{
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0));
+
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointTurn(degrees);
 		System.out.println(degrees);

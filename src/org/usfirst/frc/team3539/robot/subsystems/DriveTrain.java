@@ -9,6 +9,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem
 {
@@ -54,8 +55,8 @@ public class DriveTrain extends Subsystem
 		// lf.configClosedloopRamp(1, 10);
 		// rf.configClosedloopRamp(1, 10);
 
-		lf.configAllowableClosedloopError(1000, 0, 100);
-		rf.configAllowableClosedloopError(1000, 0, 100);
+		lf.configAllowableClosedloopError(10, 0, 100);
+		rf.configAllowableClosedloopError(10, 0, 100);
 	}
 
 	public void zeroEnc()
@@ -118,7 +119,20 @@ public class DriveTrain extends Subsystem
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
-
+	public void DriveSpeed(double Velocity)
+	{
+		lb.set(ControlMode.Follower, RobotMap.lf);
+		rb.set(ControlMode.Follower, RobotMap.rf);
+		System.out.println("lbcontrol" + lb.getControlMode());
+		System.out.println("rbcontrol" + rb.getControlMode());
+		lf.set(ControlMode.Velocity, 0);
+		rf.set(ControlMode.Velocity, 0);
+	}
+	
+	public double ftpsToEncps(double ftps)
+	{
+		return ftps*100.0;
+	}
 	public double degreesToEnc(double degrees)
 	{
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
@@ -138,6 +152,14 @@ public class DriveTrain extends Subsystem
 	protected void initDefaultCommand()
 	{
 		setDefaultCommand(new DriveCommand());
+	}
+	public void updateEnc()
+	{
+		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
+		
+		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0));
 	}
 
 }

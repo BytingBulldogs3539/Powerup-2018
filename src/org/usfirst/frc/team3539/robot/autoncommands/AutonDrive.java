@@ -4,6 +4,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -21,8 +22,11 @@ public class AutonDrive extends Command
 
 	protected void initialize()
 	{	
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0));
+
 		Robot.driveTrain.zeroEnc();
-		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
+		//Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
+		Robot.driveTrain.DriveSpeed(0);
 		System.out.println(inches);
 	}
 

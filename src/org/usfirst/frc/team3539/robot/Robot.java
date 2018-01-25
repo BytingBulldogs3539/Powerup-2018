@@ -30,17 +30,11 @@ public class Robot extends IterativeRobot
 
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
-<<<<<<< HEAD
 	//public static RangeSystem rangeSystem = new RangeSystem();
 	//public static Intake intake = new Intake();
 	//public static LimitSwitch limit = new LimitSwitch();
 	//public static Elevator elevator = new Elevator();
-=======
-	public static RangeSystem rangeSystem = new RangeSystem();
-	public static Intake intake = new Intake();
-	public static LimitSwitch limit = new LimitSwitch();
-	public static Elevator elevator = new Elevator();
->>>>>>> 31fe3be4110d65406b7a4ee1975595cd28ee4408
+
 
 	public static Compressor c;
 	public static OI oi;
@@ -97,6 +91,7 @@ public class Robot extends IterativeRobot
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
+		Robot.driveTrain.updateEnc();
 	}
 
 	public void teleopInit()
@@ -116,11 +111,18 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
+		autonChooser.addDefault("AutoDrive", new AutonDrive(0));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90));
 		autonChooser.addObject("test", new TestGroup());
 
 		SmartDashboard.putData("Auton mode", autonChooser);
+		
+		SmartDashboard.putNumber("P", RobotMap.drivePea);
+		SmartDashboard.putNumber("I", RobotMap.driveEye);
+		SmartDashboard.putNumber("D", RobotMap.driveDee);
+		
+		SmartDashboard.putNumber("Right Enc", 0);
+		SmartDashboard.putNumber("Left Enc", 0);
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
