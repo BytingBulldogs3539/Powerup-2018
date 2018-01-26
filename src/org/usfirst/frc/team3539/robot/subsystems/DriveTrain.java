@@ -57,7 +57,7 @@ public class DriveTrain extends Subsystem
 
 		lf.configAllowableClosedloopError(10, 0, 10);
 		rf.configAllowableClosedloopError(10, 0, 10);
-		
+
 	}
 
 	public void zeroEnc()
@@ -122,6 +122,7 @@ public class DriveTrain extends Subsystem
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
+
 	public void DriveSpeed(double Velocity)
 	{
 		lb.set(ControlMode.Follower, RobotMap.lf);
@@ -131,11 +132,12 @@ public class DriveTrain extends Subsystem
 		lf.set(ControlMode.Velocity, 0);
 		rf.set(ControlMode.Velocity, 0);
 	}
-	
+
 	public double ftpsToEncps(double ftps)
 	{
-		return ftps*100.0;
+		return ftps * 100.0;
 	}
+
 	public double degreesToEnc(double degrees)
 	{
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
@@ -156,13 +158,14 @@ public class DriveTrain extends Subsystem
 	{
 		setDefaultCommand(new DriveCommand());
 	}
+
 	public void updateEnc()
 	{
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
-		
-		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0)/100);
-		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0)/100);
+
+		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0) / 100);
+		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0) / 100);
 	}
 
 }

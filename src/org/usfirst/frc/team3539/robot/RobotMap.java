@@ -1,15 +1,26 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
- * around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap
 {
 	// CONTROLLER PORT
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
+	public static final int NES = 3;
 	// Press F1 to refresh Controllers
+
+	// NES Controller Inputs
+	public static final int NES_A = 1;
+	public static final int NES_B = 2;
+	public static final int NES_SELECT = 3;
+	public static final int NES_START = 4;
+	public static final int NES_X_Axis = 0;
+	public static final int NES_Y_Axis = 1;
 
 	// CONTROLLER AXIS
 	public static final int X_AxisL = 0;
@@ -53,26 +64,25 @@ public class RobotMap
 	public static final int lb = 7; // Left Back Drive Talon
 	public static final int rf = 4; // Right Front Drive Talon
 	public static final int rb = 3; // Right Back Drive Talon
-	
+
 	public static double drivePea = .1;
 	public static double driveEye = .000001;
 	public static double driveDee = .0;
-	
-	public static final double wheelCir=12.56;
-	
-	public static final double robotCir=103.62;
-	
+
+	public static final double wheelCir = 12.56;
+
+	public static final double robotCir = 103.62;
 
 	// INTAKE
 	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be
 	public static final int rIntakeMotor = 2; // I don't know what the actual Talon number will be
-	
+
 	// LIFTER
 	public static final int l1LifterMotor = 0; // I don't know what the actual Talon number will be
-	public static final int l2LifterMotor = 2; 
-	public static final int r1LifterMotor = 1; 
+	public static final int l2LifterMotor = 2;
+	public static final int r1LifterMotor = 1;
 	public static final int r2LifterMotor = 0; // I don't know what the actual Talon number will be
-	
+
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";

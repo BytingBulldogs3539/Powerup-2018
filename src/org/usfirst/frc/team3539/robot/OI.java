@@ -1,8 +1,8 @@
 
 package org.usfirst.frc.team3539.robot;
 
-
-import org.usfirst.frc.team3539.robot.commands.BreakMode;
+import org.usfirst.frc.team3539.robot.commands.DriveCommandNES;
+//import org.usfirst.frc.team3539.robot.commands.BreakMode;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 
@@ -10,12 +10,24 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
- * This class is the glue that binds the controls on the physical operator interface to the commands and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator
+ * interface to the commands and command groups that allow control of the robot.
  */
 public class OI
 {
 	public Joystick controller1 = new Joystick(RobotMap.DRIVER); // Added spaces to fix spacing in logs
 	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
+	public Joystick NEScontroller = new Joystick(RobotMap.NES);
+
+	// NES Controller
+	public JoystickButton nesA = new JoystickButton(NEScontroller, RobotMap.NES_A);
+	public JoystickButton nesB = new JoystickButton(NEScontroller, RobotMap.NES_B);
+	public JoystickButton nesSTART = new JoystickButton(NEScontroller,RobotMap.NES_START);
+	public JoystickButton nesSELECT = new JoystickButton(NEScontroller, RobotMap.NES_SELECT);
+	public DirectionalButton nesLeft = new DirectionalButton(Direction.LEFT, NEScontroller);
+	public DirectionalButton nesRight = new DirectionalButton(Direction.RIGHT, NEScontroller);
+	public DirectionalButton nesUp = new DirectionalButton(Direction.UP, NEScontroller);
+	public DirectionalButton nesDown = new DirectionalButton(Direction.DOWN, NEScontroller);
 
 	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
 	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
@@ -60,17 +72,20 @@ public class OI
 
 	public OI()
 	{
-		oneA.whileHeld(new BreakMode());
-//		twoPadUp.whileHeld(new ElevatorCommand(1));
-//		twoPadDown.whileHeld(new ElevatorCommand(-1));
-//
-//		twoA.whileHeld(new IntakeCommand(1));
-//		twoX.whileHeld(new IntakeCommand(.5));
-//		twoY.whileHeld(new IntakeCommand(-.5));
-//		twoB.whileHeld(new IntakeCommand(-1));
-//		
-//		oneA.whileHeld(new LimitCommand());
-//		
-//		oneX.whenPressed(new BeamSensorCommand());
+		nesA.whileHeld(new DriveCommandNES(1));
+		nesB.whileHeld(new DriveCommandNES(-1));
+		
+		// oneA.whileHeld(new BreakMode());
+		// twoPadUp.whileHeld(new ElevatorCommand(1));
+		// twoPadDown.whileHeld(new ElevatorCommand(-1));
+		//
+		// twoA.whileHeld(new IntakeCommand(1));
+		// twoX.whileHeld(new IntakeCommand(.5));
+		// twoY.whileHeld(new IntakeCommand(-.5));
+		// twoB.whileHeld(new IntakeCommand(-1));
+		//
+		// oneA.whileHeld(new LimitCommand());
+		//
+		// oneX.whenPressed(new BeamSensorCommand());
 	}
 }
