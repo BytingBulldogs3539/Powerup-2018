@@ -24,10 +24,9 @@ public class AutonDrive extends Command
 	{	
 		Robot.driveTrain.stopDrive();
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
-
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
-		System.out.println(Robot.driveTrain.inchToEncoder(inches));
+		//System.out.println(Robot.driveTrain.inchToEncoder(inches));
 		Robot.driveTrain.setLoopOnTarget(10);
 		Robot.driveTrain.setTargetAllowedError(300);
 		Robot.driveTrain.zeroLoopCounter();
@@ -49,6 +48,7 @@ public class AutonDrive extends Command
 	{
 		System.out.println("end");
 		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.stopDrive();
 
 	}
 

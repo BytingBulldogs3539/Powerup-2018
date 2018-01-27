@@ -47,6 +47,7 @@ public class Robot extends IterativeRobot
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
+	SendableChooser<Command> allianceChooser;
 
 	public void robotInit()
 	{
@@ -119,8 +120,15 @@ public class Robot extends IterativeRobot
 		autonChooser.addDefault("AutoDrive", new AutonDrive(12));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90,1));
 		autonChooser.addObject("Auto", new TestAuto());
+		
+		allianceChooser= new SendableChooser<Command>();
+		allianceChooser.addDefault("Red", null);
+		allianceChooser.addObject("Blue", null);
+
 
 		SmartDashboard.putData("Auton mode", autonChooser);
+		
+		SmartDashboard.putData("Alliance", allianceChooser);
 
 		SmartDashboard.putNumber("P", RobotMap.drivePea);
 		SmartDashboard.putNumber("I", RobotMap.driveEye);
