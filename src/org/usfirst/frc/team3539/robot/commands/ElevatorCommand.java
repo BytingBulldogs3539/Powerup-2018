@@ -31,10 +31,10 @@
 //		return false;
 //	}
 //
-//	protected void end()
-//	{
-//		Robot.elevator.setMotorPower(0);
-//	}
+//	//protected void end()
+//	//{
+//	//	Robot.elevator.setMotorPower(0);
+//	//}
 //
 //	protected void interrupted()
 //	{
