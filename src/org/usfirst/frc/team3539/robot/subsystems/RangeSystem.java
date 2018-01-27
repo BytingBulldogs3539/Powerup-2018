@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.utilities.RangeFinder;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -9,15 +10,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class RangeSystem extends Subsystem
 {
-	private RangeFinder rf;
+	AnalogInput ultrasonic;
 	public RangeSystem()
 	{
-		rf = new RangeFinder(1);
+		ultrasonic = new AnalogInput(0);
 	}
 	
 	public double getDistance()
 	{
-		return rf.getDistance();
+		return ultrasonic.getAverageVoltage();
 	}
 	
 	

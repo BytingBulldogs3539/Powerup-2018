@@ -2,12 +2,13 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
-import org.usfirst.frc.team3539.robot.autongroups.TestGroup;
+import org.usfirst.frc.team3539.robot.autoncommands.DriveVelocity;
 
 import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
+import org.usfirst.frc.team3539.robot.subsystems.MotorTest;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 
 import edu.wpi.cscore.UsbCamera;
@@ -31,14 +32,15 @@ public class Robot extends IterativeRobot
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static RangeSystem rangeSystem = new RangeSystem();
-	public static Intake intake = new Intake();
-	public static LimitSwitch limit = new LimitSwitch();
-	public static Elevator elevator = new Elevator();
+	public static MotorTest motor = new MotorTest();
+	//public static Intake intake = new Intake();
+	//public static LimitSwitch limit = new LimitSwitch();
+	//public static Elevator elevator = new Elevator();
 
 
 	public static Compressor c;
 	public static OI oi;
-	public static UsbCamera cameraOne, cameraTwo;
+	//public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
 	SendableChooser<Command> autonChooser;
@@ -48,11 +50,11 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 		SmartInit();
 
-		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-		cameraOne.setResolution(480, 360);
-
-		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-		cameraTwo.setResolution(480, 360);
+//		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+//		cameraOne.setResolution(480, 360);
+//
+//		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+//		cameraTwo.setResolution(480, 360);
 	}
 
 	public void disabledInit()
@@ -86,6 +88,7 @@ public class Robot extends IterativeRobot
 		{
 			autonMode.start();
 		}
+		Robot.driveTrain.updateEnc();
 	}
 
 	public void autonomousPeriodic()
@@ -113,13 +116,18 @@ public class Robot extends IterativeRobot
 		autonChooser = new SendableChooser<Command>();
 		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
 		autonChooser.addObject("AutoTurn", new AutonTurn(90));
-		autonChooser.addObject("test", new TestGroup());
+		autonChooser.addObject("Auto", new DriveVelocity(1));
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 		
 		SmartDashboard.putNumber("P", RobotMap.drivePea);
 		SmartDashboard.putNumber("I", RobotMap.driveEye);
 		SmartDashboard.putNumber("D", RobotMap.driveDee);
+		SmartDashboard.putNumber("F", RobotMap.driveFFF);
+		
+		SmartDashboard.putNumber("Right Enc VEL", 1 );
+		SmartDashboard.putNumber("Left Enc VEL", 1 );
+		SmartDashboard.putNumber("PDP Current", 1 );
 		
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);

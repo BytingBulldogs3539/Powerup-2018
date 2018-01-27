@@ -82,6 +82,7 @@ public class Drive
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, left);
+			
 		}
 		if (driveMode == DriveMode.Four)
 		{
@@ -89,6 +90,7 @@ public class Drive
 			talon2.set(ControlMode.PercentOutput, right);
 			talon3.set(ControlMode.PercentOutput, left);
 			talon4.set(ControlMode.PercentOutput, left);
+			//System.out.println(right+" "+left);
 		}
 		if (driveMode == DriveMode.Six)
 		{

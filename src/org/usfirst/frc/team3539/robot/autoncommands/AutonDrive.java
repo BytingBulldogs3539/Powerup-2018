@@ -26,18 +26,22 @@ public class AutonDrive extends Command
 
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
-		System.out.println(inches);
+		System.out.println(Robot.driveTrain.inchToEncoder(inches));
+		Robot.driveTrain.setLoopOnTarget(10);
+		Robot.driveTrain.setTargetAllowedError(1000);
+		Robot.driveTrain.zeroLoopCounter();
 	}
 
 	protected void execute()
 	{
-
+		
 	}
 
 	protected boolean isFinished()
 	{
 
-		return Robot.driveTrain.lonTarget()||Robot.driveTrain.ronTarget();
+		return Robot.driveTrain.onTarget();
+		
 	}
 
 	protected void end()
@@ -48,5 +52,6 @@ public class AutonDrive extends Command
 
 	protected void interrupted()
 	{
+		end();
 	}
 }

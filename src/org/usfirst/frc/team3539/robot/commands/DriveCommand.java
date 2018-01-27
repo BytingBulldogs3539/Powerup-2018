@@ -18,6 +18,7 @@ public class DriveCommand extends Command
 
 	protected void initialize()
 	{
+
 	}
 
 	protected void execute()
@@ -39,5 +40,6 @@ public class DriveCommand extends Command
 
 	protected void interrupted()
 	{
+		end();
 	}
 }

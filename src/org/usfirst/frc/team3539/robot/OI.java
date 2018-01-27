@@ -3,8 +3,13 @@ package org.usfirst.frc.team3539.robot;
 
 
 import org.usfirst.frc.team3539.robot.commands.BreakMode;
+import org.usfirst.frc.team3539.robot.commands.RangeCommand;
+import org.usfirst.frc.team3539.robot.commands.TestCommandRun;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
+import org.usfirst.frc.team3539.robot.utilities.DualLimitButton;
+import org.usfirst.frc.team3539.robot.utilities.LightBeam;
+import org.usfirst.frc.team3539.robot.utilities.LimitButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -57,10 +62,20 @@ public class OI
 	public DirectionalButton twoPadRight = new DirectionalButton(Direction.RIGHT, controller2);
 	public DirectionalButton twoPadUp = new DirectionalButton(Direction.UP, controller2);
 	public DirectionalButton twoPadDown = new DirectionalButton(Direction.DOWN, controller2);
+	
+	public DualLimitButton Limit1 = new DualLimitButton(0,1);
+	public LightBeam Light1 = new LightBeam(2);
 
 	public OI()
 	{
 		oneA.whileHeld(new BreakMode());
+		oneB.whileActive(new RangeCommand());
+		
+		Limit1.whileActive(new TestCommandRun());
+		
+		Light1.whileHeld(new TestCommandRun());
+		
+		
 //		twoPadUp.whileHeld(new ElevatorCommand(1));
 //		twoPadDown.whileHeld(new ElevatorCommand(-1));
 //

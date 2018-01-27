@@ -1,18 +1,25 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
 import edu.wpi.first.wpilibj.DigitalInput;
-
-public class LightBeam extends DigitalInput
+import edu.wpi.first.wpilibj.buttons.Button;
+/**
+ * Button Wrapper to allow Light Sensors to mock a Button.
+ * 
+ * @author FRC-3539
+ *
+ * @since 1/26/18
+ */
+public class LightBeam extends Button
 {
-
-	public LightBeam(int channel)
+	DigitalInput sensor;
+	public LightBeam(int port)
 	{
-		super(channel);
+		sensor = new DigitalInput(port);
 	}
-	
-	public boolean isTriggered()
+	@Override
+	public boolean get()
 	{
-		return get();
+		return !sensor.get();
 	}
 	
 }

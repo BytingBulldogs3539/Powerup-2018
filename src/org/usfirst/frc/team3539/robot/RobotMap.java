@@ -54,9 +54,10 @@ public class RobotMap
 	public static final int rf = 4; // Right Front Drive Talon
 	public static final int rb = 3; // Right Back Drive Talon
 	
-	public static double drivePea = .1;
-	public static double driveEye = .000001;
+	public static double drivePea = .05;
+	public static double driveEye = .0;
 	public static double driveDee = .0;
+	public static double driveFFF = .1;
 	
 	public static final double wheelCir=12.56;
 	
