@@ -46,8 +46,9 @@ public class Robot extends IterativeRobot
 	// public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
-	SendableChooser<Command> autonChooser;
+	SendableChooser<Command> positionChooser;
 	SendableChooser<Command> allianceChooser;
+	SendableChooser<Command> autonChooser;
 
 	public void robotInit()
 	{
@@ -67,6 +68,7 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
+		System.out.println(positionChooser.getName());
 		Scheduler.getInstance().run();
 	}
 
@@ -107,6 +109,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
+
 		Scheduler.getInstance().run();
 	}
 
@@ -116,17 +119,18 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("AutoDrive", new AutonDrive(12));
-		autonChooser.addObject("AutoTurn", new AutonTurn(90,1));
-		autonChooser.addObject("Auto", new TestAuto());
+		positionChooser = new SendableChooser<Command>();
+		positionChooser.addObject("Left", null);
+		positionChooser.addDefault("Middle", null);
+		positionChooser.addObject("Right", null);
+		
 		
 		allianceChooser= new SendableChooser<Command>();
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
 
 
-		SmartDashboard.putData("Auton mode", autonChooser);
+		SmartDashboard.putData("Auton Position", positionChooser);
 		
 		SmartDashboard.putData("Alliance", allianceChooser);
 
@@ -151,6 +155,8 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
+		
+		
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
