@@ -17,7 +17,7 @@ public class BreakMode extends Command {
     // Called just before this Command runs the first time
     protected void initialize() 
     {
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("BreakP", 0), SmartDashboard.getNumber("BreakI", 0), SmartDashboard.getNumber("BreakD", 0),SmartDashboard.getNumber("BreakF", 0));
 
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(0));

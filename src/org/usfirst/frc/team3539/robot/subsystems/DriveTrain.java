@@ -128,8 +128,7 @@ public class DriveTrain extends Subsystem
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
-		System.out.println("lbcontrol" + lb.getControlMode());
-		System.out.println("rbcontrol" + rb.getControlMode());
+		System.out.println("setpoint" + degreesToEnc(setpointdegrees));
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
@@ -185,6 +184,8 @@ public class DriveTrain extends Subsystem
 
 	public void setTargetAllowedError(int MotorTicks)
 	{
+		lf.configAllowableClosedloopError(0, MotorTicks, 10);
+		rf.configAllowableClosedloopError(0, MotorTicks, 10);
 		allowedError = MotorTicks;
 	}
 
@@ -208,11 +209,6 @@ public class DriveTrain extends Subsystem
 	{
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
-
-		SmartDashboard.putNumber("Right Enc VEL", rf.getSensorCollection().getPulseWidthVelocity());
-		SmartDashboard.putNumber("Left Enc VEL", lf.getSensorCollection().getPulseWidthVelocity());
-		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0) / 100);
-		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0) / 100);
 	}
 
 }

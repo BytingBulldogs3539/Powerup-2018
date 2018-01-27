@@ -22,19 +22,19 @@ public class AutonDrive extends Command
 
 	protected void initialize()
 	{	
+		Robot.driveTrain.stopDrive();
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
 
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
 		System.out.println(Robot.driveTrain.inchToEncoder(inches));
 		Robot.driveTrain.setLoopOnTarget(10);
-		Robot.driveTrain.setTargetAllowedError(1000);
+		Robot.driveTrain.setTargetAllowedError(300);
 		Robot.driveTrain.zeroLoopCounter();
 	}
 
 	protected void execute()
 	{
-		
 	}
 
 	protected boolean isFinished()
@@ -42,11 +42,13 @@ public class AutonDrive extends Command
 
 		return Robot.driveTrain.onTarget();
 		
+		
 	}
 
 	protected void end()
 	{
 		System.out.println("end");
+		Robot.driveTrain.zeroEnc();
 
 	}
 

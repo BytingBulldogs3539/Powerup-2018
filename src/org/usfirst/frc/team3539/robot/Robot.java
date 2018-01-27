@@ -3,7 +3,7 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
 import org.usfirst.frc.team3539.robot.autoncommands.DriveVelocity;
-
+import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 //import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -116,9 +116,9 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
-		autonChooser.addObject("AutoTurn", new AutonTurn(90));
-		autonChooser.addObject("Auto", new DriveVelocity(1));
+		autonChooser.addDefault("AutoDrive", new AutonDrive(12));
+		autonChooser.addObject("AutoTurn", new AutonTurn(90,1));
+		autonChooser.addObject("Auto", new TestAuto());
 
 		SmartDashboard.putData("Auton mode", autonChooser);
 
@@ -126,10 +126,20 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("I", RobotMap.driveEye);
 		SmartDashboard.putNumber("D", RobotMap.driveDee);
 		SmartDashboard.putNumber("F", RobotMap.driveFFF);
+		
+		SmartDashboard.putNumber("TurnP", RobotMap.turnPea);
+		SmartDashboard.putNumber("TurnI", RobotMap.turnEye);
+		SmartDashboard.putNumber("TurnD", RobotMap.turnDee);
+		SmartDashboard.putNumber("TurnF", RobotMap.turnFFF);
+		
+		SmartDashboard.putNumber("BreakP", RobotMap.breakPea);
+		SmartDashboard.putNumber("BreakI", RobotMap.breakEye);
+		SmartDashboard.putNumber("BreakD", RobotMap.breakDee);
+		SmartDashboard.putNumber("BreakF", RobotMap.breakFFF);
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
-		SmartDashboard.putNumber("PDP Current", 1);
+		//SmartDashboard.putNumber("PDP Current", 1);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);

@@ -28,7 +28,7 @@ public class TestAuto extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new AutonDrive(60));
-    	addSequential(new AutonTurn(-90));
-    	addSequential(new AutonTurn(12));
+    	addSequential(new AutonTurn(-90,1));
+    	addSequential(new AutonDrive(36));
     }
 }

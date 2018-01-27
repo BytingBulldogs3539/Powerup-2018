@@ -12,20 +12,23 @@ public class AutonTurn extends Command
 {
 	double degrees;
 
-	public AutonTurn(double degrees)
+	public AutonTurn(double degrees,double seconds)
 	{
 		requires(Robot.driveTrain);
 		this.degrees = degrees;
+		this.setTimeout(seconds);
 	}
 
 	protected void initialize()
 	{
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
-
+		Robot.driveTrain.stopDrive();
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", 0), SmartDashboard.getNumber("TurnI", 0), SmartDashboard.getNumber("TurnD", 0),SmartDashboard.getNumber("TurnF", 0));
+		Robot.driveTrain.setTargetAllowedError(500);
+		Robot.driveTrain.setLoopOnTarget(20);
+		Robot.driveTrain.zeroLoopCounter();
 		Robot.driveTrain.zeroEnc();
-		Robot.driveTrain.setSetpointTurn(degrees);
 		System.out.println(degrees);
-		
+		Robot.driveTrain.setSetpointTurn(degrees);
 	}
 
 	protected void execute()
@@ -34,12 +37,15 @@ public class AutonTurn extends Command
 
 	protected boolean isFinished()
 	{
-		return Robot.driveTrain.onTarget();
+		//return false;
+		return Robot.driveTrain.onTarget()||this.isTimedOut();
 	}
 
 	protected void end()
 	{
 		System.out.println("end");
+		Robot.driveTrain.stopDrive();
+		Robot.driveTrain.zeroEnc();
 	}
 
 	protected void interrupted()
