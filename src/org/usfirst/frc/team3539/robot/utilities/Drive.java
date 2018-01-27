@@ -3,19 +3,19 @@ package org.usfirst.frc.team3539.robot.utilities;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-public class Drive
+public final class Drive
 {
 	TalonSRX talon1, talon2, talon3, talon4, talon5, talon6;
 	DriveMode driveMode;
 
-	public enum DriveMode
+	public static enum DriveMode
 	{
-		Four, Six, Two
+		TWO, FOUR, SIX;
 	}
 
 	public Drive(TalonSRX Right, TalonSRX Left)
 	{
-		driveMode = DriveMode.Two;
+		driveMode = DriveMode.TWO;
 
 		talon1 = Right;
 		talon2 = Left;
@@ -23,7 +23,7 @@ public class Drive
 
 	public Drive(TalonSRX RightFront, TalonSRX RightBack, TalonSRX LeftFront, TalonSRX LeftBack)
 	{
-		driveMode = DriveMode.Four;
+		driveMode = DriveMode.FOUR;
 		talon1 = RightFront;
 		talon2 = RightBack;
 		talon3 = LeftFront;
@@ -33,7 +33,7 @@ public class Drive
 	public Drive(TalonSRX RightFront, TalonSRX RightMiddle, TalonSRX RightBack, TalonSRX LeftFront, TalonSRX LeftMiddle,
 			TalonSRX LeftBack)
 	{
-		driveMode = DriveMode.Six;
+		driveMode = DriveMode.SIX;
 		talon1 = RightFront;
 		talon2 = RightMiddle;
 		talon3 = RightBack;
@@ -78,13 +78,13 @@ public class Drive
 
 	public void setLeftRightMotorOutputs(double right, double left)
 	{
-		if (driveMode == DriveMode.Two)
+		if (driveMode == DriveMode.TWO)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, left);
 			
 		}
-		if (driveMode == DriveMode.Four)
+		if (driveMode == DriveMode.FOUR)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
@@ -92,7 +92,7 @@ public class Drive
 			talon4.set(ControlMode.PercentOutput, left);
 			//System.out.println(right+" "+left);
 		}
-		if (driveMode == DriveMode.Six)
+		if (driveMode == DriveMode.SIX)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
