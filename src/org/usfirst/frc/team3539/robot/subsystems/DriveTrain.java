@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.RobotDrive;
+//import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -146,12 +146,9 @@ public class DriveTrain extends Subsystem
 
 	public double ftpsToEncps(double ftps)
 	{
-<<<<<<< HEAD
 
 		return ftps * 394;
-=======
-		return ftps * 100.0;
->>>>>>> fff60851984aea54f2df32b609331eff754b5988
+		// return ftps * 100.0;
 	}
 
 	public double degreesToEnc(double degrees)
@@ -172,12 +169,12 @@ public class DriveTrain extends Subsystem
 			System.out.println(loopCounter);
 		}
 		else
-			loopCounter=0;
+			loopCounter = 0;
 		if (loopCounter >= loopAmount)
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -190,9 +187,10 @@ public class DriveTrain extends Subsystem
 	{
 		allowedError = MotorTicks;
 	}
+
 	public void zeroLoopCounter()
 	{
-		loopCounter=0;
+		loopCounter = 0;
 	}
 
 	public double inchToEncoder(double inches)
@@ -211,13 +209,10 @@ public class DriveTrain extends Subsystem
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
 
-<<<<<<< HEAD
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSensorCollection().getPulseWidthVelocity());
 		SmartDashboard.putNumber("Left Enc VEL", lf.getSensorCollection().getPulseWidthVelocity());
-=======
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0) / 100);
 		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0) / 100);
->>>>>>> fff60851984aea54f2df32b609331eff754b5988
 	}
 
 }

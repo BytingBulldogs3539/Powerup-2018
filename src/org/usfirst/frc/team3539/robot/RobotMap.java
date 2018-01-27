@@ -1,10 +1,8 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
+ * around.
  */
 public class RobotMap
 {
@@ -64,27 +62,15 @@ public class RobotMap
 	public static final int lb = 7; // Left Back Drive Talon
 	public static final int rf = 4; // Right Front Drive Talon
 	public static final int rb = 3; // Right Back Drive Talon
-<<<<<<< HEAD
-	
+
 	public static double drivePea = .05;
 	public static double driveEye = .0;
 	public static double driveDee = .0;
 	public static double driveFFF = .1;
-	
-	public static final double wheelCir=12.56;
-	
-	public static final double robotCir=103.62;
-	
-=======
-
-	public static double drivePea = .1;
-	public static double driveEye = .000001;
-	public static double driveDee = .0;
 
 	public static final double wheelCir = 12.56;
 
 	public static final double robotCir = 103.62;
->>>>>>> fff60851984aea54f2df32b609331eff754b5988
 
 	// INTAKE
 	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be

@@ -1,27 +1,21 @@
-
 package org.usfirst.frc.team3539.robot;
-
-<<<<<<< HEAD
 
 import org.usfirst.frc.team3539.robot.commands.BreakMode;
 import org.usfirst.frc.team3539.robot.commands.RangeCommand;
 import org.usfirst.frc.team3539.robot.commands.TestCommandRun;
-=======
 import org.usfirst.frc.team3539.robot.commands.DriveCommandNES;
 //import org.usfirst.frc.team3539.robot.commands.BreakMode;
->>>>>>> fff60851984aea54f2df32b609331eff754b5988
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 import org.usfirst.frc.team3539.robot.utilities.DualLimitButton;
 import org.usfirst.frc.team3539.robot.utilities.LightBeam;
-import org.usfirst.frc.team3539.robot.utilities.LimitButton;
+//import org.usfirst.frc.team3539.robot.utilities.LimitButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator interface to the commands and command groups that allow control of the robot.
  */
 public class OI
 {
@@ -32,7 +26,7 @@ public class OI
 	// NES Controller
 	public JoystickButton nesA = new JoystickButton(NEScontroller, RobotMap.NES_A);
 	public JoystickButton nesB = new JoystickButton(NEScontroller, RobotMap.NES_B);
-	public JoystickButton nesSTART = new JoystickButton(NEScontroller,RobotMap.NES_START);
+	public JoystickButton nesSTART = new JoystickButton(NEScontroller, RobotMap.NES_START);
 	public JoystickButton nesSELECT = new JoystickButton(NEScontroller, RobotMap.NES_SELECT);
 	public DirectionalButton nesLeft = new DirectionalButton(Direction.LEFT, NEScontroller);
 	public DirectionalButton nesRight = new DirectionalButton(Direction.RIGHT, NEScontroller);
@@ -79,48 +73,44 @@ public class OI
 	public DirectionalButton twoPadRight = new DirectionalButton(Direction.RIGHT, controller2);
 	public DirectionalButton twoPadUp = new DirectionalButton(Direction.UP, controller2);
 	public DirectionalButton twoPadDown = new DirectionalButton(Direction.DOWN, controller2);
-	
-	public DualLimitButton Limit1 = new DualLimitButton(0,1);
+
+	public DualLimitButton Limit1 = new DualLimitButton(0, 1);
 	public LightBeam Light1 = new LightBeam(2);
 
 	public OI()
 	{
-<<<<<<< HEAD
 		oneA.whileHeld(new BreakMode());
 		oneB.whileActive(new RangeCommand());
-		
+
 		Limit1.whileActive(new TestCommandRun());
-		
+
 		Light1.whileHeld(new TestCommandRun());
-		
-		
-//		twoPadUp.whileHeld(new ElevatorCommand(1));
-//		twoPadDown.whileHeld(new ElevatorCommand(-1));
-//
-//		twoA.whileHeld(new IntakeCommand(1));
-//		twoX.whileHeld(new IntakeCommand(.5));
-//		twoY.whileHeld(new IntakeCommand(-.5));
-//		twoB.whileHeld(new IntakeCommand(-1));
-//		
-//		oneA.whileHeld(new LimitCommand());
-//		
-//		oneX.whenPressed(new BeamSensorCommand());
-=======
-		nesA.whileHeld(new DriveCommandNES(1));
-		nesB.whileHeld(new DriveCommandNES(-1));
-		
-		// oneA.whileHeld(new BreakMode());
+
 		// twoPadUp.whileHeld(new ElevatorCommand(1));
 		// twoPadDown.whileHeld(new ElevatorCommand(-1));
-		//
+
 		// twoA.whileHeld(new IntakeCommand(1));
 		// twoX.whileHeld(new IntakeCommand(.5));
 		// twoY.whileHeld(new IntakeCommand(-.5));
 		// twoB.whileHeld(new IntakeCommand(-1));
-		//
+
 		// oneA.whileHeld(new LimitCommand());
-		//
+
 		// oneX.whenPressed(new BeamSensorCommand());
->>>>>>> fff60851984aea54f2df32b609331eff754b5988
+		nesA.whileHeld(new DriveCommandNES(1));
+		nesB.whileHeld(new DriveCommandNES(-1));
+
+		// oneA.whileHeld(new BreakMode());
+		// twoPadUp.whileHeld(new ElevatorCommand(1));
+		// twoPadDown.whileHeld(new ElevatorCommand(-1));
+
+		// twoA.whileHeld(new IntakeCommand(1));
+		// twoX.whileHeld(new IntakeCommand(.5));
+		// twoY.whileHeld(new IntakeCommand(-.5));
+		// twoB.whileHeld(new IntakeCommand(-1));
+
+		// oneA.whileHeld(new LimitCommand());
+
+		// oneX.whenPressed(new BeamSensorCommand());
 	}
 }
