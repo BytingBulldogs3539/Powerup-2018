@@ -13,64 +13,66 @@ public final class Drive
 		TWO, FOUR, SIX;
 	}
 
-	public Drive(TalonSRX Right, TalonSRX Left)
+	public Drive(TalonSRX right, TalonSRX left)
 	{
 		driveMode = DriveMode.TWO;
 
-		talon1 = Right;
-		talon2 = Left;
+		talon1 = right;
+		talon2 = left;
 	}
 
-	public Drive(TalonSRX RightFront, TalonSRX RightBack, TalonSRX LeftFront, TalonSRX LeftBack)
+	public Drive(TalonSRX rightFront, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftBack)
 	{
 		driveMode = DriveMode.FOUR;
-		talon1 = RightFront;
-		talon2 = RightBack;
-		talon3 = LeftFront;
-		talon4 = LeftBack;
+		talon1 = rightFront;
+		talon2 = rightBack;
+		talon3 = leftFront;
+		talon4 = leftBack;
 	}
 
-	public Drive(TalonSRX RightFront, TalonSRX RightMiddle, TalonSRX RightBack, TalonSRX LeftFront, TalonSRX LeftMiddle,
-			TalonSRX LeftBack)
+	public Drive(TalonSRX rightFront, TalonSRX rightMiddle, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftMiddle, TalonSRX leftBack)
 	{
 		driveMode = DriveMode.SIX;
-		talon1 = RightFront;
-		talon2 = RightMiddle;
-		talon3 = RightBack;
-		talon4 = LeftFront;
-		talon5 = LeftMiddle;
-		talon6 = LeftBack;
+		talon1 = rightFront;
+		talon2 = rightMiddle;
+		talon3 = rightBack;
+		talon4 = leftFront;
+		talon5 = leftMiddle;
+		talon6 = leftBack;
 	}
 
-	public void driveArcade(double axis1, double axis0)
+	public void driveArcade(double throttle, double wheel)
 	{
 		double leftMotorSpeed;
 		double rightMotorSpeed;
 
-		axis0 = limit(axis0);
-		axis1 = limit(axis1);
+		wheel = limitValue(wheel);
+		throttle = limitValue(throttle);
 
-		if (axis0 > 0.0)
+		if (wheel > 0.0)
 		{
-			if (axis1 > 0.0)
+			if (throttle > 0.0)
 			{
-				leftMotorSpeed = axis0 - axis1;
-				rightMotorSpeed = Math.max(axis0, axis1);
-			} else
-			{
-				leftMotorSpeed = Math.max(axis0, -axis1);
-				rightMotorSpeed = axis0 + axis1;
+				leftMotorSpeed = wheel - throttle;
+				rightMotorSpeed = Math.max(wheel, throttle);
 			}
-		} else
+			else
+			{
+				leftMotorSpeed = Math.max(wheel, -throttle);
+				rightMotorSpeed = wheel + throttle;
+			}
+		}
+		else
 		{
-			if (axis1 > 0.0)
+			if (throttle > 0.0)
 			{
-				leftMotorSpeed = -Math.max(-axis0, axis1);
-				rightMotorSpeed = axis0 + axis1;
-			} else
+				leftMotorSpeed = -Math.max(-wheel, throttle);
+				rightMotorSpeed = wheel + throttle;
+			}
+			else
 			{
-				leftMotorSpeed = axis0 - axis1;
-				rightMotorSpeed = -Math.max(-axis0, -axis1);
+				leftMotorSpeed = wheel - throttle;
+				rightMotorSpeed = -Math.max(-wheel, -throttle);
 			}
 		}
 		setLeftRightMotorOutputs(rightMotorSpeed, leftMotorSpeed);
@@ -82,7 +84,7 @@ public final class Drive
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, left);
-			
+
 		}
 		if (driveMode == DriveMode.FOUR)
 		{
@@ -90,7 +92,7 @@ public final class Drive
 			talon2.set(ControlMode.PercentOutput, right);
 			talon3.set(ControlMode.PercentOutput, left);
 			talon4.set(ControlMode.PercentOutput, left);
-			//System.out.println(right+" "+left);
+			// System.out.println(right+" "+left);
 		}
 		if (driveMode == DriveMode.SIX)
 		{
@@ -103,12 +105,12 @@ public final class Drive
 		}
 	}
 
-	public double limit(double limiting)
+	public double limitValue(double value)
 	{
-		if (limiting > 1.0)
-			limiting = 1.0;
-		if (limiting < -1.0)
-			limiting = -1.0;
-		return limiting;
+		if (value > 1.0)
+			value = 1.0;
+		if (value < -1.0)
+			value = -1.0;
+		return value;
 	}
 }
