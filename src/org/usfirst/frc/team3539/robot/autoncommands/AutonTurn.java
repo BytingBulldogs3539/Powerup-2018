@@ -34,7 +34,7 @@ public class AutonTurn extends Command
 
 	protected boolean isFinished()
 	{
-		return Robot.driveTrain.lonTarget()||Robot.driveTrain.ronTarget();
+		return Robot.driveTrain.onTarget();
 	}
 
 	protected void end()
