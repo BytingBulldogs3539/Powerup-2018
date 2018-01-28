@@ -22,7 +22,7 @@ public class RangeCommand extends Command
 
 	protected void execute()
 	{
-		System.out.println(Robot.rangeSystem.getDistance());
+		//System.out.println(Robot.rangeSystem.getDistance());
 	}
 
 	protected boolean isFinished()

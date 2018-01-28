@@ -15,9 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
- * described in the IterativeRobot documentation. If you change the name of this class or the package after creating
- * this project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
+ * project, you must also update the manifest file in the resource directory.
  **/
 
 public class Robot extends IterativeRobot
@@ -49,10 +48,16 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 		SmartInit();
 
-		cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-		cameraOne.setResolution(480, 360);
-		cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-		cameraTwo.setResolution(480, 360);
+		try
+		{
+			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+			cameraOne.setResolution(480, 360);
+			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+			cameraTwo.setResolution(480, 360);
+		}
+		catch (Error e)
+		{
+		}
 	}
 
 	public void disabledInit()
@@ -62,7 +67,6 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
-		System.out.println(positionChooser.getName());
 		Scheduler.getInstance().run();
 	}
 
@@ -87,13 +91,11 @@ public class Robot extends IterativeRobot
 		{
 			autonMode.start();
 		}
-		Robot.driveTrain.updateEnc();
 	}
 
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Robot.driveTrain.updateEnc();
 	}
 
 	public void teleopInit()

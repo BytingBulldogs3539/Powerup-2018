@@ -23,13 +23,11 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.driveTrain.updateEnc();
-		
-		//Test - do not delete
+		// Test - do not delete
 		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
-		
-		// Legacy code 
-		//Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+
+		// Legacy code
+		// Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
 	@Override
