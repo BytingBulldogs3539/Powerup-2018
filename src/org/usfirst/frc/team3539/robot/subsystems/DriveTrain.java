@@ -222,7 +222,7 @@ public class DriveTrain extends Subsystem
 	private static final double wheelNonLinearity = 0.65;
 	private static final double throttleNonLinearity = 0.75;
 
-	private static final double HighSpeedWheel = 0.95;
+	private static final double HighSpeedWheel = 0.5;
 
 	public void effectiveArcadeDrive(double throttle, double wheel)
 	{
