@@ -1,14 +1,11 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.commands.DriveCommand;
-//import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.utilities.LightBeam;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -29,19 +26,19 @@ public class Elevator extends Subsystem
 	{
 		beam = new LightBeam(0);
 		lLift = new TalonSRX(RobotMap.l1LifterMotor);
-		
+
 		rLift = new TalonSRX(RobotMap.r1LifterMotor);
-		
+
 	}
 
 	public void setMotorPower(double speed)
 	{
 		lLift.set(ControlMode.PercentOutput, speed);
-	
+
 		rLift.set(ControlMode.PercentOutput, -speed);
-		
+
 	}
-	
+
 	public boolean isTriggered()
 	{
 		return beam.get();
@@ -50,9 +47,9 @@ public class Elevator extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
-		//setDefaultCommand(new ElevatorCommand()); this stuff needs to be fixed
+		// setDefaultCommand(new ElevatorCommand()); this stuff needs to be fixed
 	}
-	
+
 	public void zeroEnc()
 	{
 		lLift.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -102,8 +99,7 @@ public class Elevator extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (lLift.getClosedLoopError(0) <= allowedError && lLift.getClosedLoopError(0) >= -allowedError
-				&& rLift.getClosedLoopError(0) <= allowedError && rLift.getClosedLoopError(0) >= -allowedError)
+		if (lLift.getClosedLoopError(0) <= allowedError && lLift.getClosedLoopError(0) >= -allowedError && rLift.getClosedLoopError(0) <= allowedError && rLift.getClosedLoopError(0) >= -allowedError)
 		{
 			loopCounter++;
 			System.out.println(loopCounter);
@@ -147,4 +143,3 @@ public class Elevator extends Subsystem
 	}
 
 }
-

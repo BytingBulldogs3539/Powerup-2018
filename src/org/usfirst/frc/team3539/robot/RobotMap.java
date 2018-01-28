@@ -1,8 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
- * around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides
+ * flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap
 {
@@ -67,12 +68,12 @@ public class RobotMap
 	public static double driveEye = .00002;
 	public static double driveDee = .1;
 	public static double driveFFF = .0;
-	
+
 	public static double turnPea = 0.1;
 	public static double turnEye = 0.0000023;
 	public static double turnDee = 0.1;
 	public static double turnFFF = 0;
-	
+
 	public static double breakPea = 0.05;
 	public static double breakEye = 0.0;
 	public static double breakDee = 0.0;
@@ -81,6 +82,19 @@ public class RobotMap
 	public static final double wheelCir = 12.56;
 
 	public static final double robotCir = 103.62;
+
+	// Deadbands
+	public static double throttleDeadband = 0.02;
+	public static double wheelDeadband = 0.02;
+
+	// Determines the upper threshold where turning is limited to make high speed travel more controllable
+	public static double throttleHighPass = .5;
+
+	// These factor determine how fast the wheel or throttle traverses the "non linear" sin/tan curve.
+	public static double wheelNonLinearity = 0.65;
+	public static double throttleNonLinearity = 0.75;
+
+	public static double highSpeedWheel = 0.5;
 
 	// INTAKE
 	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be

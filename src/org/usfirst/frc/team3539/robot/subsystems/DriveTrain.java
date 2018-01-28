@@ -211,36 +211,23 @@ public class DriveTrain extends Subsystem
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
 	}
 
-	// Deadbands
-	private static final double throttleDeadband = 0.02;
-	private static final double wheelDeadband = 0.02;
-
-	// Determines the upper threshold where turning is limited to make high speed travel more controllable
-	private static final double throttleHighPass = .5;
-
-	// These factor determine how fast the wheel or throttle traverses the "non linear" sin/tan curve.
-	private static final double wheelNonLinearity = 0.65;
-	private static final double throttleNonLinearity = 0.75;
-
-	private static final double HighSpeedWheel = 0.5;
-
 	public void effectiveArcadeDrive(double throttle, double wheel)
 	{
-		wheel = applyDeadband(wheel, wheelDeadband);
-		throttle = applyDeadband(throttle, throttleDeadband);
+		wheel = applyDeadband(wheel, RobotMap.wheelDeadband);
+		throttle = applyDeadband(throttle, RobotMap.throttleDeadband);
 
 		// Apply a sin function that's scaled to make it feel better.
-		final double wheelDenominator = Math.sin(Math.PI / 2.0 * wheelNonLinearity);
-		wheel = Math.sin(Math.PI / 2.0 * wheelNonLinearity * wheel) / wheelDenominator;
+		final double wheelDenominator = Math.sin(Math.PI / 2.0 * RobotMap.wheelNonLinearity);
+		wheel = Math.sin(Math.PI / 2.0 * RobotMap.wheelNonLinearity * wheel) / wheelDenominator;
 
 		// Apply a tan function that's scaled to make it feel better.
-		final double throttleDenominator = Math.tan(Math.PI / 2.0 * throttleNonLinearity);
-		throttle = Math.tan(Math.PI / 2.0 * throttleNonLinearity * throttle) / throttleDenominator;
+		final double throttleDenominator = Math.tan(Math.PI / 2.0 * RobotMap.throttleNonLinearity);
+		throttle = Math.tan(Math.PI / 2.0 * RobotMap.throttleNonLinearity * throttle) / throttleDenominator;
 
 		// Decrease wheel by __% at high speed
-		if (Math.abs(throttle) > throttleHighPass)
+		if (Math.abs(throttle) > RobotMap.throttleHighPass)
 		{
-			wheel = wheel * HighSpeedWheel;
+			wheel = wheel * RobotMap.highSpeedWheel;
 		}
 
 		driveArcade(throttle, wheel);

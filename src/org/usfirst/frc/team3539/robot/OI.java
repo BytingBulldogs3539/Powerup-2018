@@ -2,35 +2,33 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.BreakMode;
 import org.usfirst.frc.team3539.robot.commands.RangeCommand;
-import org.usfirst.frc.team3539.robot.commands.TestCommandRun;
-//import org.usfirst.frc.team3539.robot.commands.DriveCommandNES;
+// import org.usfirst.frc.team3539.robot.commands.DriveCommandNES;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton;
 import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
-import org.usfirst.frc.team3539.robot.utilities.DualLimitButton;
-import org.usfirst.frc.team3539.robot.utilities.LightBeam;
-//import org.usfirst.frc.team3539.robot.utilities.LimitButton;
+// import org.usfirst.frc.team3539.robot.utilities.LimitButton;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
- * This class is the glue that binds the controls on the physical operator interface to the commands and command groups that allow control of the robot.
+ * This class is the glue that binds the controls on the physical operator interface to the commands and command groups
+ * that allow control of the robot.
  */
 public class OI
 {
 	public Joystick controller1 = new Joystick(RobotMap.DRIVER); // Added spaces to fix spacing in logs
 	public Joystick controller2 = new Joystick(RobotMap.OPERATOR);
-	//public Joystick NEScontroller = new Joystick(RobotMap.NES);
+	// public Joystick NEScontroller = new Joystick(RobotMap.NES);
 
 	// NES Controller
-//	public JoystickButton nesA = new JoystickButton(NEScontroller, RobotMap.NES_A);
-//	public JoystickButton nesB = new JoystickButton(NEScontroller, RobotMap.NES_B);
-//	public JoystickButton nesSTART = new JoystickButton(NEScontroller, RobotMap.NES_START);
-//	public JoystickButton nesSELECT = new JoystickButton(NEScontroller, RobotMap.NES_SELECT);
-//	public DirectionalButton nesLeft = new DirectionalButton(Direction.LEFT, NEScontroller);
-//	public DirectionalButton nesRight = new DirectionalButton(Direction.RIGHT, NEScontroller);
-//	public DirectionalButton nesUp = new DirectionalButton(Direction.UP, NEScontroller);
-//	public DirectionalButton nesDown = new DirectionalButton(Direction.DOWN, NEScontroller);
+	// public JoystickButton nesA = new JoystickButton(NEScontroller, RobotMap.NES_A);
+	// public JoystickButton nesB = new JoystickButton(NEScontroller, RobotMap.NES_B);
+	// public JoystickButton nesSTART = new JoystickButton(NEScontroller, RobotMap.NES_START);
+	// public JoystickButton nesSELECT = new JoystickButton(NEScontroller, RobotMap.NES_SELECT);
+	// public DirectionalButton nesLeft = new DirectionalButton(Direction.LEFT, NEScontroller);
+	// public DirectionalButton nesRight = new DirectionalButton(Direction.RIGHT, NEScontroller);
+	// public DirectionalButton nesUp = new DirectionalButton(Direction.UP, NEScontroller);
+	// public DirectionalButton nesDown = new DirectionalButton(Direction.DOWN, NEScontroller);
 
 	public JoystickButton oneX = new JoystickButton(controller1, RobotMap.X);
 	public JoystickButton oneY = new JoystickButton(controller1, RobotMap.Y);
@@ -73,17 +71,17 @@ public class OI
 	public DirectionalButton twoPadUp = new DirectionalButton(Direction.UP, controller2);
 	public DirectionalButton twoPadDown = new DirectionalButton(Direction.DOWN, controller2);
 
-//	public DualLimitButton Limit1 = new DualLimitButton(0, 1);
-//	public LightBeam Light1 = new LightBeam(2);
+	// public DualLimitButton Limit1 = new DualLimitButton(0, 1);
+	// public LightBeam Light1 = new LightBeam(2);
 
 	public OI()
 	{
 		oneA.whileHeld(new BreakMode());
 		oneB.whileActive(new RangeCommand());
 
-		//Limit1.whileActive(new TestCommandRun());
+		// Limit1.whileActive(new TestCommandRun());
 
-		//whileHeld(new TestCommandRun());
+		// whileHeld(new TestCommandRun());
 
 		// twoPadUp.whileHeld(new ElevatorCommand(1));
 		// twoPadDown.whileHeld(new ElevatorCommand(-1));
@@ -96,8 +94,8 @@ public class OI
 		// oneA.whileHeld(new LimitCommand());
 
 		// oneX.whenPressed(new BeamSensorCommand());
-		//nesA.whileHeld(new DriveCommandNES(1));
-		//nesB.whileHeld(new DriveCommandNES(-1));
+		// nesA.whileHeld(new DriveCommandNES(1));
+		// nesB.whileHeld(new DriveCommandNES(-1));
 
 		// oneA.whileHeld(new BreakMode());
 		// twoPadUp.whileHeld(new ElevatorCommand(1));
