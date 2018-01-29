@@ -138,8 +138,8 @@ public class Elevator extends Subsystem
 
 	public void updateEnc()
 	{
-		SmartDashboard.putNumber("Right Enc", rLift.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Left Enc", lLift.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Elevator Enc", rLift.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Elevator Enc", lLift.getSelectedSensorPosition(0));
 	}
 
 }
