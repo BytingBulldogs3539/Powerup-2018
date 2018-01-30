@@ -37,7 +37,6 @@ public class AutonTurn extends Command
 
 	protected boolean isFinished()
 	{
-		//return false;
 		return Robot.driveTrain.onTarget()||this.isTimedOut();
 	}
 

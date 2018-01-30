@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class TestAuto extends CommandGroup {
-
-    public TestAuto() {
-
-    	addSequential(new AutonDrive(60));
-    	addSequential(new AutonWait(2));
-    	addSequential(new AutonTurn(-90,3));
-    	addSequential(new AutonWait(2));
-    	addSequential(new AutonDrive(36));
-    }
+public class TestAuto extends CommandGroup
+{
+	public TestAuto()
+	{
+		addSequential(new AutonDrive(60));
+		addSequential(new AutonWait(2));
+		addSequential(new AutonTurn(-90, 3));
+		addSequential(new AutonWait(2));
+		addSequential(new AutonDrive(36));
+	}
 }

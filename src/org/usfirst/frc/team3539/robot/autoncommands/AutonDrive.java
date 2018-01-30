@@ -16,17 +16,17 @@ public class AutonDrive extends Command
 	public AutonDrive(double inches)
 	{
 		requires(Robot.driveTrain);
-		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee,SmartDashboard.getNumber("F", 0));
+		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee, SmartDashboard.getNumber("F", 0));
 		this.inches = inches;
 	}
 
 	protected void initialize()
-	{	
+	{
 		Robot.driveTrain.stopDrive();
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
-		//System.out.println(Robot.driveTrain.inchToEncoder(inches));
+		// System.out.println(Robot.driveTrain.inchToEncoder(inches));
 		Robot.driveTrain.setLoopOnTarget(10);
 		Robot.driveTrain.setTargetAllowedError(300);
 		Robot.driveTrain.zeroLoopCounter();
@@ -38,10 +38,7 @@ public class AutonDrive extends Command
 
 	protected boolean isFinished()
 	{
-
 		return Robot.driveTrain.onTarget();
-		
-		
 	}
 
 	protected void end()
@@ -49,7 +46,6 @@ public class AutonDrive extends Command
 		System.out.println("end");
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.stopDrive();
-
 	}
 
 	protected void interrupted()
