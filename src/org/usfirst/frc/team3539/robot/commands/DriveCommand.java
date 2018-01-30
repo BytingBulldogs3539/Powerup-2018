@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3539.robot.commands;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -23,8 +22,11 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.driveTrain.updateEnc();
-		Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+		// Test - do not delete
+		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
+
+		// Legacy code
+		// Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
 	@Override

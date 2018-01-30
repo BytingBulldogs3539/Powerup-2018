@@ -1,18 +1,12 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonDrive;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonTurn;
-import org.usfirst.frc.team3539.robot.autoncommands.DriveVelocity;
-
 import org.usfirst.frc.team3539.robot.subsystems.RangeSystem;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
-//import org.usfirst.frc.team3539.robot.subsystems.Intake;
-//import org.usfirst.frc.team3539.robot.subsystems.LimitSwitch;
-import org.usfirst.frc.team3539.robot.subsystems.MotorTest;
-//import org.usfirst.frc.team3539.robot.subsystems.Elevator;
+import org.usfirst.frc.team3539.robot.subsystems.Elevator;
+import org.usfirst.frc.team3539.robot.subsystems.Intake;
 
-//import edu.wpi.cscore.UsbCamera;
-//import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,24 +22,19 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static RangeSystem rangeSystem = new RangeSystem();
-	public static MotorTest motor = new MotorTest();
-	// public static Intake intake = new Intake();
-	// public static LimitSwitch limit = new LimitSwitch();
-	// public static Elevator elevator = new Elevator();
-	// public static RangeSystem rangeSystem = new RangeSystem();
-	// public static Intake intake = new Intake();
-	// public static LimitSwitch limit = new LimitSwitch();
-	// public static Elevator elevator = new Elevator();
+	public static Intake intake = new Intake();
+	public static Elevator elevator = new Elevator();
 
 	public static Compressor c;
 	public static OI oi;
-	// public static UsbCamera cameraOne, cameraTwo;
+	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
+	SendableChooser<Command> positionChooser;
+	SendableChooser<Command> allianceChooser;
 	SendableChooser<Command> autonChooser;
 
 	public void robotInit()
@@ -53,10 +42,16 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 		SmartInit();
 
-		// cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-		// cameraOne.setResolution(480, 360);
-		// cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-		// cameraTwo.setResolution(480, 360);
+		try
+		{
+			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+			cameraOne.setResolution(480, 360);
+			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+			cameraTwo.setResolution(480, 360);
+		}
+		catch (Error e)
+		{
+		}
 	}
 
 	public void disabledInit()
@@ -90,13 +85,11 @@ public class Robot extends IterativeRobot
 		{
 			autonMode.start();
 		}
-		Robot.driveTrain.updateEnc();
 	}
 
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Robot.driveTrain.updateEnc();
 	}
 
 	public void teleopInit()
@@ -106,6 +99,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
+
 		Scheduler.getInstance().run();
 	}
 
@@ -115,24 +109,51 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		autonChooser = new SendableChooser<Command>();
-		autonChooser.addDefault("AutoDrive", new AutonDrive(60));
-		autonChooser.addObject("AutoTurn", new AutonTurn(90));
-		autonChooser.addObject("Auto", new DriveVelocity(1));
+		positionChooser = new SendableChooser<Command>();
+		positionChooser.addObject("Left", null);
+		positionChooser.addDefault("Middle", null);
+		positionChooser.addObject("Right", null);
 
-		SmartDashboard.putData("Auton mode", autonChooser);
+		allianceChooser = new SendableChooser<Command>();
+		allianceChooser.addDefault("Red", null);
+		allianceChooser.addObject("Blue", null);
 
-		SmartDashboard.putNumber("P", RobotMap.drivePea);
-		SmartDashboard.putNumber("I", RobotMap.driveEye);
-		SmartDashboard.putNumber("D", RobotMap.driveDee);
-		SmartDashboard.putNumber("F", RobotMap.driveFFF);
+		SmartDashboard.putData("Auton Position", positionChooser);
+
+		SmartDashboard.putData("Alliance", allianceChooser);
+
+		SmartDashboard.putNumber("DriveP", RobotMap.drivePea);
+		SmartDashboard.putNumber("DriveI", RobotMap.driveEye);
+		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
+		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
+
+		SmartDashboard.putNumber("TurnP", RobotMap.turnPea);
+		SmartDashboard.putNumber("TurnI", RobotMap.turnEye);
+		SmartDashboard.putNumber("TurnD", RobotMap.turnDee);
+		SmartDashboard.putNumber("TurnF", RobotMap.turnFFF);
+
+		SmartDashboard.putNumber("BreakP", RobotMap.breakPea);
+		SmartDashboard.putNumber("BreakI", RobotMap.breakEye);
+		SmartDashboard.putNumber("BreakD", RobotMap.breakDee);
+		SmartDashboard.putNumber("BreakF", RobotMap.breakFFF);
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
-		SmartDashboard.putNumber("PDP Current", 1);
+		// SmartDashboard.putNumber("PDP Current", 1);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
+
+		SmartDashboard.putNumber("throttleDeadband", RobotMap.throttleDeadband);
+		SmartDashboard.putNumber("wheelDeadband", RobotMap.wheelDeadband);
+
+		SmartDashboard.putNumber("throttleHighPass", RobotMap.throttleHighPass);
+
+		SmartDashboard.putNumber("wheelNonLinearity", RobotMap.wheelNonLinearity);
+		SmartDashboard.putNumber("throttleNonLinearity", RobotMap.throttleNonLinearity);
+
+		SmartDashboard.putNumber("highSpeedWheel", RobotMap.highSpeedWheel);
+
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 

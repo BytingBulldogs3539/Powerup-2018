@@ -8,38 +8,36 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class BreakMode extends Command {
+public class BreakMode extends Command
+{
+	public BreakMode()
+	{
+		requires(Robot.driveTrain);
+	}
 
-    public BreakMode() {
-        requires(Robot.driveTrain);
-    }
-
-    // Called just before this Command runs the first time
-    protected void initialize() 
-    {
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0),SmartDashboard.getNumber("F", 0));
+	protected void initialize()
+	{
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("BreakP", 0), SmartDashboard.getNumber("BreakI", 0), SmartDashboard.getNumber("BreakD", 0), SmartDashboard.getNumber("BreakF", 0));
 
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(0));
-    }
+	}
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    }
+	protected void execute()
+	{
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+	protected boolean isFinished()
+	{
+		return false;
+	}
 
-    // Called once after isFinished returns true
-    protected void end() 
-    {
-    	Robot.driveTrain.driveArcade(0, 0);
-    }
+	protected void end()
+	{
+		Robot.driveTrain.stopDrive();
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	protected void interrupted()
+	{
+	}
 }

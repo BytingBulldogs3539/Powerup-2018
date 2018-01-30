@@ -25,7 +25,7 @@ public class DirectionalButton extends Button
 		UP, DOWN, LEFT, RIGHT
 	}
 
-	public DirectionalButton(Direction direction, GenericHID joystick)
+	public DirectionalButton(GenericHID joystick, Direction direction)
 	{
 		neededAngle = 1;
 		this.direction = direction;
