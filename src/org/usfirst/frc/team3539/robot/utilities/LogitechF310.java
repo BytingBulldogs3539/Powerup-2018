@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class LogitechF310 extends Joystick
 {
+	// BUTTONS
 	private static final int A = 1;
 	private static final int B = 2;
 	private static final int X = 3;
@@ -23,6 +24,13 @@ public class LogitechF310 extends Joystick
 	
 	private static final int RIGHT_TRIGGER = 3;
 	private static final int LEFT_TRIGGER = 2;
+
+	// AXIS
+	public static final int X_AxisL = 0;
+	public static final int Y_AxisL = 1;
+
+	public static final int X_AxisR = 4;
+	public static final int Y_AxisR = 5;
 	
 	public LogitechF310(int port)
 	{
@@ -50,4 +58,24 @@ public class LogitechF310 extends Joystick
 	public DirectionalButton buttonPadRight = new DirectionalButton(this, Direction.RIGHT);
 	public DirectionalButton buttonPadUp = new DirectionalButton(this, Direction.UP);
 	public DirectionalButton buttonPadDown = new DirectionalButton(this, Direction.DOWN);
+	
+	public double getLeftStickX()
+	{
+		return getRawAxis(X_AxisL);
+	}
+	
+	public double getLeftStickY()
+	{
+		return getRawAxis(Y_AxisL);
+	}
+	
+	public double getRightStickX()
+	{
+		return getRawAxis(X_AxisR);
+	}
+	
+	public double getRightStickY()
+	{
+		return getRawAxis(Y_AxisR);
+	}
 }

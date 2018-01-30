@@ -21,7 +21,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static RangeSystem rangeSystem = new RangeSystem();

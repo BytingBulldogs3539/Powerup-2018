@@ -13,19 +13,6 @@ public class RobotMap
 	public static final int NES = 3;
 	// Press F1 to refresh Controllers
 
-	// CONTROLLER AXIS
-	public static final int X_AxisL = 0;
-	public static final int Y_AxisL = 1;
-
-	public static final int X_AxisR = 4;
-	public static final int Y_AxisR = 5;
-
-	// PRINTLNLOG
-	public static final boolean shouldPrintInput = true;
-	public static final boolean shouldPrintEvent = true;
-	public static final boolean shouldPrintCommand = true;
-	public static final boolean shouldPrintSubsystem = true;
-
 	// AIR
 	public static final int compressor = 10;
 
@@ -74,14 +61,14 @@ public class RobotMap
 	public static double highSpeedWheel = 0.5;
 
 	// INTAKE
-	public static final int lIntakeMotor = 1; // I don't know what the actual Talon number will be
-	public static final int rIntakeMotor = 2; // I don't know what the actual Talon number will be
+	public static final int lIntakeMotor = 3539;
+	public static final int rIntakeMotor = 3539;
 
 	// LIFTER
-	public static final int l1LifterMotor = 0; // I don't know what the actual Talon number will be
-	public static final int l2LifterMotor = 2;
-	public static final int r1LifterMotor = 1;
-	public static final int r2LifterMotor = 0; // I don't know what the actual Talon number will be
+	public static final int l1LifterMotor = 3539;
+	public static final int l2LifterMotor = 3539;
+	public static final int r1LifterMotor = 3539;
+	public static final int r2LifterMotor = 3539;
 
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
