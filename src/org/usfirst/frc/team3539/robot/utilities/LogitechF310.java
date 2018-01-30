@@ -1,0 +1,53 @@
+package org.usfirst.frc.team3539.robot.utilities;
+
+import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
+
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
+
+public class LogitechF310 extends Joystick
+{
+	private static final int A = 1;
+	private static final int B = 2;
+	private static final int X = 3;
+	private static final int Y = 4;
+
+	private static final int START = 8;
+	private static final int SELECT = 3539;
+
+	private static final int LS = 9;
+	private static final int RS = 10;
+
+	private static final int BL = 5;
+	private static final int BR = 6;
+	
+	private static final int RIGHT_TRIGGER = 3;
+	private static final int LEFT_TRIGGER = 2;
+	
+	public LogitechF310(int port)
+	{
+		super(port);
+	}
+	
+	public JoystickButton buttonX = new JoystickButton(this, X);
+	public JoystickButton buttonY = new JoystickButton(this, Y);
+	public JoystickButton buttonA = new JoystickButton(this, A);
+	public JoystickButton buttonB = new JoystickButton(this, B);
+	
+	public JoystickButton buttonBL = new JoystickButton(this, BL);
+	public JoystickButton buttonBR = new JoystickButton(this, BR);
+	
+	public TriggerButton buttonTL = new TriggerButton(this, LEFT_TRIGGER);
+	public TriggerButton buttonTR = new TriggerButton(this, RIGHT_TRIGGER);
+	
+	public JoystickButton buttonSTART = new JoystickButton(this, START);
+	public JoystickButton buttonSELECT = new JoystickButton(this, SELECT);
+	
+	public JoystickButton buttonLS = new JoystickButton(this, LS);
+	public JoystickButton buttonRS = new JoystickButton(this, RS);
+	
+	public DirectionalButton buttonPadLeft = new DirectionalButton(this, Direction.LEFT);
+	public DirectionalButton buttonPadRight = new DirectionalButton(this, Direction.RIGHT);
+	public DirectionalButton buttonPadUp = new DirectionalButton(this, Direction.UP);
+	public DirectionalButton buttonPadDown = new DirectionalButton(this, Direction.DOWN);
+}

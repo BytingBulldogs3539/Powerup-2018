@@ -20,7 +20,7 @@ public class TriggerButton extends Button
 	private GenericHID joystick;
 	public boolean isTriggered;
 
-	public TriggerButton(int axis, GenericHID joystick)
+	public TriggerButton(GenericHID joystick, int axis)
 	{
 		triggerAxis = axis;
 		this.joystick = joystick;

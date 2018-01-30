@@ -13,38 +13,12 @@ public class RobotMap
 	public static final int NES = 3;
 	// Press F1 to refresh Controllers
 
-	// NES Controller Inputs
-	public static final int NES_A = 1;
-	public static final int NES_B = 2;
-	public static final int NES_SELECT = 3;
-	public static final int NES_START = 4;
-	public static final int NES_X_Axis = 0;
-	public static final int NES_Y_Axis = 1;
-
 	// CONTROLLER AXIS
 	public static final int X_AxisL = 0;
 	public static final int Y_AxisL = 1;
 
 	public static final int X_AxisR = 4;
 	public static final int Y_AxisR = 5;
-
-	public static final int RIGHT_TRIGGER = 3;
-	public static final int LEFT_TRIGGER = 2;
-
-	// BUTTON
-	public static final int A = 1;
-	public static final int B = 2;
-	public static final int X = 3;
-	public static final int Y = 4;
-
-	public static final int START = 8;
-
-	public static final int LS = 9;
-	public static final int RS = 10;
-
-	// BUMPER
-	public static final int BL = 5;
-	public static final int BR = 6;
 
 	// PRINTLNLOG
 	public static final boolean shouldPrintInput = true;
