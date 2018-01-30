@@ -34,7 +34,7 @@ public class Elevator extends Subsystem
 		liftTalon1.set(ControlMode.PercentOutput, speed);
 		liftTalon2.set(ControlMode.PercentOutput, speed);
 	}
-	
+
 	public void configMotors()
 	{
 		liftTalon2.set(ControlMode.Follower, liftTalon1.getDeviceID());
