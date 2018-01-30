@@ -122,10 +122,10 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putData("Alliance", allianceChooser);
 
-		SmartDashboard.putNumber("P", RobotMap.drivePea);
-		SmartDashboard.putNumber("I", RobotMap.driveEye);
-		SmartDashboard.putNumber("D", RobotMap.driveDee);
-		SmartDashboard.putNumber("F", RobotMap.driveFFF);
+		SmartDashboard.putNumber("DriveP", RobotMap.drivePea);
+		SmartDashboard.putNumber("DriveI", RobotMap.driveEye);
+		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
+		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
 
 		SmartDashboard.putNumber("TurnP", RobotMap.turnPea);
 		SmartDashboard.putNumber("TurnI", RobotMap.turnEye);
