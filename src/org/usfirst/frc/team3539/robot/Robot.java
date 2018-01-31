@@ -95,7 +95,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
-
+		Robot.driveTrain.updateEnc();
 		Scheduler.getInstance().run();
 	}
 
