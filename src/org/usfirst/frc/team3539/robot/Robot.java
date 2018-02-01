@@ -22,7 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static DriveTrain driveTrain = new DriveTrain();	public static Intake intake = new Intake();
+	public static DriveTrain driveTrain = new DriveTrain();	
+	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 
 	public static Compressor c;
