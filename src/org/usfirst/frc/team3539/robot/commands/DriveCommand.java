@@ -26,7 +26,8 @@ public class DriveCommand extends Command
 		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
 
 		// Legacy code
-		// Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL), -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
+		// Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL),
+		// -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
 	}
 
 	@Override
