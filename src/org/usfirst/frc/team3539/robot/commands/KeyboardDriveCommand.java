@@ -10,10 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class KeyboardDriveCommand extends Command
 {
-	int w = KeyEvent.VK_W;
-	int a = KeyEvent.VK_A;
-	int s = KeyEvent.VK_S;
-	int d = KeyEvent.VK_D;
+	
 
 	public KeyboardDriveCommand()
 	{
@@ -34,22 +31,21 @@ public class KeyboardDriveCommand extends Command
 
 	protected void execute()
 	{
-		int W = KeyEvent.VK_W;
-		int A = KeyEvent.VK_W;
-		int S = KeyEvent.VK_S;
-		int D = KeyEvent.VK_D;
-
+		
 		JTextField InputField = new JTextField();
-		KeyEvent e = new KeyEvent(InputField, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, KeyEvent.VK_UNDEFINED,
-				'Z');
+		KeyEvent e = new KeyEvent(InputField, KeyEvent.KEY_TYPED, System.currentTimeMillis(), 0, KeyEvent.VK_UNDEFINED, 'Z');
 
 		switch (e.getKeyCode())
 		{
 		case KeyEvent.VK_W:
-			keyPressed(e);
+			Robot.driveTrain.effectiveArcadeDrive(1, 0);
+		case KeyEvent.VK_A:
+			Robot.driveTrain.effectiveArcadeDrive(0, -1);
+		case KeyEvent.VK_S:
+			Robot.driveTrain.effectiveArcadeDrive(-1, 0);
+		case KeyEvent.VK_D:
+			Robot.driveTrain.effectiveArcadeDrive(0, 1);
 		}
-
-		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
 	}
 
 	protected boolean isFinished()
