@@ -9,13 +9,20 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
+import edu.wpi.first.wpilibj.ADXL345_SPI;
+import edu.wpi.first.wpilibj.ADXL362;
+import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveTrain extends Subsystem
 {
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
+	ADXL362 Acc = new ADXL362(SPI.Port.kOnboardCS1,Accelerometer.Range.k8G);
+	ADXRS450_Gyro Gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	TalonSRX lf, lb, rf, rb, lm, rm;
 	Drive drive;
 	int error = 1000;
@@ -92,6 +99,8 @@ public class DriveTrain extends Subsystem
 		setFollower();
 		setInverted();
 		SmartDashboard.putData("PDP", pdp);
+		SmartDashboard.putData("Acc", Acc);
+		SmartDashboard.putData("Gyro", Gyro);
 	}
 
 	public void zeroEnc()
@@ -252,7 +261,6 @@ public class DriveTrain extends Subsystem
 	{
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Current", pdp.getVoltage());
 	}
 
 	public void effectiveArcadeDrive(double throttle, double wheel)

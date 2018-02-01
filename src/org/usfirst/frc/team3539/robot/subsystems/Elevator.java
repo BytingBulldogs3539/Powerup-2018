@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.utilities.LightBeam;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -43,6 +44,7 @@ public class Elevator extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
+		//setDefaultCommand(new LiftManual());
 	}
 
 	public void zeroEnc()
@@ -90,7 +92,6 @@ public class Elevator extends Subsystem
 	public void setTargetAllowedError(int MotorTicks)
 	{
 		liftTalon1.configAllowableClosedloopError(0, MotorTicks, 10);
-		liftTalon2.configAllowableClosedloopError(0, MotorTicks, 10);
 		allowedError = MotorTicks;
 	}
 

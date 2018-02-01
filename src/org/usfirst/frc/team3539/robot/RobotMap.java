@@ -20,13 +20,13 @@ public class RobotMap
 	public static final int pcm = 10;
 
 	// DRIVETRAIN
-	public static final int lf = 0;//1
-	public static final int lm = 1;//2
-	public static final int lb = 2;//3
+	public static final int lf = 3539;//1
+	public static final int lm = 3539;//2
+	public static final int lb = 3539;//3
 
-	public static final int rf = 0;//6
-	public static final int rm = 0;//5
-	public static final int rb = 0;//4
+	public static final int rf = 3539;//6
+	public static final int rm = 3539;//5
+	public static final int rb = 3539;//4
 
 	public static double drivePea = .06;
 	public static double driveEye = .00002;
@@ -65,8 +65,8 @@ public class RobotMap
 	public static final int rIntakeMotor = 3539;
 
 	// LIFTER
-	public static final int l1LifterMotor = 3539;
-	public static final int r1LifterMotor = 3539;
+	public static final int l1LifterMotor = 1;
+	public static final int r1LifterMotor = 2;
 
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";

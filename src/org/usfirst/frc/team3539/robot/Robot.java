@@ -22,7 +22,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static DriveTrain driveTrain = new DriveTrain();	public static Intake intake = new Intake();
+	public static DriveTrain driveTrain = new DriveTrain();
+	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 
 	public static Compressor c;
@@ -30,9 +31,9 @@ public class Robot extends IterativeRobot
 	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
-	SendableChooser<Command> positionChooser;
-	SendableChooser<Command> allianceChooser;
-	SendableChooser<Command> autonChooser;
+	SendableChooser<Command> positionChooser = new SendableChooser<Command>();
+	SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
+	SendableChooser<Command> autonChooser = new SendableChooser<Command>();
 
 	public void robotInit()
 	{
@@ -58,6 +59,7 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
+
 		Scheduler.getInstance().run();
 	}
 
@@ -105,12 +107,11 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		positionChooser = new SendableChooser<Command>();
+
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
 
-		allianceChooser = new SendableChooser<Command>();
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
 
