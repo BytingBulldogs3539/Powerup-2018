@@ -18,6 +18,9 @@ public class RobotMap
 
 	// PCM
 	public static final int pcm = 10;
+	
+	// PITCH
+	public static final int pitch = 3539;
 
 	// DRIVETRAIN
 	
@@ -48,6 +51,9 @@ public class RobotMap
 
 	public static final double robotCir = 103.62;
 
+	//Current Control
+	public static final double maxCurrent=120;
+	
 	// Deadbands
 	public static double throttleDeadband = 0.02;
 	public static double wheelDeadband = 0.02;

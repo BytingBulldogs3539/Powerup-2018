@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
@@ -7,9 +8,7 @@ import org.usfirst.frc.team3539.robot.utilities.Drive;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
-import edu.wpi.first.wpilibj.ADXL345_SPI;
 import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -19,22 +18,28 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveTrain extends Subsystem
-{
+public class DriveTrain extends Subsystem {
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	ADXL362 Acc = new ADXL362(SPI.Port.kOnboardCS1,Accelerometer.Range.k8G);
+	ADXL362 Acc = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
 	ADXRS450_Gyro Gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	TalonSRX lf, lb, rf, rb, lm, rm;
 	Drive drive;
+
 	int error = 1000;
-	WPI_TalonSRX talon;
+	int maxpdpCount = 250;
+	int recpdpCount=0;
+	int neededrecloopcount=100;
 	int loopAmount = 0;
 	int loopCounter = 0;
 	int allowedError = 0;
+<<<<<<< HEAD
 	String motors;
+=======
+	int pdpLoopCounter = 0;
+	currentLimitStage currentCurrentStage;
+>>>>>>> a8dcaf28fb52d120b1d3976e88b07912cccc08ab
 
-	public DriveTrain()
-	{
+	public DriveTrain() {
 		// gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
 		lf = new TalonSRX(RobotMap.lf);
@@ -45,8 +50,6 @@ public class DriveTrain extends Subsystem
 
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
-
-
 
 		lf.configPeakOutputForward(1, 10);
 		lf.configPeakOutputReverse(-1, 10);
@@ -97,7 +100,7 @@ public class DriveTrain extends Subsystem
 
 		lf.configAllowableClosedloopError(10, 0, 10);
 		rf.configAllowableClosedloopError(10, 0, 10);
-		
+
 		setFollower();
 		setInverted();
 		SmartDashboard.putData("PDP", pdp);
@@ -105,8 +108,7 @@ public class DriveTrain extends Subsystem
 		SmartDashboard.putData("Gyro", Gyro);
 	}
 
-	public void zeroEnc()
-	{
+	public void zeroEnc() {
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
@@ -115,43 +117,47 @@ public class DriveTrain extends Subsystem
 		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
 	}
 
-	public void setFollower()
-	{
+	public void setFollower() {
 		lm.set(ControlMode.Follower, lf.getDeviceID());
 		rm.set(ControlMode.Follower, rf.getDeviceID());
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
-	public void setInverted()
-	{
+
+	public void disableTwoMotors() {
+		lb.set(ControlMode.Disabled, 0);
+		rb.set(ControlMode.Disabled, 0);
+	}
+
+	public void enableTwoMotors() {
+		setFollower();
+	}
+
+	public void setInverted() {
 		lf.setInverted(true);
 		rf.setInverted(true);
-		
+
 		lm.setInverted(false);
 		rm.setInverted(false);
 
 		lb.setInverted(false);
-		
+
 		rb.setInverted(false);
 	}
 
-	public boolean lonTarget()
-	{
+	public boolean lonTarget() {
 		return false;
 	}
 
-	public boolean ronTarget()
-	{
+	public boolean ronTarget() {
 		return false;
 	}
 
-	public void driveArcade(double forward, double rotate)
-	{
+	public void driveArcade(double forward, double rotate) {
 		drive.driveArcade(forward, rotate);
 	}
 
-	public void setPID(double P, double I, double D, double F)
-	{
+	public void setPID(double P, double I, double D, double F) {
 		lf.config_kF(0, F, 10);
 		rf.config_kF(0, F, 10);
 		lf.config_kP(0, P, 10);
@@ -162,8 +168,7 @@ public class DriveTrain extends Subsystem
 		rf.config_kD(0, D, 10);
 	}
 
-	public void setSetpointDrive(double setpointinches)
-	{
+	public void setSetpointDrive(double setpointinches) {
 		zeroEnc();
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
@@ -175,8 +180,7 @@ public class DriveTrain extends Subsystem
 		rf.set(ControlMode.Position, -setpointinches);
 	}
 
-	public void setSetpointTurn(double setpointdegrees)
-	{
+	public void setSetpointTurn(double setpointdegrees) {
 		zeroEnc();
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
@@ -187,8 +191,7 @@ public class DriveTrain extends Subsystem
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
 
-	public void DriveSpeed(double Velocity)
-	{
+	public void DriveSpeed(double Velocity) {
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 		System.out.println("lbcontrol" + lb.getControlMode());
@@ -197,76 +200,63 @@ public class DriveTrain extends Subsystem
 		rf.set(ControlMode.Velocity, ftpsToEncps(-Velocity));
 	}
 
-	public double ftpsToEncps(double ftps)
-	{
+	public double ftpsToEncps(double ftps) {
 
 		return ftps * 394;
 		// return ftps * 100.0;
 	}
 
-	public double degreesToEnc(double degrees)
-	{
+	public double degreesToEnc(double degrees) {
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
 
-	public void stopDrive()
-	{
+	public void stopDrive() {
 		driveArcade(0, 0);
 	}
 
-	public boolean onTarget()
-	{
-		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError && rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
-		{
+	public boolean onTarget() {
+		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError
+				&& rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError) {
 			loopCounter++;
 			System.out.println(loopCounter);
-		}
-		else
+		} else
 			loopCounter = 0;
-		if (loopCounter >= loopAmount)
-		{
+		if (loopCounter >= loopAmount) {
 			return true;
 		}
 
 		return false;
 	}
 
-	public void setLoopOnTarget(int LoopAmount)
-	{
+	public void setLoopOnTarget(int LoopAmount) {
 		loopAmount = LoopAmount;
 	}
 
-	public void setTargetAllowedError(int MotorTicks)
-	{
+	public void setTargetAllowedError(int MotorTicks) {
 		lf.configAllowableClosedloopError(0, MotorTicks, 10);
 		rf.configAllowableClosedloopError(0, MotorTicks, 10);
 		allowedError = MotorTicks;
 	}
 
-	public void zeroLoopCounter()
-	{
+	public void zeroLoopCounter() {
 		loopCounter = 0;
 	}
 
-	public double inchToEncoder(double inches)
-	{
+	public double inchToEncoder(double inches) {
 		return (inches / 12.56) * 4096;
 	}
 
 	@Override
-	protected void initDefaultCommand()
-	{
+	protected void initDefaultCommand() {
 		setDefaultCommand(new DriveCommand());
 	}
 
-	public void updateEnc()
-	{
+	public void updateEnc() {
 		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
 	}
 
-	public void effectiveArcadeDrive(double throttle, double wheel)
-	{
+	public void effectiveArcadeDrive(double throttle, double wheel) {
 		wheel = applyDeadband(wheel, RobotMap.wheelDeadband);
 		throttle = applyDeadband(throttle, RobotMap.throttleDeadband);
 
@@ -279,19 +269,18 @@ public class DriveTrain extends Subsystem
 		throttle = Math.tan(Math.PI / 2.0 * RobotMap.throttleNonLinearity * throttle) / throttleDenominator;
 
 		// Decrease wheel by __% at high speed
-		if (Math.abs(throttle) > RobotMap.throttleHighPass)
-		{
+		if (Math.abs(throttle) > RobotMap.throttleHighPass) {
 			wheel = wheel * RobotMap.highSpeedWheel;
 		}
 
 		driveArcade(throttle, wheel);
 	}
 
-	public double applyDeadband(double value, double deadband)
-	{
+	public double applyDeadband(double value, double deadband) {
 		// if abs(val) > abs(deadband) return val; else return 0.0;
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
+<<<<<<< HEAD
 	public void motorTest()
 	{
 		StringBuilder Motors = new StringBuilder(1000) ;
@@ -368,5 +357,68 @@ public class DriveTrain extends Subsystem
 	public String print()
 	{
 	return motors;
+=======
+
+	public double getTotalCurrent() {
+		return pdp.getCurrent(0) + pdp.getCurrent(1) + pdp.getCurrent(2) + pdp.getCurrent(3) + pdp.getCurrent(4)
+				+ pdp.getCurrent(5) + pdp.getCurrent(6) + pdp.getCurrent(7) + pdp.getCurrent(8) + pdp.getCurrent(9)
+				+ pdp.getCurrent(10) + pdp.getCurrent(11) + pdp.getCurrent(12) + pdp.getCurrent(13) + pdp.getCurrent(14)
+				+ pdp.getCurrent(15);
+	}
+
+	public enum currentLimitStage {
+		STAGE1, STAGE2, STAGE3
+	}
+
+	public void controlCurrent() {
+		double totalCurrent = getTotalCurrent();
+		if (totalCurrent >= RobotMap.maxCurrent) {
+			recpdpCount=0;
+			System.err.println("OVER MAX CURRENT");
+			pdpLoopCounter++;
+			if (pdpLoopCounter > maxpdpCount) {
+				switch (currentCurrentStage) {
+				case STAGE1:
+					for(int i=0;i>5;i++)
+					{
+						System.err.println("DROPPING Compressor");
+					}
+					Robot.c.stop();
+					pdpLoopCounter = pdpLoopCounter - (int) (pdpLoopCounter * .75);
+					currentCurrentStage = currentLimitStage.STAGE2;
+					break;
+				case STAGE2:
+					for(int i=0;i>5;i++)
+					{
+						System.err.println("DROPPING 2 CIMS");
+					}
+					disableTwoMotors();
+					pdpLoopCounter = pdpLoopCounter - (int) (pdpLoopCounter * .75);
+					currentCurrentStage = currentLimitStage.STAGE3;
+					break;
+				case STAGE3:
+					for(int i=0;i>5;i++)
+					{
+						System.err.println("DISABLING THE INTAKE");
+					}
+					// ADD CODE FOR INTAKE WHEN CREATED!!
+					break;
+				}
+			}
+		}
+		else	
+		{
+			recpdpCount++;
+			if(recpdpCount >= neededrecloopcount)
+			{
+				pdpLoopCounter=0;
+				recpdpCount=0;
+				Robot.c.start();
+				enableTwoMotors();
+				
+			}
+		}
+
+>>>>>>> a8dcaf28fb52d120b1d3976e88b07912cccc08ab
 	}
 }
