@@ -18,6 +18,9 @@ public class RobotMap
 
 	// PCM
 	public static final int pcm = 10;
+	
+	// PITCH
+	public static final int pitch = 3539;
 
 	// DRIVETRAIN
 	public static final int lf = 3539;//1
