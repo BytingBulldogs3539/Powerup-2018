@@ -22,12 +22,26 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
+//		if(Robot.oi.one.buttonY.get())
+//{	System.out.println("--------");
+//Robot.driveTrain.motorTest();
+//			System.out.println("--------");
+//
+//	}
+//		else if(Robot.oi.one.buttonB.get())
+//		{
+//		System.out.println(Robot.driveTrain.print());
+//
+//		}
+//		else {
+			Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
+
+		}
 		// Test - do not delete
-		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
 		// Legacy code
 		// Robot.driveTrain.driveArcade(Robot.oi.controller1.getRawAxis(RobotMap.Y_AxisL),
 		// -Robot.oi.controller1.getRawAxis(RobotMap.X_AxisR));
-	}
+	
 
 	@Override
 	protected boolean isFinished()

@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -30,6 +31,7 @@ public class DriveTrain extends Subsystem
 	int loopAmount = 0;
 	int loopCounter = 0;
 	int allowedError = 0;
+	String motors;
 
 	public DriveTrain()
 	{
@@ -290,5 +292,81 @@ public class DriveTrain extends Subsystem
 		// if abs(val) > abs(deadband) return val; else return 0.0;
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
+	public void motorTest()
+	{
+		StringBuilder Motors = new StringBuilder(1000) ;
 
+	lf.set(ControlMode.PercentOutput, 0);
+	lm.set(ControlMode.PercentOutput, 0);
+	lb.set(ControlMode.PercentOutput, 0);
+	rf.set(ControlMode.PercentOutput, 0);
+	rm.set(ControlMode.PercentOutput, 0);
+	rb.set(ControlMode.PercentOutput, 0);
+	
+	
+	lf.set(ControlMode.PercentOutput,.5);//set to .5 
+	Timer.delay(2);//wait
+	System.out.println("--------");
+	Motors.append("  lfMotorCurrent= "+lf.getOutputCurrent());
+	Motors.append("  lfMotorVoltage = "+lf.getMotorOutputVoltage());
+
+	lf.set(ControlMode.PercentOutput, 0);//set to 0
+	
+	Timer.delay(2);//wait before starting other motor
+	
+	lm.set(ControlMode.PercentOutput,.5);
+	Timer.delay(2);
+	
+	Motors.append("  lmMotorCurrent= "+lm.getOutputCurrent());
+	Motors.append("  lmMotorVoltage = "+lm.getMotorOutputVoltage());
+
+
+	lm.set(ControlMode.PercentOutput, 0);
+	
+	Timer.delay(2);//wait before starting other motor
+
+	lb.set(ControlMode.PercentOutput,.5);
+	Timer.delay(2);
+	Motors.append("  lbMotorCurrent= "+lb.getOutputCurrent());
+	Motors.append("  lbMotorVoltage = "+lb.getMotorOutputVoltage());
+
+	lb.set(ControlMode.PercentOutput, 0);
+	
+	Timer.delay(2);//wait before starting other motor
+	
+	rf.set(ControlMode.PercentOutput,.5);
+	Timer.delay(2);
+	Motors.append("  rfMotorCurrent= "+rf.getOutputCurrent());
+	Motors.append("  rfMotorVoltage = "+rf.getMotorOutputVoltage());
+
+	rf.set(ControlMode.PercentOutput, 0);
+	
+	Timer.delay(2);
+	
+	rm.set(ControlMode.PercentOutput,.5);
+	Timer.delay(2);
+	Motors.append("  rmMotorCurrent = "+rm.getOutputCurrent());
+	Motors.append("  rmMotorVoltage = "+rm.getMotorOutputVoltage());
+
+	rm.set(ControlMode.PercentOutput, 0);
+	
+	Timer.delay(2);
+	
+	
+	rb.set(ControlMode.PercentOutput,.5);
+	Timer.delay(2);
+	Motors.append("  rbMotorCurrent= "+rb.getOutputCurrent());
+	Motors.append("  rbMotorVoltage = "+rb.getMotorOutputVoltage());
+
+	rb.set(ControlMode.PercentOutput, 0);
+	 motors =Motors.toString();
+	
+
+	
+		
+	}
+	public String print()
+	{
+	return motors;
+	}
 }
