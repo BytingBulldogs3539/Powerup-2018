@@ -23,11 +23,9 @@ public class RobotMap
 	public static final int pitch = 3539;
 
 	// DRIVETRAIN
-	
 	public static final int lf = 3539;//1
 	public static final int lm = 3539;//2
-	public static final int lb = 3539;//3539;//3
-
+	public static final int lb = 3539;//3
 	public static final int rf = 3539;//6
 	public static final int rm = 3539;//5
 	public static final int rb = 3539;//4
