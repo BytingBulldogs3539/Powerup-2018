@@ -1,101 +1,82 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides
- * flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public class RobotMap
-{
-	// CONTROLLER PORT
+public class RobotMap {
+	// For example to map the left and right motors, you could define the
+	// following variables to use with your drivetrain subsystem.
+	// public static int leftMotor = 1;
+	// public static int rightMotor = 2;
+
+	// If you are using multiple modules, make sure to define both the port
+	// number and the module. For example you with a rangefinder:
+	// public static int rangefinderPort = 1;
+	// public static int rangefinderModule = 1;
+
+	// Drive talon
+	
+
+	
+	public static final int leftMaster = 6;
+	public static final int leftFollower1 = 7;
+//	public static final int leftFollower2 = 0;
+	public static final int rightMaster = 4;
+	public static final int rightFollower1 = 3;
+	//public static final int rightFollower2 = 0;
+
+	// Controllers
+	// CONTROLLER AXIS
+	public static final int X_AxisL = 0;
+	public static final int Y_AxisL = 1;
+	public static final int X_AxisR = 4;
+	public static final int Y_AxisR = 5;
+	public static final int RIGHT_TRIGGER = 3;
+	public static final int LEFT_TRIGGER = 2;
+	public static final int A = 1;
+	public static final int B = 2;
+	public static final int X = 3;
+	public static final int Y = 4;
+	public static final int START = 8;
+	public static final int LS = 9;
+	public static final int RS = 10;
+	public static final int BL = 5;
+	public static final int BR = 6;
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
-	public static final int NES = 3;
-	// Press F1 to refresh Controllers
 
-	// AIR
-	public static final int compressor = 10;
+	public static final double UnitsPerRotation = 4096;
 
-	// PCM
-	public static final int pcm = 10;
-	
-	// PITCH
-	public static final int pitch = 3539;
-	public static final int pitchLimitUp = 0;
-	public static final int pitchLimitDown = 0;
-	public static double pitchPea = .001;
-	public static double pitchEye = .0;
-	public static double pitchDee = .0;
-	public static int pitchEncPosDown=0;	//SOME NUMBER
-	public static int pitchEncPosUp=0;	//SOME NUMBER
-	public static int pitchEncPosIntake=0;	//SOME NUMBER
+	//Pid Slot
+	public static final int kSlotIdx = 0;
 
-	// DRIVETRAIN
-	public static final int lf = 3539;//1
-	public static final int lm = 3539;//2
-	public static final int lb = 3539;//3
-	public static final int rf = 3539;//6
-	public static final int rm = 3539;//5
-	public static final int rb = 3539;//4
+	/**
+	 * Talon SRX/ Victor SPX will supported multiple (cascaded) PID loops. For now
+	 * we just want the primary one.
+	 */
+	public static final int kPIDLoopIdx = 0;
+	/**
+	 * set to zero to skip waiting for confirmation, set to nonzero to wait and
+	 * report to DS if action fails.
+	 */
+	public static final int kTimeoutMs = 10;
 
-	public static double drivePea = .06;
-	public static double driveEye = .00002;
-	public static double driveDee = .1;
-	public static double driveFFF = .0;
+	/**
+	 * Base trajectory period to add to each individual trajectory point's unique
+	 * duration. This can be set to any value within [0,255]ms.
+	 */
+	public static final int kBaseTrajPeriodMs = 0;
 
-	public static double turnPeaWheels = 0.1;
-	public static double turnEyeWheels = 0.0000023;
-	public static double turnDeeWheels = 0.1;
-	public static double turnFFFWheels = 0;
-	
-	public static double turnPeaGyro = 0.1;
-	public static double turnEyeGyro = 0.0000023;
-	public static double turnDeeGyro = 0.1;
-	public static double turnFFFGyro = 0;
+	public static final double kNeutralDeadband = 0.01; // Motor deadband, set to 1%.
 
-	public static double breakPea = 0.05;
-	public static double breakEye = 0.0;
-	public static double breakDee = 0.0;
-	public static double breakFFF = 0.1;
-
-	public static final double wheelCir = 12.56;
-
-	public static final double robotCir = 103.62;
-
-	//Current Control
-	public static final double maxCurrent=120;
-	
-	// Deadbands
-	public static double throttleDeadband = 0.02;
-	public static double wheelDeadband = 0.02;
-
-	// Determines the upper threshold where turning is limited to make high speed travel more controllable
-	public static double throttleHighPass = .5;
-
-	// These factor determine how fast the wheel or throttle traverses the "non linear" sin/tan curve.
-	public static double wheelNonLinearity = 0.65;
-	public static double throttleNonLinearity = 0.75;
-
-	public static double highSpeedWheel = 0.5;
-	
-
-	// INTAKE
-	public static final int lIntakeMotor = 3539;
-	public static final int rIntakeMotor = 3539;
-
-	// Elevator
-	public static final int elevatorMotor1 = 1;
-	public static final int elevatorMotor2 = 2;
-	public static final int elevatorEncFloor = 0; //SOME NUMBER
-	public static final int elevatorEncSwitch = 0; //SOME NUMBER
-	public static final int elevatorEncClimb = 0; //SOME NUMBER
-	public static final int elevatorEncScale = 0; //SOME NUMBER
-
-	// LOGGING
-	public static final String RIO_DIR = "/home/lvuser/logs/";
-	public static final String FLASH_DIR = "/u/";
-
-	//////////////////////// PRACTICE BOT/////////////////////
-
-	//////////////////////// COMP BOT /////////////////////////
 }

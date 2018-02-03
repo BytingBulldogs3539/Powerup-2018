@@ -1,8 +1,8 @@
-package org.usfirst.frc.team3539.robot.utilities;
-
+package Util;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 
 public class LogitechF310 extends Joystick
 {
@@ -44,7 +44,9 @@ public class LogitechF310 extends Joystick
 	public JoystickButton buttonBL = new JoystickButton(this, BL);
 	public JoystickButton buttonBR = new JoystickButton(this, BR);
 	
-
+//	public TriggerButton buttonTL = new Trigger(this, LEFT_TRIGGER);
+//	public TriggerButton buttonTR = new Trigger(this, RIGHT_TRIGGER);
+	
 	public JoystickButton buttonSTART = new JoystickButton(this, START);
 	public JoystickButton buttonSELECT = new JoystickButton(this, SELECT);
 	
