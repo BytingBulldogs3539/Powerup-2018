@@ -50,23 +50,19 @@ public class DriveTrain extends Subsystem
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
 
-		lf.configPeakOutputForward(1, 10);
-		lf.configPeakOutputReverse(-1, 10);
-
-		rf.configPeakOutputForward(1, 10);
-		rf.configPeakOutputReverse(-1, 10);
-
-		rm.configPeakOutputForward(1, 10);
-		rm.configPeakOutputReverse(-1, 10);
-
-		lm.configPeakOutputForward(1, 10);
-		lm.configPeakOutputReverse(-1, 10);
-
-		lb.configPeakOutputForward(1, 10);
-		lb.configPeakOutputReverse(-1, 10);
-
-		rb.configPeakOutputForward(1, 10);
-		rb.configPeakOutputReverse(-1, 10);
+		double peakOut = 1;// 1 is full ouput
+		lf.configPeakOutputForward(peakOut, 10);
+		lf.configPeakOutputReverse(-peakOut, 10);
+		rf.configPeakOutputForward(peakOut, 10);
+		rf.configPeakOutputReverse(-peakOut, 10);
+		rm.configPeakOutputForward(peakOut, 10);
+		rm.configPeakOutputReverse(-peakOut, 10);
+		lm.configPeakOutputForward(peakOut, 10);
+		lm.configPeakOutputReverse(-peakOut, 10);
+		lb.configPeakOutputForward(peakOut, 10);
+		lb.configPeakOutputReverse(-peakOut, 10);
+		rb.configPeakOutputForward(peakOut, 10);
+		rb.configPeakOutputReverse(-peakOut, 10);
 
 		lf.configNominalOutputForward(0, 10);
 		rf.configNominalOutputForward(0, 10);
