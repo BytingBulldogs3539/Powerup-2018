@@ -1,8 +1,10 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.BreakMode;
+import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
+import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
@@ -27,5 +29,10 @@ public class OI
 		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));
 		two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
 		two.buttonPadUp.whenPressed(new PitchCommand(PitchAngle.UP));
+		
+		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
+		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
+		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));
+		
 	}
 }

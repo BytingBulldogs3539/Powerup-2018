@@ -1,43 +1,31 @@
 package org.usfirst.frc.team3539.robot.commands;
 
 import org.usfirst.frc.team3539.robot.Robot;
+import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
-public class ElevatorCommand extends Command
+public class ElevatorCommand extends InstantCommand
 {
-	double power;
-	
-	public ElevatorCommand(double power)
+
+	public ElevatorCommand(ElevatorPosition position)
 	{
 		requires(Robot.elevator);
-		this.power = power;
+		Robot.elevator.setSetpointLift(position);
+
+	}
+
+	public ElevatorCommand(double inches)
+	{
+		requires(Robot.elevator);
+		Robot.elevator.setSetpointLift(inches);
 	}
 
 	protected void initialize()
 	{
-		Robot.elevator.setMotorPower(power);
-	}
-
-	protected void execute()
-	{
-	}
-
-	protected boolean isFinished()
-	{
-		return false;
-	}
-
-	//protected void end()
-	//{
-	//	Robot.elevator.setMotorPower(0);
-	//}
-
-	protected void interrupted()
-	{
-		end();
+		
 	}
 }
