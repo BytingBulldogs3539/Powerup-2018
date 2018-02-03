@@ -21,13 +21,7 @@ public class MotionProfileCommand extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
-    	Robot.motion.Control();	
+    	
 
     	Robot.motion.startMotionProfile();
 
