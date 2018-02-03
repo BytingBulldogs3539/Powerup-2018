@@ -21,6 +21,14 @@ public class RobotMap
 	
 	// PITCH
 	public static final int pitch = 3539;
+	public static final int pitchLimitUp = 0;
+	public static final int pitchLimitDown = 0;
+	public static double pitchPea = .001;
+	public static double pitchEye = .0;
+	public static double pitchDee = .0;
+	public static int pitchEncPosDown=0;	//SOME NUMBER
+	public static int pitchEncPosUp=0;	//SOME NUMBER
+	public static int pitchEncPosIntake=0;	//SOME NUMBER
 
 	// DRIVETRAIN
 	public static final int lf = 3539;//1
@@ -35,10 +43,15 @@ public class RobotMap
 	public static double driveDee = .1;
 	public static double driveFFF = .0;
 
-	public static double turnPea = 0.1;
-	public static double turnEye = 0.0000023;
-	public static double turnDee = 0.1;
-	public static double turnFFF = 0;
+	public static double turnPeaWheels = 0.1;
+	public static double turnEyeWheels = 0.0000023;
+	public static double turnDeeWheels = 0.1;
+	public static double turnFFFWheels = 0;
+	
+	public static double turnPeaGyro = 0.1;
+	public static double turnEyeGyro = 0.0000023;
+	public static double turnDeeGyro = 0.1;
+	public static double turnFFFGyro = 0;
 
 	public static double breakPea = 0.05;
 	public static double breakEye = 0.0;
@@ -64,14 +77,19 @@ public class RobotMap
 	public static double throttleNonLinearity = 0.75;
 
 	public static double highSpeedWheel = 0.5;
+	
 
 	// INTAKE
 	public static final int lIntakeMotor = 3539;
 	public static final int rIntakeMotor = 3539;
 
-	// LIFTER
-	public static final int l1LifterMotor = 1;
-	public static final int r1LifterMotor = 2;
+	// Elevator
+	public static final int elevatorMotor1 = 1;
+	public static final int elevatorMotor2 = 2;
+	public static final int elevatorEncFloor = 0; //SOME NUMBER
+	public static final int elevatorEncSwitch = 0; //SOME NUMBER
+	public static final int elevatorEncClimb = 0; //SOME NUMBER
+	public static final int elevatorEncScale = 0; //SOME NUMBER
 
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";

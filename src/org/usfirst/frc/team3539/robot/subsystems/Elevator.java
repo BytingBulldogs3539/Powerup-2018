@@ -1,8 +1,6 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.commands.LiftManual;
-import org.usfirst.frc.team3539.robot.utilities.LightBeam;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -16,16 +14,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Elevator extends Subsystem
 {
+
 	TalonSRX liftTalon1, liftTalon2;
 	int error = 1000;
 	int loopAmount = 0;
 	int loopCounter = 0;
 	int allowedError = 0;
 
+	public enum ElevatorPosition
+	{
+		FLOOR, SWITCH, SCALE, CLIMB
+	}
+
 	public Elevator()
 	{
-		liftTalon1 = new TalonSRX(RobotMap.l1LifterMotor);
-		liftTalon2 = new TalonSRX(RobotMap.r1LifterMotor);
+		liftTalon1 = new TalonSRX(RobotMap.elevatorMotor1);
+		liftTalon2 = new TalonSRX(RobotMap.elevatorMotor2);
 		configMotors();
 		setMotorPower(0);
 	}
@@ -44,7 +48,6 @@ public class Elevator extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
-		//setDefaultCommand(new LiftManual());
 	}
 
 	public void zeroEnc()
@@ -62,9 +65,29 @@ public class Elevator extends Subsystem
 		liftTalon1.config_kD(0, D, 10);
 	}
 
-	public void setSetpointLift(double setpointinches)
+	public void setSetpointLift(double inches)
 	{
-		liftTalon1.set(ControlMode.Position, setpointinches);
+		liftTalon1.set(ControlMode.Position, inchToEncoder(inches));
+	}
+
+	public void setSetpointLift(ElevatorPosition position )
+	{
+		if(position==ElevatorPosition.SWITCH)
+		{
+			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncSwitch);
+		}
+		else if(position==ElevatorPosition.SCALE)
+		{
+			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncScale);
+		}
+		else if(position==ElevatorPosition.FLOOR)
+		{
+			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncFloor);
+		}
+		else if(position==ElevatorPosition.CLIMB)
+		{
+			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncClimb);
+		}
 	}
 
 	public boolean onTarget()

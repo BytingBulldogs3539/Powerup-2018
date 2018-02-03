@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.commands.BreakMode;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
+import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
 /**
@@ -16,9 +17,15 @@ public class OI
 
 	public OI()
 	{
-		two.buttonA.whileHeld(new BreakMode());
+		//Driver
+		one.buttonA.whileHeld(new BreakMode());
+		
+		//Elevator
 		two.buttonSTART.whenPressed(new LiftManual());
-		two.buttonX.whileHeld(new PitchCommand());
-		two.buttonY.whileHeld(new PitchCommand());
+		
+		//Pitch
+		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));
+		two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
+		two.buttonPadUp.whenPressed(new PitchCommand(PitchAngle.UP));
 	}
 }

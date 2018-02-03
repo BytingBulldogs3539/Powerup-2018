@@ -21,8 +21,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveTrain extends Subsystem
 {
 	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	ADXL362 Acc = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
-	ADXRS450_Gyro Gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+	ADXL362 acc = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
+	ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 	TalonSRX lf, lb, rf, rb, lm, rm;
 	Drive drive;
 
@@ -99,8 +99,8 @@ public class DriveTrain extends Subsystem
 		setFollower();
 		setInverted();
 		SmartDashboard.putData("PDP", pdp);
-		SmartDashboard.putData("Acc", Acc);
-		SmartDashboard.putData("Gyro", Gyro);
+		SmartDashboard.putData("Acc", acc);
+		SmartDashboard.putData("Gyro", gyro);
 	}
 
 	public void zeroEnc()
@@ -111,6 +111,22 @@ public class DriveTrain extends Subsystem
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
 		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
 		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+	}
+	public void zeroGyro()
+	{
+		gyro.reset();
+	}
+	public double getAngle()
+	{
+		return gyro.getAngle();
+	}
+	public void calibrateGyro()
+	{
+		gyro.calibrate();
+	}
+	public void linearTurn(double power)
+	{
+		driveArcade(0,power);
 	}
 
 	public void setFollower()
@@ -226,12 +242,12 @@ public class DriveTrain extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError
-				&& rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
+		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError && rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
 		{
 			loopCounter++;
 			System.out.println(loopCounter);
-		} else
+		}
+		else
 			loopCounter = 0;
 		if (loopCounter >= loopAmount)
 		{
@@ -378,10 +394,8 @@ public class DriveTrain extends Subsystem
 
 	public double getTotalCurrent()
 	{
-		return pdp.getCurrent(0) + pdp.getCurrent(1) + pdp.getCurrent(2) + pdp.getCurrent(3) + pdp.getCurrent(4)
-				+ pdp.getCurrent(5) + pdp.getCurrent(6) + pdp.getCurrent(7) + pdp.getCurrent(8) + pdp.getCurrent(9)
-				+ pdp.getCurrent(10) + pdp.getCurrent(11) + pdp.getCurrent(12) + pdp.getCurrent(13) + pdp.getCurrent(14)
-				+ pdp.getCurrent(15);
+		return pdp.getCurrent(0) + pdp.getCurrent(1) + pdp.getCurrent(2) + pdp.getCurrent(3) + pdp.getCurrent(4) + pdp.getCurrent(5) + pdp.getCurrent(6) + pdp.getCurrent(7) + pdp.getCurrent(8) + pdp.getCurrent(9) + pdp.getCurrent(10)
+				+ pdp.getCurrent(11) + pdp.getCurrent(12) + pdp.getCurrent(13) + pdp.getCurrent(14) + pdp.getCurrent(15);
 	}
 
 	public enum currentLimitStage
@@ -428,7 +442,8 @@ public class DriveTrain extends Subsystem
 					break;
 				}
 			}
-		} else
+		}
+		else
 		{
 			recpdpCount++;
 			if (recpdpCount >= neededrecloopcount)

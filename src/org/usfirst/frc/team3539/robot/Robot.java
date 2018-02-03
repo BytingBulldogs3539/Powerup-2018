@@ -67,6 +67,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
@@ -126,10 +127,10 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
 		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
 
-		SmartDashboard.putNumber("TurnP", RobotMap.turnPea);
-		SmartDashboard.putNumber("TurnI", RobotMap.turnEye);
-		SmartDashboard.putNumber("TurnD", RobotMap.turnDee);
-		SmartDashboard.putNumber("TurnF", RobotMap.turnFFF);
+		SmartDashboard.putNumber("TurnP", RobotMap.turnPeaWheels);
+		SmartDashboard.putNumber("TurnI", RobotMap.turnEyeWheels);
+		SmartDashboard.putNumber("TurnD", RobotMap.turnDeeWheels);
+		SmartDashboard.putNumber("TurnF", RobotMap.turnFFFWheels);
 
 		SmartDashboard.putNumber("BreakP", RobotMap.breakPea);
 		SmartDashboard.putNumber("BreakI", RobotMap.breakEye);

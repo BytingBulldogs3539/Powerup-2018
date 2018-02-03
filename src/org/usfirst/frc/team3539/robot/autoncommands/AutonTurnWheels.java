@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class AutonTurn extends Command
+public class AutonTurnWheels extends Command
 {
 	double degrees;
 
-	public AutonTurn(double degrees,double seconds)
+	public AutonTurnWheels(double degrees,double seconds)
 	{
 		requires(Robot.driveTrain);
 		this.degrees = degrees;
