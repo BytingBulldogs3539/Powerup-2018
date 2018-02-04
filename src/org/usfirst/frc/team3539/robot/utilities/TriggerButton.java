@@ -11,14 +11,13 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * @since 02/02/17
  */
 
-//TODO: Add method to pull actual trigger values
-//TODO: Add setRange(double range) method
-
 public class TriggerButton extends Button
 {
 	private int triggerAxis;
 	private GenericHID joystick;
 	public boolean isTriggered;
+	private double lowRange = .1;
+	private double topRange = .75;
 
 	public TriggerButton(GenericHID joystick, int axis)
 	{
@@ -26,15 +25,26 @@ public class TriggerButton extends Button
 		this.joystick = joystick;
 	}
 
+	public double getValue()
+	{
+		return joystick.getRawAxis(triggerAxis);
+	}
+
+	public void setRange(double topRange, double lowRange)
+	{
+		this.lowRange = lowRange;
+		this.topRange = topRange;
+	}
+
 	@Override
 	public boolean get()
 	{
-		if (joystick.getRawAxis(triggerAxis) > .75)
+		if (joystick.getRawAxis(triggerAxis) > topRange)
 		{
 			isTriggered = true;
 
 		}
-		else if (joystick.getRawAxis(triggerAxis) < .1)
+		else if (joystick.getRawAxis(triggerAxis) < lowRange)
 		{
 			isTriggered = false;
 		}
