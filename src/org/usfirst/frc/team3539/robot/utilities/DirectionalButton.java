@@ -11,18 +11,16 @@ import edu.wpi.first.wpilibj.buttons.Button;
  * @since 11/12/17
  */
 
-//TODO: Add method to pull actual values rather than boolean
-//TODO: Add more directions to Direction enum
-
 public class DirectionalButton extends Button
 {
-	private double neededAngle;
+	private int neededAngle;
 	private Direction direction;
 	private GenericHID joystick;
 
 	public enum Direction
 	{
-		UP, DOWN, LEFT, RIGHT
+
+		UP, UPRIGHT, RIGHT, DOWNRIGHT, DOWN, DOWNLEFT, LEFT, UPLEFT
 	}
 
 	public DirectionalButton(GenericHID joystick, Direction direction)
@@ -36,16 +34,33 @@ public class DirectionalButton extends Button
 		case UP:
 			neededAngle = 0;
 			break;
-		case DOWN:
-			neededAngle = 180;
-			break;
-		case LEFT:
-			neededAngle = 270;
+		case UPRIGHT:
+			neededAngle=45;
 			break;
 		case RIGHT:
 			neededAngle = 90;
 			break;
+		case DOWNRIGHT:
+			neededAngle = 135;
+			break;
+		case DOWN:
+			neededAngle = 180;
+			break;
+		case DOWNLEFT:
+			neededAngle = 225;
+			break;
+		case LEFT:
+			neededAngle = 270;
+			break;
+		case UPLEFT:
+			neededAngle = 315;
+			break;
+
 		}
+	}
+	public int getPOV()
+	{
+		return joystick.getPOV();
 	}
 
 	public boolean get()
@@ -59,7 +74,7 @@ public class DirectionalButton extends Button
 			return false;
 		}
 	}
-	
+
 	public Direction getDirection()
 	{
 		return direction;
