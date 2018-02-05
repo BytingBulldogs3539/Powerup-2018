@@ -77,10 +77,10 @@ public final class Drive
 				rightMotorSpeed = -Math.max(-wheel, -throttle);
 			}
 		}
-		setLeftRightMotorOutputs(rightMotorSpeed, leftMotorSpeed);
+		setMotorOutputs(rightMotorSpeed, leftMotorSpeed);
 	}
 
-	public void setLeftRightMotorOutputs(double right, double left)
+	public void setMotorOutputs(double right, double left)
 	{
 		if (driveMode == DriveMode.TWO)
 		{
