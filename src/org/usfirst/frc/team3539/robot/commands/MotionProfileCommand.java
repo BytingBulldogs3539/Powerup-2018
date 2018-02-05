@@ -20,18 +20,22 @@ public class MotionProfileCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.motion.Control();	
     	
-
-    	Robot.motion.startMotionProfile();
-
-    	System.out.println("start");
+    	Robot.motion.setMotionProfile();
+    	System.out.println("-----motion profile mode set on talon----");
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.motion.Control();	
+    	Robot.motion.setMotionProfile();
+    	if(Robot.m_oi.one.buttonA.get())
+    	{
+    		Robot.motion.startMotionProfile();
+    	}
     	
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

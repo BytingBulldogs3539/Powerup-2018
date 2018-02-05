@@ -34,7 +34,7 @@ public class MotionProfile extends Subsystem {
 
 	TalonSRX Left = new TalonSRX(RobotMap.leftMaster);
 	TalonSRX Right = new TalonSRX(RobotMap.rightMaster);
-	SetValueMotionProfile value = SetValueMotionProfile.Enable;
+//	SetValueMotionProfile value = SetValueMotionProfile.Enable;
 	
 
 	public MotionProfile() {
@@ -60,7 +60,8 @@ System.out.println("control");
 
 		if (_bStart) {
 			
-			
+			System.out.println("inside if");
+		
 			_setValue = SetValueMotionProfile.Disable;
 			startFilling();
 			/*
@@ -69,10 +70,11 @@ System.out.println("control");
 			_state = 1;
 			_loopTimeout = kNumLoopsTimeout;
 			_bStart = false;
-
-			System.out.println("case 0 ends");
 			
-		}
+			//System.out.println("case 0 ends");
+			
+		}			System.out.println("case 0 ends");
+
 		break;
 	case 1: /*
 			 * wait for MP to stream to Talon, really just the first few
@@ -81,7 +83,7 @@ System.out.println("control");
 		System.out.println("case1");
 
 		/* do we have a minimum numberof points in Talon */
-	System.out.println(status.btmBufferCnt);
+	System.out.println("Low level buffer count"+status.btmBufferCnt);
 		if (status.btmBufferCnt > kMinPointsInTalon) {
 			/* start (once) the motion profile */
 			_setValue = SetValueMotionProfile.Enable;
