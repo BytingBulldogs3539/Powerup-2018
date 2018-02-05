@@ -124,8 +124,9 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
-		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
-		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+		
+		lf.setSelectedSensorPosition(0, 0, 10);
+		rf.setSelectedSensorPosition(0, 0, 10);
 	}
 
 	public void zeroGyro()
@@ -143,30 +144,9 @@ public final class DriveTrain extends Subsystem
 		gyro.calibrate();
 	}
 
-	public void disableTwoMotors()
+	public void driveArcade(double throttle, double wheel)
 	{
-		lb.set(ControlMode.Disabled, 0);
-		rb.set(ControlMode.Disabled, 0);
-	}
-
-	public void enableTwoMotors()
-	{
-		setFollower();
-	}
-
-	public boolean lonTarget()
-	{
-		return false;
-	}
-
-	public boolean ronTarget()
-	{
-		return false;
-	}
-
-	public void driveArcade(double forward, double rotate)
-	{
-		drive.driveArcade(forward, rotate);
+		drive.driveArcade(throttle, wheel);
 	}
 
 	public void setPID(double P, double I, double D, double F)
