@@ -23,7 +23,6 @@ public class DriveVelocity extends Command
 	{
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
 		Robot.driveTrain.zeroEnc();
-		System.out.println(velocity * 394);
 		Robot.driveTrain.DriveSpeed(velocity);
 	}
 

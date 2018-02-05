@@ -13,11 +13,12 @@ public class AutonDrive extends Command
 {
 	double inches;
 
-	public AutonDrive(double inches)
+	public AutonDrive(double inches, double seconds)
 	{
 		requires(Robot.driveTrain);
 		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee, SmartDashboard.getNumber("F", 0));
 		this.inches = inches;
+		this.setTimeout(seconds);
 	}
 
 	protected void initialize()
@@ -34,16 +35,16 @@ public class AutonDrive extends Command
 
 	protected void execute()
 	{
+
 	}
 
 	protected boolean isFinished()
 	{
-		return Robot.driveTrain.onTarget();
+		return Robot.driveTrain.onTarget() || this.isTimedOut();
 	}
 
 	protected void end()
 	{
-		System.out.println("end");
 		Robot.driveTrain.zeroEnc();
 		Robot.driveTrain.stopDrive();
 	}

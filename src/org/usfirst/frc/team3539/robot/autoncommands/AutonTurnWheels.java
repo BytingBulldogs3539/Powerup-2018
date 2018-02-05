@@ -27,7 +27,6 @@ public class AutonTurnWheels extends Command
 		Robot.driveTrain.setLoopOnTarget(20);
 		Robot.driveTrain.zeroLoopCounter();
 		Robot.driveTrain.zeroEnc();
-		System.out.println(degrees);
 		Robot.driveTrain.setSetpointTurn(degrees);
 	}
 
@@ -42,7 +41,6 @@ public class AutonTurnWheels extends Command
 
 	protected void end()
 	{
-		System.out.println("end");
 		Robot.driveTrain.stopDrive();
 		Robot.driveTrain.zeroEnc();
 	}

@@ -37,7 +37,6 @@ public class Elevator extends Subsystem
 	public void setMotorPower(double speed)
 	{
 		liftTalon1.set(ControlMode.PercentOutput, speed);
-		liftTalon2.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void configMotors()
@@ -70,21 +69,21 @@ public class Elevator extends Subsystem
 		liftTalon1.set(ControlMode.Position, inchToEncoder(inches));
 	}
 
-	public void setSetpointLift(ElevatorPosition position )
+	public void setSetpointLift(ElevatorPosition position)
 	{
-		if(position==ElevatorPosition.SWITCH)
+		if (position == ElevatorPosition.SWITCH)
 		{
 			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncSwitch);
 		}
-		else if(position==ElevatorPosition.SCALE)
+		else if (position == ElevatorPosition.SCALE)
 		{
 			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncScale);
 		}
-		else if(position==ElevatorPosition.FLOOR)
+		else if (position == ElevatorPosition.FLOOR)
 		{
 			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncFloor);
 		}
-		else if(position==ElevatorPosition.CLIMB)
+		else if (position == ElevatorPosition.CLIMB)
 		{
 			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncClimb);
 		}
@@ -92,10 +91,9 @@ public class Elevator extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (liftTalon1.getClosedLoopError(0) <= allowedError && liftTalon1.getClosedLoopError(0) >= -allowedError && liftTalon2.getClosedLoopError(0) <= allowedError && liftTalon2.getClosedLoopError(0) >= -allowedError)
+		if (liftTalon1.getClosedLoopError(0) <= allowedError && liftTalon1.getClosedLoopError(0) >= -allowedError)
 		{
 			loopCounter++;
-			System.out.println(loopCounter);
 		}
 		else
 			loopCounter = 0;
