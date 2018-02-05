@@ -15,7 +15,6 @@ public class ElevatorCommand extends InstantCommand
 	{
 		requires(Robot.elevator);
 		Robot.elevator.setSetpointLift(position);
-
 	}
 
 	public ElevatorCommand(double inches)
