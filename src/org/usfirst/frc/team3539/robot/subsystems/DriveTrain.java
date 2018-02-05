@@ -153,10 +153,13 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.config_kF(0, F, 10);
 		rf.config_kF(0, F, 10);
+		
 		lf.config_kP(0, P, 10);
 		rf.config_kP(0, P, 10);
+		
 		lf.config_kI(0, I, 10);
 		rf.config_kI(0, I, 10);
+		
 		lf.config_kD(0, D, 10);
 		rf.config_kD(0, D, 10);
 	}
@@ -168,8 +171,9 @@ public final class DriveTrain extends Subsystem
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
-		System.out.println("lbcontrol" + lb.getControlMode());
-		System.out.println("rbcontrol" + rb.getControlMode());
+		System.out.println("lbcontrol: " + lb.getControlMode());
+		System.out.println("rbcontrol: " + rb.getControlMode());
+		
 		lf.set(ControlMode.Position, setpointinches);
 		rf.set(ControlMode.Position, -setpointinches);
 	}
@@ -181,35 +185,15 @@ public final class DriveTrain extends Subsystem
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
-		System.out.println("setpoint" + degreesToEnc(setpointdegrees));
+		System.out.println("setpoint: " + degreesToEnc(setpointdegrees));
+		
 		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
-	}
-
-	public void driveSpeed(double velocity)
-	{
-		lb.set(ControlMode.Follower, RobotMap.lf);
-		rb.set(ControlMode.Follower, RobotMap.rf);
-		System.out.println("lbcontrol" + lb.getControlMode());
-		System.out.println("rbcontrol" + rb.getControlMode());
-		lf.set(ControlMode.Velocity, ftpsToEncps(velocity));
-		rf.set(ControlMode.Velocity, ftpsToEncps(-velocity));
-	}
-
-	public double ftpsToEncps(double ftps)
-	{
-		return ftps * 394;
-		// return ftps * 100.0;
 	}
 
 	public double degreesToEnc(double degrees)
 	{
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
-	}
-
-	public void stopDrive()
-	{
-		driveArcade(0, 0);
 	}
 
 	public boolean onTarget()

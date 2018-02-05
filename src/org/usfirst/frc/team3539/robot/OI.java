@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.commands.BreakModeCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
@@ -18,10 +17,7 @@ public class OI
 	public LogitechF310 two = new LogitechF310(RobotMap.OPERATOR);
 
 	public OI()
-	{
-		//Driver
-		one.buttonA.whileHeld(new BreakModeCommand());
-		
+	{	
 		//Elevator
 		two.buttonSTART.whenPressed(new LiftManual());
 		
@@ -32,7 +28,6 @@ public class OI
 		
 		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
 		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
-		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));
-		
+		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));	
 	}
 }

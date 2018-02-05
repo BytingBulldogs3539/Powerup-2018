@@ -10,24 +10,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonTurnEncoderCommand extends Command
 {
-	double degrees;
+	private double targetAngle;
 
-	public AutonTurnEncoderCommand(double degrees, double seconds)
+	public AutonTurnEncoderCommand(double targetAngle, double seconds)
 	{
 		requires(Robot.driveTrain);
-		this.degrees = degrees;
+		this.targetAngle = targetAngle;
 		setTimeout(seconds);
 	}
 
 	protected void initialize()
 	{
+		Robot.driveTrain.zeroEncoders();
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", 0), SmartDashboard.getNumber("TurnI", 0),
 				SmartDashboard.getNumber("TurnD", 0), SmartDashboard.getNumber("TurnF", 0));
 		Robot.driveTrain.setTargetAllowedError(500);
 		Robot.driveTrain.setLoopOnTarget(20);
 		Robot.driveTrain.zeroLoopCounter();
-		Robot.driveTrain.zeroEncoders();
-		Robot.driveTrain.setSetpointTurn(degrees);
+		Robot.driveTrain.setSetpointTurn(targetAngle);
 	}
 
 	protected void execute()
@@ -41,7 +41,7 @@ public class AutonTurnEncoderCommand extends Command
 
 	protected void end()
 	{
-		Robot.driveTrain.stopDrive();
+		Robot.driveTrain.driveArcade(0, 0);
 		Robot.driveTrain.zeroEncoders();
 	}
 

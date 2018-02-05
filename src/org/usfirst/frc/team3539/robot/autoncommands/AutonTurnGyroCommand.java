@@ -10,24 +10,27 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
  */
 public class AutonTurnGyroCommand extends PIDCommand
 {
-	double setpoint = 0;
+	private double targetAngle;
 
-	public AutonTurnGyroCommand(double degrees, double seconds)
+	public AutonTurnGyroCommand(double setpointAngle, double seconds)
 	{
 		super(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro, RobotMap.turnDeeGyro);
 		requires(Robot.driveTrain);
-		setpoint = degrees;
-		this.setTimeout(seconds);
+		this.targetAngle = setpointAngle;
+		setTimeout(seconds);
 	}
 
 	protected void initialize()
 	{
-		Robot.driveTrain.stopDrive();
-		this.getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro, RobotMap.turnDeeGyro);
-		this.getPIDController().setSetpoint(setpoint);
-		this.getPIDController().setAbsoluteTolerance(1);
-		this.getPIDController().enable();
+		// I don't think this line is needed because the constructor already does this
+		//getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro, RobotMap.turnDeeGyro);
 		
+		getPIDController().setSetpoint(targetAngle);
+		
+		getPIDController().setAbsoluteTolerance(1);
+		
+		getPIDController().enable();
+
 	}
 
 	protected void execute()
@@ -36,14 +39,16 @@ public class AutonTurnGyroCommand extends PIDCommand
 
 	protected boolean isFinished()
 	{
-		return this.getPIDController().onTarget()||this.isTimedOut();
+		return getPIDController().onTarget() || isTimedOut();
 	}
 
 	protected void end()
 	{
-		this.getPIDController().reset();
-		this.getPIDController().disable();
-		Robot.driveTrain.stopDrive();
+		getPIDController().reset();
+		
+		getPIDController().disable();
+		
+		Robot.driveTrain.driveArcade(0, 0);
 	}
 
 	protected void interrupted()
