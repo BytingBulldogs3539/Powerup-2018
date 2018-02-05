@@ -26,11 +26,11 @@ public class LogitechF310 extends Joystick
 	private static final int LEFT_TRIGGER = 2;
 
 	// AXIS
-	public static final int X_AxisL = 0;
-	public static final int Y_AxisL = 1;
+	private static final int X_AxisL = 0;
+	private static final int Y_AxisL = 1;
 
-	public static final int X_AxisR = 4;
-	public static final int Y_AxisR = 5;
+	private static final int X_AxisR = 4;
+	private static final int Y_AxisR = 5;
 	
 	public LogitechF310(int port)
 	{

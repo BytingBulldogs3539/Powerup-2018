@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class BreakMode extends Command
+public class BreakModeCommand extends Command
 {
-	public BreakMode()
+	public BreakModeCommand()
 	{
 		requires(Robot.driveTrain);
 	}
@@ -19,7 +19,7 @@ public class BreakMode extends Command
 	{
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("BreakP", 0), SmartDashboard.getNumber("BreakI", 0), SmartDashboard.getNumber("BreakD", 0), SmartDashboard.getNumber("BreakF", 0));
 
-		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.zeroEncoders();
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(0));
 	}
 

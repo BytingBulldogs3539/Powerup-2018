@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class DriveVelocity extends Command
+public class DriveVelocityCommand extends Command
 {
 	private double velocity;
 
-	public DriveVelocity(double velocity)
+	public DriveVelocityCommand(double velocity)
 	{
 		requires(Robot.driveTrain);
 		this.velocity = velocity;
@@ -22,8 +22,8 @@ public class DriveVelocity extends Command
 	protected void initialize()
 	{
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0), SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
-		Robot.driveTrain.zeroEnc();
-		Robot.driveTrain.DriveSpeed(velocity);
+		Robot.driveTrain.zeroEncoders();
+		Robot.driveTrain.driveSpeed(velocity);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
@@ -11,35 +10,30 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveTrain extends Subsystem
+/**
+ * @author 3539
+ */
+public final class DriveTrain extends Subsystem
 {
-	PowerDistributionPanel pdp = new PowerDistributionPanel();
-	ADXL362 acc = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
-	ADXRS450_Gyro gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-	TalonSRX lf, lb, rf, rb, lm, rm;
-	Drive drive;
+	private ADXL362 accelerometer;
+	private ADXRS450_Gyro gyro;
+	private TalonSRX lf, lb, rf, rb, lm, rm;
+	private Drive drive;
 
-	int error = 1000;
-	int maxpdpCount = 250;
-	int recpdpCount = 0;
-	int neededrecloopcount = 100;
-	int loopAmount = 0;
-	int loopCounter = 0;
-	int allowedError = 0;
-	String motors;
-	int pdpLoopCounter = 0;
-	currentLimitStage currentCurrentStage;
+	private int loopAmount = 0;
+	private int loopCounter = 0;
+	private int allowedError = 0;
 
 	public DriveTrain()
 	{
-		// gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
+		accelerometer = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
 
 		lf = new TalonSRX(RobotMap.lf);
 		rf = new TalonSRX(RobotMap.rf);
@@ -55,27 +49,33 @@ public class DriveTrain extends Subsystem
 		lf.configPeakOutputReverse(-peakOut, 10);
 		rf.configPeakOutputForward(peakOut, 10);
 		rf.configPeakOutputReverse(-peakOut, 10);
+
 		rm.configPeakOutputForward(peakOut, 10);
 		rm.configPeakOutputReverse(-peakOut, 10);
 		lm.configPeakOutputForward(peakOut, 10);
 		lm.configPeakOutputReverse(-peakOut, 10);
+
 		lb.configPeakOutputForward(peakOut, 10);
 		lb.configPeakOutputReverse(-peakOut, 10);
 		rb.configPeakOutputForward(peakOut, 10);
 		rb.configPeakOutputReverse(-peakOut, 10);
 
+		// Nominal is the default output when given no instruction
 		lf.configNominalOutputForward(0, 10);
 		rf.configNominalOutputForward(0, 10);
-		lb.configNominalOutputForward(0, 10);
-		rb.configNominalOutputForward(0, 10);
+		
+		lf.configNominalOutputReverse(0, 10);
+		rf.configNominalOutputReverse(0, 10);
 
 		lm.configNominalOutputForward(0, 10);
 		rm.configNominalOutputForward(0, 10);
+		
 		lm.configNominalOutputReverse(0, 10);
 		rm.configNominalOutputReverse(0, 10);
 
-		lf.configNominalOutputReverse(0, 10);
-		rf.configNominalOutputReverse(0, 10);
+		lb.configNominalOutputForward(0, 10);
+		rb.configNominalOutputForward(0, 10);
+		
 		lb.configNominalOutputReverse(0, 10);
 		rb.configNominalOutputReverse(0, 10);
 
@@ -90,51 +90,57 @@ public class DriveTrain extends Subsystem
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		// lf.configClosedloopRamp(1, 10);
-		// rf.configClosedloopRamp(1, 10);
-
-		lf.configAllowableClosedloopError(10, 0, 10);
-		rf.configAllowableClosedloopError(10, 0, 10);
+		lf.configAllowableClosedloopError(0, 0, 10);
+		rf.configAllowableClosedloopError(0, 0, 10);
 
 		setFollower();
 		setInverted();
-		SmartDashboard.putData("PDP", pdp);
-		SmartDashboard.putData("Acc", acc);
+		
+		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
 	}
 
-	public void zeroEnc()
-	{
-		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		lf.getSensorCollection().setPulseWidthPosition(0, 10);
-		rf.getSensorCollection().setPulseWidthPosition(0, 10);
-		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
-		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
-	}
-	public void zeroGyro()
-	{
-		gyro.reset();
-	}
-	public double getAngle()
-	{
-		return gyro.getAngle();
-	}
-	public void calibrateGyro()
-	{
-		gyro.calibrate();
-	}
-	public void linearTurn(double power)
-	{
-		driveArcade(0,power);
-	}
-
-	public void setFollower()
+	private void setFollower()
 	{
 		lm.set(ControlMode.Follower, lf.getDeviceID());
 		rm.set(ControlMode.Follower, rf.getDeviceID());
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
+	}
+
+	private void setInverted()
+	{
+		lf.setInverted(true);
+		rf.setInverted(true);
+
+		lm.setInverted(false);
+		rm.setInverted(false);
+
+		lb.setInverted(false);
+		rb.setInverted(false);
+	}
+
+	public void zeroEncoders()
+	{
+		lf.getSensorCollection().setPulseWidthPosition(0, 10);
+		rf.getSensorCollection().setPulseWidthPosition(0, 10);
+		lf.setSelectedSensorPosition(lf.getSelectedSensorPosition(10), 0, 10);
+		rf.setSelectedSensorPosition(rf.getSelectedSensorPosition(10), 0, 10);
+	}
+
+	public void zeroGyro()
+	{
+		gyro.reset();
+	}
+
+	public double getHeading()
+	{
+		return gyro.getAngle();
+	}
+
+	public void calibrateGyro()
+	{
+		gyro.calibrate();
 	}
 
 	public void disableTwoMotors()
@@ -146,19 +152,6 @@ public class DriveTrain extends Subsystem
 	public void enableTwoMotors()
 	{
 		setFollower();
-	}
-
-	public void setInverted()
-	{
-		lf.setInverted(true);
-		rf.setInverted(true);
-
-		lm.setInverted(false);
-		rm.setInverted(false);
-
-		lb.setInverted(false);
-
-		rb.setInverted(false);
 	}
 
 	public boolean lonTarget()
@@ -190,7 +183,7 @@ public class DriveTrain extends Subsystem
 
 	public void setSetpointDrive(double setpointinches)
 	{
-		zeroEnc();
+		zeroEncoders();
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
@@ -203,7 +196,7 @@ public class DriveTrain extends Subsystem
 
 	public void setSetpointTurn(double setpointdegrees)
 	{
-		zeroEnc();
+		zeroEncoders();
 
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
@@ -213,19 +206,18 @@ public class DriveTrain extends Subsystem
 		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
 	}
 
-	public void DriveSpeed(double Velocity)
+	public void driveSpeed(double velocity)
 	{
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 		System.out.println("lbcontrol" + lb.getControlMode());
 		System.out.println("rbcontrol" + rb.getControlMode());
-		lf.set(ControlMode.Velocity, ftpsToEncps(Velocity));
-		rf.set(ControlMode.Velocity, ftpsToEncps(-Velocity));
+		lf.set(ControlMode.Velocity, ftpsToEncps(velocity));
+		rf.set(ControlMode.Velocity, ftpsToEncps(-velocity));
 	}
 
 	public double ftpsToEncps(double ftps)
 	{
-
 		return ftps * 394;
 		// return ftps * 100.0;
 	}
@@ -242,7 +234,8 @@ public class DriveTrain extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError && rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
+		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError
+				&& rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
 		{
 			loopCounter++;
 			System.out.println(loopCounter);
@@ -279,16 +272,10 @@ public class DriveTrain extends Subsystem
 		return (inches / 12.56) * 4096;
 	}
 
-	@Override
-	protected void initDefaultCommand()
+	public void updateEncoders()
 	{
-		setDefaultCommand(new DriveCommand());
-	}
-
-	public void updateEnc()
-	{
-		SmartDashboard.putNumber("Right Enc", rf.getSelectedSensorPosition(0));
-		SmartDashboard.putNumber("Left Enc", lf.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 	}
 
 	public void effectiveArcadeDrive(double throttle, double wheel)
@@ -319,7 +306,7 @@ public class DriveTrain extends Subsystem
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
 
-	public void motorTest()
+	public void testTalons()
 	{
 		StringBuilder Motors = new StringBuilder(1000);
 
@@ -383,77 +370,12 @@ public class DriveTrain extends Subsystem
 		Motors.append("  rbMotorVoltage = " + rb.getMotorOutputVoltage());
 
 		rb.set(ControlMode.PercentOutput, 0);
-		motors = Motors.toString();
-
+		Motors.toString();
 	}
 
-	public String print()
+	@Override
+	protected void initDefaultCommand()
 	{
-		return motors;
-	}
-
-	public double getTotalCurrent()
-	{
-		return pdp.getCurrent(0) + pdp.getCurrent(1) + pdp.getCurrent(2) + pdp.getCurrent(3) + pdp.getCurrent(4) + pdp.getCurrent(5) + pdp.getCurrent(6) + pdp.getCurrent(7) + pdp.getCurrent(8) + pdp.getCurrent(9) + pdp.getCurrent(10)
-				+ pdp.getCurrent(11) + pdp.getCurrent(12) + pdp.getCurrent(13) + pdp.getCurrent(14) + pdp.getCurrent(15);
-	}
-
-	public enum currentLimitStage
-	{
-		STAGE1, STAGE2, STAGE3
-	}
-
-	public void controlCurrent()
-	{
-		double totalCurrent = getTotalCurrent();
-		if (totalCurrent >= RobotMap.maxCurrent)
-		{
-			recpdpCount = 0;
-			System.err.println("OVER MAX CURRENT");
-			pdpLoopCounter++;
-			if (pdpLoopCounter > maxpdpCount)
-			{
-				switch (currentCurrentStage)
-				{
-				case STAGE1:
-					for (int i = 0; i > 5; i++)
-					{
-						System.err.println("DROPPING Compressor");
-					}
-					Robot.c.stop();
-					pdpLoopCounter = pdpLoopCounter - (int) (pdpLoopCounter * .75);
-					currentCurrentStage = currentLimitStage.STAGE2;
-					break;
-				case STAGE2:
-					for (int i = 0; i > 5; i++)
-					{
-						System.err.println("DROPPING 2 CIMS");
-					}
-					disableTwoMotors();
-					pdpLoopCounter = pdpLoopCounter - (int) (pdpLoopCounter * .75);
-					currentCurrentStage = currentLimitStage.STAGE3;
-					break;
-				case STAGE3:
-					for (int i = 0; i > 5; i++)
-					{
-						System.err.println("DISABLING THE INTAKE");
-					}
-					// ADD CODE FOR INTAKE WHEN CREATED!!
-					break;
-				}
-			}
-		}
-		else
-		{
-			recpdpCount++;
-			if (recpdpCount >= neededrecloopcount)
-			{
-				pdpLoopCounter = 0;
-				recpdpCount = 0;
-				Robot.c.start();
-				enableTwoMotors();
-			}
-		}
-
+		setDefaultCommand(new DriveCommand());
 	}
 }

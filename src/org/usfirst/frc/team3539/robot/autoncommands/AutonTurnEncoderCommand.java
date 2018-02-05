@@ -8,25 +8,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class AutonTurnWheels extends Command
+public class AutonTurnEncoderCommand extends Command
 {
 	double degrees;
 
-	public AutonTurnWheels(double degrees,double seconds)
+	public AutonTurnEncoderCommand(double degrees, double seconds)
 	{
 		requires(Robot.driveTrain);
 		this.degrees = degrees;
-		this.setTimeout(seconds);
+		setTimeout(seconds);
 	}
 
 	protected void initialize()
 	{
-		Robot.driveTrain.stopDrive();
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", 0), SmartDashboard.getNumber("TurnI", 0), SmartDashboard.getNumber("TurnD", 0),SmartDashboard.getNumber("TurnF", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", 0), SmartDashboard.getNumber("TurnI", 0),
+				SmartDashboard.getNumber("TurnD", 0), SmartDashboard.getNumber("TurnF", 0));
 		Robot.driveTrain.setTargetAllowedError(500);
 		Robot.driveTrain.setLoopOnTarget(20);
 		Robot.driveTrain.zeroLoopCounter();
-		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.zeroEncoders();
 		Robot.driveTrain.setSetpointTurn(degrees);
 	}
 
@@ -36,13 +36,13 @@ public class AutonTurnWheels extends Command
 
 	protected boolean isFinished()
 	{
-		return Robot.driveTrain.onTarget()||this.isTimedOut();
+		return Robot.driveTrain.onTarget() || isTimedOut();
 	}
 
 	protected void end()
 	{
 		Robot.driveTrain.stopDrive();
-		Robot.driveTrain.zeroEnc();
+		Robot.driveTrain.zeroEncoders();
 	}
 
 	protected void interrupted()

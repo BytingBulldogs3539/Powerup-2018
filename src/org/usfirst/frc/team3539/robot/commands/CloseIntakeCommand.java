@@ -1,18 +1,15 @@
 package org.usfirst.frc.team3539.robot.commands;
 
-import org.usfirst.frc.team3539.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class LiftManual extends Command
+public class CloseIntakeCommand extends Command
 {
 
-	public LiftManual()
+	public CloseIntakeCommand()
 	{
-		requires(Robot.elevator);
 	}
 
 	protected void initialize()
@@ -21,7 +18,6 @@ public class LiftManual extends Command
 
 	protected void execute()
 	{
-		Robot.elevator.setMotorPower(Robot.oi.two.getLeftStickY());
 	}
 
 	protected boolean isFinished()
@@ -31,7 +27,6 @@ public class LiftManual extends Command
 
 	protected void end()
 	{
-		Robot.elevator.setMotorPower(0);
 	}
 
 	protected void interrupted()

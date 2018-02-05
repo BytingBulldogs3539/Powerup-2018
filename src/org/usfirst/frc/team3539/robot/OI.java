@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.commands.BreakMode;
+import org.usfirst.frc.team3539.robot.commands.BreakModeCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
@@ -20,7 +20,7 @@ public class OI
 	public OI()
 	{
 		//Driver
-		one.buttonA.whileHeld(new BreakMode());
+		one.buttonA.whileHeld(new BreakModeCommand());
 		
 		//Elevator
 		two.buttonSTART.whenPressed(new LiftManual());

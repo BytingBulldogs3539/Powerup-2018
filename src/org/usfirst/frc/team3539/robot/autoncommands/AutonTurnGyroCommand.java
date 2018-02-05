@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.PIDCommand;
 /**
  *
  */
-public class AutonTurnGyro extends PIDCommand
+public class AutonTurnGyroCommand extends PIDCommand
 {
 	double setpoint = 0;
 
-	public AutonTurnGyro(double degrees, double seconds)
+	public AutonTurnGyroCommand(double degrees, double seconds)
 	{
 		super(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro, RobotMap.turnDeeGyro);
 		requires(Robot.driveTrain);
@@ -54,13 +54,12 @@ public class AutonTurnGyro extends PIDCommand
 	@Override
 	protected double returnPIDInput()
 	{
-		return Robot.driveTrain.getAngle();
+		return Robot.driveTrain.getHeading();
 	}
 
 	@Override
 	protected void usePIDOutput(double output)
 	{
-		Robot.driveTrain.linearTurn(output);
-
+		Robot.driveTrain.driveArcade(0, output);
 	}
 }

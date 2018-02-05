@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 
+	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
@@ -100,7 +102,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
-		Robot.driveTrain.updateEnc();
+		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
 
@@ -139,7 +141,8 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
-		// SmartDashboard.putNumber("PDP Current", 1);
+		
+		SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);

@@ -2,11 +2,11 @@ package org.usfirst.frc.team3539.robot.autoncommands;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AutonWait extends Command
+public class AutonWaitCommand extends Command
 {
 	double seconds;
 	
-	public AutonWait(double seconds)
+	public AutonWaitCommand(double seconds)
 	{
 		this.seconds = seconds;
 	}
