@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
  * project, you must also update the manifest file in the resource directory.
@@ -56,6 +57,8 @@ public class Robot extends IterativeRobot
 		{
 		}
 =======
+=======
+>>>>>>> parent of 0bf27d3... Fix Command,Fix point streaming, fix loop issues,fix finish issues
 import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
