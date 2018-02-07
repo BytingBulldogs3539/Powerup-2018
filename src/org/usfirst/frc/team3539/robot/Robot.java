@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+//import org.usfirst.frc.team3539.robot.subsystems.Drive;
 import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -26,9 +27,9 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * project.
  */
 public class Robot extends IterativeRobot {
-
-	public static final MotionProfile motion = new MotionProfile();
+public static final MotionProfile motion = new MotionProfile();
 	public static OI m_oi;
+	
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();

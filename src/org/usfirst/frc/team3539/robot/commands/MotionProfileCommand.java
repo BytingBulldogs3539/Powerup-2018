@@ -15,26 +15,36 @@ public class MotionProfileCommand extends Command {
 
     public MotionProfileCommand() {
         // Use requires() here to declare subsystem dependencies
-         requires(Robot.motion);
+      requires(Robot.motion);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	
+    	Robot.motion.Reset();
     	Robot.motion.setMotionProfile();
     	System.out.println("-----motion profile mode set on talon----");
-    	
+    	Robot.motion.Process();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.motion.Control();	
-    	Robot.motion.setMotionProfile();
-    	if(Robot.m_oi.one.buttonA.get())
-    	{
-    		Robot.motion.startMotionProfile();
-    	}
     	
+   	Robot.motion.Control();	
+  	Robot.motion.setMotionProfile();
+   	
+  	//if (Robot.m_oi.one.buttonX.get())
+  		//Robot.motion.reset();
+  	if(Robot.m_oi.one.buttonB.get()&&!Robot.motion.start())
+  	{
+   	//	System.out.println("-------------------------");
+   		Robot.motion.startMotionProfile();
+   	}else
+   	{
+   		Robot.motion.SetMotionFalse();
+   	}
+  	if (Robot.m_oi.one.buttonX.get())
+    	Robot.motion.Reset();
+    	//Robot.motion.print();
 
     }
 

@@ -73,4 +73,12 @@ public class LogitechF310 extends Joystick
 	{
 		return getRawAxis(Y_AxisR);
 	}
+	public double getRightTrigger()
+	{
+		return getRawAxis(RIGHT_TRIGGER);
+	}
+	public double getLeftTrigger()
+	{
+		return getRawAxis(LEFT_TRIGGER);
+	}
 }
