@@ -2,7 +2,7 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
-import org.usfirst.frc.team3539.robot.subsystems.Intake;
+//import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
 
 import edu.wpi.cscore.UsbCamera;
@@ -25,7 +25,7 @@ public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
-	public static Intake intake = new Intake();
+	//public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 
