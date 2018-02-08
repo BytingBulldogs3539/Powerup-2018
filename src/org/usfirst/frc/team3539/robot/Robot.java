@@ -64,7 +64,10 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
+<<<<<<< HEAD
 		Scheduler.getInstance().run();
+=======
+>>>>>>> MotionProfile
 	}
 
 	public void disabledPeriodic() {
