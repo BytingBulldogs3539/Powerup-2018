@@ -52,7 +52,6 @@ public static final MotionProfile motion = new MotionProfile();
 	 */
 	@Override
 	public void disabledInit() {
-motion.Disabled();
 	}
 
 	@Override

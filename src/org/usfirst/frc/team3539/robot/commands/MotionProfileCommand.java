@@ -20,6 +20,8 @@ public class MotionProfileCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.motion.Disabled();
+
     	Robot.motion.Reset();
     	Robot.motion.setMotionProfile();
     	System.out.println("-----motion profile mode set on talon----");
