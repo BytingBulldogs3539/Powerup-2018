@@ -36,7 +36,7 @@ public class MotionProfileCommand extends Command {
    	
   	//if (Robot.m_oi.one.buttonX.get())
   		//Robot.motion.reset();
-  	if(Robot.m_oi.one.buttonB.get()&&!Robot.motion.start())
+  	if(Robot.oi.one.buttonB.get()&&!Robot.motion.start())
   	{
    	//	System.out.println("-------------------------");
    		Robot.motion.startMotionProfile();
@@ -44,7 +44,7 @@ public class MotionProfileCommand extends Command {
    	{
    		Robot.motion.SetMotionFalse();
    	}
-  	if (Robot.m_oi.one.buttonX.get())
+  	if (Robot.oi.one.buttonX.get())
     	Robot.motion.Reset();
     	//Robot.motion.print();
 

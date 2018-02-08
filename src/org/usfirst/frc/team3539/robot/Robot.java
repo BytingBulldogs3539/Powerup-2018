@@ -4,6 +4,7 @@ import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
+import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -25,7 +26,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  **/
 
 public class Robot extends IterativeRobot {
-	public static final MotionProfile motion = MotionProfile;
+	public static  MotionProfile motion = new MotionProfile();
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();

@@ -81,6 +81,9 @@ public class RobotMap
 	public static double throttleNonLinearity = 0.75;
 
 	public static double highSpeedWheel = 0.5;
+	public static int kTimeoutMs;
+	public static double kNeutralDeadband;
+	public static int kBaseTrajPeriodMs;
 
 	// INTAKE
 	public static final int lIntakeMotor = 3539;
