@@ -25,6 +25,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  **/
 
 public class Robot extends IterativeRobot {
+	public static final MotionProfile motion = MotionProfile;
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
@@ -64,10 +65,8 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
-<<<<<<< HEAD
 		Scheduler.getInstance().run();
-=======
->>>>>>> MotionProfile
+
 	}
 
 	public void disabledPeriodic() {
