@@ -16,18 +16,15 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> parent of 8774c33... merge
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
- * project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to each mode, as described in the IterativeRobot
+ * documentation. If you change the name of this class or the package after
+ * creating this project, you must also update the manifest file in the resource
+ * directory.
  **/
 
-public class Robot extends IterativeRobot
-{
+public class Robot extends IterativeRobot {
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
@@ -44,114 +41,72 @@ public class Robot extends IterativeRobot
 	SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
 	SendableChooser<Command> autonChooser = new SendableChooser<Command>();
 
-	public void robotInit()
-	{
+	public void robotInit() {
 		oi = new OI();
 		SmartInit();
 
-		try
-		{
+		try {
 			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 			cameraOne.setResolution(480, 360);
 			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
 			cameraTwo.setResolution(480, 360);
+		} catch (Error e) {
 		}
-		catch (Error e)
-		{
-		}
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 0bf27d3... Fix Command,Fix point streaming, fix loop issues,fix finish issues
-import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
-
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the TimedRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the build.properties file in the
- * project.
- */
-public class Robot extends IterativeRobot {
-
-	public static final MotionProfile motion = new MotionProfile();
-	public static OI m_oi;
-
-	Command m_autonomousCommand;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	}
 
 	/**
-	 * This function is run when the robot is first started up and should be
-	 * used for any initialization code.
+	 * The VM is configured to automatically run this class, and to call the
+	 * functions corresponding to each mode, as described in the TimedRobot
+	 * documentation. If you change the name of this class or the package after
+	 * creating this project, you must also update the build.properties file in the
+	 * project.
 	 */
+
 	@Override
-	public void robotInit() {
-		m_oi = new OI();
-		// chooser.addObject("My Auto", new MyAutoCommand());
-		SmartDashboard.putData("Auto mode", m_chooser);
->>>>>>> parent of 0bf27d3... Fix Command,Fix point streaming, fix loop issues,fix finish issues
-=======
->>>>>>> parent of 8774c33... merge
-	}
-
-	public void disabledInit()
-	{
+	public void disabledInit() {
 		Scheduler.getInstance().run();
 	}
 
-	public void disabledPeriodic()
-	{
+	public void disabledPeriodic() {
 
 		Scheduler.getInstance().run();
 	}
 
-	public void autonomousInit()
-	{
+	public void autonomousInit() {
 		Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-		if (gameData.charAt(0) == 'L')
-		{
+		if (gameData.charAt(0) == 'L') {
 			System.out.println("left auton");
 			// Put left auto code here
-		}
-		else
-		{
+		} else {
 			System.out.println("right auton");
 			// Put right auto code here
 		}
 
 		autonMode = (Command) autonChooser.getSelected();
-		if (autonMode != null)
-		{
+		if (autonMode != null) {
 			autonMode.start();
 		}
 	}
 
-	public void autonomousPeriodic()
-	{
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	public void teleopInit()
-	{
+	public void teleopInit() {
 	}
 
-	public void teleopPeriodic()
-	{
+	public void teleopPeriodic() {
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
 
-	public void testPeriodic()
-	{
+	public void testPeriodic() {
 	}
 
-	public void SmartInit()
-	{
+	public void SmartInit() {
 
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
@@ -181,7 +136,7 @@ public class Robot extends IterativeRobot {
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
-		
+
 		SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
