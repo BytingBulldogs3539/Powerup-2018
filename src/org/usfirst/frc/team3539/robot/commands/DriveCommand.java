@@ -21,7 +21,7 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.driveTrain.effectiveArcadeDrive(Robot.m_oi.one.getLeftStickY(), -Robot.m_oi.one.getRightStickX());
+		Robot.driveTrain.effectiveArcadeDrive(Robot.oi.one.getLeftStickY(), -Robot.oi.one.getRightStickX());
 	}
 
 	@Override
