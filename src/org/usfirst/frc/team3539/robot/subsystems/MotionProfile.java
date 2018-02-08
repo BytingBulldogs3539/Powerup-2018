@@ -32,8 +32,8 @@ public class MotionProfile extends Subsystem {
 
 	double _pos = 0, _vel = 0, _heading = 0;
 
-	TalonSRX Left = new TalonSRX(RobotMap.leftMaster);
-	TalonSRX Right = new TalonSRX(RobotMap.rightMaster);
+	TalonSRX Left = new TalonSRX(RobotMap.lf);
+	TalonSRX Right = new TalonSRX(RobotMap.rf);
 //	SetValueMotionProfile value = SetValueMotionProfile.Enable;
 	
 

@@ -1,64 +1,25 @@
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
+
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team3539.robot.subsystems.Elevator;
-//import org.usfirst.frc.team3539.robot.subsystems.Intake;
-import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
-
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-/**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
- * project, you must also update the manifest file in the resource directory.
- **/
-
-public class Robot extends IterativeRobot
-{
-	// SUBSYSTEMS
-	public static DriveTrain driveTrain = new DriveTrain();
-	//public static Intake intake = new Intake();
-	public static Elevator elevator = new Elevator();
-	public static LateralPitch pitch = new LateralPitch();
-
-	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
-	public static Compressor c;
-	public static OI oi;
-	public static UsbCamera cameraOne, cameraTwo;
-
-	Command autonMode;
-	SendableChooser<Command> positionChooser = new SendableChooser<Command>();
-	SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
-	SendableChooser<Command> autonChooser = new SendableChooser<Command>();
-
-	public void robotInit()
-	{
-		oi = new OI();
-		SmartInit();
-
-		try
-		{
-			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-			cameraOne.setResolution(480, 360);
-			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-			cameraTwo.setResolution(480, 360);
-		}
-		catch (Error e)
-		{
-		}
-=======
-=======
->>>>>>> parent of 0bf27d3... Fix Command,Fix point streaming, fix loop issues,fix finish issues
+import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team3539.robot.subsystems.Elevator;
+import org.usfirst.frc.team3539.robot.subsystems.Intake;
+import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
+//import org.usfirst.frc.team3539.robot.subsystems.Drive;
 import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -71,9 +32,13 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
  * project.
  */
 public class Robot extends IterativeRobot {
-
-	public static final MotionProfile motion = new MotionProfile();
+	public static final DriveTrain driveTrain = new DriveTrain();
+public static final MotionProfile motion = new MotionProfile();
+public static final Elevator elevator = new Elevator();
+public static final Intake intake = new Intake();
+public static final LateralPitch pitch = new LateralPitch();
 	public static OI m_oi;
+	
 
 	Command m_autonomousCommand;
 	SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -87,113 +52,82 @@ public class Robot extends IterativeRobot {
 		m_oi = new OI();
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
->>>>>>> parent of 0bf27d3... Fix Command,Fix point streaming, fix loop issues,fix finish issues
 	}
 
-	public void disabledInit()
-	{
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+	 */
+	@Override
+	public void disabledInit() {
+motion.Disabled();
+	}
+
+	@Override
+	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	public void disabledPeriodic()
-	{
+	/**
+	 * This autonomous (along with the chooser code above) shows how to select
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard. If you prefer the
+	 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
+	 * getString code to get the auto name from the text box below the Gyro
+	 *
+	 * <p>You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons
+	 * to the switch structure below with additional strings & commands.
+	 */
+	@Override
+	public void autonomousInit() {
+		m_autonomousCommand = m_chooser.getSelected();
 
-		Scheduler.getInstance().run();
-	}
+		/*
+		 * String autoSelected = SmartDashboard.getString("Auto Selector",
+		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+		 * = new MyAutoCommand(); break; case "Default Auto": default:
+		 * autonomousCommand = new ExampleCommand(); break; }
+		 */
 
-	public void autonomousInit()
-	{
-		Robot.driveTrain.calibrateGyro();
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-		if (gameData.charAt(0) == 'L')
-		{
-			System.out.println("left auton");
-			// Put left auto code here
+		// schedule the autonomous command (example)
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.start();
 		}
-		else
-		{
-			System.out.println("right auton");
-			// Put right auto code here
-		}
-
-		autonMode = (Command) autonChooser.getSelected();
-		if (autonMode != null)
-		{
-			autonMode.start();
-		}
 	}
 
-	public void autonomousPeriodic()
-	{
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	public void teleopInit()
-	{
+	@Override
+	public void teleopInit() {
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
 	}
 
-	public void teleopPeriodic()
-	{
-		Robot.driveTrain.updateEncoders();
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
 	}
 
-	public void testPeriodic()
-	{
-	}
-
-	public void SmartInit()
-	{
-
-		positionChooser.addObject("Left", null);
-		positionChooser.addDefault("Middle", null);
-		positionChooser.addObject("Right", null);
-
-		allianceChooser.addDefault("Red", null);
-		allianceChooser.addObject("Blue", null);
-
-		SmartDashboard.putData("Auton Position", positionChooser);
-
-		SmartDashboard.putData("Alliance", allianceChooser);
-
-		SmartDashboard.putNumber("DriveP", RobotMap.drivePea);
-		SmartDashboard.putNumber("DriveI", RobotMap.driveEye);
-		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
-		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
-
-		SmartDashboard.putNumber("TurnP", RobotMap.turnPeaWheels);
-		SmartDashboard.putNumber("TurnI", RobotMap.turnEyeWheels);
-		SmartDashboard.putNumber("TurnD", RobotMap.turnDeeWheels);
-		SmartDashboard.putNumber("TurnF", RobotMap.turnFFFWheels);
-
-		SmartDashboard.putNumber("BreakP", RobotMap.breakPea);
-		SmartDashboard.putNumber("BreakI", RobotMap.breakEye);
-		SmartDashboard.putNumber("BreakD", RobotMap.breakDee);
-		SmartDashboard.putNumber("BreakF", RobotMap.breakFFF);
-
-		SmartDashboard.putNumber("Right Enc VEL", 1);
-		SmartDashboard.putNumber("Left Enc VEL", 1);
-		
-		SmartDashboard.putData("PDP", pdp);
-
-		SmartDashboard.putNumber("Right Enc", 0);
-		SmartDashboard.putNumber("Left Enc", 0);
-
-		SmartDashboard.putNumber("throttleDeadband", RobotMap.throttleDeadband);
-		SmartDashboard.putNumber("wheelDeadband", RobotMap.wheelDeadband);
-
-		SmartDashboard.putNumber("throttleHighPass", RobotMap.throttleHighPass);
-
-		SmartDashboard.putNumber("wheelNonLinearity", RobotMap.wheelNonLinearity);
-		SmartDashboard.putNumber("throttleNonLinearity", RobotMap.throttleNonLinearity);
-
-		SmartDashboard.putNumber("highSpeedWheel", RobotMap.highSpeedWheel);
-
-		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
-		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
-
-		SmartDashboard.putData(Scheduler.getInstance());
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
 	}
 }

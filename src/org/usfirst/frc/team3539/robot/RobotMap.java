@@ -98,6 +98,13 @@ public class RobotMap
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
 
+	
+	
+	//motion Profile
+	public static int kTimeoutMs=10;
+	public static int kBaseTrajPeriodMs = 0;
+	public static double kNeutralDeadband=0;
+
 	//////////////////////// PRACTICE BOT/////////////////////
 
 	//////////////////////// COMP BOT /////////////////////////
