@@ -137,7 +137,7 @@ public boolean start()
 	private void startFilling() {
 		/* since this example only has one talon, just update that one */
 
-		startFilling(profiles.GeneratedMotionProfile.Points, profiles.GeneratedMotionProfile.kNumPoints,profiles.GeneratedMotionProfile.Points,profiles.GeneratedMotionProfile.kNumPoints);
+		startFilling(org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points, org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints,org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints);
 	}
 
 
