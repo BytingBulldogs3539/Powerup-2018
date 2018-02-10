@@ -2,8 +2,13 @@ package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
+import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
+import com.ctre.phoenix.motion.MotionProfileStatus;
+import com.ctre.phoenix.motion.SetValueMotionProfile;
+import com.ctre.phoenix.motion.TrajectoryPoint;
+import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -335,6 +340,130 @@ public final class DriveTrain extends Subsystem
 		Motors.toString();
 	}
 
+	
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	{
+		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
+		retval = retval.valueOf(durationMs);
+
+		return retval;
+	}
+	public void MotionProfile()
+	{
+
+		lf.changeMotionControlFramePeriod(5);
+		rf.changeMotionControlFramePeriod(5);
+
+	}
+	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
+	private MotionProfileStatus status = new MotionProfileStatus();
+
+	public void Filling(){
+		setValue = SetValueMotionProfile.Enable;
+		
+
+	}
+	private void startFilling()
+	{
+
+		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints,GeneratedMotionProfile.PointsR,
+				GeneratedMotionProfile.kNumPoints);
+	}
+
+	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
+	{
+
+		TrajectoryPoint pointL = new TrajectoryPoint();
+		TrajectoryPoint pointR = new TrajectoryPoint();
+		if (status.hasUnderrun)
+		{ 
+			lf.clearMotionProfileHasUnderrun(0);
+			rf.clearMotionProfileHasUnderrun(0); 
+		}
+
+		lf.clearMotionProfileTrajectories();//make sure nothing is interrupted
+		rf.clearMotionProfileTrajectories();
+
+
+
+		
+		lf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
+		rf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
+
+		for (int i = 0; i < totalCntR; ++i)
+		{
+			double positionRotR = profileR[i][0];
+			double velocityRPMR = profileR[i][1];
+			pointR.position = positionRotR * 4096; 
+			pointR.velocity = velocityRPMR * 4096 / 600.0; 
+			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
+			pointR.zeroPos = false;
+			pointR.isLastPoint = false;
+
+			if (i == 0)
+				pointR.zeroPos = true;
+
+			if ((i + 1) == totalCntR)
+				pointR.isLastPoint = true; /* set this to true on the last point */
+
+		}
+
+		for (int iL = 0; iL < totalCntL; ++iL)
+		{
+			double positionRotL = profileL[iL][0];
+			double velocityRPML = profileL[iL][1];
+
+			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
+			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
+			// point.headingDeg = 0; future feature(Thanks omar) 
+			pointL.profileSlotSelect0 = 0; //there are multiple pid slots now
+			pointR.profileSlotSelect0 = 0; 
+		
+			pointL.timeDur = GetTrajectoryDuration((int) profileL[iL][2]);
+			pointL.zeroPos = false;
+
+			if (iL == 0)
+				pointL.zeroPos = true; 
+
+			pointL.isLastPoint = false;
+			if ((iL + 1) == totalCntL)
+				pointL.isLastPoint = true; 
+
+			lf.pushMotionProfileTrajectory(pointL);
+			rf.pushMotionProfileTrajectory(pointR);
+
+		}
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	protected void initDefaultCommand()
 	{

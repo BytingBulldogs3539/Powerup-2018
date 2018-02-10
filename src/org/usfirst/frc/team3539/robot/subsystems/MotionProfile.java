@@ -41,7 +41,7 @@ public class MotionProfile extends Subsystem
 
 	class PeriodicRunnable implements java.lang.Runnable
 	{
-		public void run()
+		public void run()//add to drive train last 
 		{
 			
 			Left.processMotionProfileBuffer();
@@ -129,7 +129,7 @@ public class MotionProfile extends Subsystem
 	private void startFilling()
 	{
 
-		startFilling(GeneratedMotionProfile.Points, GeneratedMotionProfile.kNumPoints,GeneratedMotionProfile.Points,
+		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints,GeneratedMotionProfile.PointsR,
 				GeneratedMotionProfile.kNumPoints);
 	}
 
