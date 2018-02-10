@@ -21,14 +21,14 @@ public class PitchCommand extends Command
 
 	protected void initialize()
 	{
-		Robot.pitch.setLateralPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee);
-		Robot.pitch.setPosition(angle);
+		Robot.pitch.setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee);
+		
+		Robot.pitch.setSetpointPitch(angle);
 	}
 
 	@Override
 	protected boolean isFinished()
 	{
-		// TODO Auto-generated method stub
 		return false;
 	}
 }
