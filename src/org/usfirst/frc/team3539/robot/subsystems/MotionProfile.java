@@ -80,54 +80,40 @@ public class MotionProfile extends Subsystem
 	{
 		switch (state)
 		{
-		case 0: /* wait for application to tell us to start an MP */
+		case 0: /
 
 			if (bStart)
 			{
 				startFilling();
-				// System.out.println("startFilling");
+			
 				_setValue = SetValueMotionProfile.Enable;
 
-				// MP is being sent to CAN bus, wait a small amount of time
-
+				
 				state = 1;
 				loopTimeout = kNumLoopsTimeout;
 				bStart = false;
 
-				// System.out.println("case 0 ends");
+				
 
 			}
 
 			break;
 		case 1:
-			// System.out.println("case1");
-			if (status.btmBufferCnt > kMinPointsInTalon)
-			{/* do we have a minimum numberof points in Talon */
-				_setValue = SetValueMotionProfile.Enable; /* start (once) the motion profile */
-				/* MP will start once the control frame gets scheduled */
+			if (status.btmBufferCnt > kMinPointsInTalon)//low level buffer
+			{_setValue = SetValueMotionProfile.Enable; 
 				state = 2;
 				loopTimeout = kNumLoopsTimeout;
 			}
 			break;
-		case 2: /* check the status of the MP */
-
-			// System.out.println("case2");
-			/*
-			 * if talon is reporting things are good, keep adding to our timeout. Really this is so that you can unplug your talon in the middle of an MP and react to it.
-			 */
+		case 2: 
 
 			if (status.isUnderrun == false)
 			{
 				loopTimeout = kNumLoopsTimeout;
 			}
-			/*
-			 * If we are executing an MP and the MP finished, start loading another. We will go into hold state so robot servo's position.
-			 */
+			
 			if (status.activePointValid && status.isLast)
-			{
-				/*
-				 * because we set the last point's isLast to true, we will get here when the MP is done
-				 */
+			{//set disable on last point
 				_setValue = SetValueMotionProfile.Disable;
 				state = 0;
 				loopTimeout = -1;
@@ -150,35 +136,29 @@ public class MotionProfile extends Subsystem
 	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
 	{
 
-		/* create an empty point */
 		TrajectoryPoint pointL = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
 		if (status.hasUnderrun)
-		{ /* did we get an underrun condition since last time we checked ? */
+		{ 
 			Left.clearMotionProfileHasUnderrun(0);
-			Right.clearMotionProfileHasUnderrun(0); // Right as well soon
+			Right.clearMotionProfileHasUnderrun(0); 
 		}
 
-		Left.clearMotionProfileTrajectories(); /*
-												 * just in case we are interrupting another MP and there is still buffer point in memory, clear it.
-												 */
+		Left.clearMotionProfileTrajectories();//make sure nothing is interrupted
 		Right.clearMotionProfileTrajectories();
 
-		// right as well soon
 
-		/*
-		 * set the base trajectory period to zero, use the individual trajectory period below
-		 */
+
+		
 		Left.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 		Right.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 
-		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCntR; ++i)
 		{
 			double positionRotR = profileR[i][0];
 			double velocityRPMR = profileR[i][1];
-			pointR.position = positionRotR * 4096; // Convert Revolutions to Units
-			pointR.velocity = velocityRPMR * 4096 / 600.0; // Convert RPM to Units/100ms
+			pointR.position = positionRotR * 4096; 
+			pointR.velocity = velocityRPMR * 4096 / 600.0; 
 			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
 			pointR.zeroPos = false;
 			pointR.isLastPoint = false;
@@ -196,25 +176,21 @@ public class MotionProfile extends Subsystem
 			double positionRotL = profileL[iL][0];
 			double velocityRPML = profileL[iL][1];
 
-			// System.out.println(status.btmBufferCnt);
-
-			/* for each point, fill our structure and pass it to API */
 			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
 			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
-			// point.headingDeg = 0; /* future feature - not used in this example*/
-			pointL.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
-			pointR.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
-			// point.profileSlotSelect1 = 0; /* future feature - not used in this example -
-			// cascaded PID [0,1], leave zero */
+			// point.headingDeg = 0; future feature(Thanks omar) 
+			pointL.profileSlotSelect0 = 0; //there are multiple pid slots now
+			pointR.profileSlotSelect0 = 0; 
+		
 			pointL.timeDur = GetTrajectoryDuration((int) profileL[iL][2]);
 			pointL.zeroPos = false;
 
 			if (iL == 0)
-				pointL.zeroPos = true; /* set this to true on the first point */
+				pointL.zeroPos = true; 
 
 			pointL.isLastPoint = false;
 			if ((iL + 1) == totalCntL)
-				pointL.isLastPoint = true; /* set this to true on the last point */
+				pointL.isLastPoint = true; 
 
 			Left.pushMotionProfileTrajectory(pointL);
 			Right.pushMotionProfileTrajectory(pointR);
@@ -251,18 +227,16 @@ public class MotionProfile extends Subsystem
 
 	public void Disabled()
 	{
-		// System.out.println("Disabled");
 
 		Left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		Left.setSensorPhase(true); /* keep sensor and motor in phase */
+		Left.setSensorPhase(true); 
 		Left.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
 		Left.config_kF(0, 0.054, RobotMap.kTimeoutMs);
 		Left.config_kP(0, 2.000, RobotMap.kTimeoutMs);
 		Left.config_kI(0, 0.0, RobotMap.kTimeoutMs);
 		Left.config_kD(0, 20.0, RobotMap.kTimeoutMs);
-
-		/* Our profile uses 10ms timing */
+		
 		Left.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
 		 * status 10 provides the trajectory target for motion profile AND motion magic
@@ -278,7 +252,6 @@ public class MotionProfile extends Subsystem
 		Right.config_kI(0, .0, RobotMap.kTimeoutMs);
 		Right.config_kD(0, 20.0, RobotMap.kTimeoutMs);
 
-		/* Our profile uses 10ms timing */
 		Right.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
 		 * status 10 provides the trajectory target for motion profile AND motion magic
@@ -302,9 +275,7 @@ public class MotionProfile extends Subsystem
 		/* When we do start running our state machine start at the beginning. */
 		state = 0;
 		loopTimeout = -1;
-		/*
-		 * If application wanted to start an MP before, ignore and wait for next button press
-		 */
+	
 		bStart = false;
 	}
 
