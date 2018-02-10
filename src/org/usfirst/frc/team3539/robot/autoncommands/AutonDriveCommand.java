@@ -29,7 +29,7 @@ public class AutonDriveCommand extends Command
 				SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
 		// System.out.println(Robot.driveTrain.inchToEncoder(inches));
-		Robot.driveTrain.setLoopOnTarget(10);
+		Robot.driveTrain.setLoopRange(10);
 		Robot.driveTrain.setTargetAllowedError(300);
 		Robot.driveTrain.zeroLoopCounter();
 	}

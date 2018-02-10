@@ -25,7 +25,7 @@ public class AutonTurnEncoderCommand extends Command
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", 0), SmartDashboard.getNumber("TurnI", 0),
 				SmartDashboard.getNumber("TurnD", 0), SmartDashboard.getNumber("TurnF", 0));
 		Robot.driveTrain.setTargetAllowedError(500);
-		Robot.driveTrain.setLoopOnTarget(20);
+		Robot.driveTrain.setLoopRange(20);
 		Robot.driveTrain.zeroLoopCounter();
 		Robot.driveTrain.setSetpointTurn(targetAngle);
 	}

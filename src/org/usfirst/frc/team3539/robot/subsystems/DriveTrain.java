@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
@@ -25,10 +26,6 @@ public final class DriveTrain extends Subsystem
 	private ADXRS450_Gyro gyro;
 	private TalonSRX lf, lb, rf, rb, lm, rm;
 	private Drive drive;
-
-	private int loopAmount = 0;
-	private int loopCounter = 0;
-	private int allowedError = 0;
 
 	public DriveTrain()
 	{
@@ -63,19 +60,19 @@ public final class DriveTrain extends Subsystem
 		// Nominal is the default output when given no instruction
 		lf.configNominalOutputForward(0, 10);
 		rf.configNominalOutputForward(0, 10);
-		
+
 		lf.configNominalOutputReverse(0, 10);
 		rf.configNominalOutputReverse(0, 10);
 
 		lm.configNominalOutputForward(0, 10);
 		rm.configNominalOutputForward(0, 10);
-		
+
 		lm.configNominalOutputReverse(0, 10);
 		rm.configNominalOutputReverse(0, 10);
 
 		lb.configNominalOutputForward(0, 10);
 		rb.configNominalOutputForward(0, 10);
-		
+
 		lb.configNominalOutputReverse(0, 10);
 		rb.configNominalOutputReverse(0, 10);
 
@@ -95,7 +92,8 @@ public final class DriveTrain extends Subsystem
 
 		setFollower();
 		setInverted();
-		
+		enableCurrentLimit();
+
 		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
 	}
@@ -120,11 +118,17 @@ public final class DriveTrain extends Subsystem
 		rb.setInverted(false);
 	}
 
+	private void enableCurrentLimit()
+	{
+		lf.enableCurrentLimit(true);
+		rf.enableCurrentLimit(true);
+	}
+
 	public void zeroEncoders()
 	{
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
-		
+
 		lf.setSelectedSensorPosition(0, 0, 10);
 		rf.setSelectedSensorPosition(0, 0, 10);
 	}
@@ -153,13 +157,13 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.config_kF(0, F, 10);
 		rf.config_kF(0, F, 10);
-		
+
 		lf.config_kP(0, P, 10);
 		rf.config_kP(0, P, 10);
-		
+
 		lf.config_kI(0, I, 10);
 		rf.config_kI(0, I, 10);
-		
+
 		lf.config_kD(0, D, 10);
 		rf.config_kD(0, D, 10);
 	}
@@ -173,7 +177,7 @@ public final class DriveTrain extends Subsystem
 
 		System.out.println("lbcontrol: " + lb.getControlMode());
 		System.out.println("rbcontrol: " + rb.getControlMode());
-		
+
 		lf.set(ControlMode.Position, setpointinches);
 		rf.set(ControlMode.Position, -setpointinches);
 	}
@@ -185,28 +189,34 @@ public final class DriveTrain extends Subsystem
 		lb.set(ControlMode.Follower, RobotMap.lf);
 		rb.set(ControlMode.Follower, RobotMap.rf);
 
-		System.out.println("setpoint: " + degreesToEnc(setpointdegrees));
-		
-		lf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
-		rf.set(ControlMode.Position, degreesToEnc(setpointdegrees));
+		System.out.println("setpoint: " + degreesToEncoder(setpointdegrees));
+
+		lf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
+		rf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
 	}
 
-	public double degreesToEnc(double degrees)
+	public double degreesToEncoder(double degrees)
 	{
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
 
+	private int maxLoopNumber = 0;
+	private int onTargetCounter = 0;
+	private int allowedErrorRange = 0;
+
 	public boolean onTarget()
 	{
-		if (lf.getClosedLoopError(0) <= allowedError && lf.getClosedLoopError(0) >= -allowedError
-				&& rf.getClosedLoopError(0) <= allowedError && rf.getClosedLoopError(0) >= -allowedError)
+		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
+				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
 		{
-			loopCounter++;
-			System.out.println(loopCounter);
+			onTargetCounter++;
 		}
 		else
-			loopCounter = 0;
-		if (loopCounter >= loopAmount)
+		{
+			onTargetCounter = 0;
+		}
+
+		if (maxLoopNumber <= onTargetCounter)
 		{
 			return true;
 		}
@@ -214,26 +224,26 @@ public final class DriveTrain extends Subsystem
 		return false;
 	}
 
-	public void setLoopOnTarget(int LoopAmount)
+	public void setLoopRange(int maxLoopNumber)
 	{
-		loopAmount = LoopAmount;
+		this.maxLoopNumber = maxLoopNumber;
 	}
 
-	public void setTargetAllowedError(int MotorTicks)
+	public void setTargetAllowedError(int ticks)
 	{
-		lf.configAllowableClosedloopError(0, MotorTicks, 10);
-		rf.configAllowableClosedloopError(0, MotorTicks, 10);
-		allowedError = MotorTicks;
+		lf.configAllowableClosedloopError(0, ticks, 10);
+		rf.configAllowableClosedloopError(0, ticks, 10);
+		allowedErrorRange = ticks;
 	}
 
 	public void zeroLoopCounter()
 	{
-		loopCounter = 0;
+		onTargetCounter = 0;
 	}
 
 	public double inchToEncoder(double inches)
 	{
-		return (inches / 12.56) * 4096;
+		return (inches / RobotMap.wheelCir) * 4096;
 	}
 
 	public void updateEncoders()
