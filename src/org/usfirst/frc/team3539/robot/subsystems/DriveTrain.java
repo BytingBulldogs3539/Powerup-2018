@@ -219,11 +219,13 @@ public final class DriveTrain extends Subsystem
 
 	public void setupOnTarget(int ticks, int maxLoopNumber)
 	{
+		// zero the on target counter
 		onTargetCounter = 0;
 		
 		lf.configAllowableClosedloopError(0, ticks, 10);
 		rf.configAllowableClosedloopError(0, ticks, 10);
 		
+		// set tolerance in ticks
 		allowedErrorRange = ticks;
 	}
 
