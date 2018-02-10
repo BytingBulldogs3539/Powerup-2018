@@ -5,7 +5,6 @@ import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
 import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
-import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
@@ -20,8 +19,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
- * project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
+ * described in the IterativeRobot documentation. If you change the name of this class or the package after creating
+ * this project, you must also update the manifest file in the resource directory.
  **/
 
 public class Robot extends IterativeRobot
@@ -33,10 +33,10 @@ public class Robot extends IterativeRobot
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 	public static Solenoids solenoid = new Solenoids();
-	
-	//public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it 
 
-	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
+	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
+
+	public static PowerDistributionPanel pdp;
 	public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
@@ -49,6 +49,8 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
+		pdp = new PowerDistributionPanel();
+
 		SmartInit();
 
 		try
@@ -64,20 +66,20 @@ public class Robot extends IterativeRobot
 	}
 
 	/**
-	 * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the TimedRobot documentation. If you change the name of this class or the package after creating this
-	 * project, you must also update the build.properties file in the project.
+	 * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
+	 * described in the TimedRobot documentation. If you change the name of this class or the package after creating
+	 * this project, you must also update the build.properties file in the project.
 	 */
 
 	@Override
 	public void disabledInit()
 	{
 		Scheduler.getInstance().run();
-
 	}
 
 	public void disabledPeriodic()
 	{
-	//	serialSub.getDistance(2);
+		// serialSub.getDistance(2);
 
 		Scheduler.getInstance().run();
 	}
@@ -158,8 +160,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("ElevatorI", RobotMap.ElevatorEye);
 		SmartDashboard.putNumber("ElevatorD", RobotMap.ElevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.ElevatorFFF);
-		
-		
+
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 

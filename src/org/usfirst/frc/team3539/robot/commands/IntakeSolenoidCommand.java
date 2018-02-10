@@ -1,37 +1,22 @@
 package org.usfirst.frc.team3539.robot.commands;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 
 /**
  *
  */
 
-public class IntakeSolenoidCommand extends Command
+public class IntakeSolenoidCommand extends InstantCommand
 {
-	private boolean Forward = false;
-
-	public IntakeSolenoidCommand(boolean Position)
+	public IntakeSolenoidCommand()
 	{
-		Forward = Position;
 	}
 
 	protected void initialize()
 	{
-		if (Forward)
-			Robot.solenoid.intakeSol(DoubleSolenoid.Value.kForward);
-		else
-		{
-			Robot.solenoid.intakeSol(DoubleSolenoid.Value.kReverse);
-		}
-	}
-
-	protected void execute()
-	{
+		Robot.solenoid.intakeSol.toggle();
 	}
 
 	protected boolean isFinished()

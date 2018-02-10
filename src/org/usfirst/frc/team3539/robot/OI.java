@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
-import org.usfirst.frc.team3539.robot.commands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;

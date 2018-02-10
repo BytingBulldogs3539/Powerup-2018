@@ -15,11 +15,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Elevator extends Subsystem
 {
 
-	TalonSRX liftTalon1, liftTalon2;
-	int error = 0;
-	int loopAmount = 0;
-	int loopCounter = 0;
-	int allowedError = 1000;
+	private TalonSRX liftTalon1, liftTalon2;
+	private int error = 0;
+	private int loopAmount = 0;
+	private int loopCounter = 0;
+	private int allowedError = 1000;
 
 	public enum ElevatorPosition
 	{
@@ -36,9 +36,8 @@ public class Elevator extends Subsystem
 
 	public void setMotorPower(double speed)
 	{
-	
-
 		liftTalon1.set(ControlMode.PercentOutput, speed);
+		liftTalon2.set(ControlMode.PercentOutput, -speed);
 	}
 
 	public void configMotors()
@@ -46,11 +45,6 @@ public class Elevator extends Subsystem
 		liftTalon1.configNominalOutputForward(.3, 10);
 		liftTalon1.configNominalOutputForward(-.3, 10);
 		liftTalon2.set(ControlMode.Follower, liftTalon1.getDeviceID());
-	}
-
-	@Override
-	protected void initDefaultCommand()
-	{
 	}
 
 	public void zeroEnc()
@@ -115,10 +109,12 @@ public class Elevator extends Subsystem
 		loopAmount = LoopAmount;
 	}
 
-	public void setTargetAllowedError(int MotorTicks)
+	public void setTargetAllowedError(int ticks)
 	{
-		liftTalon1.configAllowableClosedloopError(0, MotorTicks, 10);
-		allowedError = MotorTicks;
+		liftTalon1.configAllowableClosedloopError(0, ticks, 10);
+		liftTalon2.configAllowableClosedloopError(0, ticks, 10);
+		
+		allowedError = ticks;
 	}
 
 	public void zeroLoopCounter()
@@ -126,14 +122,19 @@ public class Elevator extends Subsystem
 		loopCounter = 0;
 	}
 
-	public double inchToEncoder(double inches)// Will Be A Different Conversion ration.
+	// Will be a different conversion ratio
+	public double inchToEncoder(double inches)
 	{
 		return (inches / 12.56) * 4096;
 	}
 
 	public void updateEnc()
 	{
-		SmartDashboard.putNumber("Left Elevator Enc", liftTalon1.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Elevator Enc", liftTalon1.getSelectedSensorPosition(0));
 	}
-
+	
+	@Override
+	protected void initDefaultCommand()
+	{
+	}
 }
