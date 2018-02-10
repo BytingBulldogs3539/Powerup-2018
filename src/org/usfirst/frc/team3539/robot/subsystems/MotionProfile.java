@@ -3,8 +3,6 @@ package org.usfirst.frc.team3539.robot.subsystems;
 //d@D
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.MotionProfileCommand;
-import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.RobotMap;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
@@ -15,12 +13,11 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-
-public class MotionProfile extends Subsystem {
+public class MotionProfile extends Subsystem
+{
 
 	private SetValueMotionProfile _setValue = SetValueMotionProfile.Disable;
 	Notifier process = new Notifier(new PeriodicRunnable());
@@ -41,42 +38,52 @@ public class MotionProfile extends Subsystem {
 
 	// SetValueMotionProfile value = SetValueMotionProfile.Enable;
 
-	class PeriodicRunnable implements java.lang.Runnable {
-		public void run() {
+	class PeriodicRunnable implements java.lang.Runnable
+	{
+		public void run()
+		{
 			Left.processMotionProfileBuffer();
 			Right.processMotionProfileBuffer();
 
 		}
 	}
-public boolean start()
-{
-	return bStart;
-}
-	public MotionProfile() {
+
+	public boolean start()
+	{
+		return bStart;
+	}
+
+	public MotionProfile()
+	{
 
 		Left.changeMotionControlFramePeriod(5);
 		Right.changeMotionControlFramePeriod(5);
 
 	}
 
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	{
 		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
 		retval = retval.valueOf(durationMs);
 
 		return retval;
 	}
 
-	public void Process() {
+	public void Process()
+	{
 		process.startPeriodic(.005);
 	}
 
-	public void Control() {
-		switch (state) {
+	public void Control()
+	{
+		switch (state)
+		{
 		case 0: /* wait for application to tell us to start an MP */
 
-			if (bStart) {
+			if (bStart)
+			{
 				startFilling();
-//System.out.println("startFilling");
+				// System.out.println("startFilling");
 				_setValue = SetValueMotionProfile.Enable;
 
 				// MP is being sent to CAN bus, wait a small amount of time
@@ -84,16 +91,16 @@ public boolean start()
 				state = 1;
 				loopTimeout = kNumLoopsTimeout;
 				bStart = false;
-			
 
 				// System.out.println("case 0 ends");
 
 			}
 
 			break;
-		case 1: 
-//System.out.println("case1");
-			if (status.btmBufferCnt > kMinPointsInTalon) {/* do we have a minimum numberof points in Talon */
+		case 1:
+			// System.out.println("case1");
+			if (status.btmBufferCnt > kMinPointsInTalon)
+			{/* do we have a minimum numberof points in Talon */
 				_setValue = SetValueMotionProfile.Enable; /* start (once) the motion profile */
 				/* MP will start once the control frame gets scheduled */
 				state = 2;
@@ -101,26 +108,25 @@ public boolean start()
 			}
 			break;
 		case 2: /* check the status of the MP */
-			
-//System.out.println("case2");
-/*
-			 * 
-			 * if talon is reporting things are good, keep adding to our timeout. Really
-			 * this is so that you can unplug your talon in the middle of an MP and react to
-			 * it.
+
+			// System.out.println("case2");
+			/*
+			 * if talon is reporting things are good, keep adding to our timeout. Really this is so that you can unplug
+			 * your talon in the middle of an MP and react to it.
 			 */
 
-			if (status.isUnderrun == false) {
+			if (status.isUnderrun == false)
+			{
 				loopTimeout = kNumLoopsTimeout;
 			}
 			/*
-			 * If we are executing an MP and the MP finished, start loading another. We will
-			 * go into hold state so robot servo's position.
+			 * If we are executing an MP and the MP finished, start loading another. We will go into hold state so robot
+			 * servo's position.
 			 */
-			if (status.activePointValid && status.isLast) {
+			if (status.activePointValid && status.isLast)
+			{
 				/*
-				 * because we set the last point's isLast to true, we will get here when the MP
-				 * is done
+				 * because we set the last point's isLast to true, we will get here when the MP is done
 				 */
 				_setValue = SetValueMotionProfile.Disable;
 				state = 0;
@@ -134,19 +140,24 @@ public boolean start()
 		vel = Left.getActiveTrajectoryVelocity();
 	}
 
-	private void startFilling() {
+	private void startFilling()
+	{
 		/* since this example only has one talon, just update that one */
 
-		startFilling(org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points, org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints,org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints);
+		startFilling(org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,
+				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints,
+				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,
+				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints);
 	}
 
-
-	private void startFilling(double[][] profileL, int totalCntL,double[][] profileR,int totalCntR) {
+	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
+	{
 
 		/* create an empty point */
 		TrajectoryPoint pointL = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-		if (status.hasUnderrun) { /* did we get an underrun condition since last time we checked ? */
+		if (status.hasUnderrun)
+		{ /* did we get an underrun condition since last time we checked ? */
 			Left.clearMotionProfileHasUnderrun(0);
 			Right.clearMotionProfileHasUnderrun(0); // Right as well soon
 		}
@@ -160,14 +171,14 @@ public boolean start()
 		// right as well soon
 
 		/*
-		 * set the base trajectory period to zero, use the individual trajectory period
-		 * below
+		 * set the base trajectory period to zero, use the individual trajectory period below
 		 */
 		Left.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 		Right.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 
 		/* This is fast since it's just into our TOP buffer */
-		for (int i = 0; i < totalCntR; ++i) {
+		for (int i = 0; i < totalCntR; ++i)
+		{
 			double positionRotR = profileR[i][0];
 			double velocityRPMR = profileR[i][1];
 			pointR.position = positionRotR * 4096; // Convert Revolutions to Units
@@ -176,20 +187,20 @@ public boolean start()
 			pointR.zeroPos = false;
 			pointR.isLastPoint = false;
 
-			
 			if (i == 0)
-			pointR.zeroPos = true;
-			
-			if((i+1)== totalCntR)
+				pointR.zeroPos = true;
+
+			if ((i + 1) == totalCntR)
 				pointR.isLastPoint = true; /* set this to true on the last point */
 
 		}
 
-		for (int iL = 0; iL < totalCntL; ++iL) {
+		for (int iL = 0; iL < totalCntL; ++iL)
+		{
 			double positionRotL = profileL[iL][0];
 			double velocityRPML = profileL[iL][1];
 
-//			System.out.println(status.btmBufferCnt);
+			// System.out.println(status.btmBufferCnt);
 
 			/* for each point, fill our structure and pass it to API */
 			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
@@ -208,34 +219,32 @@ public boolean start()
 			pointL.isLastPoint = false;
 			if ((iL + 1) == totalCntL)
 				pointL.isLastPoint = true; /* set this to true on the last point */
-			
-			
-
 
 			Left.pushMotionProfileTrajectory(pointL);
 			Right.pushMotionProfileTrajectory(pointR);
 
-
 		}
 	}
 
-	
-
-	public void startMotionProfile() {
+	public void startMotionProfile()
+	{
 		bStart = true;
-		
+
 	}
+
 	public void SetMotionFalse()
 	{
-		bStart= false;
+		bStart = false;
 	}
 
-	public void initDefaultCommand() {
+	public void initDefaultCommand()
+	{
 
 		setDefaultCommand(new MotionProfileCommand());
 	}
 
-	public void setMotionProfile() {
+	public void setMotionProfile()
+	{
 		Left.set(ControlMode.MotionProfile, _setValue.value);
 		Left.setInverted(true);
 		LeftSlave.set(ControlMode.Follower, Left.getBaseID());
@@ -244,8 +253,9 @@ public boolean start()
 
 	}
 
-	public void Disabled() {
-		//System.out.println("Disabled");
+	public void Disabled()
+	{
+		// System.out.println("Disabled");
 
 		Left.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		Left.setSensorPhase(true); /* keep sensor and motor in phase */
@@ -280,13 +290,15 @@ public boolean start()
 		Right.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 	}
 
-	public void ResetENC() {
+	public void ResetENC()
+	{
 		Left.setSelectedSensorPosition(0, 0, 0);
 		Right.setSelectedSensorPosition(0, 0, 0);
 
 	}
 
-	public void Reset() {
+	public void Reset()
+	{
 		Left.clearMotionProfileTrajectories();
 		Right.clearMotionProfileTrajectories();
 		/* When we do re-enter motionProfile control mode, stay disabled. */
@@ -295,13 +307,13 @@ public boolean start()
 		state = 0;
 		loopTimeout = -1;
 		/*
-		 * If application wanted to start an MP before, ignore and wait for next button
-		 * press
+		 * If application wanted to start an MP before, ignore and wait for next button press
 		 */
 		bStart = false;
 	}
 
-	public void print() {
+	public void print()
+	{
 		System.out.println("LEftposition" + Left.getSelectedSensorPosition(0));
 		System.out.println("Rightposition" + Right.getSelectedSensorPosition(0));
 		System.out.println("LEftvelocity" + Left.getSelectedSensorVelocity(0));
