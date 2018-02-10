@@ -62,8 +62,9 @@ public class RobotMap
 	public static double breakDee = 0.0;
 	public static double breakFFF = 0.1;
 
+	// Tina - Change to new bot
 	public static final double wheelCir = 12.56;
-
+	// Tina - Change to new bot
 	public static final double robotCir = 103.62;
 
 	// Current Control
