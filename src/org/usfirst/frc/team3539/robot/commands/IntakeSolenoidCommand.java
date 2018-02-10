@@ -10,16 +10,24 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CloseIntakeCommand extends Command
-{
 
-	public CloseIntakeCommand()
+public class IntakeSolenoidCommand extends Command
+{
+	private boolean Forward = false;
+
+	public IntakeSolenoidCommand(boolean Position)
 	{
+		Forward = Position;
 	}
 
 	protected void initialize()
 	{
-Robot.solenoid.intakeSol(DoubleSolenoid.Value.kOff);
+		if (Forward)
+			Robot.solenoid.intakeSol(DoubleSolenoid.Value.kForward);
+		else
+		{
+			Robot.solenoid.intakeSol(DoubleSolenoid.Value.kReverse);
+		}
 	}
 
 	protected void execute()

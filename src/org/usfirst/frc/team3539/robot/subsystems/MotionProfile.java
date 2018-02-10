@@ -1,9 +1,10 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
+import org.usfirst.frc.team3539.robot.Robot;
 //d@D
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.MotionProfileCommand;
-
+import org.usfirst.frc.team3539.robot.profiles.*;
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
@@ -29,7 +30,7 @@ public class MotionProfile extends Subsystem
 	private static final int kNumLoopsTimeout = 10;
 
 	double pos = 0, vel = 0, heading = 0;
-
+	
 	TalonSRX Left = new TalonSRX(RobotMap.lf);
 	TalonSRX LeftSlave = new TalonSRX(RobotMap.lb);
 
@@ -42,6 +43,7 @@ public class MotionProfile extends Subsystem
 	{
 		public void run()
 		{
+			
 			Left.processMotionProfileBuffer();
 			Right.processMotionProfileBuffer();
 
@@ -111,8 +113,7 @@ public class MotionProfile extends Subsystem
 
 			// System.out.println("case2");
 			/*
-			 * if talon is reporting things are good, keep adding to our timeout. Really this is so that you can unplug
-			 * your talon in the middle of an MP and react to it.
+			 * if talon is reporting things are good, keep adding to our timeout. Really this is so that you can unplug your talon in the middle of an MP and react to it.
 			 */
 
 			if (status.isUnderrun == false)
@@ -120,8 +121,7 @@ public class MotionProfile extends Subsystem
 				loopTimeout = kNumLoopsTimeout;
 			}
 			/*
-			 * If we are executing an MP and the MP finished, start loading another. We will go into hold state so robot
-			 * servo's position.
+			 * If we are executing an MP and the MP finished, start loading another. We will go into hold state so robot servo's position.
 			 */
 			if (status.activePointValid && status.isLast)
 			{
@@ -142,12 +142,9 @@ public class MotionProfile extends Subsystem
 
 	private void startFilling()
 	{
-		/* since this example only has one talon, just update that one */
 
-		startFilling(org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,
-				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints,
-				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.Points,
-				org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile.kNumPoints);
+		startFilling(GeneratedMotionProfile.Points, GeneratedMotionProfile.kNumPoints,GeneratedMotionProfile.Points,
+				GeneratedMotionProfile.kNumPoints);
 	}
 
 	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
@@ -163,8 +160,7 @@ public class MotionProfile extends Subsystem
 		}
 
 		Left.clearMotionProfileTrajectories(); /*
-												 * just in case we are interrupting another MP and there is still buffer
-												 * point in memory, clear it.
+												 * just in case we are interrupting another MP and there is still buffer point in memory, clear it.
 												 */
 		Right.clearMotionProfileTrajectories();
 
