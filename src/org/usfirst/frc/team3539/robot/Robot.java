@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
 import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
 import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
+import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -31,7 +32,9 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
-	public static SerialSub serialSub = new SerialSub();
+	public static Solenoids solenoid = new Solenoids();
+	
+	//public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it 
 
 	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 	public static Compressor c;
@@ -74,7 +77,7 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
-		serialSub.getDistance(2);
+	//	serialSub.getDistance(2);
 
 		Scheduler.getInstance().run();
 	}
@@ -151,6 +154,12 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("BreakD", RobotMap.breakDee);
 		SmartDashboard.putNumber("BreakF", RobotMap.breakFFF);
 
+		SmartDashboard.putNumber("ElevatorP", RobotMap.ElevatorPea);
+		SmartDashboard.putNumber("ElevatorI", RobotMap.ElevatorEye);
+		SmartDashboard.putNumber("ElevatorD", RobotMap.ElevatorDee);
+		SmartDashboard.putNumber("ElevatorF", RobotMap.ElevatorFFF);
+		
+		
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 

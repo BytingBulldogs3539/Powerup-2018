@@ -16,10 +16,10 @@ public class Elevator extends Subsystem
 {
 
 	TalonSRX liftTalon1, liftTalon2;
-	int error = 1000;
+	int error = 0;
 	int loopAmount = 0;
 	int loopCounter = 0;
-	int allowedError = 0;
+	int allowedError = 1000;
 
 	public enum ElevatorPosition
 	{
@@ -36,11 +36,15 @@ public class Elevator extends Subsystem
 
 	public void setMotorPower(double speed)
 	{
+	
+
 		liftTalon1.set(ControlMode.PercentOutput, speed);
 	}
 
 	public void configMotors()
 	{
+		liftTalon1.configNominalOutputForward(.3, 10);
+		liftTalon1.configNominalOutputForward(-.3, 10);
 		liftTalon2.set(ControlMode.Follower, liftTalon1.getDeviceID());
 	}
 
@@ -53,7 +57,7 @@ public class Elevator extends Subsystem
 	{
 		liftTalon1.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
 		liftTalon1.getSensorCollection().setPulseWidthPosition(0, 10);
-		liftTalon1.setSelectedSensorPosition(liftTalon1.getSelectedSensorPosition(10), 0, 10);
+		liftTalon1.setSelectedSensorPosition(liftTalon1.getSelectedSensorPosition(0), 0, 10);
 	}
 
 	public void setPID(double P, double I, double D, double F)
@@ -71,6 +75,7 @@ public class Elevator extends Subsystem
 
 	public void setSetpointLift(ElevatorPosition position)
 	{
+		System.out.println(liftTalon1.getSelectedSensorPosition(0));
 		if (position == ElevatorPosition.SWITCH)
 		{
 			liftTalon1.set(ControlMode.Position, RobotMap.elevatorEncSwitch);

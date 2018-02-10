@@ -90,12 +90,16 @@ public class RobotMap
 	public static final int rIntakeMotor = 3539;
 
 	// Elevator
-	public static final int elevatorMotor1 = 1;
-	public static final int elevatorMotor2 = 2;
+	public static final int elevatorMotor1 = 1;// 1;
+	public static final int elevatorMotor2 = 2;// 2;
 	public static final int elevatorEncFloor = 0; // SOME INT
 	public static final int elevatorEncSwitch = 0; // SOME INT
 	public static final int elevatorEncClimb = 0; // SOME INT
 	public static final int elevatorEncScale = 0; // SOME INT
+	public static double ElevatorPea = 0;
+	public static double ElevatorEye = 0;
+	public static double ElevatorDee = 0;
+	public static double ElevatorFFF = 0;
 
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
