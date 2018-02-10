@@ -91,9 +91,6 @@ public final class DriveTrain extends Subsystem
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		lf.configAllowableClosedloopError(0, 0, 10);
-		rf.configAllowableClosedloopError(0, 0, 10);
-
 		setFollower();
 		setInverted();
 		enableCurrentLimit();
@@ -106,6 +103,7 @@ public final class DriveTrain extends Subsystem
 	{
 		lm.set(ControlMode.Follower, lf.getDeviceID());
 		rm.set(ControlMode.Follower, rf.getDeviceID());
+		
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
@@ -179,8 +177,8 @@ public final class DriveTrain extends Subsystem
 		System.out.println("lbcontrol: " + lb.getControlMode());
 		System.out.println("rbcontrol: " + rb.getControlMode());
 
-		lf.set(ControlMode.Position, setpointinches);
-		rf.set(ControlMode.Position, -setpointinches);
+		lf.set(ControlMode.Position, inchToEncoder(setpointinches));
+		rf.set(ControlMode.Position, inchToEncoder(setpointinches));
 	}
 
 	public void setSetpointTurn(double setpointdegrees)

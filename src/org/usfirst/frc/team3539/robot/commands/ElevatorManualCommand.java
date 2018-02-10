@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class LiftManual extends Command
+public class ElevatorManualCommand extends Command
 {
 
-	public LiftManual()
+	public ElevatorManualCommand()
 	{
 		requires(Robot.elevator);
 	}

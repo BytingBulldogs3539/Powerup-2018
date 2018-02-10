@@ -1,8 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
-import org.usfirst.frc.team3539.robot.commands.IntakeSolenoidCommand;
-import org.usfirst.frc.team3539.robot.commands.LiftManual;
+import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
@@ -20,7 +19,7 @@ public class OI
 	public OI()
 	{	
 		//Elevator
-		two.buttonSTART.whenPressed(new LiftManual());
+		two.buttonSTART.whenPressed(new ElevatorManualCommand());
 		
 		//Pitch
 		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));

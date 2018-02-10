@@ -67,9 +67,6 @@ public class RobotMap
 	// Tina - Change to new bot
 	public static final double robotCir = 103.62;
 
-	// Current Control
-	public static final double maxCurrent = 120;
-
 	// Drivetrain Deadbands
 	public static double throttleDeadband = 0.02;
 	public static double wheelDeadband = 0.02;
