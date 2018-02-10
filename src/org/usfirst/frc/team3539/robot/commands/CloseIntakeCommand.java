@@ -1,5 +1,10 @@
 package org.usfirst.frc.team3539.robot.commands;
 
+import org.usfirst.frc.team3539.robot.Robot;
+import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
+
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -14,6 +19,7 @@ public class CloseIntakeCommand extends Command
 
 	protected void initialize()
 	{
+Robot.solenoid.intakeSol(DoubleSolenoid.Value.kOff);
 	}
 
 	protected void execute()
@@ -22,7 +28,7 @@ public class CloseIntakeCommand extends Command
 
 	protected boolean isFinished()
 	{
-		return false;
+		return true;
 	}
 
 	protected void end()
