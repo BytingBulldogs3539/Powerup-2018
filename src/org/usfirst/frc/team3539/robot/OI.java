@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
+import org.usfirst.frc.team3539.robot.commands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.commands.LiftManual;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
@@ -29,5 +30,8 @@ public class OI
 		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
 		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
 		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));	
+		//one.buttonA.whenPressed(new IntakeSolenoidCommand(true));
+	//	one.buttonB.whenPressed(new IntakeSolenoidCommand(false));
+
 	}
 }
