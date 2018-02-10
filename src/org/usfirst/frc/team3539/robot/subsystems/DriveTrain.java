@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
@@ -172,9 +171,6 @@ public final class DriveTrain extends Subsystem
 	{
 		zeroEncoders();
 
-		lb.set(ControlMode.Follower, RobotMap.lf);
-		rb.set(ControlMode.Follower, RobotMap.rf);
-
 		System.out.println("lbcontrol: " + lb.getControlMode());
 		System.out.println("rbcontrol: " + rb.getControlMode());
 
@@ -185,9 +181,6 @@ public final class DriveTrain extends Subsystem
 	public void setSetpointTurn(double setpointdegrees)
 	{
 		zeroEncoders();
-
-		lb.set(ControlMode.Follower, RobotMap.lf);
-		rb.set(ControlMode.Follower, RobotMap.rf);
 
 		System.out.println("setpoint: " + degreesToEncoder(setpointdegrees));
 
@@ -224,21 +217,14 @@ public final class DriveTrain extends Subsystem
 		return false;
 	}
 
-	public void setLoopRange(int maxLoopNumber)
-	{
-		this.maxLoopNumber = maxLoopNumber;
-	}
-
-	public void setTargetAllowedError(int ticks)
-	{
-		lf.configAllowableClosedloopError(0, ticks, 10);
-		rf.configAllowableClosedloopError(0, ticks, 10);
-		allowedErrorRange = ticks;
-	}
-
-	public void zeroLoopCounter()
+	public void setupOnTarget(int ticks, int maxLoopNumber)
 	{
 		onTargetCounter = 0;
+		
+		lf.configAllowableClosedloopError(0, ticks, 10);
+		rf.configAllowableClosedloopError(0, ticks, 10);
+		
+		allowedErrorRange = ticks;
 	}
 
 	public double inchToEncoder(double inches)

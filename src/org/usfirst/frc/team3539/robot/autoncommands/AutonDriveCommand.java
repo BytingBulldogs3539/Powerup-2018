@@ -16,22 +16,24 @@ public class AutonDriveCommand extends Command
 	public AutonDriveCommand(double inches, double seconds)
 	{
 		requires(Robot.driveTrain);
+		
 		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee,
 				SmartDashboard.getNumber("F", 0));
+		
 		this.inches = inches;
+		
 		setTimeout(seconds);
 	}
 
 	protected void initialize()
-	{
-		Robot.driveTrain.zeroEncoders();
+	{		
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0),
 				SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
+		
+		
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
-		// System.out.println(Robot.driveTrain.inchToEncoder(inches));
-		Robot.driveTrain.setLoopRange(10);
-		Robot.driveTrain.setTargetAllowedError(300);
-		Robot.driveTrain.zeroLoopCounter();
+		
+		Robot.driveTrain.setupOnTarget(300, 10);
 	}
 
 	protected void execute()
@@ -46,7 +48,6 @@ public class AutonDriveCommand extends Command
 	protected void end()
 	{
 		Robot.driveTrain.driveArcade(0, 0);
-		Robot.driveTrain.zeroEncoders();
 	}
 
 	protected void interrupted()

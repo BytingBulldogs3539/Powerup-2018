@@ -80,7 +80,7 @@ public class MotionProfile extends Subsystem
 	{
 		switch (state)
 		{
-		case 0: /
+		case 0: 
 
 			if (bStart)
 			{
