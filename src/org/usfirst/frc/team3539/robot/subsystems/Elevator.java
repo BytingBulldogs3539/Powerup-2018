@@ -91,29 +91,30 @@ public class Elevator extends Subsystem
 		// DO NOT ZERO ENCODER
 		
 		liftMaster.set(ControlMode.Position, inchToEncoder(inches));
-		
-
-		System.out.println("lbcontrol: " + liftMaster.getControlMode());
 	}
 
 	public void setSetpointLift(ElevatorPosition position)
 	{	
+		double inches = 0;
+		
 		if (position == ElevatorPosition.SWITCH)
 		{
-			liftMaster.set(ControlMode.Position, RobotMap.elevatorEncSwitch);
+			inches = RobotMap.elevatorEncoderSwitch;
 		}
 		else if (position == ElevatorPosition.SCALE)
 		{
-			liftMaster.set(ControlMode.Position, RobotMap.elevatorEncScale);
+			inches = RobotMap.elevatorEncoderScale;
 		}
 		else if (position == ElevatorPosition.FLOOR)
 		{
-			liftMaster.set(ControlMode.Position, RobotMap.elevatorEncFloor);
+			inches = RobotMap.elevatorEncoderFloor;
 		}
 		else if (position == ElevatorPosition.CLIMB)
 		{
-			liftMaster.set(ControlMode.Position, RobotMap.elevatorEncClimb);
+			inches = RobotMap.elevatorEncoderClimb;
 		}
+		
+		setSetpointLift(inches);
 	}
 
 	private int maxLoopNumber = 0;
@@ -153,12 +154,12 @@ public class Elevator extends Subsystem
 	// Will be a different conversion ratio
 	public double inchToEncoder(double inches)
 	{
-		return (inches / 12.56) * 4096;
+		return (inches / RobotMap.wheelCir) * 4096;
 	}
 	
 	public void updateEncoders()
 	{
-		SmartDashboard.putNumber("Elevator Enc", liftMaster.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Elevator Encoder", liftMaster.getSelectedSensorPosition(0));
 	}
 	
 	@Override

@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.subsystems;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
+import org.usfirst.frc.team3539.robot.subsystems.MotionProfile.PeriodicRunnable;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
@@ -11,10 +12,12 @@ import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
+import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -337,6 +340,36 @@ public final class DriveTrain extends Subsystem
 		rb.set(ControlMode.PercentOutput, 0);
 		Motors.toString();
 	}
+	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
+	private MotionProfileStatus status = new MotionProfileStatus();
+	Notifier process = new Notifier(new PeriodicRunnable());
+	boolean finish = false;
+	public boolean GetFinish()
+	{
+		return finish;
+	}
+	public void setMotionProfile()
+	{
+		lf.set(ControlMode.MotionProfile, setValue.value);
+		//lf.setInverted(true);
+		rf.set(ControlMode.MotionProfile, setValue.value);
+		
+		rf.getMotionProfileStatus(status);
+		
+		if (status.activePointValid && status.isLast)
+		{
+			finish = true;
+			setValue = SetValueMotionProfile.Disable;
+		}
+	}
+	public void MotionProfileReset()
+	{
+		lf.clearMotionProfileTrajectories();
+		rf.clearMotionProfileTrajectories();
+		setValue = SetValueMotionProfile.Disable;
+	
+	}
+
 
 	
 	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
@@ -353,8 +386,7 @@ public final class DriveTrain extends Subsystem
 		rf.changeMotionControlFramePeriod(5);
 
 	}
-	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
-	private MotionProfileStatus status = new MotionProfileStatus();
+
 
 	public void Filling(){
 		setValue = SetValueMotionProfile.Enable;
@@ -366,6 +398,7 @@ public final class DriveTrain extends Subsystem
 
 		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints,GeneratedMotionProfile.PointsR,
 				GeneratedMotionProfile.kNumPoints);
+		process.startPeriodic(0.005);
 	}
 
 	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
@@ -429,11 +462,56 @@ public final class DriveTrain extends Subsystem
 
 			lf.pushMotionProfileTrajectory(pointL);
 			rf.pushMotionProfileTrajectory(pointR);
+		}
 
 		}
-	
-	
 
+	
+	public void DisabledMotionProfile()//probably want new name 
+
+	{
+
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		lf.setSensorPhase(true); 
+		lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+
+		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		lf.config_kP(0, 2.000, RobotMap.kTimeoutMs);
+		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+		lf.config_kD(0, 20.0, RobotMap.kTimeoutMs);
+		
+		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+		/*
+		 * status 10 provides the trajectory target for motion profile AND motion magic
+		 */
+		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rf.setSensorPhase(true); /* keep sensor and motor in phase */
+		rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+
+		rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		rf.config_kP(0, 2.000, RobotMap.kTimeoutMs);
+		rf.config_kI(0, .0, RobotMap.kTimeoutMs);
+		rf.config_kD(0, 20.0, RobotMap.kTimeoutMs);
+
+		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+		/*
+		 * status 10 provides the trajectory target for motion profile AND motion magic
+		 */
+		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+	}
+	
+	class PeriodicRunnable implements java.lang.Runnable
+	{
+		public void run()//add to drive train last 
+		{
+			
+			lf.processMotionProfileBuffer();
+			rf.processMotionProfileBuffer();
+
+		}
+	}
 
 	
 	

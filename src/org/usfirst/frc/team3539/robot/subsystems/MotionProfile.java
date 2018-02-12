@@ -279,13 +279,6 @@ public class MotionProfile extends Subsystem
 		bStart = false;
 	}
 
-	public void print()
-	{
-		System.out.println("LEftposition" + Left.getSelectedSensorPosition(0));
-		System.out.println("Rightposition" + Right.getSelectedSensorPosition(0));
-		System.out.println("LEftvelocity" + Left.getSelectedSensorVelocity(0));
-		System.out.println("Rightvelocity" + Right.getSelectedSensorVelocity(0));
 
-	}
 
 }
