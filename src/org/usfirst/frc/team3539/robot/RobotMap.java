@@ -22,6 +22,8 @@ public class RobotMap
 	public static int liftersolOff = 0;
 	public static int rampsolOn = 0;
 	public static int rampsolOff = 0;
+	public static int shiftersolOn = 0;
+	public static int shiftersolOff = 0;
 
 	// PITCH
 	public static final int pitch = 6;
