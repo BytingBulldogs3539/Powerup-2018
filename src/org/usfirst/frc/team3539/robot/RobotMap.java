@@ -37,12 +37,12 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 9;
-	public static final int lm = 10;
-	public static final int lb = 11;
-	public static final int rf = 2;
-	public static final int rm = 3;
-	public static final int rb = 1;
+	public static final int lf = 6; //9;
+	public static final int lm  = 7;//10;
+	public static final int lb = 3539;//11;
+	public static final int rf = 4;//2;
+	public static final int rm = 3;//3;
+	public static final int rb = 3539;//1;
 
 	public static double drivePea = .06;
 	public static double driveEye = .00002;
