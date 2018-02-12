@@ -12,39 +12,37 @@ public class AutonMotionProfileCommand extends Command {
     public AutonMotionProfileCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(Robot.motion);
+        requires(Robot.driveTrain);
 
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.motion.Disabled();
-    	Robot.motion.Reset();
-    	Robot.motion.setMotionProfile();
+    	Robot.driveTrain.DisabledMotionProfile();
+    	Robot.driveTrain.MotionProfileReset();
+    	Robot.driveTrain.setMotionProfile();
     	System.out.println("-----motion profile mode set on talon----");
-    	Robot.motion.Process();   	
-    	Robot.motion.startMotionProfile();
+    	Robot.driveTrain.Filling();
 
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-       	Robot.motion.Control();
+    	Robot.driveTrain.setMotionProfile();
        	//
-      	//Robot.motion.setMotionProfile(); possibly should be here
 
 
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Robot.driveTrain.GetFinish();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-   		Robot.motion.SetMotionFalse();
-    	Robot.motion.Reset();
+    	Robot.driveTrain.MotionProfileReset();
+    	
 
 
     }
@@ -52,5 +50,6 @@ public class AutonMotionProfileCommand extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    }
+    	end();
+}
 }
