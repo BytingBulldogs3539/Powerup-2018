@@ -24,7 +24,7 @@ public class RobotMap
 	public static int rampsolOff = 0;
 
 	// PITCH
-	public static final int pitch = 3539;
+	public static final int pitch = 6;
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	public static double pitchPea = .001;
@@ -35,12 +35,12 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 6;
-	public static final int lm = 3539;
-	public static final int lb = 7;
-	public static final int rf = 4;
-	public static final int rm = 3539;
-	public static final int rb = 3;
+	public static final int lf = 9;
+	public static final int lm = 10;
+	public static final int lb = 11;
+	public static final int rf = 2;
+	public static final int rm = 3;
+	public static final int rb = 1;
 
 	public static double drivePea = .06;
 	public static double driveEye = .00002;
@@ -84,12 +84,12 @@ public class RobotMap
 	public static int kBaseTrajPeriodMs;
 
 	// INTAKE
-	public static final int lIntakeMotor = 3539;
-	public static final int rIntakeMotor = 3539;
+	public static final int lIntakeMotor = 7;
+	public static final int rIntakeMotor = 8;
 
 	// Elevator
-	public static final int elevatorMotor1 = 1;// 1;
-	public static final int elevatorMotor2 = 2;// 2;
+	public static final int elevatorMotor1 = 4;// 1;
+	public static final int elevatorMotor2 = 5;// 2;
 	public static final int elevatorEncFloor = 0; // SOME INT
 	public static final int elevatorEncSwitch = 0; // SOME INT
 	public static final int elevatorEncClimb = 0; // SOME INT
