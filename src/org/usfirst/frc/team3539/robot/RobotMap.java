@@ -90,10 +90,10 @@ public class RobotMap
 	// Elevator
 	public static final int elevatorMotor1 = 4;// 1;
 	public static final int elevatorMotor2 = 5;// 2;
-	public static final int elevatorEncFloor = 0; // SOME INT
-	public static final int elevatorEncSwitch = 0; // SOME INT
-	public static final int elevatorEncClimb = 0; // SOME INT
-	public static final int elevatorEncScale = 0; // SOME INT
+	public static final int elevatorEncoderFloor = 0; // SOME INT
+	public static final int elevatorEncoderSwitch = 0; // SOME INT
+	public static final int elevatorEncoderClimb = 0; // SOME INT
+	public static final int elevatorEncoderScale = 0; // SOME INT
 	public static double ElevatorPea = 0;
 	public static double ElevatorEye = 0;
 	public static double ElevatorDee = 0;

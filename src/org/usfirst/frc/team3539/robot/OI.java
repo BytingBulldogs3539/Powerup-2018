@@ -2,6 +2,8 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.ElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
+import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
+import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
@@ -17,20 +19,33 @@ public class OI
 	public LogitechF310 two = new LogitechF310(RobotMap.OPERATOR);
 
 	public OI()
-	{	
-		//Elevator
-		two.buttonSTART.whenPressed(new ElevatorManualCommand());
-		
-		//Pitch
-		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));
-		two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
-		two.buttonPadUp.whenPressed(new PitchCommand(PitchAngle.UP));
-		
-		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
-		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
-		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));	
-		//one.buttonA.whenPressed(new IntakeSolenoidCommand(true));
-	//	one.buttonB.whenPressed(new IntakeSolenoidCommand(false));
+	{
+		// ONE -------------------------------
 
+		
+		
+		// TWO -------------------------------
+
+		// Elevator
+		two.buttonSTART.whenPressed(new ElevatorManualCommand());
+		two.buttonPadLeft.whenPressed(new ElevatorZeroCommand());
+
+		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));
+		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
+
+		two.buttonX.whenPressed(new ElevatorCommand(ElevatorPosition.CLIMB));
+		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
+		
+//		two.buttonBL.whenPressed();
+//		two
+
+		// Pitch
+		two.buttonPadUp.whenPressed(new PitchCommand(PitchAngle.UP));
+		two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
+		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));
+
+		// Intake
+		two.buttonTR.whenPressed(new IntakeCommand(-1));
+		two.buttonTL.whenPressed(new IntakeCommand(1));
 	}
 }
