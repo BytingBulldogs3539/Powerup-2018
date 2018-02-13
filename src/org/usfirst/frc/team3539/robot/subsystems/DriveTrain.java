@@ -392,10 +392,15 @@ public final class DriveTrain extends Subsystem {
 
 		TrajectoryPoint pointL = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-		if (statusR.hasUnderrun || statusL.hasUnderrun) {
-			lf.clearMotionProfileHasUnderrun(0);
+		
+		if (statusR.hasUnderrun) {
 			rf.clearMotionProfileHasUnderrun(0);
+
 		}
+		if(statusL.hasUnderrun)
+			lf.clearMotionProfileHasUnderrun(0);
+
+
 
 		lf.clearMotionProfileTrajectories();// make sure nothing is interrupted
 		rf.clearMotionProfileTrajectories();
