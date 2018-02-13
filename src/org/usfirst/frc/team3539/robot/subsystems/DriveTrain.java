@@ -26,15 +26,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * @author 3539
  */
-public final class DriveTrain extends Subsystem
-{
+public final class DriveTrain extends Subsystem {
 	private ADXL362 accelerometer;
 	private ADXRS450_Gyro gyro;
 	private TalonSRX lf, lb, rf, rb;
 	private Drive drive;
 
-	public DriveTrain()
-	{
+	public DriveTrain() {
 		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 		accelerometer = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
 
@@ -87,14 +85,20 @@ public final class DriveTrain extends Subsystem
 		SmartDashboard.putData("Gyro", gyro);
 	}
 
+<<<<<<< HEAD
 	private void setFollower()
 	{
+=======
+	private void setFollower() {
+		lm.set(ControlMode.Follower, lf.getDeviceID());
+		rm.set(ControlMode.Follower, rf.getDeviceID());
+
+>>>>>>> f201dde3704034ac4425202d9271896b963534f6
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
 
-	private void setInverted()
-	{
+	private void setInverted() {
 		lf.setInverted(true);
 		rf.setInverted(true);
 
@@ -102,14 +106,12 @@ public final class DriveTrain extends Subsystem
 		rb.setInverted(false);
 	}
 
-	private void enableCurrentLimit()
-	{
+	private void enableCurrentLimit() {
 		lf.enableCurrentLimit(true);
 		rf.enableCurrentLimit(true);
 	}
 
-	public void zeroEncoders()
-	{
+	public void zeroEncoders() {
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
 
@@ -117,28 +119,23 @@ public final class DriveTrain extends Subsystem
 		rf.setSelectedSensorPosition(0, 0, 10);
 	}
 
-	public void zeroGyro()
-	{
+	public void zeroGyro() {
 		gyro.reset();
 	}
 
-	public double getHeading()
-	{
+	public double getHeading() {
 		return gyro.getAngle();
 	}
 
-	public void calibrateGyro()
-	{
+	public void calibrateGyro() {
 		gyro.calibrate();
 	}
 
-	public void driveArcade(double throttle, double wheel)
-	{
+	public void driveArcade(double throttle, double wheel) {
 		drive.driveArcade(throttle, wheel);
 	}
 
-	public void setPID(double P, double I, double D, double F)
-	{
+	public void setPID(double P, double I, double D, double F) {
 		// lf.config_kF(0, F, 10);
 		// rf.config_kF(0, F, 10);
 		//
@@ -152,8 +149,7 @@ public final class DriveTrain extends Subsystem
 		// rf.config_kD(0, D, 10);
 	}
 
-	public void setSetpointDrive(double setpointinches)
-	{
+	public void setSetpointDrive(double setpointinches) {
 		zeroEncoders();
 
 		System.out.println("lbcontrol: " + lb.getControlMode());
@@ -163,8 +159,7 @@ public final class DriveTrain extends Subsystem
 		rf.set(ControlMode.Position, inchToEncoder(setpointinches));
 	}
 
-	public void setSetpointTurn(double setpointdegrees)
-	{
+	public void setSetpointTurn(double setpointdegrees) {
 		zeroEncoders();
 
 		System.out.println("setpoint: " + degreesToEncoder(setpointdegrees));
@@ -173,8 +168,7 @@ public final class DriveTrain extends Subsystem
 		rf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
 	}
 
-	public double degreesToEncoder(double degrees)
-	{
+	public double degreesToEncoder(double degrees) {
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
 
@@ -182,28 +176,22 @@ public final class DriveTrain extends Subsystem
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	public boolean onTarget()
-	{
+	public boolean onTarget() {
 		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
-				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
-		{
+				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange) {
 			onTargetCounter++;
-		}
-		else
-		{
+		} else {
 			onTargetCounter = 0;
 		}
 
-		if (maxLoopNumber <= onTargetCounter)
-		{
+		if (maxLoopNumber <= onTargetCounter) {
 			return true;
 		}
 
 		return false;
 	}
 
-	public void setupOnTarget(int ticks, int maxLoopNumber)
-	{
+	public void setupOnTarget(int ticks, int maxLoopNumber) {
 		// zero the on target counter
 		onTargetCounter = 0;
 
@@ -214,19 +202,16 @@ public final class DriveTrain extends Subsystem
 		allowedErrorRange = ticks;
 	}
 
-	public double inchToEncoder(double inches)
-	{
+	public double inchToEncoder(double inches) {
 		return (inches / RobotMap.wheelCir) * 4096;
 	}
 
-	public void updateEncoders()
-	{
+	public void updateEncoders() {
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 	}
 
-	public void effectiveArcadeDrive(double throttle, double wheel)
-	{
+	public void effectiveArcadeDrive(double throttle, double wheel) {
 		wheel = applyDeadband(wheel, RobotMap.wheelDeadband);
 		throttle = applyDeadband(throttle, RobotMap.throttleDeadband);
 
@@ -239,22 +224,19 @@ public final class DriveTrain extends Subsystem
 		throttle = Math.tan(Math.PI / 2.0 * RobotMap.throttleNonLinearity * throttle) / throttleDenominator;
 
 		// Decrease wheel by __% at high speed
-		if (Math.abs(throttle) > RobotMap.throttleHighPass)
-		{
+		if (Math.abs(throttle) > RobotMap.throttleHighPass) {
 			wheel = wheel * RobotMap.highSpeedWheel;
 		}
 
 		driveArcade(throttle, wheel);
 	}
 
-	public double applyDeadband(double value, double deadband)
-	{
+	public double applyDeadband(double value, double deadband) {
 		// if abs(val) > abs(deadband) return val; else return 0.0;
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
 
-	public void testTalons()
-	{
+	public void testTalons() {
 		StringBuilder Motors = new StringBuilder(1000);
 
 		lf.set(ControlMode.PercentOutput, 0);
@@ -311,32 +293,27 @@ public final class DriveTrain extends Subsystem
 	private int loopTimeout = -1;
 	private static final int kNumLoopsTimeout = 10;
 
-	public void MotionProfile()
-	{
+	public void MotionProfile() {
 
 		lf.changeMotionControlFramePeriod(5);
 		rf.changeMotionControlFramePeriod(5);
 
 	}
 
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
-	{
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
 		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
 		retval = retval.valueOf(durationMs);
 
 		return retval;
 	}
 
-	public boolean GetFinish()
-	{
+	public boolean GetFinish() {
 		return finish;
 	}
 
-	public void setMotionProfile()
-	{
+	public void setMotionProfile() {
 		// lf.setInverted(true);
-		if (statusR.btmBufferCnt > 100 && statusL.btmBufferCnt > 100)
-		{
+		if (statusR.btmBufferCnt > 100 && statusL.btmBufferCnt > 100) {
 			System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
 
@@ -350,16 +327,14 @@ public final class DriveTrain extends Subsystem
 
 		System.out.println("status L" + statusL.btmBufferCnt);
 
-		if (statusL.isLast && statusR.isLast && statusL.activePointValid && statusR.activePointValid)
-		{
+		if (statusL.isLast && statusR.isLast && statusL.activePointValid && statusR.activePointValid) {
 			// finish = true;
 			System.out.println("finished");
 			setValue = SetValueMotionProfile.Disable;
 		}
 	}
 
-	public void MotionProfileReset()
-	{
+	public void MotionProfileReset() {
 		setValue = SetValueMotionProfile.Disable;
 
 		lf.clearMotionProfileTrajectories();
@@ -374,8 +349,7 @@ public final class DriveTrain extends Subsystem
 	//
 	// }
 
-	public void startFilling()
-	{
+	public void startFilling() {
 
 		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints, GeneratedMotionProfile.PointsR,
 				GeneratedMotionProfile.kNumPoints);
@@ -383,16 +357,19 @@ public final class DriveTrain extends Subsystem
 		process.startPeriodic(0.005);
 	}
 
-	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
-	{
+	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR) {
 
 		TrajectoryPoint pointL = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-		if (statusR.hasUnderrun || statusL.hasUnderrun)
-		{
-			lf.clearMotionProfileHasUnderrun(0);
+		
+		if (statusR.hasUnderrun) {
 			rf.clearMotionProfileHasUnderrun(0);
+
 		}
+		if(statusL.hasUnderrun)
+			lf.clearMotionProfileHasUnderrun(0);
+
+
 
 		lf.clearMotionProfileTrajectories();// make sure nothing is interrupted
 		rf.clearMotionProfileTrajectories();
@@ -400,8 +377,7 @@ public final class DriveTrain extends Subsystem
 		lf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 		rf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 
-		for (int i = 0; i < totalCntL; ++i)
-		{
+		for (int i = 0; i < totalCntL; ++i) {
 			double positionRotR = profileR[i][0];
 			double positionRotL = profileL[i][0];
 
@@ -474,8 +450,7 @@ public final class DriveTrain extends Subsystem
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 	}
 
-	class PeriodicRunnable implements java.lang.Runnable
-	{
+	class PeriodicRunnable implements java.lang.Runnable {
 		public void run()// add to drive train last
 		{
 
@@ -486,8 +461,7 @@ public final class DriveTrain extends Subsystem
 	}
 
 	@Override
-	protected void initDefaultCommand()
-	{
+	protected void initDefaultCommand() {
 		setDefaultCommand(new DriveCommand());
 	}
 }
