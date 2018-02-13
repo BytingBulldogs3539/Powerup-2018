@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class ElevatorCommand extends InstantCommand
 {
-
 	public ElevatorCommand(ElevatorPosition position)
 	{
 		requires(Robot.elevator);
