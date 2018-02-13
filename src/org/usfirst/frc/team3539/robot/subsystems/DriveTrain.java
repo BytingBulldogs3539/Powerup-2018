@@ -85,15 +85,10 @@ public final class DriveTrain extends Subsystem {
 		SmartDashboard.putData("Gyro", gyro);
 	}
 
-<<<<<<< HEAD
 	private void setFollower()
 	{
-=======
-	private void setFollower() {
-		lm.set(ControlMode.Follower, lf.getDeviceID());
-		rm.set(ControlMode.Follower, rf.getDeviceID());
+		
 
->>>>>>> f201dde3704034ac4425202d9271896b963534f6
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
