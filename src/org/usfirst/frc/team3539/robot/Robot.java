@@ -50,7 +50,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		pdp = new PowerDistributionPanel();
+		//pdp = new PowerDistributionPanel();
 
 		SmartInit();
 
@@ -76,6 +76,7 @@ public class Robot extends IterativeRobot
 	public void disabledInit()
 	{
 		Scheduler.getInstance().run();
+		Robot.driveTrain.DisabledMotionProfile();
 	}
 
 	public void disabledPeriodic()
@@ -87,7 +88,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		Robot.driveTrain.calibrateGyro();
+	//	Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
@@ -100,6 +101,7 @@ public class Robot extends IterativeRobot
 		{
 			System.out.println("right auton");
 			// Put right auto code here
+
 		}
 
 		autonMode = (Command) autonChooser.getSelected();
@@ -166,7 +168,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 
-		SmartDashboard.putData("PDP", pdp);
+		//SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);

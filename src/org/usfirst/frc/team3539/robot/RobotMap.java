@@ -90,7 +90,7 @@ public class RobotMap
 	public static final int rIntakeMotor = 8;
 
 	// Elevator
-	public static final int elevatorMotor1 = 4;// 1;
+	public static final int elevatorMotor1 = 3539;// 1;
 	public static final int elevatorMotor2 = 5;// 2;
 	public static final int elevatorEncoderFloor = 0; // SOME INT
 	public static final int elevatorEncoderSwitch = 0; // SOME INT

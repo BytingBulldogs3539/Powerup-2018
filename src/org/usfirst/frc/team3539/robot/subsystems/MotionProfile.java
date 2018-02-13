@@ -26,7 +26,7 @@ public class MotionProfile extends Subsystem
 	private int loopTimeout = -1;
 	private int state = 0;
 	private boolean bStart = false;
-	private static final int kMinPointsInTalon = 1;
+	private static final int kMinPointsInTalon = 10;
 	private static final int kNumLoopsTimeout = 10;
 
 	double pos = 0, vel = 0, heading = 0;
