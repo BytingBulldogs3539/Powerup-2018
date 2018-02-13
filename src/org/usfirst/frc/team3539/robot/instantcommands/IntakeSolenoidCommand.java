@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.commands;
+package org.usfirst.frc.team3539.robot.instantcommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 
@@ -16,6 +16,6 @@ public class IntakeSolenoidCommand extends InstantCommand
 
 	protected void initialize()
 	{
-	//	Robot.solenoid.intakeSol.toggle();
+		Robot.solenoids.intakeSol.toggle();
 	}
 }
