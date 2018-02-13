@@ -30,7 +30,7 @@ public final class DriveTrain extends Subsystem
 {
 	private ADXL362 accelerometer;
 	private ADXRS450_Gyro gyro;
-	private TalonSRX lf, lb, rf, rb, lm, rm;
+	private TalonSRX lf, lb, rf, rb;
 	private Drive drive;
 
 	public DriveTrain()
@@ -41,9 +41,6 @@ public final class DriveTrain extends Subsystem
 		lf = new TalonSRX(RobotMap.lf);
 		rf = new TalonSRX(RobotMap.rf);
 
-		lm = new TalonSRX(RobotMap.lm);
-		rm = new TalonSRX(RobotMap.rm);
-
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
 
@@ -52,11 +49,6 @@ public final class DriveTrain extends Subsystem
 		lf.configPeakOutputReverse(-peakOut, 10);
 		rf.configPeakOutputForward(peakOut, 10);
 		rf.configPeakOutputReverse(-peakOut, 10);
-
-		rm.configPeakOutputForward(peakOut, 10);
-		rm.configPeakOutputReverse(-peakOut, 10);
-		lm.configPeakOutputForward(peakOut, 10);
-		lm.configPeakOutputReverse(-peakOut, 10);
 
 		lb.configPeakOutputForward(peakOut, 10);
 		lb.configPeakOutputReverse(-peakOut, 10);
@@ -69,12 +61,6 @@ public final class DriveTrain extends Subsystem
 
 		lf.configNominalOutputReverse(0, 10);
 		rf.configNominalOutputReverse(0, 10);
-
-		lm.configNominalOutputForward(0, 10);
-		rm.configNominalOutputForward(0, 10);
-
-		lm.configNominalOutputReverse(0, 10);
-		rm.configNominalOutputReverse(0, 10);
 
 		lb.configNominalOutputForward(0, 10);
 		rb.configNominalOutputForward(0, 10);
@@ -103,9 +89,6 @@ public final class DriveTrain extends Subsystem
 
 	private void setFollower()
 	{
-		lm.set(ControlMode.Follower, lf.getDeviceID());
-		rm.set(ControlMode.Follower, rf.getDeviceID());
-
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
@@ -114,9 +97,6 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.setInverted(true);
 		rf.setInverted(true);
-
-		lm.setInverted(false);
-		rm.setInverted(false);
 
 		lb.setInverted(false);
 		rb.setInverted(false);
@@ -278,10 +258,8 @@ public final class DriveTrain extends Subsystem
 		StringBuilder Motors = new StringBuilder(1000);
 
 		lf.set(ControlMode.PercentOutput, 0);
-		lm.set(ControlMode.PercentOutput, 0);
 		lb.set(ControlMode.PercentOutput, 0);
 		rf.set(ControlMode.PercentOutput, 0);
-		rm.set(ControlMode.PercentOutput, 0);
 		rb.set(ControlMode.PercentOutput, 0);
 
 		lf.set(ControlMode.PercentOutput, .5);// set to .5
@@ -291,16 +269,6 @@ public final class DriveTrain extends Subsystem
 		Motors.append("  lfMotorVoltage = " + lf.getMotorOutputVoltage());
 
 		lf.set(ControlMode.PercentOutput, 0);// set to 0
-
-		Timer.delay(2);// wait before starting other motor
-
-		lm.set(ControlMode.PercentOutput, .5);
-		Timer.delay(2);
-
-		Motors.append("  lmMotorCurrent= " + lm.getOutputCurrent());
-		Motors.append("  lmMotorVoltage = " + lm.getMotorOutputVoltage());
-
-		lm.set(ControlMode.PercentOutput, 0);
 
 		Timer.delay(2);// wait before starting other motor
 
@@ -321,13 +289,6 @@ public final class DriveTrain extends Subsystem
 		rf.set(ControlMode.PercentOutput, 0);
 
 		Timer.delay(2);
-
-		rm.set(ControlMode.PercentOutput, .5);
-		Timer.delay(2);
-		Motors.append("  rmMotorCurrent = " + rm.getOutputCurrent());
-		Motors.append("  rmMotorVoltage = " + rm.getMotorOutputVoltage());
-
-		rm.set(ControlMode.PercentOutput, 0);
 
 		Timer.delay(2);
 
