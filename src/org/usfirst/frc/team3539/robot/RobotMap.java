@@ -17,16 +17,16 @@ public class RobotMap
 	// PCM
 	public static final int pcm = 10;
 	public static int intakesolOn = 0;
-	public static int intakesolOff = 0;
-	public static int liftersolOn = 0;
-	public static int liftersolOff = 0;
-	public static int rampsolOn = 0;
-	public static int rampsolOff = 0;
-	public static int shiftersolOn = 0;
-	public static int shiftersolOff = 0;
+	public static int intakesolOff = 1;
+	public static int liftersolOn = 2;
+	public static int liftersolOff = 3;
+	public static int rampsolOn = 4;
+	public static int rampsolOff = 5;
+	public static int shiftersolOn = 6;
+	public static int shiftersolOff =7;
 
 	// PITCH
-	public static final int pitch = 6;
+	public static final int pitch = 3539;
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	public static double pitchPea = .001;
@@ -42,7 +42,7 @@ public class RobotMap
 	public static final int lb = 3539;//11;
 	public static final int rf = 4;//2;
 	public static final int rm = 3;//3;
-	public static final int rb = 3539;//1;
+	public static final int rb = 3539;//1;S
 
 	public static double drivePea = .06;
 	public static double driveEye = .00002;
@@ -86,7 +86,7 @@ public class RobotMap
 	public static int kBaseTrajPeriodMs;
 
 	// INTAKE
-	public static final int lIntakeMotor = 7;
+	public static final int lIntakeMotor = 3539;//7;
 	public static final int rIntakeMotor = 8;
 
 	// Elevator

@@ -11,6 +11,7 @@ import com.ctre.phoenix.motion.TrajectoryPoint;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
@@ -66,11 +67,11 @@ public final class DriveTrain extends Subsystem {
 		lb.configNominalOutputReverse(0, 10);
 		rb.configNominalOutputReverse(0, 10);
 
-		// lb.setNeutralMode(NeutralMode.Brake);
-		// rb.setNeutralMode(NeutralMode.Brake);
-		//
-		// lf.setNeutralMode(NeutralMode.Brake);
-		// rf.setNeutralMode(NeutralMode.Brake);
+		 lb.setNeutralMode(NeutralMode.Brake);
+		 rb.setNeutralMode(NeutralMode.Brake);
+		
+		 lf.setNeutralMode(NeutralMode.Brake);
+	 rf.setNeutralMode(NeutralMode.Brake);
 
 		drive = new Drive(rf, lf);
 
@@ -379,7 +380,9 @@ public final class DriveTrain extends Subsystem {
 			double velocityRPMR = profileR[i][1];
 			double velocityRPML = profileL[i][1];
 
-			pointR.position = positionRotR * 4096;
+			
+			//318
+			pointR.position = (positionRotR) * 4096;
 			pointR.velocity = velocityRPMR * 4096 / 600.0;
 			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
 			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
@@ -418,8 +421,8 @@ public final class DriveTrain extends Subsystem {
 		lf.setSensorPhase(true);
 		lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
-		lf.config_kF(0, 0.074, RobotMap.kTimeoutMs);
-		lf.config_kP(0, .200, RobotMap.kTimeoutMs);
+		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		lf.config_kP(0, .100, RobotMap.kTimeoutMs);
 		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
 		lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
@@ -443,7 +446,9 @@ public final class DriveTrain extends Subsystem {
 		 * status 10 provides the trajectory target for motion profile AND motion magic
 		 */
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+		rf.setInverted(true);
 	}
+	
 
 	class PeriodicRunnable implements java.lang.Runnable {
 		public void run()// add to drive train last
