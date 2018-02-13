@@ -2,6 +2,8 @@ package org.usfirst.frc.team3539.robot.autoncommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 
+import com.sun.glass.ui.Timer;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -28,7 +30,7 @@ public class AutonMotionProfileCommand extends Command
 		Robot.driveTrain.setMotionProfile();
 		System.out.println("-----motion profile mode set on talon----");
 		Robot.driveTrain.Filling();
-
+	//	edu.wpi.first.wpilibj.Timer.delay(10);
 	}
 
 	// Called repeatedly when this Command is scheduled to run

@@ -364,8 +364,13 @@ public final class DriveTrain extends Subsystem
 	}
 	public void MotionProfileReset()
 	{
+		setValue = SetValueMotionProfile.Disable;
+
 		lf.clearMotionProfileTrajectories();
 		rf.clearMotionProfileTrajectories();
+		lf.setSelectedSensorPosition(0, 0, 10);
+		rf.setSelectedSensorPosition(0, 0, 10);
+
 		setValue = SetValueMotionProfile.Disable;
 	
 	}
@@ -459,13 +464,15 @@ public final class DriveTrain extends Subsystem
 			pointL.isLastPoint = false;
 			if ((iL + 1) == totalCntL)
 				pointL.isLastPoint = true; 
-
+			
 			lf.pushMotionProfileTrajectory(pointL);
 			rf.pushMotionProfileTrajectory(pointR);
+		
+		}
+		
 		}
 
-		}
-
+	
 	
 	public void DisabledMotionProfile()//probably want new name 
 

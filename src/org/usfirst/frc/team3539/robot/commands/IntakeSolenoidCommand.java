@@ -16,6 +16,6 @@ public class IntakeSolenoidCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.solenoid.intakeSol.toggle();
+	//	Robot.solenoid.intakeSol.toggle();
 	}
 }

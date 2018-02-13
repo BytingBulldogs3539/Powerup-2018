@@ -33,7 +33,7 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
-	public static Solenoids solenoid = new Solenoids();
+	//public static Solenoids solenoid = new Solenoids();
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
