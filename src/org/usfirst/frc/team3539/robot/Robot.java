@@ -5,8 +5,6 @@ import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
-import org.usfirst.frc.team3539.robot.subsystems.MotionProfile;
-import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -27,13 +25,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot
 {
-	public static MotionProfile motion = new MotionProfile();
 	// SUBSYSTEMS
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
-	//public static Solenoids solenoid = new Solenoids();
+	// public static Solenoids solenoid = new Solenoids();
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
@@ -50,7 +47,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		//pdp = new PowerDistributionPanel();
+		// pdp = new PowerDistributionPanel();
 
 		SmartInit();
 
@@ -88,7 +85,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-	//	Robot.driveTrain.calibrateGyro();
+		// Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
@@ -132,7 +129,7 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		autonChooser.addObject("MotionProfile",  new AutonMotionProfileCommand());
+		autonChooser.addObject("MotionProfile", new AutonMotionProfileCommand());
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
@@ -168,7 +165,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 
-		//SmartDashboard.putData("PDP", pdp);
+		// SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
