@@ -233,9 +233,9 @@ public class MotionProfile extends Subsystem
 		Left.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
 		Left.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		Left.config_kP(0, 2.000, RobotMap.kTimeoutMs);
+		Left.config_kP(0, 0.100, RobotMap.kTimeoutMs);
 		Left.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		Left.config_kD(0, 20.0, RobotMap.kTimeoutMs);
+		Left.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 		
 		Left.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
@@ -248,9 +248,9 @@ public class MotionProfile extends Subsystem
 		Right.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
 		Right.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		Right.config_kP(0, 2.000, RobotMap.kTimeoutMs);
+		Right.config_kP(0, 0.100, RobotMap.kTimeoutMs);
 		Right.config_kI(0, .0, RobotMap.kTimeoutMs);
-		Right.config_kD(0, 20.0, RobotMap.kTimeoutMs);
+		Right.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		Right.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*

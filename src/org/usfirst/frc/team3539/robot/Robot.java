@@ -137,6 +137,7 @@ public class Robot extends IterativeRobot
 
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
+		SmartDashboard.putData("Auton mode", autonChooser);
 
 		SmartDashboard.putData("Auton Position", positionChooser);
 
