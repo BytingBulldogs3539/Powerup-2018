@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.commands;
+package org.usfirst.frc.team3539.robot.instantcommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;

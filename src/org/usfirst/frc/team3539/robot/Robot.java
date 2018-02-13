@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
+import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -30,7 +31,7 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
-	// public static Solenoids solenoid = new Solenoids();
+	public static Solenoids solenoids = new Solenoids();
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
