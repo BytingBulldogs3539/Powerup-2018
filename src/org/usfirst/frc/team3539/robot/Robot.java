@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -32,7 +33,7 @@ public class Robot extends IterativeRobot
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
-	public static Solenoids solenoid = new Solenoids();
+	//public static Solenoids solenoid = new Solenoids();
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
@@ -129,13 +130,14 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-
+		autonChooser.addObject("MotionProfile",  new AutonMotionProfileCommand());
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
 
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
+		SmartDashboard.putData("Auton mode", autonChooser);
 
 		SmartDashboard.putData("Auton Position", positionChooser);
 

@@ -17,7 +17,7 @@ public class ShiftSolenoidCommand extends Command
 
     protected void initialize() 
     {
-    	Robot.solenoid.shifter.toggle();
+   // 	Robot.solenoid.shifter.toggle();
     }
 
     protected void execute()
