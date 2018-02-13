@@ -4,7 +4,7 @@ import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
@@ -30,11 +30,11 @@ public class OI
 		two.buttonSTART.whenPressed(new ElevatorManualCommand());
 		two.buttonPadLeft.whenPressed(new ElevatorZeroCommand());
 
-		two.buttonA.whenPressed(new ElevatorCommand(ElevatorPosition.FLOOR));
-		two.buttonB.whenPressed(new ElevatorCommand(ElevatorPosition.SWITCH));
+		two.buttonA.whenPressed(new ElevatorPositionCommand(ElevatorPosition.FLOOR));
+		two.buttonB.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SWITCH));
 
-		two.buttonX.whenPressed(new ElevatorCommand(ElevatorPosition.CLIMB));
-		two.buttonY.whenPressed(new ElevatorCommand(ElevatorPosition.SCALE));
+		two.buttonX.whenPressed(new ElevatorPositionCommand(ElevatorPosition.CLIMB));
+		two.buttonY.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SCALE));
 		
 //		two.buttonBL.whenPressed();
 //		two

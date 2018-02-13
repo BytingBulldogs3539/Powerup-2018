@@ -9,16 +9,16 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class ElevatorCommand extends InstantCommand
+public class ElevatorPositionCommand extends InstantCommand
 {
-	public ElevatorCommand(ElevatorPosition position)
+	public ElevatorPositionCommand(ElevatorPosition position)
 	{
 		requires(Robot.elevator);
 
 		Robot.elevator.setSetpointLift(position);
 	}
 
-	public ElevatorCommand(double inches)
+	public ElevatorPositionCommand(double inches)
 	{
 		requires(Robot.elevator);
 
