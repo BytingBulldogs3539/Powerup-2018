@@ -11,8 +11,11 @@ public class RobotMap
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
 
+	// PDP
+	public static final int pdp = 30;
+	
 	// AIR
-	public static final int compressor = 10;
+	public static final int compressor = 20;
 
 	// PCM
 	public static final int pcm = 10;
@@ -26,7 +29,7 @@ public class RobotMap
 	public static int shiftersolOff =7;
 
 	// PITCH
-	public static final int pitch = 3539;
+	public static final int pitch = 6;
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	public static double pitchPea = .001;
@@ -37,12 +40,11 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 6; //9;
-	public static final int lm  = 7;//10;
-	public static final int lb = 3539;//11;
-	public static final int rf = 4;//2;
-	public static final int rm = 3;//3;
-	public static final int rb = 3539;//1;S
+	public static final int lf = 10; // Tina 9 Prac 10
+	public static final int lb = 11;// Tina 11 Prac 11
+	
+	public static final int rf = 2;// Tina 4 Prac 2
+	public static final int rb = 1;// Tina none Prac 1
 
 	public static double drivePea = .06;
 	public static double driveEye = .00002;
@@ -86,12 +88,12 @@ public class RobotMap
 	public static int kBaseTrajPeriodMs;
 
 	// INTAKE
-	public static final int lIntakeMotor = 3539;//7;
-	public static final int rIntakeMotor = 8;
+	public static final int lIntakeMotor = 7;// Prac 7
+	public static final int rIntakeMotor = 8;// Prac 8
 
 	// Elevator
-	public static final int elevatorMotor1 = 3539;// 1;
-	public static final int elevatorMotor2 = 5;// 2;
+	public static final int elevatorMotor1 = 4;// Prac 3 // Broken talon 4 // Prac backup 3
+	public static final int elevatorMotor2 = 5;// Prac 5
 	public static final int elevatorEncoderFloor = 0; // SOME INT
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT

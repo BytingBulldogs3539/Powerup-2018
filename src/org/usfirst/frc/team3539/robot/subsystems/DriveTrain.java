@@ -28,13 +28,15 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * @author 3539
  */
-public final class DriveTrain extends Subsystem {
+public final class DriveTrain extends Subsystem
+{
 	private ADXL362 accelerometer;
 	private ADXRS450_Gyro gyro;
 	private TalonSRX lf, lb, rf, rb;
 	private Drive drive;
 
-	public DriveTrain() {
+	public DriveTrain()
+	{
 		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 		accelerometer = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
 
@@ -47,11 +49,13 @@ public final class DriveTrain extends Subsystem {
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
 		lf.configPeakOutputReverse(-peakOut, 10);
+		
 		rf.configPeakOutputForward(peakOut, 10);
 		rf.configPeakOutputReverse(-peakOut, 10);
 
 		lb.configPeakOutputForward(peakOut, 10);
 		lb.configPeakOutputReverse(-peakOut, 10);
+		
 		rb.configPeakOutputForward(peakOut, 10);
 		rb.configPeakOutputReverse(-peakOut, 10);
 
@@ -68,11 +72,11 @@ public final class DriveTrain extends Subsystem {
 		lb.configNominalOutputReverse(0, 10);
 		rb.configNominalOutputReverse(0, 10);
 
-		 lb.setNeutralMode(NeutralMode.Brake);
-		 rb.setNeutralMode(NeutralMode.Brake);
-		
-		 lf.setNeutralMode(NeutralMode.Brake);
-	 rf.setNeutralMode(NeutralMode.Brake);
+		lb.setNeutralMode(NeutralMode.Brake);
+		rb.setNeutralMode(NeutralMode.Brake);
+
+		lf.setNeutralMode(NeutralMode.Brake);
+		rf.setNeutralMode(NeutralMode.Brake);
 
 		drive = new Drive(rf, lf);
 
@@ -80,8 +84,10 @@ public final class DriveTrain extends Subsystem {
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
 		setFollower();
-		// setInverted();
-		// enableCurrentLimit();
+		setInverted();
+		
+		// Omar CTRE I hate you sometimes - Do not remove
+		enableCurrentLimit();
 
 		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
@@ -89,26 +95,28 @@ public final class DriveTrain extends Subsystem {
 
 	private void setFollower()
 	{
-		
 
 		lb.set(ControlMode.Follower, lf.getDeviceID());
 		rb.set(ControlMode.Follower, rf.getDeviceID());
 	}
 
-	private void setInverted() {
-		lf.setInverted(true);
-		rf.setInverted(true);
-
+	private void setInverted()
+	{
+		lf.setInverted(false);
 		lb.setInverted(false);
-		rb.setInverted(false);
+		
+		rf.setInverted(true);
+		rb.setInverted(true);
 	}
 
-	private void enableCurrentLimit() {
-		lf.enableCurrentLimit(true);
-		rf.enableCurrentLimit(true);
+	private void enableCurrentLimit()
+	{
+		//lf.enableCurrentLimit(true);
+		//rf.enableCurrentLimit(true);
 	}
 
-	public void zeroEncoders() {
+	public void zeroEncoders()
+	{
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
 
@@ -116,23 +124,28 @@ public final class DriveTrain extends Subsystem {
 		rf.setSelectedSensorPosition(0, 0, 10);
 	}
 
-	public void zeroGyro() {
+	public void zeroGyro()
+	{
 		gyro.reset();
 	}
 
-	public double getHeading() {
+	public double getHeading()
+	{
 		return gyro.getAngle();
 	}
 
-	public void calibrateGyro() {
+	public void calibrateGyro()
+	{
 		gyro.calibrate();
 	}
 
-	public void driveArcade(double throttle, double wheel) {
+	public void driveArcade(double throttle, double wheel)
+	{
 		drive.driveArcade(throttle, wheel);
 	}
 
-	public void setPID(double P, double I, double D, double F) {
+	public void setPID(double P, double I, double D, double F)
+	{
 		// lf.config_kF(0, F, 10);
 		// rf.config_kF(0, F, 10);
 		//
@@ -146,7 +159,8 @@ public final class DriveTrain extends Subsystem {
 		// rf.config_kD(0, D, 10);
 	}
 
-	public void setSetpointDrive(double setpointinches) {
+	public void setSetpointDrive(double setpointinches)
+	{
 		zeroEncoders();
 
 		System.out.println("lbcontrol: " + lb.getControlMode());
@@ -156,7 +170,8 @@ public final class DriveTrain extends Subsystem {
 		rf.set(ControlMode.Position, inchToEncoder(setpointinches));
 	}
 
-	public void setSetpointTurn(double setpointdegrees) {
+	public void setSetpointTurn(double setpointdegrees)
+	{
 		zeroEncoders();
 
 		System.out.println("setpoint: " + degreesToEncoder(setpointdegrees));
@@ -165,7 +180,8 @@ public final class DriveTrain extends Subsystem {
 		rf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
 	}
 
-	public double degreesToEncoder(double degrees) {
+	public double degreesToEncoder(double degrees)
+	{
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
 
@@ -173,22 +189,28 @@ public final class DriveTrain extends Subsystem {
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	public boolean onTarget() {
+	public boolean onTarget()
+	{
 		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
-				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange) {
+				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
+		{
 			onTargetCounter++;
-		} else {
+		}
+		else
+		{
 			onTargetCounter = 0;
 		}
 
-		if (maxLoopNumber <= onTargetCounter) {
+		if (maxLoopNumber <= onTargetCounter)
+		{
 			return true;
 		}
 
 		return false;
 	}
 
-	public void setupOnTarget(int ticks, int maxLoopNumber) {
+	public void setupOnTarget(int ticks, int maxLoopNumber)
+	{
 		// zero the on target counter
 		onTargetCounter = 0;
 
@@ -199,16 +221,19 @@ public final class DriveTrain extends Subsystem {
 		allowedErrorRange = ticks;
 	}
 
-	public double inchToEncoder(double inches) {
+	public double inchToEncoder(double inches)
+	{
 		return (inches / RobotMap.wheelCir) * 4096;
 	}
 
-	public void updateEncoders() {
+	public void updateEncoders()
+	{
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 	}
 
-	public void effectiveArcadeDrive(double throttle, double wheel) {
+	public void effectiveArcadeDrive(double throttle, double wheel)
+	{
 		wheel = applyDeadband(wheel, RobotMap.wheelDeadband);
 		throttle = applyDeadband(throttle, RobotMap.throttleDeadband);
 
@@ -221,19 +246,22 @@ public final class DriveTrain extends Subsystem {
 		throttle = Math.tan(Math.PI / 2.0 * RobotMap.throttleNonLinearity * throttle) / throttleDenominator;
 
 		// Decrease wheel by __% at high speed
-		if (Math.abs(throttle) > RobotMap.throttleHighPass) {
+		if (Math.abs(throttle) > RobotMap.throttleHighPass)
+		{
 			wheel = wheel * RobotMap.highSpeedWheel;
 		}
 
 		driveArcade(throttle, wheel);
 	}
 
-	public double applyDeadband(double value, double deadband) {
+	public double applyDeadband(double value, double deadband)
+	{
 		// if abs(val) > abs(deadband) return val; else return 0.0;
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
 
-	public void testTalons() {
+	public void testTalons()
+	{
 		StringBuilder Motors = new StringBuilder(1000);
 
 		lf.set(ControlMode.PercentOutput, 0);
@@ -290,27 +318,32 @@ public final class DriveTrain extends Subsystem {
 	private int loopTimeout = -1;
 	private static final int kNumLoopsTimeout = 10;
 
-	public void MotionProfile() {
+	public void MotionProfile()
+	{
 
 		lf.changeMotionControlFramePeriod(5);
 		rf.changeMotionControlFramePeriod(5);
 
 	}
 
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs) {
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	{
 		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
 		retval = retval.valueOf(durationMs);
 
 		return retval;
 	}
 
-	public boolean GetFinish() {
+	public boolean GetFinish()
+	{
 		return finish;
 	}
 
-	public void setMotionProfile() {
+	public void setMotionProfile()
+	{
 		// lf.setInverted(true);
-		if (statusR.btmBufferCnt > 100 && statusL.btmBufferCnt > 100) {
+		if (statusR.btmBufferCnt > 100 && statusL.btmBufferCnt > 100)
+		{
 			System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
 
@@ -324,14 +357,16 @@ public final class DriveTrain extends Subsystem {
 
 		System.out.println("status L" + statusL.btmBufferCnt);
 
-		if (statusL.isLast && statusR.isLast && statusL.activePointValid && statusR.activePointValid) {
+		if (statusL.isLast && statusR.isLast && statusL.activePointValid && statusR.activePointValid)
+		{
 			// finish = true;
 			System.out.println("finished");
 			setValue = SetValueMotionProfile.Disable;
 		}
 	}
 
-	public void MotionProfileReset() {
+	public void MotionProfileReset()
+	{
 		setValue = SetValueMotionProfile.Disable;
 
 		lf.clearMotionProfileTrajectories();
@@ -346,7 +381,8 @@ public final class DriveTrain extends Subsystem {
 	//
 	// }
 
-	public void startFilling() {
+	public void startFilling()
+	{
 
 		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints, GeneratedMotionProfile.PointsR,
 				GeneratedMotionProfile.kNumPoints);
@@ -354,19 +390,19 @@ public final class DriveTrain extends Subsystem {
 		process.startPeriodic(0.005);
 	}
 
-	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR) {
+	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
+	{
 
 		TrajectoryPoint pointL = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-		
-		if (statusR.hasUnderrun) {
+
+		if (statusR.hasUnderrun)
+		{
 			rf.clearMotionProfileHasUnderrun(0);
 
 		}
-		if(statusL.hasUnderrun)
+		if (statusL.hasUnderrun)
 			lf.clearMotionProfileHasUnderrun(0);
-
-
 
 		lf.clearMotionProfileTrajectories();// make sure nothing is interrupted
 		rf.clearMotionProfileTrajectories();
@@ -374,13 +410,15 @@ public final class DriveTrain extends Subsystem {
 		lf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 		rf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
 
-		for (int i = 0; i < totalCntL; ++i) {
+		for (int i = 0; i < totalCntL; ++i)
+		{
 			double positionRotR = profileR[i][0];
 			double positionRotL = profileL[i][0];
 
 			double velocityRPMR = profileR[i][1];
 			double velocityRPML = profileL[i][1];
 
+<<<<<<< HEAD
 //			pointR.position = ((positionRotR)/318) * 4096;
 //			pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
 //			pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
@@ -391,6 +429,13 @@ public final class DriveTrain extends Subsystem {
 			pointR.velocity = (velocityRPMR/2) * 4096 / 600.0;
 			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
 			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
+=======
+			// 318
+			pointR.position = (positionRotR) * 4096;
+			pointR.velocity = velocityRPMR * 4096 / 600.0;
+			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
+			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
+>>>>>>> 0b4180a93f2bb6a7f61857168de23dcb520ff37a
 
 			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
 			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
@@ -453,9 +498,9 @@ public final class DriveTrain extends Subsystem {
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 		rf.setInverted(true);
 	}
-	
 
-	class PeriodicRunnable implements java.lang.Runnable {
+	class PeriodicRunnable implements java.lang.Runnable
+	{
 		public void run()// add to drive train last
 		{
 			lf.processMotionProfileBuffer();
@@ -466,7 +511,8 @@ public final class DriveTrain extends Subsystem {
 	}
 
 	@Override
-	protected void initDefaultCommand() {
+	protected void initDefaultCommand()
+	{
 		setDefaultCommand(new DriveCommand());
 	}
 }

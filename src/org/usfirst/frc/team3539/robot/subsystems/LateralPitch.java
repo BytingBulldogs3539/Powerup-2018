@@ -38,14 +38,9 @@ public class LateralPitch extends Subsystem
 		pitch.configReverseSoftLimitThreshold(RobotMap.pitchLimitDown, 10);
 	}
 
-	public void movePitchUp()
+	public void rotate(double power)
 	{
-		pitch.set(ControlMode.PercentOutput, .20);
-	}
-
-	public void movePitchDown()
-	{
-		pitch.set(ControlMode.PercentOutput, -.20);
+		pitch.set(ControlMode.PercentOutput, power);
 	}
 
 	public void setPID(double P, double I, double D)

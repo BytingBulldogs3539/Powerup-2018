@@ -5,8 +5,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public final class Drive
 {
-	//TODO - Add mecanum drive, holonomic drive
-	
+	// TODO - Add mecanum drive, holonomic drive
+
 	TalonSRX talon1, talon2, talon3, talon4, talon5, talon6;
 	DriveMode driveMode;
 
@@ -32,7 +32,8 @@ public final class Drive
 		talon4 = leftBack;
 	}
 
-	public Drive(TalonSRX rightFront, TalonSRX rightMiddle, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftMiddle, TalonSRX leftBack)
+	public Drive(TalonSRX rightFront, TalonSRX rightMiddle, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftMiddle,
+			TalonSRX leftBack)
 	{
 		driveMode = DriveMode.SIX;
 		talon1 = rightFront;
@@ -85,15 +86,15 @@ public final class Drive
 		if (driveMode == DriveMode.TWO)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
-			talon2.set(ControlMode.PercentOutput, left);
+			talon2.set(ControlMode.PercentOutput, -left);
 
 		}
 		if (driveMode == DriveMode.FOUR)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
-			talon3.set(ControlMode.PercentOutput, left);
-			talon4.set(ControlMode.PercentOutput, left);
+			talon3.set(ControlMode.PercentOutput, -left);
+			talon4.set(ControlMode.PercentOutput, -left);
 			// System.out.println(right+" "+left);
 		}
 		if (driveMode == DriveMode.SIX)
@@ -101,9 +102,9 @@ public final class Drive
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
 			talon3.set(ControlMode.PercentOutput, right);
-			talon4.set(ControlMode.PercentOutput, left);
-			talon5.set(ControlMode.PercentOutput, left);
-			talon6.set(ControlMode.PercentOutput, left);
+			talon4.set(ControlMode.PercentOutput, -left);
+			talon5.set(ControlMode.PercentOutput, -left);
+			talon6.set(ControlMode.PercentOutput, -left);
 		}
 	}
 
