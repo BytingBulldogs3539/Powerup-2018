@@ -3,11 +3,9 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
-import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
-import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
 /**

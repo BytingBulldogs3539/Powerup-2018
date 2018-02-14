@@ -11,6 +11,9 @@ public class RobotMap
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
 
+	// PDP
+	public static final int pdp = 30;
+	
 	// AIR
 	public static final int compressor = 20;
 

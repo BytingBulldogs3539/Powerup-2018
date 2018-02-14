@@ -48,7 +48,8 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		pdp = new PowerDistributionPanel(30);
+		pdp = new PowerDistributionPanel(RobotMap.pdp);
+		c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
 
