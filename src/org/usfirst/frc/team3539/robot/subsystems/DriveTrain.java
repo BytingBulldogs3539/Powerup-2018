@@ -418,7 +418,7 @@ public final class DriveTrain extends Subsystem
 			double velocityRPMR = profileR[i][1];
 			double velocityRPML = profileL[i][1];
 
-<<<<<<< HEAD
+
 //			pointR.position = ((positionRotR)/318) * 4096;
 //			pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
 //			pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
@@ -429,13 +429,6 @@ public final class DriveTrain extends Subsystem
 			pointR.velocity = (velocityRPMR/2) * 4096 / 600.0;
 			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
 			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
-=======
-			// 318
-			pointR.position = (positionRotR) * 4096;
-			pointR.velocity = velocityRPMR * 4096 / 600.0;
-			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
-			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
->>>>>>> 0b4180a93f2bb6a7f61857168de23dcb520ff37a
 
 			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
 			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
