@@ -22,20 +22,29 @@ public class LateralPitch extends Subsystem
 		pitch = new TalonSRX(RobotMap.pitch);
 
 		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
-		
-		pitch.config_kP(0, RobotMap.pitchPea, 10);
-		pitch.config_kI(0, RobotMap.pitchEye, 10);
-		pitch.config_kD(0, RobotMap.pitchDee, 10);
 
 		pitch.configNominalOutputForward(0, 10);
-
 		pitch.configNominalOutputReverse(0, 10);
 
 		pitch.configPeakOutputReverse(-1, 10);
 		pitch.configPeakOutputForward(1, 10);
+		
+		configureSoftLimits();
+		shouldSoftLimit(false);
+	}
+	
+	private void configureSoftLimits()
+	{
+		pitch.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
+		pitch.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
 
-		pitch.configForwardSoftLimitThreshold(RobotMap.pitchLimitUp, 10);
-		pitch.configReverseSoftLimitThreshold(RobotMap.pitchLimitDown, 10);
+		pitch.configForwardSoftLimitEnable(true, 10);
+		pitch.configReverseSoftLimitEnable(true, 10);
+	}
+
+	public void shouldSoftLimit(boolean shouldSoftLimit)
+	{
+		pitch.overrideLimitSwitchesEnable(shouldSoftLimit);
 	}
 
 	public void rotate(double power)
@@ -54,18 +63,27 @@ public class LateralPitch extends Subsystem
 
 	public void setSetpointPitch(PitchAngle pitchAngle)
 	{
+		double ticks = 0;
+		
 		if (pitchAngle == PitchAngle.DOWN)
 		{
-			pitch.set(ControlMode.Position, RobotMap.pitchEncPosDown);
+			ticks = RobotMap.pitchEncPosDown;
 		}
 		else if (pitchAngle == PitchAngle.UP)
 		{
-			pitch.set(ControlMode.Position, RobotMap.pitchEncPosUp);
+			ticks = RobotMap.pitchEncPosUp;
 		}
 		else if (pitchAngle == PitchAngle.INTAKE)
 		{
-			pitch.set(ControlMode.Position, RobotMap.pitchEncPosIntake);
+			ticks = RobotMap.pitchEncPosIntake;
 		}
+		
+		setSetpointPitch(ticks);
+	}
+	
+	public void setSetpointPitch(double encoderPosition)
+	{
+		pitch.set(ControlMode.Position, encoderPosition);
 	}
 
 	private int maxLoopNumber = 0;

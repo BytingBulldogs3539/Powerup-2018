@@ -19,12 +19,16 @@ public class RobotMap
 
 	// PCM
 	public static final int pcm = 10;
+	
 	public static int intakesolOn = 0;
 	public static int intakesolOff = 1;
+	
 	public static int liftersolOn = 2;
 	public static int liftersolOff = 3;
+	
 	public static int rampsolOn = 4;
 	public static int rampsolOff = 5;
+	
 	public static int shiftersolOn = 6;
 	public static int shiftersolOff =7;
 

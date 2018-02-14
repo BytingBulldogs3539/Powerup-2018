@@ -25,38 +25,54 @@ public class Elevator extends Subsystem
 	{
 		liftMaster = new TalonSRX(RobotMap.elevatorMotor1);
 		liftSlave = new TalonSRX(RobotMap.elevatorMotor2);
-		
+
 		liftMaster.configNominalOutputForward(1, 10);
 		liftMaster.configNominalOutputForward(-1, 10);
-		
+
 		liftSlave.configNominalOutputForward(1, 10);
 		liftSlave.configNominalOutputForward(-1, 10);
-		
+
 		double peakOut = 1;// 1 is full ouput
 		liftMaster.configPeakOutputForward(peakOut, 10);
 		liftMaster.configPeakOutputReverse(-peakOut, 10);
-		
+
 		liftSlave.configPeakOutputForward(peakOut, 10);
 		liftSlave.configPeakOutputReverse(-peakOut, 10);
 
 		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
-		
+
 		setFollower();
 		enableCurrentLimit();
 		setInverted();
+		configureSoftLimits();
+		shouldSoftLimit(false);
 	}
-	
+
 	private void setInverted()
 	{
 		liftMaster.setInverted(false);
 		liftSlave.setInverted(false);
 	}
 
+	private void configureSoftLimits()
+	{
+		liftMaster.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
+		liftMaster.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
+
+		liftMaster.configForwardSoftLimitEnable(true, 10);
+		liftMaster.configReverseSoftLimitEnable(true, 10);
+	}
+
+	public void shouldSoftLimit(boolean shouldSoftLimit)
+	{
+		liftMaster.overrideLimitSwitchesEnable(shouldSoftLimit);
+	}
+
 	public void setMotorPower(double throttle)
 	{
 		liftMaster.set(ControlMode.PercentOutput, throttle);
 	}
-	
+
 	private void enableCurrentLimit()
 	{
 		// Omar I hate u
@@ -68,7 +84,7 @@ public class Elevator extends Subsystem
 	{
 		liftSlave.set(ControlMode.Follower, liftMaster.getDeviceID());
 	}
-	
+
 	public void zeroEncoders()
 	{
 		liftMaster.getSensorCollection().setPulseWidthPosition(0, 10);
@@ -79,25 +95,25 @@ public class Elevator extends Subsystem
 	public void setPID(double P, double I, double D, double F)
 	{
 		liftMaster.config_kF(0, F, 10);
-		
+
 		liftMaster.config_kP(0, P, 10);
-		
+
 		liftMaster.config_kI(0, I, 10);
-		
+
 		liftMaster.config_kD(0, D, 10);
 	}
 
 	public void setSetpointLift(double inches)
 	{
 		// DO NOT ZERO ENCODER
-		
+
 		liftMaster.set(ControlMode.Position, inchToEncoder(inches));
 	}
 
 	public void setSetpointLift(ElevatorPosition position)
-	{	
+	{
 		double inches = 0;
-		
+
 		if (position == ElevatorPosition.SWITCH)
 		{
 			inches = RobotMap.elevatorEncoderSwitch;
@@ -114,7 +130,7 @@ public class Elevator extends Subsystem
 		{
 			inches = RobotMap.elevatorEncoderClimb;
 		}
-		
+
 		setSetpointLift(inches);
 	}
 
@@ -145,9 +161,9 @@ public class Elevator extends Subsystem
 	{
 		// zero the on target counter
 		onTargetCounter = 0;
-		
+
 		liftMaster.configAllowableClosedloopError(0, ticks, 10);
-		
+
 		// set tolerance in ticks
 		allowedErrorRange = ticks;
 	}
@@ -157,12 +173,12 @@ public class Elevator extends Subsystem
 	{
 		return (inches / RobotMap.wheelCir) * 4096;
 	}
-	
+
 	public void updateEncoders()
 	{
 		SmartDashboard.putNumber("Elevator Encoder", liftMaster.getSelectedSensorPosition(0));
 	}
-	
+
 	@Override
 	protected void initDefaultCommand()
 	{
