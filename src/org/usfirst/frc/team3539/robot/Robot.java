@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		// pdp = new PowerDistributionPanel();
+		pdp = new PowerDistributionPanel(30);
 
 		SmartInit();
 
@@ -166,7 +166,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 
-		// SmartDashboard.putData("PDP", pdp);
+		SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);

@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
@@ -40,12 +41,19 @@ public class OI
 //		two
 
 		// Pitch
-		two.buttonPadUp.whenPressed(new PitchCommand(PitchAngle.UP));
-		two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
-		two.buttonPadDown.whenPressed(new PitchCommand(PitchAngle.DOWN));
+		//two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
+		
+		two.buttonPadUp.whenPressed(new PitchManualCommand(.4));
+		two.buttonPadDown.whenPressed(new PitchManualCommand(-.4));
+		
+		two.buttonPadUp.whenReleased(new PitchManualCommand(0));
+		two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
-		two.buttonTR.whenPressed(new IntakeCommand(-1));
-		two.buttonTL.whenPressed(new IntakeCommand(1));
+		two.buttonTR.whenPressed(new IntakeCommand(-.5));
+		two.buttonTL.whenPressed(new IntakeCommand(.5));
+		
+		two.buttonTR.whenReleased(new IntakeCommand(0));
+		two.buttonTL.whenReleased(new IntakeCommand(0));
 	}
 }

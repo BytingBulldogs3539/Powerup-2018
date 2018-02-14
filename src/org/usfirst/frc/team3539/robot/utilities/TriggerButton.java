@@ -39,12 +39,11 @@ public class TriggerButton extends Button
 	@Override
 	public boolean get()
 	{
-		if (joystick.getRawAxis(triggerAxis) > topRange)
+		if (Math.abs(joystick.getRawAxis(triggerAxis)) > topRange)
 		{
 			isTriggered = true;
-
 		}
-		else if (joystick.getRawAxis(triggerAxis) < lowRange)
+		else if (Math.abs(joystick.getRawAxis(triggerAxis)) < lowRange)
 		{
 			isTriggered = false;
 		}

@@ -49,7 +49,7 @@ public class Elevator extends Subsystem
 	private void setInverted()
 	{
 		liftMaster.setInverted(false);
-		liftSlave.setInverted(true);
+		liftSlave.setInverted(false);
 	}
 
 	public void setMotorPower(double throttle)
@@ -59,8 +59,9 @@ public class Elevator extends Subsystem
 	
 	private void enableCurrentLimit()
 	{
-		liftMaster.enableCurrentLimit(true);
-		liftSlave.enableCurrentLimit(true);
+		// Omar I hate u
+		liftMaster.enableCurrentLimit(false);
+		liftSlave.enableCurrentLimit(false);
 	}
 
 	private void setFollower()
