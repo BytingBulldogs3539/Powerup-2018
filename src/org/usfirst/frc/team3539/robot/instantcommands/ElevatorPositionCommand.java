@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -27,6 +28,7 @@ public class ElevatorPositionCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.elevator.setPID(RobotMap.elevatorPea, RobotMap.elevatorEye, RobotMap.ElevatorDee, RobotMap.elevatorFFF);
+		Robot.pitch.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
+				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee));
 	}
 }

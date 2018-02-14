@@ -144,21 +144,29 @@ public class Elevator extends Subsystem
 	private int maxLoopNumber = 0;
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
+	private boolean isSet;
 
 	public boolean onTarget()
 	{
-		if (Math.abs(liftMaster.getClosedLoopError(0)) <= allowedErrorRange)
+		if (isSet)
 		{
-			onTargetCounter++;
+			if (Math.abs(liftMaster.getClosedLoopError(0)) <= allowedErrorRange)
+			{
+				onTargetCounter++;
+			}
+			else
+			{
+				onTargetCounter = 0;
+			}
+
+			if (maxLoopNumber <= onTargetCounter)
+			{
+				return true;
+			}
 		}
 		else
 		{
-			onTargetCounter = 0;
-		}
-
-		if (maxLoopNumber <= onTargetCounter)
-		{
-			return true;
+			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}
 
 		return false;
@@ -166,6 +174,7 @@ public class Elevator extends Subsystem
 
 	public void setupOnTarget(int ticks, int maxLoopNumber)
 	{
+		isSet = true;
 		// zero the on target counter
 		onTargetCounter = 0;
 

@@ -29,17 +29,17 @@ public class LateralPitch extends Subsystem
 
 		pitch.configPeakOutputReverse(-1, 10);
 		pitch.configPeakOutputForward(1, 10);
-		
+
 		configureBrakeMode();
 		configureSoftLimits();
 		shouldSoftLimit(false);
 	}
-	
+
 	private void configureBrakeMode()
 	{
 		pitch.setNeutralMode(NeutralMode.Brake);
 	}
-	
+
 	private void configureSoftLimits()
 	{
 		pitch.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
@@ -62,16 +62,16 @@ public class LateralPitch extends Subsystem
 	public void setPID(double P, double I, double D)
 	{
 		pitch.config_kP(0, P, 10);
-		
+
 		pitch.config_kI(0, I, 10);
-		
+
 		pitch.config_kD(0, D, 10);
 	}
 
 	public void setSetpointPitch(PitchAngle pitchAngle)
 	{
 		double ticks = 0;
-		
+
 		if (pitchAngle == PitchAngle.DOWN)
 		{
 			ticks = RobotMap.pitchEncPosDown;
@@ -84,10 +84,10 @@ public class LateralPitch extends Subsystem
 		{
 			ticks = RobotMap.pitchEncPosIntake;
 		}
-		
+
 		setSetpointPitch(ticks);
 	}
-	
+
 	public void setSetpointPitch(double encoderPosition)
 	{
 		pitch.set(ControlMode.Position, encoderPosition);
@@ -96,21 +96,29 @@ public class LateralPitch extends Subsystem
 	private int maxLoopNumber = 0;
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
+	private boolean isSet;
 
 	public boolean onTarget()
 	{
-		if (Math.abs(pitch.getClosedLoopError(0)) <= allowedErrorRange)
+		if (isSet)
 		{
-			onTargetCounter++;
+			if (Math.abs(pitch.getClosedLoopError(0)) <= allowedErrorRange)
+			{
+				onTargetCounter++;
+			}
+			else
+			{
+				onTargetCounter = 0;
+			}
+
+			if (maxLoopNumber <= onTargetCounter)
+			{
+				return true;
+			}
 		}
 		else
 		{
-			onTargetCounter = 0;
-		}
-
-		if (maxLoopNumber <= onTargetCounter)
-		{
-			return true;
+			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}
 
 		return false;
@@ -118,11 +126,12 @@ public class LateralPitch extends Subsystem
 
 	public void setupOnTarget(int ticks, int maxLoopNumber)
 	{
+		isSet = true;
 		// zero the on target counter
 		onTargetCounter = 0;
-		
+
 		pitch.configAllowableClosedloopError(0, ticks, 10);
-		
+
 		// set tolerance in ticks
 		allowedErrorRange = ticks;
 	}

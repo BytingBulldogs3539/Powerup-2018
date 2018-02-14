@@ -26,8 +26,6 @@ public class PitchCommand extends Command
 				SmartDashboard.getNumber("pitchDee", RobotMap.pitchDee));
 		
 		Robot.pitch.setSetpointPitch(angle);
-		
-		//Robot.pitch
 	}
 	
 	
