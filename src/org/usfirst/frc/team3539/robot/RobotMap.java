@@ -96,8 +96,8 @@ public class RobotMap
 	public static final int rIntakeMotor = 8;// Prac 8
 
 	// Elevator
-	public static final int elevatorMotor1 = 4;// Prac 3 // Broken talon 4 // Prac backup 3
-	public static final int elevatorMotor2 = 5;// Prac 5
+	public static final int elevatorMotorOne = 4;// Prac 3 // Broken talon 4 // Prac backup 3
+	public static final int elevatorMotorTwo = 5;// Prac 5
 	public static final int elevatorEncoderFloor = 0; // SOME INT
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT

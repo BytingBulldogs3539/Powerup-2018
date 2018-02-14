@@ -4,6 +4,7 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -23,8 +24,8 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
-		liftMaster = new TalonSRX(RobotMap.elevatorMotor1);
-		liftSlave = new TalonSRX(RobotMap.elevatorMotor2);
+		liftMaster = new TalonSRX(RobotMap.elevatorMotorOne);
+		liftSlave = new TalonSRX(RobotMap.elevatorMotorTwo);
 
 		liftMaster.configNominalOutputForward(1, 10);
 		liftMaster.configNominalOutputForward(-1, 10);
@@ -41,11 +42,17 @@ public class Elevator extends Subsystem
 
 		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
 
+		configureBrakeMode();
 		setFollower();
 		enableCurrentLimit();
 		setInverted();
 		configureSoftLimits();
 		shouldSoftLimit(false);
+	}
+
+	private void configureBrakeMode()
+	{
+		liftMaster.setNeutralMode(NeutralMode.Brake);
 	}
 
 	private void setInverted()
@@ -76,7 +83,7 @@ public class Elevator extends Subsystem
 	private void enableCurrentLimit()
 	{
 		// Omar I hate u
-		liftMaster.enableCurrentLimit(false);
+		liftMaster.enableCurrentLimit(false);// TODO - Change to true and add rest of current code
 		liftSlave.enableCurrentLimit(false);
 	}
 
