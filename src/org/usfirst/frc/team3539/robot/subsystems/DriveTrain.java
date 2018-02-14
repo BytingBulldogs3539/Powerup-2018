@@ -49,13 +49,13 @@ public final class DriveTrain extends Subsystem
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
 		lf.configPeakOutputReverse(-peakOut, 10);
-		
+
 		rf.configPeakOutputForward(peakOut, 10);
 		rf.configPeakOutputReverse(-peakOut, 10);
 
 		lb.configPeakOutputForward(peakOut, 10);
 		lb.configPeakOutputReverse(-peakOut, 10);
-		
+
 		rb.configPeakOutputForward(peakOut, 10);
 		rb.configPeakOutputReverse(-peakOut, 10);
 
@@ -72,25 +72,38 @@ public final class DriveTrain extends Subsystem
 		lb.configNominalOutputReverse(0, 10);
 		rb.configNominalOutputReverse(0, 10);
 
-		lb.setNeutralMode(NeutralMode.Brake);
-		rb.setNeutralMode(NeutralMode.Brake);
-
-		lf.setNeutralMode(NeutralMode.Brake);
-		rf.setNeutralMode(NeutralMode.Brake);
-
 		drive = new Drive(rf, lf);
 
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
+		setBrakeMode(false);
 		setFollower();
 		setInverted();
-		
 		// Omar CTRE I hate you sometimes - Do not remove
 		enableCurrentLimit();
 
 		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
+	}
+
+	public void setBrakeMode(boolean shouldBrakeMode)
+	{
+		if (shouldBrakeMode)
+		{
+			lf.setNeutralMode(NeutralMode.Brake);
+			rf.setNeutralMode(NeutralMode.Brake);
+			lb.setNeutralMode(NeutralMode.Brake);
+			rb.setNeutralMode(NeutralMode.Brake);
+		}
+		else
+		{
+			lf.setNeutralMode(NeutralMode.Coast);
+			rf.setNeutralMode(NeutralMode.Coast);
+			lb.setNeutralMode(NeutralMode.Coast);
+			rb.setNeutralMode(NeutralMode.Coast);
+		}
+
 	}
 
 	private void setFollower()
@@ -104,15 +117,15 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.setInverted(false);
 		lb.setInverted(false);
-		
+
 		rf.setInverted(true);
 		rb.setInverted(true);
 	}
 
 	private void enableCurrentLimit()
 	{
-		//lf.enableCurrentLimit(true);
-		//rf.enableCurrentLimit(true);
+		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
+		rf.enableCurrentLimit(false);
 	}
 
 	public void zeroEncoders()
@@ -418,15 +431,14 @@ public final class DriveTrain extends Subsystem
 			double velocityRPMR = profileR[i][1];
 			double velocityRPML = profileL[i][1];
 
+			// pointR.position = ((positionRotR)/318) * 4096;
+			// pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
+			// pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
+			// pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
 
-//			pointR.position = ((positionRotR)/318) * 4096;
-//			pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
-//			pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
-//			pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
-			
-			//318
-			pointR.position = (positionRotR/2) * 4096;
-			pointR.velocity = (velocityRPMR/2) * 4096 / 600.0;
+			// 318
+			pointR.position = (positionRotR / 2) * 4096;
+			pointR.velocity = (velocityRPMR / 2) * 4096 / 600.0;
 			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
 			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
 
@@ -498,8 +510,8 @@ public final class DriveTrain extends Subsystem
 		{
 			lf.processMotionProfileBuffer();
 			rf.processMotionProfileBuffer();
-			System.out.println(statusR.isUnderrun+"statusR");
-			System.out.println(statusL.isUnderrun+"statusL");
+			System.out.println(statusR.isUnderrun + "statusR");
+			System.out.println(statusL.isUnderrun + "statusL");
 		}
 	}
 

@@ -17,9 +17,6 @@ public class AutonDriveCommand extends Command
 	{
 		requires(Robot.driveTrain);
 		
-		Robot.driveTrain.setPID(RobotMap.drivePea, RobotMap.driveEye, RobotMap.driveDee,
-				SmartDashboard.getNumber("F", 0));
-		
 		this.inches = inches;
 		
 		setTimeout(seconds);
@@ -27,8 +24,8 @@ public class AutonDriveCommand extends Command
 
 	protected void initialize()
 	{		
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("P", 0), SmartDashboard.getNumber("I", 0),
-				SmartDashboard.getNumber("D", 0), SmartDashboard.getNumber("F", 0));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+				SmartDashboard.getNumber("driveDee", RobotMap.driveDee), SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		
 		
 		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
