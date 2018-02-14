@@ -33,6 +33,7 @@ public class IntakeCommand extends Command
 
 	protected void end()
 	{
+		Robot.intake.setMotorPower(0);
 	}
 
 	protected void interrupted()

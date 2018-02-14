@@ -27,6 +27,11 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Powerup-2018/doc/javadoc/index.html!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/CTRE_Phoenix.jar" sourcepath="srcs/CTRE_Phoenix-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/FRC-3539/doc/CTRE_Phoenix-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/commons-csv-1.5.jar" sourcepath="srcs/commons-csv-1.5-sources.jar">
 		<attributes>
 			<attribute name="javadoc_location" value="jar:platform:/resource/Powerup-2018/doc/apidocs/index.html!/"/>
