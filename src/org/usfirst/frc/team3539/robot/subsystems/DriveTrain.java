@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.subsystems;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
+import org.usfirst.frc.team3539.robot.profiles.test;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
@@ -380,12 +381,16 @@ public final class DriveTrain extends Subsystem {
 			double velocityRPMR = profileR[i][1];
 			double velocityRPML = profileL[i][1];
 
+//			pointR.position = ((positionRotR)/318) * 4096;
+//			pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
+//			pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
+//			pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
 			
 			//318
-			pointR.position = (positionRotR) * 4096;
-			pointR.velocity = velocityRPMR * 4096 / 600.0;
-			pointL.position = positionRotL * 4096; // Convert Revolutions to Units
-			pointL.velocity = velocityRPML * 4096 / 600.0; // Convert RPM to Units/100ms
+			pointR.position = (positionRotR/2) * 4096;
+			pointR.velocity = (velocityRPMR/2) * 4096 / 600.0;
+			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
+			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
 
 			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
 			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
@@ -453,10 +458,10 @@ public final class DriveTrain extends Subsystem {
 	class PeriodicRunnable implements java.lang.Runnable {
 		public void run()// add to drive train last
 		{
-
 			lf.processMotionProfileBuffer();
 			rf.processMotionProfileBuffer();
-
+			System.out.println(statusR.isUnderrun+"statusR");
+			System.out.println(statusL.isUnderrun+"statusL");
 		}
 	}
 
