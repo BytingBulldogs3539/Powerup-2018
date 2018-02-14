@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
+import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
@@ -32,6 +33,7 @@ public class Robot extends IterativeRobot
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 	public static Solenoids solenoids = new Solenoids();
+	public static SerialSub serialSub = new SerialSub();
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
@@ -80,8 +82,6 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
-		// serialSub.getDistance(2);
-
 		Scheduler.getInstance().run();
 	}
 
@@ -159,10 +159,10 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("BreakD", RobotMap.breakDee);
 		SmartDashboard.putNumber("BreakF", RobotMap.breakFFF);
 
-		SmartDashboard.putNumber("ElevatorP", RobotMap.ElevatorPea);
-		SmartDashboard.putNumber("ElevatorI", RobotMap.ElevatorEye);
+		SmartDashboard.putNumber("ElevatorP", RobotMap.elevatorPea);
+		SmartDashboard.putNumber("ElevatorI", RobotMap.elevatorEye);
 		SmartDashboard.putNumber("ElevatorD", RobotMap.ElevatorDee);
-		SmartDashboard.putNumber("ElevatorF", RobotMap.ElevatorFFF);
+		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
@@ -181,6 +181,11 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("throttleNonLinearity", RobotMap.throttleNonLinearity);
 
 		SmartDashboard.putNumber("highSpeedWheel", RobotMap.highSpeedWheel);
+		
+		SmartDashboard.putNumber("Range Finder Front", Robot.serialSub.getDistance(RobotMap.frontRangeFinder));
+		SmartDashboard.putNumber("Range Finder Right", Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
+		SmartDashboard.putNumber("Range Finder Left", Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
+		SmartDashboard.putNumber("Range Finder Back", Robot.serialSub.getDistance(RobotMap.backRangeFinder));
 
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));

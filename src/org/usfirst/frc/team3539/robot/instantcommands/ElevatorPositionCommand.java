@@ -27,6 +27,6 @@ public class ElevatorPositionCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.elevator.setPID(RobotMap.ElevatorPea, RobotMap.ElevatorEye, RobotMap.ElevatorDee, RobotMap.ElevatorFFF);
+		Robot.elevator.setPID(RobotMap.elevatorPea, RobotMap.elevatorEye, RobotMap.ElevatorDee, RobotMap.elevatorFFF);
 	}
 }

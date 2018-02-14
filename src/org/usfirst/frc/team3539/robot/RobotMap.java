@@ -11,6 +11,7 @@ public class RobotMap
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
 
+	
 	// PDP
 	public static final int pdp = 30;
 	
@@ -102,15 +103,24 @@ public class RobotMap
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
-	public static double ElevatorPea = 0;
-	public static double ElevatorEye = 0;
-	public static double ElevatorDee = 0;
-	public static double ElevatorFFF = 0;
+	public static double elevatorPea = 0;
+	public static double elevatorEye = 0;
+	public static double elevatorDee = 0;
+	public static double elevatorFFF = 0;
 
+	// RANGE FINDING
+	public static final int frontRangeFinder=0;
+	public static final int backRangeFinder=1;
+	public static final int rightRangeFinder=2;
+	public static final int leftRangeFinder=3;
+	
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
 
+	
+	
+	
 	//////////////////////// PRACTICE BOT/////////////////////
 
 	//////////////////////// COMP BOT /////////////////////////
