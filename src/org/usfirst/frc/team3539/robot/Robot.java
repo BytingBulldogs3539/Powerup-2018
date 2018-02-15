@@ -161,13 +161,13 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putNumber("ElevatorP", RobotMap.elevatorPea);
 		SmartDashboard.putNumber("ElevatorI", RobotMap.elevatorEye);
-		SmartDashboard.putNumber("ElevatorD", RobotMap.ElevatorDee);
+		SmartDashboard.putNumber("ElevatorD", RobotMap.elevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 
-		SmartDashboard.putData("PDP", pdp);
+		//SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
@@ -182,10 +182,10 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putNumber("highSpeedWheel", RobotMap.highSpeedWheel);
 		
-		SmartDashboard.putNumber("Range Finder Front", Robot.serialSub.getDistance(RobotMap.frontRangeFinder));
-		SmartDashboard.putNumber("Range Finder Right", Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
-		SmartDashboard.putNumber("Range Finder Left", Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
-		SmartDashboard.putNumber("Range Finder Back", Robot.serialSub.getDistance(RobotMap.backRangeFinder));
+//		SmartDashboard.putNumber("Range Finder Front", Robot.serialSub.getDistance(RobotMap.frontRangeFinder));
+//		SmartDashboard.putNumber("Range Finder Right", Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
+//		SmartDashboard.putNumber("Range Finder Left", Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
+//		SmartDashboard.putNumber("Range Finder Back", Robot.serialSub.getDistance(RobotMap.backRangeFinder));
 
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));

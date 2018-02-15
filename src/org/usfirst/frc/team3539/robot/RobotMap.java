@@ -1,8 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
- * around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides
+ * flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
 public class RobotMap
 {
@@ -11,27 +12,20 @@ public class RobotMap
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
 
-	
 	// PDP
 	public static final int pdp = 30;
 	
-	// AIR
-	public static final int compressor = 20;
-
 	// PCM
-	public static final int pcm = 10;
-	
-	public static int intakesolOn = 0;
-	public static int intakesolOff = 1;
-	
-	public static int liftersolOn = 2;
-	public static int liftersolOff = 3;
-	
-	public static int rampsolOn = 4;
-	public static int rampsolOff = 5;
-	
-	public static int shiftersolOn = 6;
-	public static int shiftersolOff =7;
+	public static final int pcm = 20;
+
+	public static int intakesolOn = 1;
+	public static int intakesolOff = 0;
+
+	// public static int rampsolOn = 4;
+	// public static int rampsolOff = 5;
+
+	public static int shiftersolOn = 2;
+	public static int shiftersolOff = 3;
 
 	// PITCH
 	public static final int pitch = 6;
@@ -47,7 +41,7 @@ public class RobotMap
 	// DRIVETRAIN
 	public static final int lf = 10; // Tina 9 Prac 10
 	public static final int lb = 11;// Tina 11 Prac 11
-	
+
 	public static final int rf = 2;// Tina 4 Prac 2
 	public static final int rb = 1;// Tina none Prac 1
 
@@ -109,18 +103,15 @@ public class RobotMap
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING
-	public static final int frontRangeFinder=0;
-	public static final int backRangeFinder=1;
-	public static final int rightRangeFinder=2;
-	public static final int leftRangeFinder=3;
-	
+	public static final int frontRangeFinder = 0;
+	public static final int backRangeFinder = 1;
+	public static final int rightRangeFinder = 2;
+	public static final int leftRangeFinder = 3;
+
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
 
-	
-	
-	
 	//////////////////////// PRACTICE BOT/////////////////////
 
 	//////////////////////// COMP BOT /////////////////////////

@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
+import org.usfirst.frc.team3539.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 /**
@@ -17,7 +19,7 @@ public class bbDoubleSolenoid extends DoubleSolenoid
 
 	public bbDoubleSolenoid(int on, int off, boolean isTrigger)
 	{
-		super(on, off);
+		super(RobotMap.pcm, on, off);
 		this.on = on;
 		this.off = off;
 		defaultPosition(isTrigger);

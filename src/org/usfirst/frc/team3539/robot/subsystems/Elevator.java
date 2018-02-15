@@ -47,12 +47,13 @@ public class Elevator extends Subsystem
 		enableCurrentLimit();
 		setInverted();
 		configureSoftLimits();
-		shouldSoftLimit(false);
+		shouldSoftLimit(true);
 	}
 
 	private void configureBrakeMode()
 	{
 		liftMaster.setNeutralMode(NeutralMode.Brake);
+		liftSlave.setNeutralMode(NeutralMode.Brake);
 	}
 
 	private void setInverted()

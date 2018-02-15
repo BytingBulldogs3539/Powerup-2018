@@ -32,7 +32,7 @@ public class LateralPitch extends Subsystem
 
 		configureBrakeMode();
 		configureSoftLimits();
-		shouldSoftLimit(false);
+		shouldSoftLimit(true);
 	}
 
 	private void configureBrakeMode()
@@ -45,13 +45,13 @@ public class LateralPitch extends Subsystem
 		pitch.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
 		pitch.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
 
-		pitch.configForwardSoftLimitEnable(true, 10);
-		pitch.configReverseSoftLimitEnable(true, 10);
+		pitch.configForwardSoftLimitEnable(false, 10);
+		pitch.configReverseSoftLimitEnable(false, 10);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
-		pitch.overrideLimitSwitchesEnable(shouldSoftLimit);
+		pitch.overrideSoftLimitsEnable(shouldSoftLimit);
 	}
 
 	public void rotate(double power)

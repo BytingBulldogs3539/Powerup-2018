@@ -21,7 +21,7 @@ public class ElevatorManualCommand extends Command
 
 	protected void execute()
 	{
-		Robot.elevator.setMotorPower(Robot.oi.two.getLeftStickY());
+		Robot.elevator.setMotorPower(-Robot.oi.two.getLeftStickY());
 	}
 
 	protected boolean isFinished()
