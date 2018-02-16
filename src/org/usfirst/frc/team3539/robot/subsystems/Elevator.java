@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -49,14 +50,17 @@ public class Elevator extends Subsystem
 		configureSoftLimits();
 		shouldSoftLimit(true);
 		zeroEncoders();
+
 		
 		setupEncoders();
+		setPID(.1,.1,.1, 0);
 
 	}
 	private void setupEncoders()
 	{
 		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		liftMaster.setSensorPhase(true);
+		liftMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.CTRE_MagEncoder_Relative, 10);
 	}
 
 	private void configureBrakeMode()
