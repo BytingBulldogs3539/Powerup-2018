@@ -40,27 +40,18 @@ public class Elevator extends Subsystem
 
 		liftSlave.configPeakOutputForward(peakOut, 10);
 		liftSlave.configPeakOutputReverse(-peakOut, 10);
-
-		System.out.println(liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10));
+		
+		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
 
 		configureBrakeMode();
 		setFollower();
 		enableCurrentLimit();
 		setInverted();
-		configureSoftLimits();
-		shouldSoftLimit(true);
+		//configureSoftLimits();
+		//shouldSoftLimit(true);
 		zeroEncoders();
 
-		
-		setupEncoders();
-		setPID(.1,.1,.1, 0);
 
-	}
-	private void setupEncoders()
-	{
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10)
-		liftMaster.setSensorPhase(false);
-		//liftMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.CTRE_MagEncoder_Relative, 10);
 	}
 
 	private void configureBrakeMode()
@@ -112,9 +103,7 @@ public class Elevator extends Subsystem
 
 	public void zeroEncoders()
 	{
-		liftMaster.getSensorCollection().setPulseWidthPosition(0, 10);
-
-		liftMaster.setSelectedSensorPosition(0, 0, 10);
+		liftMaster.getSensorCollection().setQuadraturePosition(0, 0);
 	}
 
 	public void setPID(double P, double I, double D, double F)
@@ -211,6 +200,7 @@ public class Elevator extends Subsystem
 	public void updateEncoders()
 	{
 		SmartDashboard.putNumber("Elevator Encoder", liftMaster.getSelectedSensorPosition(0));
+		liftMaster.getSensorCollection().getPulseWidthPosition();
 	}
 
 	@Override
