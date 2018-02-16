@@ -41,7 +41,7 @@ public class Elevator extends Subsystem
 		liftSlave.configPeakOutputForward(peakOut, 10);
 		liftSlave.configPeakOutputReverse(-peakOut, 10);
 
-		System.out.println(liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10));
+		System.out.println(liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10));
 
 		configureBrakeMode();
 		setFollower();
@@ -58,9 +58,9 @@ public class Elevator extends Subsystem
 	}
 	private void setupEncoders()
 	{
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		liftMaster.setSensorPhase(true);
-		liftMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.CTRE_MagEncoder_Relative, 10);
+		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10)
+		liftMaster.setSensorPhase(false);
+		//liftMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.CTRE_MagEncoder_Relative, 10);
 	}
 
 	private void configureBrakeMode()
