@@ -22,13 +22,13 @@ public class ElevatorPositionCommand extends InstantCommand
 	public ElevatorPositionCommand(double inches)
 	{
 		requires(Robot.elevator);
-
+		Robot.pitch.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
+				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee));
 		Robot.elevator.setSetpointLift(inches);
 	}
 
 	protected void initialize()
 	{
-		Robot.pitch.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee));
+
 	}
 }

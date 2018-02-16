@@ -13,6 +13,7 @@ public class ElevatorZeroCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.elevator.zeroEncoders();
+		//Robot.elevator.zeroEncoders();
 	}
 }
+

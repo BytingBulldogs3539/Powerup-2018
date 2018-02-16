@@ -24,14 +24,14 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
-		liftMaster = new TalonSRX(RobotMap.elevatorMotorOne);
-		liftSlave = new TalonSRX(RobotMap.elevatorMotorTwo);
+		liftMaster = new TalonSRX(RobotMap.elevatorMotorTwo);
+		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
 
-		liftMaster.configNominalOutputForward(1, 10);
-		liftMaster.configNominalOutputForward(-1, 10);
+		liftMaster.configNominalOutputForward(0, 10);
+		liftMaster.configNominalOutputReverse(0, 10);
 
-		liftSlave.configNominalOutputForward(1, 10);
-		liftSlave.configNominalOutputForward(-1, 10);
+		liftSlave.configNominalOutputForward(0, 10);
+		liftSlave.configNominalOutputReverse(0, 10);
 
 		double peakOut = 1;// 1 is full ouput
 		liftMaster.configPeakOutputForward(peakOut, 10);
@@ -40,7 +40,7 @@ public class Elevator extends Subsystem
 		liftSlave.configPeakOutputForward(peakOut, 10);
 		liftSlave.configPeakOutputReverse(-peakOut, 10);
 
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+		System.out.println(liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10));
 
 		configureBrakeMode();
 		setFollower();
@@ -48,6 +48,15 @@ public class Elevator extends Subsystem
 		setInverted();
 		configureSoftLimits();
 		shouldSoftLimit(true);
+		zeroEncoders();
+		
+		setupEncoders();
+
+	}
+	private void setupEncoders()
+	{
+		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		liftMaster.setSensorPhase(true);
 	}
 
 	private void configureBrakeMode()
@@ -67,8 +76,8 @@ public class Elevator extends Subsystem
 		liftMaster.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
 		liftMaster.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
 
-		liftMaster.configForwardSoftLimitEnable(true, 10);
-		liftMaster.configReverseSoftLimitEnable(true, 10);
+		liftMaster.configForwardSoftLimitEnable(false, 10);
+		liftMaster.configReverseSoftLimitEnable(false, 10);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
@@ -79,6 +88,10 @@ public class Elevator extends Subsystem
 	public void setMotorPower(double throttle)
 	{
 		liftMaster.set(ControlMode.PercentOutput, throttle);
+	}
+	public double getEncoder()
+	{
+		return liftMaster.getSelectedSensorPosition(0);
 	}
 
 	private void enableCurrentLimit()

@@ -3,7 +3,6 @@ package org.usfirst.frc.team3539.robot.subsystems;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
-import org.usfirst.frc.team3539.robot.profiles.test;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;

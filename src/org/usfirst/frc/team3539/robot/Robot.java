@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
+import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -132,12 +133,14 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser.addObject("MotionProfile", new AutonMotionProfileCommand());
+		autonChooser.addObject("TestAuto", new TestAuto());
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
 
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
+		
 		SmartDashboard.putData("Auton mode", autonChooser);
 
 		SmartDashboard.putData("Auton Position", positionChooser);
@@ -167,7 +170,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("Right Enc VEL", 1);
 		SmartDashboard.putNumber("Left Enc VEL", 1);
 
-		//SmartDashboard.putData("PDP", pdp);
+		SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
