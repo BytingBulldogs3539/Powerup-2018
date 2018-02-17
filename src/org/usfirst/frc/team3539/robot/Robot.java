@@ -1,8 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonDriveCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
+import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -17,7 +16,8 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.command.S
+heduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -134,9 +134,7 @@ public class Robot extends IterativeRobot
 	public void SmartInit()
 	{
 		autonChooser.addObject("MotionProfile", new AutonMotionProfileCommand());
-		autonChooser.addObject("Drive 100", new AutonDriveCommand(100,6));
-		autonChooser.addObject("Turn 90", new AutonTurnEncoderCommand(90,3));
-		autonChooser.addObject("Turn -90", new AutonTurnEncoderCommand(-90,3));
+		autonChooser.addObject("TestAuto", new TestAuto());
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
@@ -192,6 +190,9 @@ public class Robot extends IterativeRobot
 //		SmartDashboard.putNumber("Range Finder Right", Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
 //		SmartDashboard.putNumber("Range Finder Left", Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
 //		SmartDashboard.putNumber("Range Finder Back", Robot.serialSub.getDistance(RobotMap.backRangeFinder));
+
+		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
+		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
 		SmartDashboard.putData(Scheduler.getInstance());
 	}

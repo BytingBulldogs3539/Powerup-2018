@@ -31,7 +31,7 @@ public class RobotMap
 	public static final int pitch = 6;
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
-	public static double pitchPea = .000001;
+	public static double pitchPea = .001;
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
 	public static int pitchEncPosDown = 0; // SOME INT
@@ -66,7 +66,7 @@ public class RobotMap
 	public static double breakFFF = 0.1;
 
 	// Tina - Change to new bot
-	public static final double wheelCir = 18.84;
+	public static final double wheelCir = 12.56;
 	// Tina - Change to new bot
 	public static final double robotCir = 103.62;
 
@@ -93,7 +93,7 @@ public class RobotMap
 	// Elevator
 	public static final int elevatorMotorOne = 4;// Prac 3 // Broken talon 4 // Prac backup 3
 	public static final int elevatorMotorTwo = 5;// Prac 5
-	public static final int elevatorEncoderFloor = 0;
+	public static final int elevatorEncoderFloor = 0; // SOME INT
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
