@@ -5,19 +5,20 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch.PitchAngle;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.InstantCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class PitchCommand extends Command
+public class PitchCommand extends InstantCommand
 {
-	PitchAngle angle;
+	double angle;
 
-	public PitchCommand(PitchAngle angle)
+	public PitchCommand(double i)
 	{
 		requires(Robot.pitch);
-		this.angle = angle;
+		this.angle = i;
 	}
 
 	protected void initialize()
@@ -26,13 +27,5 @@ public class PitchCommand extends Command
 				SmartDashboard.getNumber("pitchDee", RobotMap.pitchDee));
 		
 		Robot.pitch.setSetpointPitch(angle);
-	}
-	
-	
-
-	@Override
-	protected boolean isFinished()
-	{
-		return false;
 	}
 }

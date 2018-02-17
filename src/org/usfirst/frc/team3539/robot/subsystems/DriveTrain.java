@@ -73,8 +73,8 @@ public final class DriveTrain extends Subsystem
 
 		drive = new Drive(rf, lf);
 
-		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		lf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
 
 		setBrakeMode(false);
 		setFollower();

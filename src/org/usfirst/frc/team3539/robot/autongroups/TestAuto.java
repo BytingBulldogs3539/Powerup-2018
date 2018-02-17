@@ -13,10 +13,10 @@ public class TestAuto extends CommandGroup
 {
 	public TestAuto()
 	{
-		addSequential(new AutonDriveCommand(60, 6));
-		addSequential(new AutonWaitCommand(2));
-		addSequential(new AutonTurnEncoderCommand(-90, 3));
-		addSequential(new AutonWaitCommand(2));
-		addSequential(new AutonDriveCommand(36, 6));
+		addSequential(new AutonDriveCommand(100, 6));
+//		addSequential(new AutonWaitCommand(2));
+//		addSequential(new AutonTurnEncoderCommand(-90, 3));
+//		addSequential(new AutonWaitCommand(2));
+//		addSequential(new AutonDriveCommand(36, 6));
 	}
 }

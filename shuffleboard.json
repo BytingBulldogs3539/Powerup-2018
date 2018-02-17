@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.08915537017726799,
+  "dividerPosition": 0.21115745568300312,
   "tabPane": [
     {
       "title": "SmartDashboard",
@@ -7,6 +7,7 @@
       "autoPopulatePrefix": "SmartDashboard/",
       "widgetPane": {
         "gridSize": 128.0,
+        "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
@@ -27,12 +28,60 @@
               1
             ],
             "content": {
+              "_type": "3-Axis Accelerometer",
+              "_source0": "network_table:///SmartDashboard/Accelerometer",
+              "_title": "Accelerometer",
+              "range": "k16G",
+              "showText": true,
+              "numDecimals": 2,
+              "showTickMarks": false
+            }
+          },
+          "2,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/ElevatorD",
+              "_title": "ElevatorD"
+            }
+          },
+          "3,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/ElevatorF",
+              "_title": "ElevatorF"
+            }
+          },
+          "4,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/ElevatorI",
+              "_title": "ElevatorI"
+            }
+          },
+          "5,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/TurnD",
               "_title": "TurnD"
             }
           },
-          "2,0": {
+          "6,0": {
             "size": [
               1,
               1
@@ -43,7 +92,7 @@
               "_title": "TurnF"
             }
           },
-          "3,0": {
+          "7,0": {
             "size": [
               1,
               1
@@ -54,7 +103,18 @@
               "_title": "TurnI"
             }
           },
-          "4,0": {
+          "8,0": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/ElevatorP",
+              "_title": "ElevatorP"
+            }
+          },
+          "9,0": {
             "size": [
               1,
               1
@@ -65,7 +125,7 @@
               "_title": "Alliance"
             }
           },
-          "5,3": {
+          "0,1": {
             "size": [
               1,
               1
@@ -76,7 +136,7 @@
               "_title": "wheelDeadband"
             }
           },
-          "6,0": {
+          "1,1": {
             "size": [
               1,
               1
@@ -87,62 +147,44 @@
               "_title": "TurnP"
             }
           },
-          "7,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
-              "_title": "Right Enc VEL"
-            }
-          },
-          "7,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Left Enc",
-              "_title": "Left Enc"
-            }
-          },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/highSpeedWheel",
-              "_title": "highSpeedWheel"
-            }
-          },
-          "1,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Left Enc VEL",
-              "_title": "Left Enc VEL"
-            }
-          },
           "2,1": {
             "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///SmartDashboard/Gyro",
+              "_title": "Gyro",
+              "majorTickSpace": 45.0,
+              "startAngle": 180.0,
+              "tickMarkRingVisible": true
+            }
+          },
+          "4,1": {
+            "size": [
               1,
               1
             ],
             "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Enc",
-              "_title": "Right Enc"
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auton mode",
+              "_title": "Auton mode"
             }
           },
-          "1,3": {
+          "5,1": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "PDP",
+              "_source0": "network_table:///SmartDashboard/PDP",
+              "_title": "PDP",
+              "showIndicatorText": true
+            }
+          },
+          "8,1": {
             "size": [
               1,
               1
@@ -153,7 +195,7 @@
               "_title": "throttleNonLinearity"
             }
           },
-          "3,3": {
+          "9,1": {
             "size": [
               1,
               1
@@ -164,7 +206,7 @@
               "_title": "throttleDeadband"
             }
           },
-          "4,3": {
+          "0,2": {
             "size": [
               1,
               1
@@ -175,7 +217,18 @@
               "_title": "throttleHighPass"
             }
           },
-          "6,1": {
+          "1,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
+              "_title": "Right Enc VEL"
+            }
+          },
+          "4,2": {
             "size": [
               1,
               1
@@ -186,7 +239,7 @@
               "_title": "BreakD"
             }
           },
-          "7,1": {
+          "8,2": {
             "size": [
               1,
               1
@@ -197,7 +250,7 @@
               "_title": "BreakF"
             }
           },
-          "6,2": {
+          "9,2": {
             "size": [
               1,
               1
@@ -219,7 +272,7 @@
               "_title": "wheelNonLinearity"
             }
           },
-          "0,1": {
+          "1,3": {
             "size": [
               1,
               1
@@ -230,70 +283,114 @@
               "_title": "BreakP"
             }
           },
-          "3,1": {
+          "2,3": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/D",
-              "_title": "D"
+              "_source0": "network_table:///SmartDashboard/highSpeedWheel",
+              "_title": "highSpeedWheel"
             }
           },
-          "4,1": {
+          "3,3": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/F",
-              "_title": "F"
+              "_source0": "network_table:///SmartDashboard/Left Enc",
+              "_title": "Left Enc"
             }
           },
-          "5,1": {
+          "4,3": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/I",
-              "_title": "I"
+              "_source0": "network_table:///SmartDashboard/Left Enc VEL",
+              "_title": "Left Enc VEL"
             }
           },
-          "5,0": {
+          "5,3": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/P",
-              "_title": "P"
+              "_source0": "network_table:///SmartDashboard/Right Enc",
+              "_title": "Right Enc"
             }
           },
-          "8,0": {
+          "6,3": {
             "size": [
-              3,
-              2
+              1,
+              1
             ],
             "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0"
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveF",
+              "_title": "DriveF"
             }
           },
-          "8,2": {
+          "7,3": {
             "size": [
-              3,
-              2
+              1,
+              1
             ],
             "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 1",
-              "_title": "USB Camera 1"
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveI",
+              "_title": "DriveI"
+            }
+          },
+          "8,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Encoder",
+              "_title": "Right Encoder"
+            }
+          },
+          "9,3": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Encoder",
+              "_title": "Left Encoder"
+            }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveD",
+              "_title": "DriveD"
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/DriveP",
+              "_title": "DriveP"
             }
           }
         }
@@ -305,6 +402,7 @@
       "autoPopulatePrefix": "LiveWindow/",
       "widgetPane": {
         "gridSize": 128.0,
+        "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
@@ -315,7 +413,6 @@
             ],
             "content": {
               "_type": "List Layout",
-              "_source0": "network_table:///LiveWindow/Ungrouped",
               "_title": "Ungrouped",
               "_children": [
                 {
@@ -338,7 +435,6 @@
             ],
             "content": {
               "_type": "List Layout",
-              "_source0": "network_table:///LiveWindow/RangeSystem",
               "_title": "RangeSystem",
               "_children": []
             }
@@ -350,20 +446,128 @@
             ],
             "content": {
               "_type": "List Layout",
-              "_source0": "network_table:///LiveWindow/DriveTrain",
               "_title": "DriveTrain",
               "_children": []
             }
           },
           "6,0": {
             "size": [
-              2,
+              1,
               4
             ],
             "content": {
               "_type": "List Layout",
-              "_source0": "network_table:///LiveWindow/MotorTest",
               "_title": "MotorTest",
+              "_children": []
+            }
+          },
+          "7,0": {
+            "size": [
+              1,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/LateralPitch",
+              "_title": "LateralPitch",
+              "_children": []
+            }
+          },
+          "8,0": {
+            "size": [
+              1,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/Elevator",
+              "_title": "Elevator",
+              "_children": []
+            }
+          },
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[20,1]/Value",
+              "_title": "Ungrouped/DoubleSolenoid[20,1]/Value"
+            }
+          },
+          "1,4": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Gyro",
+              "_source0": "network_table:///LiveWindow/Ungrouped/ADXRS450_Gyro[0]",
+              "_title": "Ungrouped/ADXRS450_Gyro[0]",
+              "majorTickSpace": 45.0,
+              "startAngle": 180.0,
+              "tickMarkRingVisible": true
+            }
+          },
+          "3,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[20]/Pressure switch",
+              "_title": "Ungrouped/Compressor[20]/Pressure switch",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "4,4": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "PDP",
+              "_source0": "network_table:///LiveWindow/Ungrouped/PowerDistributionPanel[30]",
+              "_title": "Ungrouped/PowerDistributionPanel[30]",
+              "showIndicatorText": true
+            }
+          },
+          "7,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Boolean Box",
+              "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[20]/Enabled",
+              "_title": "Ungrouped/Compressor[20]/Enabled",
+              "colorWhenTrue": "#7CFC00FF",
+              "colorWhenFalse": "#8B0000FF"
+            }
+          },
+          "8,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[20,2]/Value",
+              "_title": "Ungrouped/DoubleSolenoid[20,2]/Value"
+            }
+          },
+          "9,0": {
+            "size": [
+              1,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/SerialSub",
+              "_title": "SerialSub",
               "_children": []
             }
           }

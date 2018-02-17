@@ -22,7 +22,7 @@ public class LateralPitch extends Subsystem
 	{
 		pitch = new TalonSRX(RobotMap.pitch);
 
-		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+		pitch.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
 
 		pitch.configNominalOutputForward(0, 10);
 		pitch.configNominalOutputReverse(0, 10);
@@ -33,6 +33,7 @@ public class LateralPitch extends Subsystem
 		configureBrakeMode();
 		configureSoftLimits();
 		shouldSoftLimit(true);
+		zeroEncoder();
 	}
 
 	private void configureBrakeMode()
@@ -47,6 +48,11 @@ public class LateralPitch extends Subsystem
 
 		pitch.configForwardSoftLimitEnable(false, 10);
 		pitch.configReverseSoftLimitEnable(false, 10);
+	}
+	public void zeroEncoder()
+	{
+		pitch.setSelectedSensorPosition(0, 0, 0);
+		pitch.getSensorCollection().setPulseWidthPosition(0, 10);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
@@ -67,30 +73,14 @@ public class LateralPitch extends Subsystem
 
 		pitch.config_kD(0, D, 10);
 	}
-
-	public void setSetpointPitch(PitchAngle pitchAngle)
+	public double angleToEncoder(double angle)
 	{
-		double ticks = 0;
-
-		if (pitchAngle == PitchAngle.DOWN)
-		{
-			ticks = RobotMap.pitchEncPosDown;
-		}
-		else if (pitchAngle == PitchAngle.UP)
-		{
-			ticks = RobotMap.pitchEncPosUp;
-		}
-		else if (pitchAngle == PitchAngle.INTAKE)
-		{
-			ticks = RobotMap.pitchEncPosIntake;
-		}
-
-		setSetpointPitch(ticks);
+		return angle*4834.25;
 	}
 
-	public void setSetpointPitch(double encoderPosition)
+	public void setSetpointPitch(double angle)
 	{
-		pitch.set(ControlMode.Position, encoderPosition);
+		pitch.set(ControlMode.Position, angleToEncoder(angle));
 	}
 
 	private int maxLoopNumber = 0;

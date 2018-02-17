@@ -97,9 +97,9 @@ public class RobotMap
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
-	public static double elevatorPea = 0;
-	public static double elevatorEye = 0;
-	public static double elevatorDee = 0;
+	public static double elevatorPea = .075;
+	public static double elevatorEye = 0.0001;
+	public static double elevatorDee = 0.0000001;
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING

@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
+import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
@@ -31,11 +32,11 @@ public class OI
 		two.buttonSTART.whenPressed(new ElevatorManualCommand());
 		two.buttonPadLeft.whenPressed(new ElevatorZeroCommand());
 
-		two.buttonA.whenPressed(new ElevatorPositionCommand(ElevatorPosition.FLOOR));
-		two.buttonB.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SWITCH));
-
-		two.buttonX.whenPressed(new ElevatorPositionCommand(ElevatorPosition.CLIMB));
-		two.buttonY.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SCALE));
+//		two.buttonA.whenPressed(new ElevatorPositionCommand(ElevatorPosition.FLOOR));
+//		two.buttonB.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SWITCH));
+//
+//		two.buttonX.whenPressed(new ElevatorPositionCommand(ElevatorPosition.CLIMB));
+//		two.buttonY.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SCALE));
 		
 		two.buttonBL.whenPressed(new IntakeSolenoidCommand());
 		two.buttonBR.whenPressed(new ShiftSolenoidCommand());
@@ -55,5 +56,9 @@ public class OI
 		
 		two.buttonTR.whenReleased(new IntakeCommand(0));
 		two.buttonTL.whenReleased(new IntakeCommand(0));
+		two.buttonA.whenPressed(new ElevatorPositionCommand(20));
+		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
+		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
+		two.buttonB.whenPressed(new PitchCommand(90));
 	}
 }

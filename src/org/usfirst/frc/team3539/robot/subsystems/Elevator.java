@@ -25,44 +25,41 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
+		
+		
 		liftMaster = new TalonSRX(RobotMap.elevatorMotorTwo);
-		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
+
+		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
 
 		liftMaster.configNominalOutputForward(0, 10);
 		liftMaster.configNominalOutputReverse(0, 10);
 
+		liftMaster.configPeakOutputReverse(-1, 10);
+		liftMaster.configPeakOutputForward(1, 10);
+		
+		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
+
+		//liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+
 		liftSlave.configNominalOutputForward(0, 10);
 		liftSlave.configNominalOutputReverse(0, 10);
 
-		double peakOut = 1;// 1 is full ouput
-		liftMaster.configPeakOutputForward(peakOut, 10);
-		liftMaster.configPeakOutputReverse(-peakOut, 10);
-
-		liftSlave.configPeakOutputForward(peakOut, 10);
-		liftSlave.configPeakOutputReverse(-peakOut, 10);
-
-		System.out.println(liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10));
-
-		configureBrakeMode();
-		setFollower();
-		enableCurrentLimit();
-		setInverted();
-		configureSoftLimits();
-		shouldSoftLimit(true);
-		zeroEncoders();
-
+		liftSlave.configPeakOutputReverse(-1, 10);
+		liftSlave.configPeakOutputForward(1, 10);
 		
-		setupEncoders();
-		setPID(.1,.1,.1, 0);
-
-	}
-	private void setupEncoders()
-	{
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		liftMaster.setSensorPhase(true);
-		liftMaster.configSensorTerm(SensorTerm.Sum0, FeedbackDevice.CTRE_MagEncoder_Relative, 10);
-	}
+		
+		setFollower();
+		
+		zeroEncoders();
+		
+		configureSoftLimits();
+		
+		updateEncoders();
+		
+		setPID(RobotMap.elevatorPea,RobotMap.elevatorEye,RobotMap.elevatorDee,RobotMap.elevatorFFF);
 
+	}
 	private void configureBrakeMode()
 	{
 		liftMaster.setNeutralMode(NeutralMode.Brake);
@@ -77,16 +74,17 @@ public class Elevator extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		liftMaster.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
-		liftMaster.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
+		liftMaster.configForwardSoftLimitThreshold(45000, 0); // TODO
+		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
 
-		liftMaster.configForwardSoftLimitEnable(false, 10);
-		liftMaster.configReverseSoftLimitEnable(false, 10);
+		liftMaster.configForwardSoftLimitEnable(true, 10);
+		liftMaster.configReverseSoftLimitEnable(true, 10);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
-		liftMaster.overrideLimitSwitchesEnable(shouldSoftLimit);
+		liftMaster.configForwardSoftLimitEnable(true, 10);
+		liftMaster.configReverseSoftLimitEnable(true, 10);
 	}
 
 	public void setMotorPower(double throttle)
@@ -205,7 +203,14 @@ public class Elevator extends Subsystem
 	// Will be a different conversion ratio
 	public double inchToEncoder(double inches)
 	{
-		return (inches / RobotMap.wheelCir) * 4096;
+		System.out.println(inches * 548.15);
+		return (inches * 548.15);
+		
+	}
+	public double encoderToInches(double inches)
+	{
+		System.out.println(inches / 548.15);
+		return (inches / 548.15);
 	}
 
 	public void updateEncoders()
