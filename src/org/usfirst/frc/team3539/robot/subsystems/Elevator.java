@@ -5,7 +5,6 @@ import org.usfirst.frc.team3539.robot.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
-import com.ctre.phoenix.motorcontrol.SensorTerm;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -25,60 +24,42 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
-		
-		
+
 		liftMaster = new TalonSRX(RobotMap.elevatorMotorTwo);
 
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
+		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10); //We use PulseWidthEncodedPosition because magencoderreletive does not work for some reason.
 
 		liftMaster.configNominalOutputForward(0, 10);
 		liftMaster.configNominalOutputReverse(0, 10);
 
 		liftMaster.configPeakOutputReverse(-1, 10);
 		liftMaster.configPeakOutputForward(1, 10);
-		
-		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
 
-<<<<<<< HEAD
-		//liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne); // Motor one is the follower due to the fact that it does not have the encoder.
 
 		liftSlave.configNominalOutputForward(0, 10);
 		liftSlave.configNominalOutputReverse(0, 10);
-=======
-		liftSlave.configPeakOutputForward(peakOut, 10);
-		liftSlave.configPeakOutputReverse(-peakOut, 10);
-		
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
->>>>>>> a745aa00682c95ac0a7dd0f8ef00199e7791366d
 
 		liftSlave.configPeakOutputReverse(-1, 10);
 		liftSlave.configPeakOutputForward(1, 10);
-		
+
 		liftMaster.setSensorPhase(true);
-		
+
 		setFollower();
-<<<<<<< HEAD
 		
-		zeroEncoders();
+		configureBrakeMode();
 		
-		configureSoftLimits();
-		
-		updateEncoders();
-		
-		setPID(RobotMap.elevatorPea,RobotMap.elevatorEye,RobotMap.elevatorDee,RobotMap.elevatorFFF);
-
-	}
-=======
-		enableCurrentLimit();
 		setInverted();
-		//configureSoftLimits();
-		//shouldSoftLimit(true);
+
 		zeroEncoders();
 
+		configureSoftLimits();
 
+		updateEncoders();
+
+		setPID(RobotMap.elevatorPea, RobotMap.elevatorEye, RobotMap.elevatorDee, RobotMap.elevatorFFF);
 	}
 
->>>>>>> a745aa00682c95ac0a7dd0f8ef00199e7791366d
 	private void configureBrakeMode()
 	{
 		liftMaster.setNeutralMode(NeutralMode.Brake);
@@ -93,8 +74,8 @@ public class Elevator extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		liftMaster.configForwardSoftLimitThreshold(45000, 0); // TODO
-		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
+		liftMaster.configForwardSoftLimitThreshold(45000, 0);
+		liftMaster.configReverseSoftLimitThreshold(0, 0);
 
 		liftMaster.configForwardSoftLimitEnable(true, 10);
 		liftMaster.configReverseSoftLimitEnable(true, 10);
@@ -102,14 +83,15 @@ public class Elevator extends Subsystem
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
-		liftMaster.configForwardSoftLimitEnable(true, 10);
-		liftMaster.configReverseSoftLimitEnable(true, 10);
+		liftMaster.configForwardSoftLimitEnable(shouldSoftLimit, 10);
+		liftMaster.configReverseSoftLimitEnable(shouldSoftLimit, 10);
 	}
 
 	public void setMotorPower(double throttle)
 	{
 		liftMaster.set(ControlMode.PercentOutput, throttle);
 	}
+
 	public double getEncoder()
 	{
 		return liftMaster.getSelectedSensorPosition(0);
@@ -145,8 +127,6 @@ public class Elevator extends Subsystem
 
 	public void setSetpointLift(double inches)
 	{
-		// DO NOT ZERO ENCODER
-
 		liftMaster.set(ControlMode.Position, inchToEncoder(inches));
 	}
 
@@ -208,32 +188,27 @@ public class Elevator extends Subsystem
 	public void setupOnTarget(int ticks, int maxLoopNumber)
 	{
 		isSet = true;
-		// zero the on target counter
 		onTargetCounter = 0;
 
 		liftMaster.configAllowableClosedloopError(0, ticks, 10);
-
-		// set tolerance in ticks
 		allowedErrorRange = ticks;
 	}
-
-	// Will be a different conversion ratio
 	public double inchToEncoder(double inches)
 	{
 		System.out.println(inches * 548.15);
 		return (inches * 548.15);
-		
+
 	}
+
 	public double encoderToInches(double inches)
 	{
-		System.out.println(inches / 548.15);
+		System.out.println(inches / 548.15); //Print the setpoint
 		return (inches / 548.15);
 	}
 
 	public void updateEncoders()
 	{
 		SmartDashboard.putNumber("Elevator Encoder", liftMaster.getSelectedSensorPosition(0));
-		liftMaster.getSensorCollection().getPulseWidthPosition();
 	}
 
 	@Override

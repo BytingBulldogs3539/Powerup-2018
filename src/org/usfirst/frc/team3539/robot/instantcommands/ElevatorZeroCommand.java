@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.commands;
+package org.usfirst.frc.team3539.robot.instantcommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 
@@ -13,7 +13,7 @@ public class ElevatorZeroCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		//Robot.elevator.zeroEncoders();
+		Robot.elevator.zeroEncoders();
 	}
 }
 

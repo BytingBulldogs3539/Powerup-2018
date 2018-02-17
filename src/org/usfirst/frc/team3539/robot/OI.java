@@ -1,10 +1,10 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
-import org.usfirst.frc.team3539.robot.commands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.ElevatorZeroCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ShiftSolenoidCommand;
@@ -42,7 +42,7 @@ public class OI
 		two.buttonBR.whenPressed(new ShiftSolenoidCommand());
 
 		// Pitch
-		//two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
+		two.buttonB.whenPressed(new PitchCommand(90));
 		
 		two.buttonPadDown.whenPressed(new PitchManualCommand(.5));
 		two.buttonPadUp.whenPressed(new PitchManualCommand(-.5));
@@ -59,6 +59,6 @@ public class OI
 		two.buttonA.whenPressed(new ElevatorPositionCommand(20));
 		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
 		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
-		two.buttonB.whenPressed(new PitchCommand(90));
+
 	}
 }
