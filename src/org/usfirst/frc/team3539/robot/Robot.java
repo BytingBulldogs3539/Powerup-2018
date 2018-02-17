@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.S
-heduler;
+import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -152,6 +151,10 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("DriveI", RobotMap.driveEye);
 		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
 		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
+		
+		SmartDashboard.putNumber("PitchP", RobotMap.pitchPea);
+		SmartDashboard.putNumber("PitchI", RobotMap.pitchEye);
+		SmartDashboard.putNumber("PitchD", RobotMap.pitchDee);
 
 		SmartDashboard.putNumber("TurnP", RobotMap.turnPeaWheels);
 		SmartDashboard.putNumber("TurnI", RobotMap.turnEyeWheels);

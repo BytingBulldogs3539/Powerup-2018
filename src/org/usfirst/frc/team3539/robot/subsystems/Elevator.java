@@ -38,47 +38,32 @@ public class Elevator extends Subsystem
 		liftMaster.configPeakOutputForward(1, 10);
 		
 		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
-
-<<<<<<< HEAD
 		//liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
 
 		liftSlave.configNominalOutputForward(0, 10);
 		liftSlave.configNominalOutputReverse(0, 10);
-=======
-		liftSlave.configPeakOutputForward(peakOut, 10);
-		liftSlave.configPeakOutputReverse(-peakOut, 10);
 		
-		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 0);
->>>>>>> a745aa00682c95ac0a7dd0f8ef00199e7791366d
-
 		liftSlave.configPeakOutputReverse(-1, 10);
 		liftSlave.configPeakOutputForward(1, 10);
 		
 		liftMaster.setSensorPhase(true);
 		
 		setFollower();
-<<<<<<< HEAD
 		
-		zeroEncoders();
+
 		
 		configureSoftLimits();
 		
 		updateEncoders();
 		
+		configureBrakeMode();
+		
 		setPID(RobotMap.elevatorPea,RobotMap.elevatorEye,RobotMap.elevatorDee,RobotMap.elevatorFFF);
-
-	}
-=======
-		enableCurrentLimit();
-		setInverted();
-		//configureSoftLimits();
-		//shouldSoftLimit(true);
+		
 		zeroEncoders();
 
-
 	}
 
->>>>>>> a745aa00682c95ac0a7dd0f8ef00199e7791366d
 	private void configureBrakeMode()
 	{
 		liftMaster.setNeutralMode(NeutralMode.Brake);
@@ -129,7 +114,8 @@ public class Elevator extends Subsystem
 
 	public void zeroEncoders()
 	{
-		liftMaster.getSensorCollection().setQuadraturePosition(0, 0);
+		liftMaster.getSensorCollection().setPulseWidthPosition(0, 0);
+		liftMaster.setSelectedSensorPosition(0, 0, 0);
 	}
 
 	public void setPID(double P, double I, double D, double F)

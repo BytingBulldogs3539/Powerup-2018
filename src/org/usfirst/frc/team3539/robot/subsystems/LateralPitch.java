@@ -43,11 +43,11 @@ public class LateralPitch extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		pitch.configForwardSoftLimitThreshold(+14 * 4096, 10); // TODO
-		pitch.configReverseSoftLimitThreshold(-15 * 4096, 10); // TODO
+		pitch.configForwardSoftLimitThreshold(550000, 10); // TODO
+		pitch.configReverseSoftLimitThreshold(0, 10); // TODO
 
-		pitch.configForwardSoftLimitEnable(false, 10);
-		pitch.configReverseSoftLimitEnable(false, 10);
+		pitch.configForwardSoftLimitEnable(true, 10);
+		pitch.configReverseSoftLimitEnable(true, 10);
 	}
 	public void zeroEncoder()
 	{
@@ -67,14 +67,15 @@ public class LateralPitch extends Subsystem
 
 	public void setPID(double P, double I, double D)
 	{
-		pitch.config_kP(0, P, 10);
+		pitch.config_kP(0, P, 0);
 
-		pitch.config_kI(0, I, 10);
+		pitch.config_kI(0, I, 0);
 
-		pitch.config_kD(0, D, 10);
+		pitch.config_kD(0, D, 0);
 	}
 	public double angleToEncoder(double angle)
 	{
+		System.out.println(angle*4834.25);
 		return angle*4834.25;
 	}
 
@@ -129,6 +130,10 @@ public class LateralPitch extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
+	}
+	public double getEncoder()
+	{
+		return pitch.getSelectedSensorPosition(0);
 	}
 
 }

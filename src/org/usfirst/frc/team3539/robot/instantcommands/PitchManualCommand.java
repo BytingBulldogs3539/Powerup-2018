@@ -17,5 +17,6 @@ public class PitchManualCommand extends InstantCommand
 	protected void initialize()
 	{
 		Robot.pitch.rotate(power);
+		System.out.println(Robot.pitch.getEncoder());
 	}
 }
