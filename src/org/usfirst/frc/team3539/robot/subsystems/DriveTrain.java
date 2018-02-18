@@ -1,5 +1,8 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
+import javax.swing.plaf.synth.SynthSeparatorUI;
+
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
@@ -31,8 +34,9 @@ public final class DriveTrain extends Subsystem
 {
 	private ADXL362 accelerometer;
 	private ADXRS450_Gyro gyro;
-	private TalonSRX lf, lb, rf, rb;
+	public TalonSRX lf, lb, rf, rb;
 	private Drive drive;
+	
 
 	public DriveTrain()
 	{
@@ -73,17 +77,28 @@ public final class DriveTrain extends Subsystem
 
 		drive = new Drive(rf, lf);
 
-		lf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
-		rf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
+		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, 10); 
+		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 5, 10); 
+		
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		
+		lf.clearStickyFaults(0);
+		rf.clearStickyFaults(0);
+		lb.clearStickyFaults(0);
+		rb.clearStickyFaults(0);
 
-		setBrakeMode(false);
+		
+		setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
-		enableCurrentLimit();
+		//enableCurrentLimit();
 
 		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
+		
+		setSensorPhase(false);
 	}
 
 	public void setBrakeMode(boolean shouldBrakeMode)
@@ -123,15 +138,23 @@ public final class DriveTrain extends Subsystem
 
 	private void enableCurrentLimit()
 	{
+		lf.configContinuousCurrentLimit(35, 0);
+		rf.configContinuousCurrentLimit(35, 0);
 		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(false);
+	}
+	
+	public void setSensorPhase(boolean phase)
+	{		
+		rf.setSensorPhase(phase);
+		lf.setSensorPhase(phase);
 	}
 
 	public void zeroEncoders()
 	{
 		lf.getSensorCollection().setPulseWidthPosition(0, 10);
 		rf.getSensorCollection().setPulseWidthPosition(0, 10);
-
+		
 		lf.setSelectedSensorPosition(0, 0, 10);
 		rf.setSelectedSensorPosition(0, 0, 10);
 	}
@@ -156,24 +179,31 @@ public final class DriveTrain extends Subsystem
 		drive.driveArcade(throttle, wheel);
 	}
 
-	public void setPID(double P, double I, double D, double F)
+	public void setLeftPID(double P, double I, double D, double F)
 	{
-		// lf.config_kF(0, F, 10);
-		// rf.config_kF(0, F, 10);
-		//
-		// lf.config_kP(0, P, 10);
-		// rf.config_kP(0, P, 10);
-		//
-		// lf.config_kI(0, I, 10);
-		// rf.config_kI(0, I, 10);
-		//
-		// lf.config_kD(0, D, 10);
-		// rf.config_kD(0, D, 10);
+		 lf.config_kF(0, F, 10);
+		
+		 lf.config_kP(0, P, 10);
+		
+		 lf.config_kI(0, I, 10);
+		
+		 lf.config_kD(0, D, 10);
+	}
+	
+	public void setRightPID(double P, double I, double D, double F)
+	{
+
+		 rf.config_kF(0, F, 10);
+		
+		 rf.config_kP(0, P, 10);
+		
+		 rf.config_kI(0, I, 10);
+		
+		 rf.config_kD(0, D, 10);
 	}
 
 	public void setSetpointDrive(double setpointinches)
 	{
-		zeroEncoders();
 
 		System.out.println("lbcontrol: " + lb.getControlMode());
 		System.out.println("rbcontrol: " + rb.getControlMode());
@@ -218,6 +248,7 @@ public final class DriveTrain extends Subsystem
 			return true;
 		}
 
+
 		return false;
 	}
 
@@ -235,13 +266,27 @@ public final class DriveTrain extends Subsystem
 
 	public double inchToEncoder(double inches)
 	{
+		System.out.println((inches / RobotMap.wheelCir) * 4096);
 		return (inches / RobotMap.wheelCir) * 4096;
 	}
+	public void printEnc()
+	{
+		System.out.println("--------------------------");
+		if(!(lf.getSensorCollection().getPulseWidthVelocity()==0)) {
+			double ratio = (double)rf.getSensorCollection().getPulseWidthVelocity()/(double)lf.getSensorCollection().getPulseWidthVelocity();
+			System.out.println(ratio);
 
+		}
+		System.out.println("--------------------------");
+
+		System.out.println("right velocity"+rf.getSensorCollection().getPulseWidthVelocity()+"left velocity"+lf.getSensorCollection().getPulseWidthVelocity());
+	}
 	public void updateEncoders()
 	{
-		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Encoder",rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
+		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
+		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0));
 	}
 
 	public void effectiveArcadeDrive(double throttle, double wheel)
@@ -323,6 +368,7 @@ public final class DriveTrain extends Subsystem
 	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
 	private MotionProfileStatus statusR = new MotionProfileStatus();
 	private MotionProfileStatus statusL = new MotionProfileStatus();
+	
 
 	Notifier process = new Notifier(new PeriodicRunnable());
 	boolean finish = false;
@@ -350,12 +396,16 @@ public final class DriveTrain extends Subsystem
 	{
 		return finish;
 	}
-
+private boolean bufferFilled = false;
+	
 	public void setMotionProfile()
 	{
+		rf.getMotionProfileStatus(statusR);
+		lf.getMotionProfileStatus(statusL);
 		// lf.setInverted(true);
-		if (statusR.btmBufferCnt > 100 && statusL.btmBufferCnt > 100)
+		if (statusR.btmBufferCnt > 10 && statusL.btmBufferCnt > 10)
 		{
+			bufferFilled = true;
 			System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
 
@@ -363,15 +413,15 @@ public final class DriveTrain extends Subsystem
 		rf.set(ControlMode.MotionProfile, setValue.value);
 
 		lf.set(ControlMode.MotionProfile, setValue.value);
-		rf.getMotionProfileStatus(statusR);
-		lf.getMotionProfileStatus(statusL);
+		
 		System.out.println("status R" + statusR.btmBufferCnt);
 
 		System.out.println("status L" + statusL.btmBufferCnt);
 
-		if (statusL.isLast && statusR.isLast && statusL.activePointValid && statusR.activePointValid)
+		if (bufferFilled && statusL.isLast && statusL.activePointValid )//&& statusR.isLast && statusL.activePointValid && statusR.activePointValid)
 		{
 			// finish = true;
+			System.out.print(bufferFilled);
 			System.out.println("finished");
 			setValue = SetValueMotionProfile.Disable;
 		}
@@ -379,6 +429,7 @@ public final class DriveTrain extends Subsystem
 
 	public void MotionProfileReset()
 	{
+		bufferFilled = false;
 		setValue = SetValueMotionProfile.Disable;
 
 		lf.clearMotionProfileTrajectories();
@@ -436,9 +487,9 @@ public final class DriveTrain extends Subsystem
 			// pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
 
 			// 318
-			pointR.position = (positionRotR / 2) * 4096;
-			pointR.velocity = (velocityRPMR / 2) * 4096 / 600.0;
-			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
+			pointR.position = -(positionRotR) * 4096;
+			pointR.velocity = (velocityRPMR) * 4096 / 600.0;
+			pointL.position = -(positionRotL) * 4096; // Convert Revolutions to Units
 			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
 
 			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
@@ -455,12 +506,20 @@ public final class DriveTrain extends Subsystem
 				pointR.zeroPos = true;
 			pointL.zeroPos = true;
 
-			if ((i + 1) == totalCntL)
+			if ((i + 1) == totalCntL) {
+				System.out.println("total"+totalCntL);
+			System.out.println("i"+i);
 				pointL.isLastPoint = true;
+			}
 
 			if ((i + 1) == totalCntR)
-				pointR.isLastPoint = true; /* set this to true on the last point */
+			{
+				System.out.println("i"+i);
 
+				System.out.println("totalR "+totalCntR);
+			
+				pointR.isLastPoint = true; /* set this to true on the last point */
+			}
 			lf.pushMotionProfileTrajectory(pointL);
 			rf.pushMotionProfileTrajectory(pointR);
 		}
@@ -470,15 +529,23 @@ public final class DriveTrain extends Subsystem
 	public void DisabledMotionProfile()// probably want new name
 
 	{
+		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
+				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee), SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
+		
+		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
+				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee), SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
 
-		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		statusL.isLast = false;
+		statusR.isLast = false;
+
+	//	lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		lf.setSensorPhase(true);
 		lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
-		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		lf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+//		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+//		lf.config_kP(0, .100, RobotMap.kTimeoutMs);
+//		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+//		lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
@@ -486,31 +553,34 @@ public final class DriveTrain extends Subsystem
 		 */
 		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 
-		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		//rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rf.setSensorPhase(true); /* keep sensor and motor in phase */
 		rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
-
-		rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		rf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+//
+//		rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+//		rf.config_kP(0, .100, RobotMap.kTimeoutMs);
+//		rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+//		rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
 		 * status 10 provides the trajectory target for motion profile AND motion magic
 		 */
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-		rf.setInverted(true);
+		//rf.setInverted(true);
 	}
 
 	class PeriodicRunnable implements java.lang.Runnable
 	{
 		public void run()// add to drive train last
 		{
-			lf.processMotionProfileBuffer();
+		lf.processMotionProfileBuffer();
 			rf.processMotionProfileBuffer();
-			System.out.println(statusR.isUnderrun + "statusR");
-			System.out.println(statusL.isUnderrun + "statusL");
+	//		System.out.println(statusL.btmBufferCnt);
+		///	System.out.println(statusR.btmBufferCnt);
+
+		//	System.out.println(statusR.isUnderrun + "statusR");
+			//System.out.println(statusL.isUnderrun + "statusL");
 		}
 	}
 

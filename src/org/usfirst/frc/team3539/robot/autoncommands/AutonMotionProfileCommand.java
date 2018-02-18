@@ -16,9 +16,11 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void initialize()
 	{
+		Robot.driveTrain.MotionProfileReset();
+
+	//	Robot.driveTrain.MotionProfileReset();
 		Robot.driveTrain.DisabledMotionProfile();
 		System.out.println("called disabled");
-		Robot.driveTrain.MotionProfileReset();
 
 		Robot.driveTrain.setMotionProfile();
 		System.out.println("-----motion profile mode set on talon----");

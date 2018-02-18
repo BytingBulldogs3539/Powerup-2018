@@ -40,15 +40,21 @@ public class RobotMap
 
 	// DRIVETRAIN
 	public static final int lf = 10; // Tina 9 Prac 10
-	public static final int lb = 11;// Tina 11 Prac 11
+	public static final int lb = 9;// Tina 11 Prac 11
 
 	public static final int rf = 2;// Tina 4 Prac 2
 	public static final int rb = 1;// Tina none Prac 1
 
-	public static double drivePea = .06;
-	public static double driveEye = .00002;
-	public static double driveDee = .1;
-	public static double driveFFF = .0;
+	public static double driveLeftPea = .045;
+	public static double driveLeftEye = 0;
+	public static double driveLeftDee = 0;
+	public static double driveLeftFFF = 0.0;
+	
+
+	public static double driveRightPea = .045;
+	public static double driveRightEye = 0;
+	public static double driveRightDee = 0;
+	public static double driveRightFFF = 0.0;
 
 	public static double turnPeaWheels = 0.1;
 	public static double turnEyeWheels = 0.0000023;
@@ -66,7 +72,7 @@ public class RobotMap
 	public static double breakFFF = 0.1;
 
 	// Tina - Change to new bot
-	public static final double wheelCir = 12.56;
+	public static final double wheelCir = 18.84;
 	// Tina - Change to new bot
 	public static final double robotCir = 103.62;
 
@@ -101,6 +107,7 @@ public class RobotMap
 	public static double elevatorEye = 0.0001;
 	public static double elevatorDee = 0.0000001;
 	public static double elevatorFFF = 0;
+	public static double driveTrainScale=1;
 
 	// RANGE FINDING
 	public static final int frontRangeFinder = 0;

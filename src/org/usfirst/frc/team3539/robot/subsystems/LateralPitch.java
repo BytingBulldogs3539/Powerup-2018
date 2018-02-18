@@ -22,7 +22,7 @@ public class LateralPitch extends Subsystem
 	{
 		pitch = new TalonSRX(RobotMap.pitch);
 
-		pitch.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
+		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
 		pitch.configNominalOutputForward(0, 10);
 		pitch.configNominalOutputReverse(0, 10);

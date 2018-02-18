@@ -17,33 +17,46 @@ public class AutonDriveCommand extends Command
 	{
 		requires(Robot.driveTrain);
 		
+		
 		this.inches = inches;
 		
 		setTimeout(seconds);
+		Robot.driveTrain.zeroEncoders();
+		
+
+	
 	}
 
 	protected void initialize()
-	{		
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
-				SmartDashboard.getNumber("driveDee", RobotMap.driveDee), SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+	{	
+		Robot.driveTrain.zeroEncoders();
 		
+		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
+				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee), SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
 		
-		Robot.driveTrain.setSetpointDrive(Robot.driveTrain.inchToEncoder(inches));
+		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
+				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee), SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
+		System.out.println("pid set");
+		
+		Robot.driveTrain.setSetpointDrive(inches);
 		
 		Robot.driveTrain.setupOnTarget(300, 10);
 	}
 
 	protected void execute()
 	{
+		System.out.print(Robot.driveTrain.lf.getClosedLoopTarget(0));
+		Robot.driveTrain.updateEncoders();
 	}
 
 	protected boolean isFinished()
 	{
-		return Robot.driveTrain.onTarget() || isTimedOut();
+		return isTimedOut();
 	}
 
 	protected void end()
 	{
+		System.out.println("End Auto Drive");
 		Robot.driveTrain.driveArcade(0, 0);
 	}
 

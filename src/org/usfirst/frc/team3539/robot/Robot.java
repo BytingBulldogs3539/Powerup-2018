@@ -55,17 +55,17 @@ public class Robot extends IterativeRobot
 		c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
-
-		try
-		{
-			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-			cameraOne.setResolution(480, 360);
-			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-			cameraTwo.setResolution(480, 360);
-		}
-		catch (Error e)
-		{
-		}
+//
+//		try
+//		{
+//			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+//			cameraOne.setResolution(480, 360);
+//			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+//			cameraTwo.setResolution(480, 360);
+//		}
+//		catch (Error e)
+//		{
+//		}
 	}
 
 	/**
@@ -88,6 +88,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		Robot.driveTrain.zeroEncoders();
 		// Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -118,6 +119,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
+		Robot.driveTrain.zeroEncoders();
 	}
 
 	public void teleopPeriodic()
@@ -146,11 +148,19 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData("Auton Position", positionChooser);
 
 		SmartDashboard.putData("Alliance", allianceChooser);
-
-		SmartDashboard.putNumber("DriveP", RobotMap.drivePea);
-		SmartDashboard.putNumber("DriveI", RobotMap.driveEye);
-		SmartDashboard.putNumber("DriveD", RobotMap.driveDee);
-		SmartDashboard.putNumber("DriveF", RobotMap.driveFFF);
+System.out.println("Settings");
+		
+		SmartDashboard.putNumber("DriveLeftP", RobotMap.driveLeftPea);
+		SmartDashboard.putNumber("DriveLeftI", RobotMap.driveLeftEye);
+		SmartDashboard.putNumber("DriveLeftD", RobotMap.driveLeftDee);
+		SmartDashboard.putNumber("DriveLeftF", RobotMap.driveLeftFFF);
+		
+		SmartDashboard.putNumber("DriveRightP", RobotMap.driveRightPea);
+		SmartDashboard.putNumber("DriveRightI", RobotMap.driveRightEye);
+		SmartDashboard.putNumber("DriveRightD", RobotMap.driveRightDee);
+		SmartDashboard.putNumber("DriveRightF", RobotMap.driveRightFFF);
+		
+		SmartDashboard.putNumber("DriveTrainScale", RobotMap.driveTrainScale);
 		
 		SmartDashboard.putNumber("PitchP", RobotMap.pitchPea);
 		SmartDashboard.putNumber("PitchI", RobotMap.pitchEye);
@@ -171,8 +181,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("ElevatorD", RobotMap.elevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
-		SmartDashboard.putNumber("Right Enc VEL", 1);
-		SmartDashboard.putNumber("Left Enc VEL", 1);
+	
 
 		SmartDashboard.putData("PDP", pdp);
 
