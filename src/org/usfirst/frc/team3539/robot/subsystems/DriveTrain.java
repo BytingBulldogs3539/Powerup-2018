@@ -102,7 +102,7 @@ public final class DriveTrain extends Subsystem
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
-		// enableCurrentLimit();
+	//	 enableCurrentLimit();
 
 		// SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
@@ -149,6 +149,7 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.configContinuousCurrentLimit(35, 0);
 		rf.configContinuousCurrentLimit(35, 0);
+
 		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(false);
 	}
