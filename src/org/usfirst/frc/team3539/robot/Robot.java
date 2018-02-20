@@ -39,7 +39,7 @@ public class Robot extends IterativeRobot
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
 
 	public static PowerDistributionPanel pdp;
-	public static Compressor c;
+	//public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
 
@@ -52,7 +52,7 @@ public class Robot extends IterativeRobot
 	{
 		oi = new OI();
 		pdp = new PowerDistributionPanel(RobotMap.pdp);
-		c = new Compressor(RobotMap.pcm);
+		//c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
 //

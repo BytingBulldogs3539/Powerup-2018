@@ -16,7 +16,7 @@ public class RobotMap
 	public static final int pdp = 30;
 	
 	// PCM
-	public static final int pcm = 20;
+	public static final int pcm = 0;//20
 
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;
@@ -39,21 +39,21 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 10; // Tina 9 Prac 10
-	public static final int lb = 9;// Tina 11 Prac 11
+	public static final int lf = 6; // Tina 6 Prac 10
+	public static final int lb = 0;// Tina 7 Prac 9
 
-	public static final int rf = 2;// Tina 4 Prac 2
-	public static final int rb = 1;// Tina none Prac 1
+	public static final int rf = 4;// Tina 4 Prac 2
+	public static final int rb = 0;// Tina 3 Prac 1
 
 	public static double driveLeftPea = .045;
-	public static double driveLeftEye = 0;
-	public static double driveLeftDee = 0;
+	public static double driveLeftEye = 0.000001;
+	public static double driveLeftDee = 0.0000001;
 	public static double driveLeftFFF = 0.0;
 	
 
 	public static double driveRightPea = .045;
-	public static double driveRightEye = 0;
-	public static double driveRightDee = 0;
+	public static double driveRightEye = 0.000001;
+	public static double driveRightDee = 0.0000001;
 	public static double driveRightFFF = 0.0;
 
 	public static double turnPeaWheels = 0.1;
@@ -88,9 +88,9 @@ public class RobotMap
 	public static double throttleNonLinearity = 0.75;
 
 	public static double highSpeedWheel = 0.5;
-	public static int kTimeoutMs;
+	public static int kTimeoutMs = 10;
 	public static double kNeutralDeadband;
-	public static int kBaseTrajPeriodMs;
+	public static int kBaseTrajPeriodMs =10;
 
 	// INTAKE
 	public static final int lIntakeMotor = 7;// Prac 7

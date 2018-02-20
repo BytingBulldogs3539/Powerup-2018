@@ -18,11 +18,11 @@ public class AutonMotionProfileCommand extends Command
 	{
 		Robot.driveTrain.MotionProfileReset();
 
-	//	Robot.driveTrain.MotionProfileReset();
+
 		Robot.driveTrain.DisabledMotionProfile();
 		System.out.println("called disabled");
 
-		Robot.driveTrain.setMotionProfile();
+		//Robot.driveTrain.setMotionProfile();
 		System.out.println("-----motion profile mode set on talon----");
 		Robot.driveTrain.startFilling();
 		// edu.wpi.first.wpilibj.Timer.delay(10);
@@ -30,6 +30,7 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void execute()
 	{
+		Robot.driveTrain.updateEncoders();
 		System.out.println("printing in execute");
 		
 		Robot.driveTrain.setMotionProfile();

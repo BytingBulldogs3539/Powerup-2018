@@ -32,8 +32,7 @@ public final class Drive
 		talon4 = leftBack;
 	}
 
-	public Drive(TalonSRX rightFront, TalonSRX rightMiddle, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftMiddle,
-			TalonSRX leftBack)
+	public Drive(TalonSRX rightFront, TalonSRX rightMiddle, TalonSRX rightBack, TalonSRX leftFront, TalonSRX leftMiddle, TalonSRX leftBack)
 	{
 		driveMode = DriveMode.SIX;
 		talon1 = rightFront;
@@ -44,57 +43,58 @@ public final class Drive
 		talon6 = leftBack;
 	}
 
-	public void driveArcade(double throttle, double wheel)
+	public void driveArcade(double moveValue, double rotateValue)
 	{
 		double leftMotorSpeed;
 		double rightMotorSpeed;
 
-		wheel = limitValue(wheel);
-		throttle = limitValue(throttle);
+		moveValue = limitValue(moveValue);
+		rotateValue = limitValue(rotateValue);
 
-		if (wheel > 0.0)
+		if (moveValue > 0.0)
 		{
-			if (throttle > 0.0)
+			if (rotateValue > 0.0)
 			{
-				leftMotorSpeed = wheel - throttle;
-				rightMotorSpeed = Math.max(wheel, throttle);
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = Math.max(moveValue, rotateValue);
 			}
 			else
 			{
-				leftMotorSpeed = Math.max(wheel, -throttle);
-				rightMotorSpeed = wheel + throttle;
+				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
 			}
 		}
 		else
 		{
-			if (throttle > 0.0)
+			if (rotateValue > 0.0)
 			{
-				leftMotorSpeed = -Math.max(-wheel, throttle);
-				rightMotorSpeed = wheel + throttle;
+				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				rightMotorSpeed = moveValue + rotateValue;
 			}
 			else
 			{
-				leftMotorSpeed = wheel - throttle;
-				rightMotorSpeed = -Math.max(-wheel, -throttle);
+				leftMotorSpeed = moveValue - rotateValue;
+				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
 			}
 		}
-		setMotorOutputs(rightMotorSpeed, leftMotorSpeed);
+		setMotorOutputs(-rightMotorSpeed, -leftMotorSpeed);
 	}
 
 	public void setMotorOutputs(double right, double left)
 	{
 		if (driveMode == DriveMode.TWO)
 		{
+			System.out.println(left+" "+right);
 			talon1.set(ControlMode.PercentOutput, right);
-			talon2.set(ControlMode.PercentOutput, -left);
+			talon2.set(ControlMode.PercentOutput, left);
 
 		}
 		if (driveMode == DriveMode.FOUR)
 		{
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
-			talon3.set(ControlMode.PercentOutput, -left);
-			talon4.set(ControlMode.PercentOutput, -left);
+			talon3.set(ControlMode.PercentOutput, left);
+			talon4.set(ControlMode.PercentOutput, left);
 			// System.out.println(right+" "+left);
 		}
 		if (driveMode == DriveMode.SIX)
@@ -102,9 +102,9 @@ public final class Drive
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, right);
 			talon3.set(ControlMode.PercentOutput, right);
-			talon4.set(ControlMode.PercentOutput, -left);
-			talon5.set(ControlMode.PercentOutput, -left);
-			talon6.set(ControlMode.PercentOutput, -left);
+			talon4.set(ControlMode.PercentOutput, left);
+			talon5.set(ControlMode.PercentOutput, left);
+			talon6.set(ControlMode.PercentOutput, left);
 		}
 	}
 
