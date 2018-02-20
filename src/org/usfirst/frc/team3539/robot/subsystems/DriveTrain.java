@@ -311,7 +311,8 @@ public final class DriveTrain extends Subsystem
 	}
 	public BulldogMotionProfile leftTrack ;
 	public BulldogMotionProfile rightTrack ;
-	
+	boolean finish = false;
+
 	
 	public void setMotionProfile()
 	{
@@ -332,10 +333,11 @@ public final class DriveTrain extends Subsystem
 		rf.changeMotionControlFramePeriod(5);
 
 	}
-	protected boolean isFinished()
+	public boolean GetFinish()
 	{
-		return Robot.driveTrain.GetFinish();
+		return finish;
 	}
+	
 ////	public void testTalons()
 ////	{
 ////		StringBuilder Motors = new StringBuilder(1000);
@@ -609,7 +611,7 @@ public final class DriveTrain extends Subsystem
 //			// System.out.println(statusR.isUnderrun + "statusR");
 //			// System.out.println(statusL.isUnderrun + "statusL");
 //		}
-	}
+	
 
 	@Override
 	protected void initDefaultCommand()
