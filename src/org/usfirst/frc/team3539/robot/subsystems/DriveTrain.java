@@ -325,6 +325,17 @@ public final class DriveTrain extends Subsystem
 		leftTrack.reset();
 		rightTrack.reset();
 	}
+	public void MotionProfile()
+	{
+
+		lf.changeMotionControlFramePeriod(5);
+		rf.changeMotionControlFramePeriod(5);
+
+	}
+	protected boolean isFinished()
+	{
+		return Robot.driveTrain.GetFinish();
+	}
 ////	public void testTalons()
 ////	{
 ////		StringBuilder Motors = new StringBuilder(1000);
