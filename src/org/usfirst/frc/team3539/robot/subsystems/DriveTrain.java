@@ -612,7 +612,41 @@ public final class DriveTrain extends Subsystem
 //			// System.out.println(statusL.isUnderrun + "statusL");
 //		}
 	
+	public void DisabledMotionProfile()// probably want new name
 
+	{
+
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		lf.setSensorPhase(true);
+		lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+
+		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		lf.config_kP(0, .100, RobotMap.kTimeoutMs);
+		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+		lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+
+		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+		/*
+		 * status 10 provides the trajectory target for motion profile AND motion magic
+		 */
+		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rf.setSensorPhase(true); /* keep sensor and motor in phase */
+		rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+
+		rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		rf.config_kP(0, .100, RobotMap.kTimeoutMs);
+		rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+		rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+
+		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+		/*
+		 * status 10 provides the trajectory target for motion profile AND motion magic
+		 */
+		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+		//rf.setInverted(true);
+	}
 	@Override
 	protected void initDefaultCommand()
 	{

@@ -39,11 +39,11 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 6; // Tina 6 Prac 10
-	public static final int lb = 0;// Tina 7 Prac 9
+	public static final int lf = 10; // Tina 6 Prac 10
+	public static final int lb = 9;// Tina 7 Prac 9
 
-	public static final int rf = 4;// Tina 4 Prac 2
-	public static final int rb = 0;// Tina 3 Prac 1
+	public static final int rf = 2;// Tina 4 Prac 2
+	public static final int rb = 1;// Tina 3 Prac 1
 
 	public static double driveLeftPea = .045;
 	public static double driveLeftEye = 0.000001;
