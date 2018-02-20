@@ -90,7 +90,7 @@ public class BulldogMotionProfile
 
 			//318
 			point.position = (positionRot/478) * 4096;
-			point.velocity = ((velocityRPM*50)) * 4096 / 600.0;
+			point.velocity = ((velocityRPM*6.6)) * 4096 / 600.0;
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
 			
