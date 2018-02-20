@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
+import org.usfirst.frc.team3539.robot.utilities.BulldogMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
@@ -308,280 +309,295 @@ public final class DriveTrain extends Subsystem
 		// if abs(val) > abs(deadband) return val; else return 0.0;
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
-
-//	public void testTalons()
-//	{
-//		StringBuilder Motors = new StringBuilder(1000);
-//
-//		lf.set(ControlMode.PercentOutput, 0);
-//		lb.set(ControlMode.PercentOutput, 0);
-//		rf.set(ControlMode.PercentOutput, 0);
-//		rb.set(ControlMode.PercentOutput, 0);
-//
-//		lf.set(ControlMode.PercentOutput, .5);// set to .5
-//		Timer.delay(2);// wait
-//		System.out.println("--------");
-//		Motors.append("  lfMotorCurrent= " + lf.getOutputCurrent());
-//		Motors.append("  lfMotorVoltage = " + lf.getMotorOutputVoltage());
-//
-//		lf.set(ControlMode.PercentOutput, 0);// set to 0
-//
-//		Timer.delay(2);// wait before starting other motor
-//
-//		lb.set(ControlMode.PercentOutput, .5);
-//		Timer.delay(2);
-//		Motors.append("  lbMotorCurrent= " + lb.getOutputCurrent());
-//		Motors.append("  lbMotorVoltage = " + lb.getMotorOutputVoltage());
-//
-//		lb.set(ControlMode.PercentOutput, 0);
-//
-//		Timer.delay(2);// wait before starting other motor
-//
-//		rf.set(ControlMode.PercentOutput, .5);
-//		Timer.delay(2);
-//		Motors.append("  rfMotorCurrent= " + rf.getOutputCurrent());
-//		Motors.append("  rfMotorVoltage = " + rf.getMotorOutputVoltage());
-//
-//		rf.set(ControlMode.PercentOutput, 0);
-//
-//		Timer.delay(2);
-//
-//		Timer.delay(2);
-//
-//		rb.set(ControlMode.PercentOutput, .5);
-//		Timer.delay(2);
-//		Motors.append("  rbMotorCurrent= " + rb.getOutputCurrent());
-//		Motors.append("  rbMotorVoltage = " + rb.getMotorOutputVoltage());
-//
-//		rb.set(ControlMode.PercentOutput, 0);
-//		Motors.toString();
-//	}
-
-	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
-	private MotionProfileStatus statusR = new MotionProfileStatus();
-	private MotionProfileStatus statusL = new MotionProfileStatus();
-
-	Notifier process = new Notifier(new PeriodicRunnable());
-	boolean finish = false;
-
-	private int loopTimeout = -1;
-	private static final int kNumLoopsTimeout = 10;
-
-	public void MotionProfile()
-	{
-
-		lf.changeMotionControlFramePeriod(5);
-		rf.changeMotionControlFramePeriod(5);
-
-	}
-
-	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
-	{
-		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
-		retval = retval.valueOf(durationMs);
-
-		return retval;
-	}
-
-	public boolean GetFinish()
-	{
-		return finish;
-	}
-
-	private boolean bufferFilled = false;
-	private boolean triggered = true;
+	public BulldogMotionProfile leftTrack ;
+	public BulldogMotionProfile rightTrack ;
+	
+	
 	public void setMotionProfile()
 	{
-		rf.getMotionProfileStatus(statusR);
-		lf.getMotionProfileStatus(statusL);
-		// lf.setInverted(true);
-		if (statusR.btmBufferCnt > 10 && statusL.btmBufferCnt > 10 && triggered)
-		{
-			triggered = false;
-			bufferFilled = true;
-			System.out.println("print btm buffercn is true");
-			setValue = SetValueMotionProfile.Enable;
-
-			rf.set(ControlMode.MotionProfile, setValue.value);
-			lf.set(ControlMode.MotionProfile, setValue.value);
-			
-		}
-
-		System.out.println(" status R " + statusR.btmBufferCnt+" right trag "+rf.getActiveTrajectoryPosition()+" right trag vel "+rf.getActiveTrajectoryVelocity()+"target"+rf.getClosedLoopTarget(0));
-		System.out.println(" R position "+rf.getSelectedSensorPosition(0)+" r velocity "+rf.getSelectedSensorVelocity(0));
-		System.out.println(" status L " + statusL.btmBufferCnt+" left trag "+lf.getActiveTrajectoryPosition()+" left trag vel "+lf.getActiveTrajectoryVelocity()+"target"+lf.getClosedLoopTarget(0));
-		System.out.println(" l position "+lf.getSelectedSensorPosition(0)+" l velocity "+lf.getSelectedSensorVelocity(0));
-
-		if (bufferFilled && statusL.isLast && statusL.activePointValid)// && statusR.isLast && statusL.activePointValid && statusR.activePointValid)
-		{
-			triggered = false;
-			// finish = true;
-			System.out.print(bufferFilled);
-			System.out.println("finished");
-			setValue = SetValueMotionProfile.Disable;
-			rf.set(ControlMode.MotionProfile, setValue.value);
-			lf.set(ControlMode.MotionProfile, setValue.value);
-			
-		}
+		leftTrack.set();
+		rightTrack.set();
+		
+	
 	}
-
 	public void MotionProfileReset()
 	{
-		triggered = true;
-
-		bufferFilled = false;
-		setValue = SetValueMotionProfile.Disable;
-
-		lf.clearMotionProfileTrajectories();
-		rf.clearMotionProfileTrajectories();
-		lf.setSelectedSensorPosition(0, 0, 10);
-		rf.setSelectedSensorPosition(0, 0, 10);
-
+		leftTrack.reset();
+		rightTrack.reset();
 	}
-
-	// public void Enable() {
-	// setValue = SetValueMotionProfile.Enable;
-	//
-	// }
-
-	public void startFilling()
-	{
-
-		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints, GeneratedMotionProfile.PointsR, GeneratedMotionProfile.kNumPoints);
-		// Timer.delay(5);
-		process.startPeriodic(0.005);
-	}
-
-	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
-	{
-		
-
-		TrajectoryPoint pointL = new TrajectoryPoint();
-		TrajectoryPoint pointR = new TrajectoryPoint();
-
-		if (statusR.hasUnderrun)
-		{
-			rf.clearMotionProfileHasUnderrun(0);
-
-		}
-		if (statusL.hasUnderrun)
-		{
-			lf.clearMotionProfileHasUnderrun(0);
-		}
-		lf.clearMotionProfileTrajectories();// make sure nothing is interrupted
-		rf.clearMotionProfileTrajectories();
-
-		lf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
-		rf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
-
-		for (int i = 0; i < totalCntL; ++i)
-		{
-			double positionRotR = profileR[i][0];
-			double positionRotL = profileL[i][0];
-
-			double velocityRPMR = profileR[i][1];
-			double velocityRPML = profileL[i][1];
-
-			// pointR.position = ((positionRotR)/318) * 4096;
-			// pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
-			// pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
-			// pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
-
-			// 318
-			pointR.position = (positionRotR) * 4096;
-			pointR.velocity = (velocityRPMR) * 4096 / 600.0;
-			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
-			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
-
-			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
-			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
-			pointR.zeroPos = false;
-			pointL.zeroPos = false;
-			pointR.isLastPoint = false;
-			pointL.isLastPoint = false;
-
-			pointL.profileSlotSelect0 = 0; // there are multiple pid slots now
-			pointR.profileSlotSelect0 = 0;
-
-			if (i == 0)
-				pointR.zeroPos = true;
-			pointL.zeroPos = true;
-
-			if ((i + 1) == totalCntL)
-			{
-				System.out.println("total" + totalCntL);
-				System.out.println("i" + i);
-				pointL.isLastPoint = true;
-			}
-
-			if ((i + 1) == totalCntR)
-			{
-				// System.out.println("i"+i);
-				System.out.println("totalR " + totalCntR);
-				pointR.isLastPoint = true; /* set this to true on the last point */
-			}
-			lf.pushMotionProfileTrajectory(pointL);
-			rf.pushMotionProfileTrajectory(pointR);
-		}
-
-	}
-
-	public void DisabledMotionProfile()// probably want new name
-
-	{
-//		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye), SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee),
-//				SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
+////	public void testTalons()
+////	{
+////		StringBuilder Motors = new StringBuilder(1000);
+////
+////		lf.set(ControlMode.PercentOutput, 0);
+////		lb.set(ControlMode.PercentOutput, 0);
+////		rf.set(ControlMode.PercentOutput, 0);
+////		rb.set(ControlMode.PercentOutput, 0);
+////
+////		lf.set(ControlMode.PercentOutput, .5);// set to .5
+////		Timer.delay(2);// wait
+////		System.out.println("--------");
+////		Motors.append("  lfMotorCurrent= " + lf.getOutputCurrent());
+////		Motors.append("  lfMotorVoltage = " + lf.getMotorOutputVoltage());
+////
+////		lf.set(ControlMode.PercentOutput, 0);// set to 0
+////
+////		Timer.delay(2);// wait before starting other motor
+////
+////		lb.set(ControlMode.PercentOutput, .5);
+////		Timer.delay(2);
+////		Motors.append("  lbMotorCurrent= " + lb.getOutputCurrent());
+////		Motors.append("  lbMotorVoltage = " + lb.getMotorOutputVoltage());
+////
+////		lb.set(ControlMode.PercentOutput, 0);
+////
+////		Timer.delay(2);// wait before starting other motor
+////
+////		rf.set(ControlMode.PercentOutput, .5);
+////		Timer.delay(2);
+////		Motors.append("  rfMotorCurrent= " + rf.getOutputCurrent());
+////		Motors.append("  rfMotorVoltage = " + rf.getMotorOutputVoltage());
+////
+////		rf.set(ControlMode.PercentOutput, 0);
+////
+////		Timer.delay(2);
+////
+////		Timer.delay(2);
+////
+////		rb.set(ControlMode.PercentOutput, .5);
+////		Timer.delay(2);
+////		Motors.append("  rbMotorCurrent= " + rb.getOutputCurrent());
+////		Motors.append("  rbMotorVoltage = " + rb.getMotorOutputVoltage());
+////
+////		rb.set(ControlMode.PercentOutput, 0);
+////		Motors.toString();
+////	}
 //
-//		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye), SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee),
-//				SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
+//	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
+//	private MotionProfileStatus statusR = new MotionProfileStatus();
+//	private MotionProfileStatus statusL = new MotionProfileStatus();
+//
+//	Notifier process = new Notifier(new PeriodicRunnable());
+//	boolean finish = false;
+//
+//	private int loopTimeout = -1;
+//	private static final int kNumLoopsTimeout = 10;
+//
+//	public void MotionProfile()
+//	{
+//
+//		lf.changeMotionControlFramePeriod(5);
+//		rf.changeMotionControlFramePeriod(5);
+//
+//	}
+//
+//	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
+//	{
+//		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
+//		retval = retval.valueOf(durationMs);
+//
+//		return retval;
+//	}
+//
+//	public boolean GetFinish()
+//	{
+//		return finish;
+//	}
+//
+//	private boolean bufferFilled = false;
+//	private boolean triggered = true;
+//	public void setMotionProfile()
+//	{
+//		rf.getMotionProfileStatus(statusR);
+//		lf.getMotionProfileStatus(statusL);
+//		// lf.setInverted(true);
+//		if (statusR.btmBufferCnt > 10 && statusL.btmBufferCnt > 10 && triggered)
+//		{
+//			triggered = false;
+//			bufferFilled = true;
+//			System.out.println("print btm buffercn is true");
+//			setValue = SetValueMotionProfile.Enable;
+//
+//			rf.set(ControlMode.MotionProfile, setValue.value);
+//			lf.set(ControlMode.MotionProfile, setValue.value);
+//			
+//		}
+//
+//		System.out.println(" status R " + statusR.btmBufferCnt+" right trag "+rf.getActiveTrajectoryPosition()+" right trag vel "+rf.getActiveTrajectoryVelocity()+"target"+rf.getClosedLoopTarget(0));
+//		System.out.println(" R position "+rf.getSelectedSensorPosition(0)+" r velocity "+rf.getSelectedSensorVelocity(0));
+//		System.out.println(" status L " + statusL.btmBufferCnt+" left trag "+lf.getActiveTrajectoryPosition()+" left trag vel "+lf.getActiveTrajectoryVelocity()+"target"+lf.getClosedLoopTarget(0));
+//		System.out.println(" l position "+lf.getSelectedSensorPosition(0)+" l velocity "+lf.getSelectedSensorVelocity(0));
+//
+//		if (bufferFilled && statusL.isLast && statusL.activePointValid)// && statusR.isLast && statusL.activePointValid && statusR.activePointValid)
+//		{
+//			triggered = false;
+//			// finish = true;
+//			System.out.print(bufferFilled);
+//			System.out.println("finished");
+//			setValue = SetValueMotionProfile.Disable;
+//			rf.set(ControlMode.MotionProfile, setValue.value);
+//			lf.set(ControlMode.MotionProfile, setValue.value);
+//			
+//		}
+//	}
+//
+//	public void MotionProfileReset()
+//	{
+//		triggered = true;
+//
+//		bufferFilled = false;
+//		setValue = SetValueMotionProfile.Disable;
+//
+//		lf.clearMotionProfileTrajectories();
+//		rf.clearMotionProfileTrajectories();
+//		lf.setSelectedSensorPosition(0, 0, 10);
+//		rf.setSelectedSensorPosition(0, 0, 10);
+//
+//	}
+//
+//	// public void Enable() {
+//	// setValue = SetValueMotionProfile.Enable;
+//	//
+//	// }
+//
+//	public void startFilling()
+//	{
+//
+//		startFilling(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.kNumPoints, GeneratedMotionProfile.PointsR, GeneratedMotionProfile.kNumPoints);
+//		// Timer.delay(5);
+//		process.startPeriodic(0.005);
+//	}
+//
+//	private void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
+//	{
+//		
+//
+//		TrajectoryPoint pointL = new TrajectoryPoint();
+//		TrajectoryPoint pointR = new TrajectoryPoint();
+//
+//		if (statusR.hasUnderrun)
+//		{
+//			rf.clearMotionProfileHasUnderrun(0);
+//
+//		}
+//		if (statusL.hasUnderrun)
+//		{
+//			lf.clearMotionProfileHasUnderrun(0);
+//		}
+//		lf.clearMotionProfileTrajectories();// make sure nothing is interrupted
+//		rf.clearMotionProfileTrajectories();
+//
+//		lf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
+//		rf.configMotionProfileTrajectoryPeriod(RobotMap.kBaseTrajPeriodMs, RobotMap.kTimeoutMs);
+//
+//		for (int i = 0; i < totalCntL; ++i)
+//		{
+//			double positionRotR = profileR[i][0];
+//			double positionRotL = profileL[i][0];
+//
+//			double velocityRPMR = profileR[i][1];
+//			double velocityRPML = profileL[i][1];
+//
+//			// pointR.position = ((positionRotR)/318) * 4096;
+//			// pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
+//			// pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
+//			// pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
+//
+//			// 318
+//			pointR.position = (positionRotR) * 4096;
+//			pointR.velocity = (velocityRPMR) * 4096 / 600.0;
+//			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
+//			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
+//
+//			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
+//			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
+//			pointR.zeroPos = false;
+//			pointL.zeroPos = false;
+//			pointR.isLastPoint = false;
+//			pointL.isLastPoint = false;
+//
+//			pointL.profileSlotSelect0 = 0; // there are multiple pid slots now
+//			pointR.profileSlotSelect0 = 0;
+//
+//			if (i == 0)
+//				pointR.zeroPos = true;
+//			pointL.zeroPos = true;
+//
+//			if ((i + 1) == totalCntL)
+//			{
+//				System.out.println("total" + totalCntL);
+//				System.out.println("i" + i);
+//				pointL.isLastPoint = true;
+//			}
+//
+//			if ((i + 1) == totalCntR)
+//			{
+//				// System.out.println("i"+i);
+//				System.out.println("totalR " + totalCntR);
+//				pointR.isLastPoint = true; /* set this to true on the last point */
+//			}
+//			lf.pushMotionProfileTrajectory(pointL);
+//			rf.pushMotionProfileTrajectory(pointR);
+//		}
+//
+//	}
+//
+//	public void DisabledMotionProfile()// probably want new name
+//
+//	{
+////		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye), SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee),
+////				SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
+////
+////		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye), SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee),
+////				SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
+//
+//		//statusL.isLast = false;
+//		//statusR.isLast = false;
+//
+//		// lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+//		// lf.setSensorPhase(true);
+//		//lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+//
+//		// lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+//		// lf.config_kP(0, .100, RobotMap.kTimeoutMs);
+//		// lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+//		// lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+//
+//	//lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+//		/*
+//		 * status 10 provides the trajectory target for motion profile AND motion magic
+//		 */
+//		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+//
+//		// rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+//		// rf.setSensorPhase(true); /* keep sensor and motor in phase */
+//		//rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+//		//
+//		// rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+//		// rf.config_kP(0, .100, RobotMap.kTimeoutMs);
+//		// rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+//		// rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+//
+//	//	rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+//		/*
+//		 * status 10 provides the trajectory target for motion profile AND motion magic
+//		 */
+//		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+//		// rf.setInverted(true);
+//	}
 
-		//statusL.isLast = false;
-		//statusR.isLast = false;
-
-		// lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		// lf.setSensorPhase(true);
-		//lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
-
-		// lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		// lf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		// lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		// lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
-
-	//lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-		/*
-		 * status 10 provides the trajectory target for motion profile AND motion magic
-		 */
-		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-
-		// rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		// rf.setSensorPhase(true); /* keep sensor and motor in phase */
-		//rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
-		//
-		// rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		// rf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		// rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		// rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
-
-	//	rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-		/*
-		 * status 10 provides the trajectory target for motion profile AND motion magic
-		 */
-		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-		// rf.setInverted(true);
-	}
-
-	class PeriodicRunnable implements java.lang.Runnable
-	{
-		public void run()// add to drive train last
-		{
-			lf.processMotionProfileBuffer();
-			rf.processMotionProfileBuffer();
-			// System.out.println(statusL.btmBufferCnt);
-			/// System.out.println(statusR.btmBufferCnt);
-
-			// System.out.println(statusR.isUnderrun + "statusR");
-			// System.out.println(statusL.isUnderrun + "statusL");
-		}
+//	class PeriodicRunnable implements java.lang.Runnable
+//	{
+//		public void run()// add to drive train last
+//		{
+//			lf.processMotionProfileBuffer();
+//			rf.processMotionProfileBuffer();
+//			// System.out.println(statusL.btmBufferCnt);
+//			/// System.out.println(statusR.btmBufferCnt);
+//
+//			// System.out.println(statusR.isUnderrun + "statusR");
+//			// System.out.println(statusL.isUnderrun + "statusL");
+//		}
 	}
 
 	@Override

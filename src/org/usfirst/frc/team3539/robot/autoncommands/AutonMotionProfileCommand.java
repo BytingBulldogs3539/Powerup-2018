@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.autoncommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
+import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -16,23 +17,21 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void initialize()
 	{
-		Robot.driveTrain.MotionProfileReset();
-
-
-		Robot.driveTrain.DisabledMotionProfile();
-		System.out.println("called disabled");
-
-		//Robot.driveTrain.setMotionProfile();
+		Robot.driveTrain.leftTrack.configure();
+		Robot.driveTrain.rightTrack.configure();
+				
+		Robot.driveTrain.setMotionProfile();
 		System.out.println("-----motion profile mode set on talon----");
-		Robot.driveTrain.startFilling();
-		// edu.wpi.first.wpilibj.Timer.delay(10);
+		
+		Robot.driveTrain.leftTrack.startFilling(GeneratedMotionProfile.PointsR, GeneratedMotionProfile.kNumPoints );
+		Robot.driveTrain.rightTrack.startFilling(GeneratedMotionProfile.PointsR, GeneratedMotionProfile.kNumPoints );
+ 
 	}
 
 	protected void execute()
 	{
-		Robot.driveTrain.updateEncoders();
 		System.out.println("printing in execute");
-		
+		Robot.driveTrain.updateEncoders();
 		Robot.driveTrain.setMotionProfile();
 	}
 
