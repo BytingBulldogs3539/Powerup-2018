@@ -35,7 +35,7 @@ public class DirectionalButton extends Button
 			neededAngle = 0;
 			break;
 		case UPRIGHT:
-			neededAngle=45;
+			neededAngle = 45;
 			break;
 		case RIGHT:
 			neededAngle = 90;
@@ -58,6 +58,7 @@ public class DirectionalButton extends Button
 
 		}
 	}
+
 	public int getPOV()
 	{
 		return joystick.getPOV();

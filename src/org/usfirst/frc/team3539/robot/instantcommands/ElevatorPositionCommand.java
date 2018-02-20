@@ -31,9 +31,7 @@ public class ElevatorPositionCommand extends InstantCommand
 	{
 		myinches = inches;
 		requires(Robot.elevator);
-		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
-				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
+		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye), SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
 				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
 
 		Robot.elevator.setupOnTarget(0, 10);
@@ -41,9 +39,7 @@ public class ElevatorPositionCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
-				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
+		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye), SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
 				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
 		Robot.elevator.setSetpointLift(myinches);
 		System.out.println("ran elevatorpos");

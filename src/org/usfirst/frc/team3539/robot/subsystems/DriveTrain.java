@@ -118,7 +118,8 @@ public final class DriveTrain extends Subsystem
 			rf.setNeutralMode(NeutralMode.Brake);
 			lb.setNeutralMode(NeutralMode.Brake);
 			rb.setNeutralMode(NeutralMode.Brake);
-		} else
+		}
+		else
 		{
 			lf.setNeutralMode(NeutralMode.Coast);
 			rf.setNeutralMode(NeutralMode.Coast);
@@ -239,11 +240,11 @@ public final class DriveTrain extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
-				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
+		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange && Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
 		{
 			onTargetCounter++;
-		} else
+		}
+		else
 		{
 			onTargetCounter = 0;
 		}

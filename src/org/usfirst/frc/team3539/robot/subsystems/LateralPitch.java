@@ -98,7 +98,8 @@ public class LateralPitch extends Subsystem
 			if (Math.abs(pitch.getClosedLoopError(0)) <= allowedErrorRange)
 			{
 				onTargetCounter++;
-			} else
+			}
+			else
 			{
 				onTargetCounter = 0;
 			}
@@ -107,7 +108,8 @@ public class LateralPitch extends Subsystem
 			{
 				return true;
 			}
-		} else
+		}
+		else
 		{
 			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}

@@ -142,13 +142,16 @@ public class Elevator extends Subsystem
 		if (position == ElevatorPosition.SWITCH)
 		{
 			inches = RobotMap.elevatorEncoderSwitch;
-		} else if (position == ElevatorPosition.SCALE)
+		}
+		else if (position == ElevatorPosition.SCALE)
 		{
 			inches = RobotMap.elevatorEncoderScale;
-		} else if (position == ElevatorPosition.FLOOR)
+		}
+		else if (position == ElevatorPosition.FLOOR)
 		{
 			inches = RobotMap.elevatorEncoderFloor;
-		} else if (position == ElevatorPosition.CLIMB)
+		}
+		else if (position == ElevatorPosition.CLIMB)
 		{
 			inches = RobotMap.elevatorEncoderClimb;
 		}
@@ -168,7 +171,8 @@ public class Elevator extends Subsystem
 			if (Math.abs(liftMaster.getClosedLoopError(0)) <= allowedErrorRange)
 			{
 				onTargetCounter++;
-			} else
+			}
+			else
 			{
 				onTargetCounter = 0;
 			}
@@ -177,7 +181,8 @@ public class Elevator extends Subsystem
 			{
 				return true;
 			}
-		} else
+		}
+		else
 		{
 			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}

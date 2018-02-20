@@ -13,8 +13,7 @@ public class MotionProfileTestAuton extends CommandGroup
 
 	public MotionProfileTestAuton()
 	{
-		addSequential(new AutonMotionProfileCommand(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.PointsR,
-				GeneratedMotionProfile.kNumPoints));
+		addSequential(new AutonMotionProfileCommand(GeneratedMotionProfile.PointsL, GeneratedMotionProfile.PointsR, GeneratedMotionProfile.kNumPoints));
 
 	}
 }

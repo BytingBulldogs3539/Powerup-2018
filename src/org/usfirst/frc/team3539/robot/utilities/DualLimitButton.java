@@ -18,7 +18,7 @@ public class DualLimitButton extends Button
 	DigitalInput port;
 	DigitalInput port2;
 
-	public DualLimitButton(int portnum,int portnum2)
+	public DualLimitButton(int portnum, int portnum2)
 	{
 		portNum = portnum;
 		portNum2 = portnum2;
@@ -28,6 +28,6 @@ public class DualLimitButton extends Button
 
 	public boolean get()
 	{
-		return port.get()&&port2.get();
+		return port.get() && port2.get();
 	}
 }
