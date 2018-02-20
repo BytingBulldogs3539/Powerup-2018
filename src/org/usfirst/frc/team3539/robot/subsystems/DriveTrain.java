@@ -44,7 +44,7 @@ public final class DriveTrain extends Subsystem
 	public DriveTrain()
 	{
 		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
-		accelerometer = new ADXL362(SPI.Port.kOnboardCS1, Accelerometer.Range.k8G);
+	
 
 		lf = new TalonSRX(RobotMap.lf);
 		rf = new TalonSRX(RobotMap.rf);
@@ -86,21 +86,24 @@ public final class DriveTrain extends Subsystem
 		//lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		//rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
-		lf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 0);
-		rf.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 0);
+		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		
 		lf.clearStickyFaults(0);
 		rf.clearStickyFaults(0);
 		lb.clearStickyFaults(0);
 		rb.clearStickyFaults(0);
-
+		
+		leftTrack = new BulldogMotionProfile(lf) ;
+		rightTrack = new BulldogMotionProfile(rf) ;
+		
 		setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
 		// enableCurrentLimit();
 
-		SmartDashboard.putData("Accelerometer", accelerometer);
+//		SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
 
 		setSensorPhase(false);
@@ -616,14 +619,8 @@ public final class DriveTrain extends Subsystem
 
 	{
 
-		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		lf.setSensorPhase(true);
-		lf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+	//	lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		lf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		lf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		lf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		lf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
@@ -631,14 +628,8 @@ public final class DriveTrain extends Subsystem
 		 */
 		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 
-		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		rf.setSensorPhase(true); /* keep sensor and motor in phase */
-		rf.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
+	//	rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
-		rf.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		rf.config_kP(0, .100, RobotMap.kTimeoutMs);
-		rf.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		rf.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
