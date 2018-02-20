@@ -13,7 +13,7 @@ public class Solenoids extends Subsystem
 {
 	public bbDoubleSolenoid intakeSol;
 	public bbDoubleSolenoid shifterSol;
-	
+
 	public Solenoids()
 	{
 		intakeSol = new bbDoubleSolenoid(RobotMap.intakesolOn, RobotMap.intakesolOff, true);

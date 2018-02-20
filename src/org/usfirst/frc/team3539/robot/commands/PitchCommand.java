@@ -23,9 +23,10 @@ public class PitchCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		//Robot.pitch.setPID(SmartDashboard.getNumber("pitchPea", RobotMap.pitchPea), SmartDashboard.getNumber("pitchEye", RobotMap.pitchEye),
-		//		SmartDashboard.getNumber("pitchDee", RobotMap.pitchDee));
-		
+		// Robot.pitch.setPID(SmartDashboard.getNumber("pitchPea", RobotMap.pitchPea),
+		// SmartDashboard.getNumber("pitchEye", RobotMap.pitchEye),
+		// SmartDashboard.getNumber("pitchDee", RobotMap.pitchDee));
+
 		Robot.pitch.setSetpointPitch(angle);
 		System.out.println(Robot.pitch.getEncoder());
 	}

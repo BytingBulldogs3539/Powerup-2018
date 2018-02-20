@@ -1,8 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides
- * flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
 public class RobotMap
@@ -14,9 +15,9 @@ public class RobotMap
 
 	// PDP
 	public static final int pdp = 30;
-	
+
 	// PCM
-	public static final int pcm = 20;//20
+	public static final int pcm = 20;// 20
 
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;
@@ -49,7 +50,6 @@ public class RobotMap
 	public static double driveLeftEye = 0.000001;
 	public static double driveLeftDee = 0.0000001;
 	public static double driveLeftFFF = 0.0;
-	
 
 	public static double driveRightPea = .045;
 	public static double driveRightEye = 0.000001;
@@ -80,17 +80,19 @@ public class RobotMap
 	public static double throttleDeadband = 0.02;
 	public static double wheelDeadband = 0.02;
 
-	// Determines the upper threshold where turning is limited to make high speed travel more controllable
+	// Determines the upper threshold where turning is limited to make high speed
+	// travel more controllable
 	public static double throttleHighPass = .5;
 
-	// These factor determine how fast the wheel or throttle traverses the "non linear" sin/tan curve.
+	// These factor determine how fast the wheel or throttle traverses the "non
+	// linear" sin/tan curve.
 	public static double wheelNonLinearity = 0.65;
 	public static double throttleNonLinearity = 0.75;
 
 	public static double highSpeedWheel = 0.5;
 	public static int kTimeoutMs = 10;
 	public static double kNeutralDeadband;
-	public static int kBaseTrajPeriodMs =10;
+	public static int kBaseTrajPeriodMs = 10;
 
 	// INTAKE
 	public static final int lIntakeMotor = 7;// Prac 7
@@ -107,7 +109,7 @@ public class RobotMap
 	public static double elevatorEye = 0.0001;
 	public static double elevatorDee = 0.0000001;
 	public static double elevatorFFF = 0;
-	public static double driveTrainScale=1;
+	public static double driveTrainScale = 1;
 
 	// RANGE FINDING
 	public static final int frontRangeFinder = 0;

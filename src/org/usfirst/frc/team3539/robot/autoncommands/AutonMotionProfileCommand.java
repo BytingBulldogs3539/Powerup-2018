@@ -10,14 +10,15 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AutonMotionProfileCommand extends Command
 {
-	private double[][]ProfileR;
-	private double[][]ProfileL;
+	private double[][] ProfileR;
+	private double[][] ProfileL;
 	private int numPoints;
-	public AutonMotionProfileCommand(double[][]ProfileLeft,double[][]ProfileRight,int Points)
+
+	public AutonMotionProfileCommand(double[][] ProfileLeft, double[][] ProfileRight, int Points)
 	{
 		requires(Robot.driveTrain);
-		ProfileL=ProfileLeft;
-		ProfileR=ProfileRight;
+		ProfileL = ProfileLeft;
+		ProfileR = ProfileRight;
 		numPoints = Points;
 	}
 
@@ -25,13 +26,13 @@ public class AutonMotionProfileCommand extends Command
 	{
 		Robot.driveTrain.leftTrack.configure();
 		Robot.driveTrain.rightTrack.configure();
-				
+
 		Robot.driveTrain.setMotionProfile();
 		System.out.println("-----motion profile mode set on talon----");
-		
-		Robot.driveTrain.leftTrack.startFilling(ProfileL, numPoints );
-		Robot.driveTrain.rightTrack.startFilling(ProfileR, numPoints );
- 
+
+		Robot.driveTrain.leftTrack.startFilling(ProfileL, numPoints);
+		Robot.driveTrain.rightTrack.startFilling(ProfileR, numPoints);
+
 	}
 
 	protected void execute()
@@ -48,9 +49,9 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void end()
 	{
-		Robot.driveTrain.MotionProfileReset();	
+		Robot.driveTrain.MotionProfileReset();
 	}
-	
+
 	protected void interrupted()
 	{
 		end();

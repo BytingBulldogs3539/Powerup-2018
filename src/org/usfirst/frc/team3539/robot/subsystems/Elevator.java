@@ -25,8 +25,7 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
-		
-		
+
 		liftMaster = new TalonSRX(RobotMap.elevatorMotorTwo);
 
 		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
@@ -36,30 +35,29 @@ public class Elevator extends Subsystem
 
 		liftMaster.configPeakOutputReverse(-1, 10);
 		liftMaster.configPeakOutputForward(1, 10);
-		
+
 		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
-		//liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
+		// liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
+		// 0, 10);
 
 		liftSlave.configNominalOutputForward(0, 10);
 		liftSlave.configNominalOutputReverse(0, 10);
-		
+
 		liftSlave.configPeakOutputReverse(-1, 10);
 		liftSlave.configPeakOutputForward(1, 10);
-		
-		liftMaster.setSensorPhase(true);
-		
-		setFollower();
-		
 
-		
+		liftMaster.setSensorPhase(true);
+
+		setFollower();
+
 		configureSoftLimits();
-		
+
 		updateEncoders();
-		
+
 		configureBrakeMode();
-		
-		setPID(RobotMap.elevatorPea,RobotMap.elevatorEye,RobotMap.elevatorDee,RobotMap.elevatorFFF);
-		
+
+		setPID(RobotMap.elevatorPea, RobotMap.elevatorEye, RobotMap.elevatorDee, RobotMap.elevatorFFF);
+
 		zeroEncoders();
 
 	}
@@ -95,6 +93,7 @@ public class Elevator extends Subsystem
 	{
 		liftMaster.set(ControlMode.PercentOutput, throttle);
 	}
+
 	public double getEncoder()
 	{
 		return liftMaster.getSelectedSensorPosition(0);
@@ -143,16 +142,13 @@ public class Elevator extends Subsystem
 		if (position == ElevatorPosition.SWITCH)
 		{
 			inches = RobotMap.elevatorEncoderSwitch;
-		}
-		else if (position == ElevatorPosition.SCALE)
+		} else if (position == ElevatorPosition.SCALE)
 		{
 			inches = RobotMap.elevatorEncoderScale;
-		}
-		else if (position == ElevatorPosition.FLOOR)
+		} else if (position == ElevatorPosition.FLOOR)
 		{
 			inches = RobotMap.elevatorEncoderFloor;
-		}
-		else if (position == ElevatorPosition.CLIMB)
+		} else if (position == ElevatorPosition.CLIMB)
 		{
 			inches = RobotMap.elevatorEncoderClimb;
 		}
@@ -172,8 +168,7 @@ public class Elevator extends Subsystem
 			if (Math.abs(liftMaster.getClosedLoopError(0)) <= allowedErrorRange)
 			{
 				onTargetCounter++;
-			}
-			else
+			} else
 			{
 				onTargetCounter = 0;
 			}
@@ -182,8 +177,7 @@ public class Elevator extends Subsystem
 			{
 				return true;
 			}
-		}
-		else
+		} else
 		{
 			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}
@@ -208,8 +202,9 @@ public class Elevator extends Subsystem
 	{
 		System.out.println(inches * 548.15);
 		return (inches * 548.15);
-		
+
 	}
+
 	public double encoderToInches(double inches)
 	{
 		System.out.println(inches / 548.15);

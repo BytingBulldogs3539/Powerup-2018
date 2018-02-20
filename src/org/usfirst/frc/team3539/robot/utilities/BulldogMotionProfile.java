@@ -18,18 +18,18 @@ public class BulldogMotionProfile
 {
 
 	private TalonSRX talon;
-	public MotionProfileStatus status = new MotionProfileStatus(); 
+	public MotionProfileStatus status = new MotionProfileStatus();
 	public SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
-	
+
 	public BulldogMotionProfile(TalonSRX talon)
 	{
 		this.talon = talon;
 		this.reset();
-		
+
 	}
-	
+
 	Notifier process = new Notifier(new PeriodicRunnable());
-	
+
 	class PeriodicRunnable implements java.lang.Runnable
 	{
 		public void run()// add to drive train last
@@ -39,13 +39,13 @@ public class BulldogMotionProfile
 			System.out.println(talon.getActiveTrajectoryVelocity());
 		}
 	}
-	
+
 	public void configure()// probably want new name
 
 	{
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-		
-	//	talon.setSensorPhase(true);
+
+		// talon.setSensorPhase(true);
 		talon.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
 		talon.config_kF(0, 0.054, RobotMap.kTimeoutMs);
@@ -59,15 +59,15 @@ public class BulldogMotionProfile
 		 */
 		talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 	}
-	
-//	public void startFilling(GeneratedMotionProfile profile)
-//	{
-//
-//		startFilling(profile.PointsL, profile.kNumPoints);
-//		// Timer.delay(5);
-//	//	process.startPeriodic(0.005);
-//	}
-	
+
+	// public void startFilling(GeneratedMotionProfile profile)
+	// {
+	//
+	// startFilling(profile.PointsL, profile.kNumPoints);
+	// // Timer.delay(5);
+	// // process.startPeriodic(0.005);
+	// }
+
 	public void startFilling(double[][] profile, int totalCnt)
 	{
 		process.startPeriodic(0.005);
@@ -88,18 +88,18 @@ public class BulldogMotionProfile
 			double positionRot = profile[i][0];
 			double velocityRPM = profile[i][1];
 
-			//318
-			point.position = (positionRot/478) * 4096;
-			point.velocity = ((velocityRPM*6.6)) * 4096 / 600.0;
+			// 318
+			point.position = (positionRot / 478) * 4096;
+			point.velocity = ((velocityRPM * 6.6)) * 4096 / 600.0;
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
-			
+
 			point.zeroPos = false;
 			point.isLastPoint = false;
 
 			point.profileSlotSelect0 = 0; // there are multiple pid slots now
 			point.profileSlotSelect1 = 0;
-			
+
 			if (i == 0)
 				point.zeroPos = true;
 
@@ -110,13 +110,13 @@ public class BulldogMotionProfile
 		}
 
 	}
-	
+
 	public void set()
 	{
 		talon.getMotionProfileStatus(status);
-		System.out.print("statusCnt"+status.btmBufferCnt);
-		
-		if (status.btmBufferCnt > 10 )
+		System.out.print("statusCnt" + status.btmBufferCnt);
+
+		if (status.btmBufferCnt > 10)
 		{
 			System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
@@ -125,14 +125,14 @@ public class BulldogMotionProfile
 		talon.set(ControlMode.MotionProfile, setValue.value);
 		talon.getMotionProfileStatus(status);
 
-		if (status.isLast && status.activePointValid )
+		if (status.isLast && status.activePointValid)
 		{
 			// finish = true;
 			System.out.println("finished");
 			setValue = SetValueMotionProfile.Disable;
 		}
 	}
-	
+
 	public void reset()
 	{
 		setValue = SetValueMotionProfile.Disable;
@@ -140,7 +140,7 @@ public class BulldogMotionProfile
 		talon.clearMotionProfileTrajectories();
 		talon.setSelectedSensorPosition(0, 0, 10);
 	}
-	
+
 	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	{
 		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_10ms;

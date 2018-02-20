@@ -30,12 +30,10 @@ public class bbDoubleSolenoid extends DoubleSolenoid
 		if (get() == DoubleSolenoid.Value.kOff)
 		{
 			defaultPosition(isTrigger);
-		}
-		else if (get() == DoubleSolenoid.Value.kReverse)
+		} else if (get() == DoubleSolenoid.Value.kReverse)
 		{
 			forward();
-		}
-		else if (get() == DoubleSolenoid.Value.kForward)
+		} else if (get() == DoubleSolenoid.Value.kForward)
 		{
 			reverse();
 		}

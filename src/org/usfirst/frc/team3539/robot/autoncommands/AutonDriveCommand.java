@@ -16,30 +16,31 @@ public class AutonDriveCommand extends Command
 	public AutonDriveCommand(double inches, double seconds)
 	{
 		requires(Robot.driveTrain);
-		
-		
+
 		this.inches = inches;
-		
+
 		setTimeout(seconds);
 		Robot.driveTrain.zeroEncoders();
-		
 
-	
 	}
 
 	protected void initialize()
-	{	
+	{
 		Robot.driveTrain.zeroEncoders();
-		
-		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
-				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee), SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
-		
-		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
-				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee), SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
+
+		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea),
+				SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
+				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee),
+				SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
+
+		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea),
+				SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
+				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee),
+				SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
 		System.out.println("pid set");
-		
+
 		Robot.driveTrain.setSetpointDrive(inches);
-		
+
 		Robot.driveTrain.setupOnTarget(300, 10);
 	}
 

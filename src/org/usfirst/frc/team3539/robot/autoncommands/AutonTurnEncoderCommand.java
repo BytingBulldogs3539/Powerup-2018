@@ -23,14 +23,18 @@ public class AutonTurnEncoderCommand extends Command
 	protected void initialize()
 	{
 		Robot.driveTrain.zeroEncoders();
-		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
-				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee), SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
-		
-		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
-				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee), SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
-	
+		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea),
+				SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye),
+				SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee),
+				SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
+
+		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea),
+				SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye),
+				SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee),
+				SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
+
 		Robot.driveTrain.setupOnTarget(500, 20);
-		
+
 		Robot.driveTrain.setSetpointTurn(targetAngle);
 	}
 

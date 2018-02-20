@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
+import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
@@ -22,9 +23,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
- * described in the IterativeRobot documentation. If you change the name of this class or the package after creating
- * this project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the
+ * functions corresponding to each mode, as described in the IterativeRobot
+ * documentation. If you change the name of this class or the package after
+ * creating this project, you must also update the manifest file in the resource
+ * directory.
  **/
 
 public class Robot extends IterativeRobot
@@ -37,7 +40,8 @@ public class Robot extends IterativeRobot
 	public static Solenoids solenoids = new Solenoids();
 	public static SerialSub serialSub = new SerialSub();
 
-	// public static SerialSub serialSub = new SerialSub(); uncoment when theres actually an arudion on it
+	// public static SerialSub serialSub = new SerialSub(); uncoment when theres
+	// actually an arudion on it
 
 	public static PowerDistributionPanel pdp;
 	public static Compressor c;
@@ -56,23 +60,25 @@ public class Robot extends IterativeRobot
 		c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
-//
-//		try
-//		{
-//			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-//			cameraOne.setResolution(480, 360);
-//			cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-//			cameraTwo.setResolution(480, 360);
-//		}
-//		catch (Error e)
-//		{
-//		}
+		//
+		// try
+		// {
+		// cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+		// cameraOne.setResolution(480, 360);
+		// cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
+		// cameraTwo.setResolution(480, 360);
+		// }
+		// catch (Error e)
+		// {
+		// }
 	}
 
 	/**
-	 * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
-	 * described in the TimedRobot documentation. If you change the name of this class or the package after creating
-	 * this project, you must also update the build.properties file in the project.
+	 * The VM is configured to automatically run this class, and to call the
+	 * functions corresponding to each mode, as described in the TimedRobot
+	 * documentation. If you change the name of this class or the package after
+	 * creating this project, you must also update the build.properties file in the
+	 * project.
 	 */
 
 	@Override
@@ -98,8 +104,7 @@ public class Robot extends IterativeRobot
 		{
 			System.out.println("left auton");
 			// Put left auto code here
-		}
-		else
+		} else
 		{
 			System.out.println("right auton");
 			// Put right auto code here
@@ -135,34 +140,36 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
+		autonChooser.addObject("RightswitchAuton", new LeftSwitchAuton());
 		autonChooser.addObject("MotionProfile", new MotionProfileTestAuton());
 		autonChooser.addObject("TestAuto", new TestAuto());
+
 		positionChooser.addObject("Left", null);
 		positionChooser.addDefault("Middle", null);
 		positionChooser.addObject("Right", null);
 
 		allianceChooser.addDefault("Red", null);
 		allianceChooser.addObject("Blue", null);
-		
+
 		SmartDashboard.putData("Auton mode", autonChooser);
 
 		SmartDashboard.putData("Auton Position", positionChooser);
 
 		SmartDashboard.putData("Alliance", allianceChooser);
-System.out.println("Settings");
-		
+		System.out.println("Settings");
+
 		SmartDashboard.putNumber("DriveLeftP", RobotMap.driveLeftPea);
 		SmartDashboard.putNumber("DriveLeftI", RobotMap.driveLeftEye);
 		SmartDashboard.putNumber("DriveLeftD", RobotMap.driveLeftDee);
 		SmartDashboard.putNumber("DriveLeftF", RobotMap.driveLeftFFF);
-		
+
 		SmartDashboard.putNumber("DriveRightP", RobotMap.driveRightPea);
 		SmartDashboard.putNumber("DriveRightI", RobotMap.driveRightEye);
 		SmartDashboard.putNumber("DriveRightD", RobotMap.driveRightDee);
 		SmartDashboard.putNumber("DriveRightF", RobotMap.driveRightFFF);
-		
+
 		SmartDashboard.putNumber("DriveTrainScale", RobotMap.driveTrainScale);
-		
+
 		SmartDashboard.putNumber("PitchP", RobotMap.pitchPea);
 		SmartDashboard.putNumber("PitchI", RobotMap.pitchEye);
 		SmartDashboard.putNumber("PitchD", RobotMap.pitchDee);
@@ -182,8 +189,6 @@ System.out.println("Settings");
 		SmartDashboard.putNumber("ElevatorD", RobotMap.elevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
-	
-
 		SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
@@ -198,16 +203,20 @@ System.out.println("Settings");
 		SmartDashboard.putNumber("throttleNonLinearity", RobotMap.throttleNonLinearity);
 
 		SmartDashboard.putNumber("highSpeedWheel", RobotMap.highSpeedWheel);
-		
-//		SmartDashboard.putNumber("Range Finder Front", Robot.serialSub.getDistance(RobotMap.frontRangeFinder));
-//		SmartDashboard.putNumber("Range Finder Right", Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
-//		SmartDashboard.putNumber("Range Finder Left", Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
-//		SmartDashboard.putNumber("Range Finder Back", Robot.serialSub.getDistance(RobotMap.backRangeFinder));
+
+		// SmartDashboard.putNumber("Range Finder Front",
+		// Robot.serialSub.getDistance(RobotMap.frontRangeFinder));
+		// SmartDashboard.putNumber("Range Finder Right",
+		// Robot.serialSub.getDistance(RobotMap.rightRangeFinder));
+		// SmartDashboard.putNumber("Range Finder Left",
+		// Robot.serialSub.getDistance(RobotMap.leftRangeFinder));
+		// SmartDashboard.putNumber("Range Finder Back",
+		// Robot.serialSub.getDistance(RobotMap.backRangeFinder));
 
 		// autonChooser.addDefault("No Auton, Default", new VoidCommand());
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
-	
+
 }

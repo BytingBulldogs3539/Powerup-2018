@@ -1,4 +1,5 @@
 package org.usfirst.frc.team3539.robot.profiles;
+
 public class GeneratedMotionProfile {
 	public static final int kNumPoints = 36;
 

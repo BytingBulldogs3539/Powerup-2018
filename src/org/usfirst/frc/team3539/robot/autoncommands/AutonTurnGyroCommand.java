@@ -23,12 +23,13 @@ public class AutonTurnGyroCommand extends PIDCommand
 	protected void initialize()
 	{
 		// I don't think this line is needed because the constructor already does this
-		//getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro, RobotMap.turnDeeGyro);
-		
+		// getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro,
+		// RobotMap.turnDeeGyro);
+
 		getPIDController().setSetpoint(targetAngle);
-		
+
 		getPIDController().setAbsoluteTolerance(1);
-		
+
 		getPIDController().enable();
 
 	}
@@ -45,9 +46,9 @@ public class AutonTurnGyroCommand extends PIDCommand
 	protected void end()
 	{
 		getPIDController().reset();
-		
+
 		getPIDController().disable();
-		
+
 		Robot.driveTrain.driveArcade(0, 0);
 	}
 

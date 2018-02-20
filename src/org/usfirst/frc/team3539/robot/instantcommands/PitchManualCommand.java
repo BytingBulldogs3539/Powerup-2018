@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 public class PitchManualCommand extends InstantCommand
 {
 	private double power;
-	
+
 	public PitchManualCommand(double power)
 	{
 		requires(Robot.pitch);
 		this.power = power;
 	}
-	
+
 	protected void initialize()
 	{
 		Robot.pitch.rotate(power);

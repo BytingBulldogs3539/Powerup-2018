@@ -49,6 +49,7 @@ public class LateralPitch extends Subsystem
 		pitch.configForwardSoftLimitEnable(true, 10);
 		pitch.configReverseSoftLimitEnable(true, 10);
 	}
+
 	public void zeroEncoder()
 	{
 		pitch.setSelectedSensorPosition(0, 0, 0);
@@ -73,10 +74,11 @@ public class LateralPitch extends Subsystem
 
 		pitch.config_kD(0, D, 0);
 	}
+
 	public double angleToEncoder(double angle)
 	{
-		System.out.println(angle*4834.25);
-		return angle*4834.25;
+		System.out.println(angle * 4834.25);
+		return angle * 4834.25;
 	}
 
 	public void setSetpointPitch(double angle)
@@ -96,8 +98,7 @@ public class LateralPitch extends Subsystem
 			if (Math.abs(pitch.getClosedLoopError(0)) <= allowedErrorRange)
 			{
 				onTargetCounter++;
-			}
-			else
+			} else
 			{
 				onTargetCounter = 0;
 			}
@@ -106,8 +107,7 @@ public class LateralPitch extends Subsystem
 			{
 				return true;
 			}
-		}
-		else
+		} else
 		{
 			System.out.println("ERROR - SetupOnTarget is not being called!!!!!!!!");
 		}
@@ -131,6 +131,7 @@ public class LateralPitch extends Subsystem
 	protected void initDefaultCommand()
 	{
 	}
+
 	public double getEncoder()
 	{
 		return pitch.getSelectedSensorPosition(0);
