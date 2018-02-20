@@ -213,8 +213,8 @@ public final class DriveTrain extends Subsystem
 	public void setSetpointDrive(double setpointinches)
 	{
 
-		System.out.println("lbcontrol: " + lb.getControlMode());
-		System.out.println("rbcontrol: " + rb.getControlMode());
+//		System.out.println("lbcontrol: " + lb.getControlMode());
+//		System.out.println("rbcontrol: " + rb.getControlMode());
 
 		lf.set(ControlMode.Position, inchToEncoder(setpointinches));
 		rf.set(ControlMode.Position, inchToEncoder(setpointinches));
@@ -320,7 +320,13 @@ public final class DriveTrain extends Subsystem
 	{
 		leftTrack.set();
 		rightTrack.set();
+		
 
+	}
+	public boolean finished()
+	{
+		return leftTrack.finish();
+		
 	}
 
 	public void MotionProfileReset()

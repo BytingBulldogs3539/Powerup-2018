@@ -40,6 +40,6 @@ public class DriveCommand extends Command
 	protected void interrupted()
 	{
 		System.out.println("DriveCommand Interupted!");
-		end();
+		//end();
 	}
 }

@@ -20,6 +20,7 @@ public class BulldogMotionProfile
 	private TalonSRX talon;
 	public MotionProfileStatus status = new MotionProfileStatus();
 	public SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
+	public boolean motionFinish = false;
 
 	public BulldogMotionProfile(TalonSRX talon)
 	{
@@ -35,8 +36,9 @@ public class BulldogMotionProfile
 		public void run()// add to drive train last
 		{
 			talon.processMotionProfileBuffer();
-			System.out.print(talon.getActiveTrajectoryPosition());
-			System.out.println(talon.getActiveTrajectoryVelocity());
+			
+			// System.out.print(talon.getActiveTrajectoryPosition());
+			// System.out.println(talon.getActiveTrajectoryVelocity());
 		}
 	}
 
@@ -48,10 +50,10 @@ public class BulldogMotionProfile
 		// talon.setSensorPhase(true);
 		talon.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
-		talon.config_kF(0, 0.054, RobotMap.kTimeoutMs);
-		talon.config_kP(0, .100, RobotMap.kTimeoutMs);
-		talon.config_kI(0, 0.0, RobotMap.kTimeoutMs);
-		talon.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+		// talon.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		// talon.config_kP(0, .100, RobotMap.kTimeoutMs);
+		// talon.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+		// talon.config_kD(0, 1.0, RobotMap.kTimeoutMs);
 
 		talon.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
@@ -111,10 +113,16 @@ public class BulldogMotionProfile
 
 	}
 
+	public boolean finish()
+	{
+		//System.out.println(motionFinish);
+		return motionFinish;
+	}
+
 	public void set()
 	{
 		talon.getMotionProfileStatus(status);
-		System.out.print("statusCnt" + status.btmBufferCnt);
+		// System.out.print("statusCnt" + status.btmBufferCnt);
 
 		if (status.btmBufferCnt > 10)
 		{
@@ -124,17 +132,20 @@ public class BulldogMotionProfile
 		}
 		talon.set(ControlMode.MotionProfile, setValue.value);
 		talon.getMotionProfileStatus(status);
-
+System.out.println("bufferCNt"+status.btmBufferCnt);
 		if (status.isLast && status.activePointValid)
 		{
 			// finish = true;
 			System.out.println("finished");
+			motionFinish = true;
 			setValue = SetValueMotionProfile.Disable;
 		}
 	}
 
 	public void reset()
 	{
+		motionFinish = false;
+
 		setValue = SetValueMotionProfile.Disable;
 
 		talon.clearMotionProfileTrajectories();
