@@ -1,31 +1,20 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
-import org.usfirst.frc.team3539.robot.profiles.GeneratedMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.BulldogMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 
-import com.ctre.phoenix.motion.MotionProfileStatus;
-import com.ctre.phoenix.motion.SetValueMotionProfile;
-import com.ctre.phoenix.motion.TrajectoryPoint;
-import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.interfaces.Accelerometer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
@@ -33,7 +22,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public final class DriveTrain extends Subsystem
 {
-	private ADXL362 accelerometer;
 	private ADXRS450_Gyro gyro;
 	public TalonSRX lf, lb, rf, rb;
 	private Drive drive;
@@ -123,7 +111,6 @@ public final class DriveTrain extends Subsystem
 			lb.setNeutralMode(NeutralMode.Coast);
 			rb.setNeutralMode(NeutralMode.Coast);
 		}
-
 	}
 
 	private void setFollower()
@@ -142,6 +129,7 @@ public final class DriveTrain extends Subsystem
 		rb.setInverted(false);
 	}
 
+	@SuppressWarnings("unused")
 	private void enableCurrentLimit()
 	{
 		lf.configContinuousCurrentLimit(35, 0);
@@ -159,7 +147,6 @@ public final class DriveTrain extends Subsystem
 
 	public void zeroEncoders()
 	{
-
 		lf.setSelectedSensorPosition(0, 0, 10);
 		rf.setSelectedSensorPosition(0, 0, 10);
 	}
@@ -316,16 +303,6 @@ public final class DriveTrain extends Subsystem
 	{
 		leftTrack.set();
 		rightTrack.set();
-<<<<<<< HEAD
-=======
-		
-
->>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
-	}
-	public boolean finished()
-	{
-		return leftTrack.finish();
-		
 	}
 
 	public void MotionProfileReset()
@@ -394,7 +371,6 @@ public final class DriveTrain extends Subsystem
 	}
 
 	public void DisabledMotionProfile()// probably want new name
-
 	{
 		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		// status 10 provides the trajectory target for motion profile AND motion magic
