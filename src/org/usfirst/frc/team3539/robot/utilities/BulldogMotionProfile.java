@@ -17,9 +17,15 @@ public class BulldogMotionProfile
 	
 	private String name;
 	private TalonSRX talon;
+<<<<<<< HEAD
 	private MotionProfileStatus status = new MotionProfileStatus();
 	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
 	private boolean isFinished;
+=======
+	public MotionProfileStatus status = new MotionProfileStatus();
+	public SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
+	public boolean motionFinish = false;
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 
 	public BulldogMotionProfile(TalonSRX talon, String name)
 	{
@@ -34,6 +40,12 @@ public class BulldogMotionProfile
 		public void run()// add to drive train last
 		{
 			talon.processMotionProfileBuffer();
+<<<<<<< HEAD
+=======
+			
+			// System.out.print(talon.getActiveTrajectoryPosition());
+			// System.out.println(talon.getActiveTrajectoryVelocity());
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 		}
 	}
 
@@ -46,6 +58,14 @@ public class BulldogMotionProfile
 		// talon.setSensorPhase(true);
 		talon.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
 
+<<<<<<< HEAD
+=======
+		// talon.config_kF(0, 0.054, RobotMap.kTimeoutMs);
+		// talon.config_kP(0, .100, RobotMap.kTimeoutMs);
+		// talon.config_kI(0, 0.0, RobotMap.kTimeoutMs);
+		// talon.config_kD(0, 1.0, RobotMap.kTimeoutMs);
+
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 		talon.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
 		 * status 10 provides the trajectory target for motion profile AND motion magic
@@ -93,10 +113,20 @@ public class BulldogMotionProfile
 		}
 	}
 
+	public boolean finish()
+	{
+		//System.out.println(motionFinish);
+		return motionFinish;
+	}
+
 	public void set()
 	{
 		talon.getMotionProfileStatus(status);
+<<<<<<< HEAD
 		System.out.println("statusCnt" + status.btmBufferCnt);
+=======
+		// System.out.print("statusCnt" + status.btmBufferCnt);
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 
 		if (status.btmBufferCnt > 5)
 		{
@@ -106,6 +136,7 @@ public class BulldogMotionProfile
 		
 		talon.set(ControlMode.MotionProfile, setValue.value);
 		talon.getMotionProfileStatus(status);
+<<<<<<< HEAD
 
 		System.out.println("tragectory position" + talon.getActiveTrajectoryPosition());
 		System.out.println("EncPos" + talon.getSelectedSensorPosition(0));
@@ -118,6 +149,14 @@ public class BulldogMotionProfile
 
 			isFinished = true;
 			System.out.println(name + "Finished");
+=======
+System.out.println("bufferCNt"+status.btmBufferCnt);
+		if (status.isLast && status.activePointValid)
+		{
+			// finish = true;
+			System.out.println("finished");
+			motionFinish = true;
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 			setValue = SetValueMotionProfile.Disable;
 		}
 	}
@@ -129,8 +168,13 @@ public class BulldogMotionProfile
 
 	public void resetProfile()
 	{
+<<<<<<< HEAD
 		isFinished = false;
 		
+=======
+		motionFinish = false;
+
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 		setValue = SetValueMotionProfile.Disable;
 
 		talon.clearMotionProfileTrajectories();

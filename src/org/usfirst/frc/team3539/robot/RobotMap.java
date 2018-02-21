@@ -20,8 +20,8 @@ public class RobotMap
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;
 
-	// public static int rampsolOn = 4;
-	// public static int rampsolOff = 5;
+	 public static int locksolOn = 5;
+	 public static int locksolOff = 4;
 
 	public static int shiftersolOn = 2;
 	public static int shiftersolOff = 3;
@@ -39,7 +39,7 @@ public class RobotMap
 
 	// DRIVETRAIN
 	public static final int lf = 10; // Tina 6 Prac 10
-	public static final int lb = 9;// Tina 7 Prac 9
+	public static final int lb = 11;// Tina 7 Prac 9
 
 	public static final int rf = 2;// Tina 4 Prac 2
 	public static final int rb = 1;// Tina 3 Prac 1

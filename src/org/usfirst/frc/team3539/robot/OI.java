@@ -47,7 +47,7 @@ public class OI
 		two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
-		two.buttonTR.whenPressed(new IntakeCommand(-.5));
+		two.buttonTR.whenPressed(new IntakeCommand(-1));
 		two.buttonTL.whenPressed(new IntakeCommand(1));
 
 		two.buttonTR.whenReleased(new IntakeCommand(0));

@@ -80,6 +80,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
+		c.start();
 		Scheduler.getInstance().run();
 		Robot.driveTrain.DisabledMotionProfile();
 	}

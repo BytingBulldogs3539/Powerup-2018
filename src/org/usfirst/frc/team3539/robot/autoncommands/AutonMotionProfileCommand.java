@@ -24,8 +24,13 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void initialize()
 	{
+<<<<<<< HEAD
 			Robot.driveTrain.leftTrack.resetProfile();
 			Robot.driveTrain.rightTrack.resetProfile();
+=======
+		Robot.driveTrain.leftTrack.reset();
+		Robot.driveTrain.rightTrack.reset();
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 
 		Robot.driveTrain.leftTrack.configure();
 		Robot.driveTrain.rightTrack.configure();
@@ -40,15 +45,19 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void execute()
 	{
-		System.out.println("printing in execute");
+	//System.out.println("printing in execute");
 		Robot.driveTrain.updateEncoders();
 		Robot.driveTrain.setMotionProfile();
 	}
 
 	protected boolean isFinished()
 	{
+<<<<<<< HEAD
 		System.out.println(Robot.driveTrain.GetFinish()+"finished?");
 		return Robot.driveTrain.GetFinish();
+=======
+		return Robot.driveTrain.finished();
+>>>>>>> 73632ae5b055ca3604c344e58d502e4c38334c45
 	}
 
 	protected void end()
