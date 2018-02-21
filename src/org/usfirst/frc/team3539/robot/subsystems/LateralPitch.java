@@ -46,8 +46,8 @@ public class LateralPitch extends Subsystem
 		pitch.configForwardSoftLimitThreshold(550000, 10); // TODO
 		pitch.configReverseSoftLimitThreshold(0, 10); // TODO
 
-		pitch.configForwardSoftLimitEnable(true, 10);
-		pitch.configReverseSoftLimitEnable(true, 10);
+		pitch.configForwardSoftLimitEnable(false, 10);
+		pitch.configReverseSoftLimitEnable(false, 10);
 	}
 
 	public void zeroEncoder()
