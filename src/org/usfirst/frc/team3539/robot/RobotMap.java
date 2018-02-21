@@ -12,7 +12,7 @@ public class RobotMap
 	// Press F1 to refresh Controllers
 
 	/*
-	 * Map - PracMap() or CompMap()
+	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
 	private static IMap botProfile = new PracMap();
 
