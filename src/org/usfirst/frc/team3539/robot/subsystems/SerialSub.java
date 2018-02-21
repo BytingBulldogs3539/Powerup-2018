@@ -1,10 +1,6 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import org.usfirst.frc.team3539.robot.RobotMap;
-
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *

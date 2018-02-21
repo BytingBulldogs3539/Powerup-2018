@@ -1,6 +1,5 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
 import org.usfirst.frc.team3539.robot.autongroups.Straight;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchAuton;
@@ -14,7 +13,6 @@ import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;

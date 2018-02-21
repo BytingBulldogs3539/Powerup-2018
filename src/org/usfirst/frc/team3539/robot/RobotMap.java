@@ -11,17 +11,22 @@ public class RobotMap
 	public static final int OPERATOR = 0;
 	// Press F1 to refresh Controllers
 
+	/*
+	 * Map - PracMap() or CompMap()
+	 */
+	private static IMap botProfile = new PracMap();
+
 	// PDP
 	public static final int pdp = 30;
 
 	// PCM
-	public static final int pcm = 00;// 20
+	public static final int pcm = 00;// Disable 00 Prac 20 Comp 20
 
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;
 
-	 public static int locksolOn = 5;
-	 public static int locksolOff = 4;
+	public static int locksolOn = 5;
+	public static int locksolOff = 4;
 
 	public static int shiftersolOn = 2;
 	public static int shiftersolOff = 3;
@@ -38,11 +43,11 @@ public class RobotMap
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = 10; // Tina 6 Prac 10
-	public static final int lb = 11;// Tina 7 Prac 9
+	public static final int lf = botProfile.getLf();
+	public static final int lb = botProfile.getLb();
 
-	public static final int rf = 2;// Tina 4 Prac 2
-	public static final int rb = 1;// Tina 3 Prac 1
+	public static final int rf = botProfile.getRf();
+	public static final int rb = botProfile.getRb();
 
 	public static double driveLeftPea = .045;
 	public static double driveLeftEye = 0.000001;
@@ -118,8 +123,4 @@ public class RobotMap
 	// LOGGING
 	public static final String RIO_DIR = "/home/lvuser/logs/";
 	public static final String FLASH_DIR = "/u/";
-
-	//////////////////////// PRACTICE BOT/////////////////////
-
-	//////////////////////// COMP BOT /////////////////////////
 }

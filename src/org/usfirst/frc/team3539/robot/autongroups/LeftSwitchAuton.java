@@ -1,16 +1,11 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonDriveCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
-import org.usfirst.frc.team3539.robot.commands.PitchCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchAutonProfiles;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class LeftSwitchAuton extends CommandGroup

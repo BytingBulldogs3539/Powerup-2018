@@ -7,7 +7,6 @@ import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ShiftSolenoidCommand;
-import org.usfirst.frc.team3539.robot.subsystems.Elevator.ElevatorPosition;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
 /**
