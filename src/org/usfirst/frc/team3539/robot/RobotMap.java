@@ -15,7 +15,7 @@ public class RobotMap
 	public static final int pdp = 30;
 
 	// PCM
-	public static final int pcm = 20;// 20
+	public static final int pcm = 00;// 20
 
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;
@@ -49,10 +49,10 @@ public class RobotMap
 	public static double driveLeftDee = 0.0000001;
 	public static double driveLeftFFF = 0.0;
 
-	public static double driveRightPea = .045;
+	public static double driveRightPea = .1;
 	public static double driveRightEye = 0.000001;
 	public static double driveRightDee = 0.0000001;
-	public static double driveRightFFF = 0.0;
+	public static double driveRightFFF = 0.076;
 
 	public static double turnPeaWheels = 0.1;
 	public static double turnEyeWheels = 0.0000023;

@@ -2,8 +2,10 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
+import org.usfirst.frc.team3539.robot.autongroups.Straight;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
+import org.usfirst.frc.team3539.robot.autongroups.floor;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -135,6 +137,8 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
+		autonChooser.addObject("jfloor", new floor());
+		autonChooser.addObject("straightMotion", new Straight());
 		autonChooser.addObject("RightswitchAuton", new LeftSwitchAuton());
 		autonChooser.addObject("MotionProfile", new MotionProfileTestAuton());
 		autonChooser.addObject("TestAuto", new TestAuto());

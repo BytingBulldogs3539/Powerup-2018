@@ -24,6 +24,9 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void initialize()
 	{
+			Robot.driveTrain.leftTrack.resetProfile();
+			Robot.driveTrain.rightTrack.resetProfile();
+
 		Robot.driveTrain.leftTrack.configure();
 		Robot.driveTrain.rightTrack.configure();
 
@@ -44,6 +47,7 @@ public class AutonMotionProfileCommand extends Command
 
 	protected boolean isFinished()
 	{
+		System.out.println(Robot.driveTrain.GetFinish()+"finished?");
 		return Robot.driveTrain.GetFinish();
 	}
 

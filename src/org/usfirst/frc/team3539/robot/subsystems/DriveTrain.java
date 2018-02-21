@@ -22,7 +22,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.ADXL362;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.Notifier;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -38,8 +37,6 @@ public final class DriveTrain extends Subsystem
 	private ADXRS450_Gyro gyro;
 	public TalonSRX lf, lb, rf, rb;
 	private Drive drive;
-
-	private RobotDrive drive1;
 
 	public DriveTrain()
 	{
@@ -95,14 +92,14 @@ public final class DriveTrain extends Subsystem
 		lb.clearStickyFaults(0);
 		rb.clearStickyFaults(0);
 
-		leftTrack = new BulldogMotionProfile(lf);
-		rightTrack = new BulldogMotionProfile(rf);
+		leftTrack = new BulldogMotionProfile(lf, "Left Track ");
+		rightTrack = new BulldogMotionProfile(rf, "Right Track ");
 
 		setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
-	//	 enableCurrentLimit();
+		// enableCurrentLimit();
 
 		// SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
@@ -314,32 +311,28 @@ public final class DriveTrain extends Subsystem
 
 	public BulldogMotionProfile leftTrack;
 	public BulldogMotionProfile rightTrack;
-	boolean finish = false;
 
 	public void setMotionProfile()
 	{
 		leftTrack.set();
 		rightTrack.set();
-
 	}
 
 	public void MotionProfileReset()
 	{
-		leftTrack.reset();
-		rightTrack.reset();
+		leftTrack.resetProfile();
+		rightTrack.resetProfile();
 	}
 
 	public void MotionProfile()
 	{
-
 		lf.changeMotionControlFramePeriod(5);
 		rf.changeMotionControlFramePeriod(5);
-
 	}
 
 	public boolean GetFinish()
 	{
-		return finish;
+		return leftTrack.isFinished();
 	}
 
 	public void testTalons()

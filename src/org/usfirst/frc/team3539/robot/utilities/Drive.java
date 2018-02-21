@@ -84,7 +84,7 @@ public final class Drive
 	{
 		if (driveMode == DriveMode.TWO)
 		{
-			System.out.println(left + " " + right);
+			//System.out.println(left + " " + right);
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, left);
 
