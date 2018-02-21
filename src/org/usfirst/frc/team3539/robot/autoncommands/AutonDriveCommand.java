@@ -28,12 +28,8 @@ public class AutonDriveCommand extends Command
 	{
 		Robot.driveTrain.zeroEncoders();
 
-		Robot.driveTrain.setRightPID(SmartDashboard.getNumber("DriveRightP", RobotMap.driveRightPea), SmartDashboard.getNumber("DriveRightI", RobotMap.driveRightEye), SmartDashboard.getNumber("DriveRightD", RobotMap.driveRightDee),
-				SmartDashboard.getNumber("DriveRightF", RobotMap.driveRightFFF));
-
-		Robot.driveTrain.setLeftPID(SmartDashboard.getNumber("DriveLeftP", RobotMap.driveLeftPea), SmartDashboard.getNumber("DriveLeftI", RobotMap.driveLeftEye), SmartDashboard.getNumber("DriveLeftD", RobotMap.driveLeftDee),
-				SmartDashboard.getNumber("DriveLeftF", RobotMap.driveLeftFFF));
-		System.out.println("pid set");
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 
 		Robot.driveTrain.setSetpointDrive(inches);
 

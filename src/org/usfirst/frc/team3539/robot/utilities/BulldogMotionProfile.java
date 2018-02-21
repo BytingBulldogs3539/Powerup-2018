@@ -39,7 +39,7 @@ public class BulldogMotionProfile
 	public void configure()// probably want new name
 	{
 		isFinished = false;
-		
+
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
 		// talon.setSensorPhase(true);
@@ -71,8 +71,8 @@ public class BulldogMotionProfile
 			double positionRot = profile[i][0];
 			double velocityRPM = profile[i][1];
 
-			point.position = (positionRot / 478) * 4096; //Prac 478mm Tina 318mm
-			point.velocity = ((velocityRPM * 6.6) * 4096 / 600.0);
+			point.position = (positionRot / 478) * 4096; // Prac 478mm Tina 318mm
+			point.velocity = velocityRPM;// ((velocityRPM * 6.6) * 4096 / 600.0);
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
 
@@ -103,7 +103,7 @@ public class BulldogMotionProfile
 			System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
 		}
-		
+
 		talon.set(ControlMode.MotionProfile, setValue.value);
 		talon.getMotionProfileStatus(status);
 

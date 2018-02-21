@@ -171,7 +171,7 @@ public final class DriveTrain extends Subsystem
 		drive.driveArcade(throttle, wheel);
 	}
 
-	public void setLeftPID(double P, double I, double D, double F)
+	public void setPID(double P, double I, double D, double F)
 	{
 		lf.config_kF(0, F, 10);
 
@@ -182,24 +182,8 @@ public final class DriveTrain extends Subsystem
 		lf.config_kD(0, D, 10);
 	}
 
-	public void setRightPID(double P, double I, double D, double F)
-	{
-
-		rf.config_kF(0, F, 10);
-
-		rf.config_kP(0, P, 10);
-
-		rf.config_kI(0, I, 10);
-
-		rf.config_kD(0, D, 10);
-	}
-
 	public void setSetpointDrive(double setpointinches)
 	{
-
-//		System.out.println("lbcontrol: " + lb.getControlMode());
-//		System.out.println("rbcontrol: " + rb.getControlMode());
-
 		lf.set(ControlMode.Position, inchToEncoder(setpointinches));
 		rf.set(ControlMode.Position, inchToEncoder(setpointinches));
 	}
@@ -317,7 +301,7 @@ public final class DriveTrain extends Subsystem
 		rf.changeMotionControlFramePeriod(5);
 	}
 
-	public boolean GetFinish()
+	public boolean isFinished()
 	{
 		return leftTrack.isFinished();
 	}
@@ -377,7 +361,6 @@ public final class DriveTrain extends Subsystem
 		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
 		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-
 	}
 
 	@Override

@@ -104,7 +104,6 @@ public class Robot extends IterativeRobot
 		{
 			System.out.println("right auton");
 			// Put right auto code here
-
 		}
 
 		autonMode = (Command) autonChooser.getSelected();
@@ -156,17 +155,10 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData("Alliance", allianceChooser);
 		System.out.println("Settings");
 
-		SmartDashboard.putNumber("DriveLeftP", RobotMap.driveLeftPea);
-		SmartDashboard.putNumber("DriveLeftI", RobotMap.driveLeftEye);
-		SmartDashboard.putNumber("DriveLeftD", RobotMap.driveLeftDee);
-		SmartDashboard.putNumber("DriveLeftF", RobotMap.driveLeftFFF);
-
-		SmartDashboard.putNumber("DriveRightP", RobotMap.driveRightPea);
-		SmartDashboard.putNumber("DriveRightI", RobotMap.driveRightEye);
-		SmartDashboard.putNumber("DriveRightD", RobotMap.driveRightDee);
-		SmartDashboard.putNumber("DriveRightF", RobotMap.driveRightFFF);
-
-		SmartDashboard.putNumber("DriveTrainScale", RobotMap.driveTrainScale);
+		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
+		SmartDashboard.putNumber("driveEye", RobotMap.driveEye);
+		SmartDashboard.putNumber("driveDee", RobotMap.driveDee);
+		SmartDashboard.putNumber("driveFFF", RobotMap.driveFFF);
 
 		SmartDashboard.putNumber("PitchP", RobotMap.pitchPea);
 		SmartDashboard.putNumber("PitchI", RobotMap.pitchEye);
