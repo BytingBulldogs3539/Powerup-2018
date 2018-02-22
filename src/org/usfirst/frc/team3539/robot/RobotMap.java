@@ -52,8 +52,8 @@ public class RobotMap
 	public static final int rb = botProfile.getRb();
 
 	public static double drivePea = .045;
-	public static double driveEye = 0.000001;
-	public static double driveDee = 0.0000001;
+	public static double driveEye = 0.0;
+	public static double driveDee = 0.0;
 	public static double driveFFF = 10.24;
 
 	public static double turnPeaWheels = 0.1;

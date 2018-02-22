@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class Straight2 {
+public class Straight2 implements IProfile
+{
    public static final int kNumPoints = 82;
    public static double PointsR[][] = new double[][] {
        {0, 0, 10},

@@ -19,7 +19,7 @@ public class PracMap implements IMap
 	@Override
 	public int getLb()
 	{
-		return 11;
+		return 9;
 	}
 
 	@Override

@@ -16,9 +16,9 @@ public class LeftSwitchAuton extends CommandGroup
 		//addParallel(new ElevatorPositionCommand(25));
 	//	addParallel(new PitchCommand(90));
 		// depending how we want to drop cube
-		addSequential(new AutonWaitCommand(2));
-		addSequential(new AutonIntakeCommand(1, 5)); 
-		addParallel(new IntakeSolenoidCommand());
+//		addSequential(new AutonWaitCommand(2));
+//		addSequential(new AutonIntakeCommand(1, 5)); 
+//		addParallel(new IntakeSolenoidCommand());
 
 	}
 }

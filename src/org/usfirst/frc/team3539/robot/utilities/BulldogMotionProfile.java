@@ -39,6 +39,10 @@ public class BulldogMotionProfile
 	public void configure()// probably want new name
 	{
 		isFinished = false;
+		setValue = SetValueMotionProfile.Disable;
+
+		talon.clearMotionProfileTrajectories();
+		talon.setSelectedSensorPosition(0, 0, 10);
 
 		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
@@ -71,8 +75,8 @@ public class BulldogMotionProfile
 			double positionRot = profile[i][0];
 			double velocityRPM = profile[i][1];
 
-			point.position = (positionRot / 478) * 4096; // Prac 478mm Tina 318mm
-			point.velocity = velocityRPM;// ((velocityRPM * 6.6) * 4096 / 600.0);
+			point.position = (positionRot) * 4096; // Prac 478mm Tina 318mm
+			point.velocity = velocityRPM* 4096 / 600.0;// ((velocityRPM * 6.6) * 4096 / 600.0);
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
 
@@ -127,14 +131,14 @@ public class BulldogMotionProfile
 		return isFinished;
 	}
 
-	public void resetProfile()
-	{
-		isFinished = false;
-		setValue = SetValueMotionProfile.Disable;
-
-		talon.clearMotionProfileTrajectories();
-		talon.setSelectedSensorPosition(0, 0, 10);
-	}
+//	public void resetProfile()
+//	{
+//		isFinished = false;
+//		setValue = SetValueMotionProfile.Disable;
+//
+//		talon.clearMotionProfileTrajectories();
+//		talon.setSelectedSensorPosition(0, 0, 10);
+//	}
 
 	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	{

@@ -180,6 +180,14 @@ public final class DriveTrain extends Subsystem
 		lf.config_kI(0, I, 10);
 
 		lf.config_kD(0, D, 10);
+
+		rf.config_kF(0, F, 10);
+
+		rf.config_kP(0, P, 10);
+
+		rf.config_kI(0, I, 10);
+		rf.config_kD(0, D, 10);
+
 	}
 
 	public void setSetpointDrive(double setpointinches)
@@ -287,12 +295,7 @@ public final class DriveTrain extends Subsystem
 	{
 		leftTrack.set();
 		rightTrack.set();
-	}
 
-	public void MotionProfileReset()
-	{
-		leftTrack.resetProfile();
-		rightTrack.resetProfile();
 	}
 
 	public void MotionProfile()

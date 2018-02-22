@@ -28,8 +28,6 @@ public class AutonMotionProfileCommand extends Command
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
 				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		
-		Robot.driveTrain.leftTrack.resetProfile();
-		Robot.driveTrain.rightTrack.resetProfile();
 
 		Robot.driveTrain.leftTrack.configure();
 		Robot.driveTrain.rightTrack.configure();
@@ -56,7 +54,6 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void end()
 	{
-		Robot.driveTrain.MotionProfileReset();
 	}
 
 	protected void interrupted()
