@@ -20,7 +20,7 @@ public class RobotMap
 	public static final int pdp = 30;
 
 	// PCM
-	public static final int pcm = 00;// Disable 00 Prac 20 Comp 20
+	public static final int pcm = 20;// Disable 00 Prac 20 Comp 20
 
 	public static int intakesolOn = 1;
 	public static int intakesolOff = 0;

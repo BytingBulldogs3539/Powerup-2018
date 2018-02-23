@@ -18,7 +18,7 @@ public class AutonMotionProfileCommand extends Command
 	public AutonMotionProfileCommand(double[][] ProfileR, double[][] ProfileL, int totalPointNum)
 	{
 		requires(Robot.driveTrain);
-		this.ProfileL = ProfileR;
+		this.ProfileL = ProfileL;
 		this.ProfileR = ProfileR;
 		this.totalPointNum = totalPointNum;
 	}

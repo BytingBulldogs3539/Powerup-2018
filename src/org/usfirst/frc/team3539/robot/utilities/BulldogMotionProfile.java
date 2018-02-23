@@ -35,7 +35,11 @@ public class BulldogMotionProfile
 			talon.processMotionProfileBuffer();
 		}
 	}
-
+	public void Read(String file)
+	{
+		//check for file
+		
+	}
 	public void configure()// probably want new name
 	{
 		isFinished = false;
