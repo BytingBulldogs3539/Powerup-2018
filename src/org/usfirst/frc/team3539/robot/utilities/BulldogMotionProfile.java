@@ -79,7 +79,7 @@ public class BulldogMotionProfile
 			double positionRot = profile[i][0];
 			double velocityRPM = profile[i][1];
 
-			point.position = (positionRot) * 4096; // Prac 478mm Tina 318mm
+			point.position = positionRot * 4096; // Prac 478mm Tina 318mm
 			point.velocity = velocityRPM* 4096 / 600.0;// ((velocityRPM * 6.6) * 4096 / 600.0);
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
