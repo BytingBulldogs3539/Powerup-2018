@@ -2,18 +2,22 @@ package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
 import org.usfirst.frc.team3539.robot.profiles.MotionProfile;
+import org.usfirst.frc.team3539.robot.profiles.cal200;
+import org.usfirst.frc.team3539.robot.profiles.lolCurve100;
+import org.usfirst.frc.team3539.robot.profiles.lolProfileLol;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Straight extends CommandGroup
+public class I_DontCare extends CommandGroup
 {
 
-	public Straight()
+	public I_DontCare()
 	{
-		addSequential(new AutonMotionProfileCommand(MotionProfile.Points, MotionProfile.Points, MotionProfile.kNumPoints));
+		
+		addSequential(new AutonMotionProfileCommand(lolProfileLol.PointsR, lolProfileLol.PointsL, lolProfileLol.kNumPoints));
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());

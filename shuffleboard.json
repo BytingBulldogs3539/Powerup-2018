@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.1863157894736842,
+  "dividerPosition": 0.09263157894736843,
   "tabPane": [
     {
       "title": "SmartDashboard",
@@ -11,6 +11,50 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
+          "1,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveDee",
+              "_title": "/SmartDashboard/driveDee"
+            }
+          },
+          "2,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveEye",
+              "_title": "/SmartDashboard/driveEye"
+            }
+          },
+          "3,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveFFF",
+              "_title": "/SmartDashboard/driveFFF"
+            }
+          },
+          "0,1": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/drivePea",
+              "_title": "/SmartDashboard/drivePea"
+            }
+          },
           "0,0": {
             "size": [
               1,
@@ -88,7 +132,7 @@
               "_title": "TurnF"
             }
           },
-          "0,1": {
+          "7,0": {
             "size": [
               1,
               1
@@ -99,7 +143,7 @@
               "_title": "ElevatorP"
             }
           },
-          "1,1": {
+          "8,0": {
             "size": [
               1,
               1
@@ -110,7 +154,7 @@
               "_title": "TurnI"
             }
           },
-          "2,1": {
+          "9,0": {
             "size": [
               1,
               1
@@ -121,7 +165,7 @@
               "_title": "Alliance"
             }
           },
-          "3,1": {
+          "4,1": {
             "size": [
               1,
               1
@@ -132,7 +176,7 @@
               "_title": "wheelDeadband"
             }
           },
-          "4,1": {
+          "5,1": {
             "size": [
               1,
               1
@@ -143,10 +187,10 @@
               "_title": "TurnP"
             }
           },
-          "5,1": {
+          "6,1": {
             "size": [
               2,
-              1
+              2
             ],
             "content": {
               "_type": "Gyro",
@@ -157,7 +201,7 @@
               "tickMarkRingVisible": true
             }
           },
-          "0,2": {
+          "8,1": {
             "size": [
               1,
               1
@@ -168,62 +212,7 @@
               "_title": "Auton mode"
             }
           },
-          "1,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/PDP/Chan10",
-              "_title": "PDP/Chan10"
-            }
-          },
-          "2,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/PDP/Chan11",
-              "_title": "PDP/Chan11"
-            }
-          },
-          "3,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/PDP/Chan13",
-              "_title": "PDP/Chan13"
-            }
-          },
-          "4,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/PDP/Chan14",
-              "_title": "PDP/Chan14"
-            }
-          },
-          "7,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveEye",
-              "_title": "driveEye"
-            }
-          },
-          "7,1": {
+          "0,2": {
             "size": [
               3,
               2
@@ -235,29 +224,7 @@
               "showIndicatorText": true
             }
           },
-          "8,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveDee",
-              "_title": "driveDee"
-            }
-          },
-          "9,0": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/drivePea",
-              "_title": "drivePea"
-            }
-          },
-          "0,3": {
+          "9,1": {
             "size": [
               1,
               1
@@ -268,7 +235,7 @@
               "_title": "throttleNonLinearity"
             }
           },
-          "1,3": {
+          "3,2": {
             "size": [
               1,
               1
@@ -279,18 +246,7 @@
               "_title": "throttleDeadband"
             }
           },
-          "2,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Encoder",
-              "_title": "Right Encoder"
-            }
-          },
-          "3,3": {
+          "4,2": {
             "size": [
               1,
               1
@@ -299,17 +255,6 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/throttleHighPass",
               "_title": "throttleHighPass"
-            }
-          },
-          "4,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
-              "_title": "Right Enc VEL"
             }
           },
           "5,2": {
@@ -323,7 +268,7 @@
               "_title": "BreakD"
             }
           },
-          "6,2": {
+          "8,2": {
             "size": [
               1,
               1
@@ -334,18 +279,7 @@
               "_title": "BreakF"
             }
           },
-          "7,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveFFF",
-              "_title": "driveFFF"
-            }
-          },
-          "8,3": {
+          "9,2": {
             "size": [
               1,
               1
@@ -356,7 +290,7 @@
               "_title": "BreakI"
             }
           },
-          "9,3": {
+          "3,3": {
             "size": [
               1,
               1
@@ -367,7 +301,7 @@
               "_title": "wheelNonLinearity"
             }
           },
-          "0,4": {
+          "4,3": {
             "size": [
               1,
               1
@@ -378,18 +312,7 @@
               "_title": "BreakP"
             }
           },
-          "1,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Left Encoder",
-              "_title": "Left Encoder"
-            }
-          },
-          "2,4": {
+          "5,3": {
             "size": [
               1,
               1
@@ -400,7 +323,7 @@
               "_title": "PitchD"
             }
           },
-          "3,4": {
+          "6,3": {
             "size": [
               1,
               1
@@ -411,7 +334,7 @@
               "_title": "PitchI"
             }
           },
-          "4,4": {
+          "7,3": {
             "size": [
               1,
               1
@@ -422,7 +345,7 @@
               "_title": "PitchP"
             }
           },
-          "5,3": {
+          "8,3": {
             "size": [
               1,
               1
@@ -433,7 +356,7 @@
               "_title": "highSpeedWheel"
             }
           },
-          "6,3": {
+          "9,3": {
             "size": [
               1,
               1
@@ -444,7 +367,51 @@
               "_title": "Left Enc"
             }
           },
-          "7,4": {
+          "0,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Enc",
+              "_title": "Right Enc"
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Encoder",
+              "_title": "Right Encoder"
+            }
+          },
+          "2,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Left Encoder",
+              "_title": "Left Encoder"
+            }
+          },
+          "3,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
+              "_title": "Right Enc VEL"
+            }
+          },
+          "4,4": {
             "size": [
               1,
               1
@@ -455,15 +422,26 @@
               "_title": "Left Enc VEL"
             }
           },
-          "8,4": {
+          "5,4": {
             "size": [
               1,
               1
             ],
             "content": {
               "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Enc",
-              "_title": "Right Enc"
+              "_source0": "network_table:///SmartDashboard/tragectoryVelocityR",
+              "_title": "tragectoryVelocityR"
+            }
+          },
+          "6,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/tragectoryVelocityL",
+              "_title": "tragectoryVelocityL"
             }
           }
         }
@@ -746,6 +724,62 @@
               "colorWhenTrue": "#7CFC00FF",
               "colorWhenFalse": "#8B0000FF"
             }
+          },
+          "10,0": {
+            "size": [
+              2,
+              4
+            ],
+            "content": {
+              "_type": "Subsystem Layout",
+              "_source0": "network_table:///LiveWindow/Ungrouped",
+              "_title": "Ungrouped",
+              "_children": [
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[0,5]/Value",
+                  "_title": "DoubleSolenoid[0,5]/Value"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Enabled",
+                  "_title": "Compressor[0]/Enabled",
+                  "colorWhenTrue": "#7CFC00FF",
+                  "colorWhenFalse": "#8B0000FF"
+                },
+                {
+                  "_type": "Boolean Box",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/Compressor[0]/Pressure switch",
+                  "_title": "Compressor[0]/Pressure switch",
+                  "colorWhenTrue": "#7CFC00FF",
+                  "colorWhenFalse": "#8B0000FF"
+                },
+                {
+                  "_type": "PDP",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/PowerDistributionPanel[30]",
+                  "_title": "PowerDistributionPanel[30]",
+                  "showIndicatorText": true
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[0,1]/Value",
+                  "_title": "DoubleSolenoid[0,1]/Value"
+                },
+                {
+                  "_type": "Text View",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/DoubleSolenoid[0,2]/Value",
+                  "_title": "DoubleSolenoid[0,2]/Value"
+                },
+                {
+                  "_type": "Gyro",
+                  "_source0": "network_table:///LiveWindow/Ungrouped/ADXRS450_Gyro[0]",
+                  "_title": "ADXRS450_Gyro[0]",
+                  "majorTickSpace": 45.0,
+                  "startAngle": 180.0,
+                  "tickMarkRingVisible": true
+                }
+              ]
+            }
           }
         }
       }
@@ -760,9 +794,9 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
+          "10,0": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
@@ -771,20 +805,22 @@
               "_title": "SmartDashboard/Left Encoder"
             }
           },
-          "0,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/Right Encoder",
-              "_title": "SmartDashboard/Right Encoder"
-            }
-          },
           "6,0": {
             "size": [
-              1,
+              2,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Right Encoder",
+              "_title": "SmartDashboard/Right Encoder",
+              "Visible time": 30.0,
+              "SmartDashboard/Right Encoder visible": true
+            }
+          },
+          "8,0": {
+            "size": [
+              2,
               1
             ],
             "content": {
@@ -793,7 +829,7 @@
               "_title": "SmartDashboard/Auton mode"
             }
           },
-          "0,2": {
+          "8,1": {
             "size": [
               1,
               1
@@ -804,7 +840,7 @@
               "_title": "/SmartDashboard/drivePea"
             }
           },
-          "1,2": {
+          "9,1": {
             "size": [
               1,
               1
@@ -815,7 +851,7 @@
               "_title": "/SmartDashboard/driveEye"
             }
           },
-          "2,2": {
+          "8,2": {
             "size": [
               1,
               1
@@ -826,7 +862,7 @@
               "_title": "/SmartDashboard/driveDee"
             }
           },
-          "3,2": {
+          "9,2": {
             "size": [
               1,
               1
@@ -835,6 +871,58 @@
               "_type": "Text View",
               "_source0": "network_table:///SmartDashboard/driveFFF",
               "_title": "/SmartDashboard/driveFFF"
+            }
+          },
+          "0,0": {
+            "size": [
+              6,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left Enc VEL",
+              "_title": "SmartDashboard/Left Enc VEL",
+              "Visible time": 30.0,
+              "SmartDashboard/Left Enc VEL visible": true
+            }
+          },
+          "0,3": {
+            "size": [
+              6,
+              3
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
+              "_title": "SmartDashboard/Right Enc VEL",
+              "Visible time": 30.0,
+              "SmartDashboard/Right Enc VEL visible": true
+            }
+          },
+          "6,3": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/tragectoryVelocityL",
+              "_title": "SmartDashboard/tragectoryVelocityL",
+              "Visible time": 30.0,
+              "SmartDashboard/tragectoryVelocityL visible": true
+            }
+          },
+          "9,3": {
+            "size": [
+              3,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/tragectoryVelocityR",
+              "_title": "SmartDashboard/tragectoryVelocityR",
+              "Visible time": 30.0,
+              "SmartDashboard/tragectoryVelocityR visible": true
             }
           }
         }

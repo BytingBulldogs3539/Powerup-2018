@@ -254,6 +254,9 @@ public final class DriveTrain extends Subsystem
 
 	public void updateEncoders()
 	{
+		SmartDashboard.putNumber("tragectoryVelocityR", rightTrack.tragectoryVelocity());
+
+		SmartDashboard.putNumber("tragectoryVelocityL", leftTrack.tragectoryVelocity());
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));

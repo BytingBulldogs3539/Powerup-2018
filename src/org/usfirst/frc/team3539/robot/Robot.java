@@ -1,10 +1,16 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autongroups.CurveAuton100;
+import org.usfirst.frc.team3539.robot.autongroups.I_DontCare;
+import org.usfirst.frc.team3539.robot.autongroups.Lol200;
 import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
-import org.usfirst.frc.team3539.robot.autongroups.Straight;
-import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchAuton;
+import org.usfirst.frc.team3539.robot.autongroups.RightSwitchAuton;
+import org.usfirst.frc.team3539.robot.autongroups.Straight200;
+import org.usfirst.frc.team3539.robot.autongroups.Straight315;
+import org.usfirst.frc.team3539.robot.autongroups.Straight50;
 import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.autongroups.floor;
+import org.usfirst.frc.team3539.robot.profiles.lol200;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -115,6 +121,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousPeriodic()
 	{
+		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
 
@@ -135,9 +142,16 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
+		autonChooser.addObject("lol200", new Lol200());
+		autonChooser.addObject("I_DontCare", new I_DontCare());
+		autonChooser.addObject("CurveAuton100",new CurveAuton100() );
+		autonChooser.addObject("motionProfile315", new Straight315());
+		autonChooser.addObject("motionProfile100", new MotionProfileTestAuton());
 		autonChooser.addObject("jfloor", new floor());
-		autonChooser.addObject("straightMotion", new Straight());
-		autonChooser.addObject("RightswitchAuton", new LeftSwitchAuton());
+		autonChooser.addObject("straight50", new Straight50());
+		autonChooser.addObject("straight200", new Straight200());
+
+		autonChooser.addObject("RightswitchAuton", new RightSwitchAuton());
 		autonChooser.addObject("MotionProfile", new MotionProfileTestAuton());
 		autonChooser.addObject("TestAuto", new TestAuto());
 

@@ -1,6 +1,13 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.profiles.MotionProfile;
+
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motion.TrajectoryPoint;
@@ -18,7 +25,7 @@ public class BulldogMotionProfile
 	private TalonSRX talon;
 	private MotionProfileStatus status = new MotionProfileStatus();
 	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
-	private boolean isFinished;
+	private boolean isFinished = false;
 
 	public BulldogMotionProfile(TalonSRX talon, String name)
 	{
@@ -40,6 +47,38 @@ public class BulldogMotionProfile
 		//check for file
 		
 	}
+//	public MotionProfile readFile(String filename)
+//	{
+//		MotionProfile profile = new MotionProfile();
+//		BufferedReader br;
+//		    List<double[]> left = new ArrayList<double[]>();
+//		    List<double[]> right = new ArrayList<double[]>();
+//
+//		    try {
+//			br = new BufferedReader(new FileReader(filename));
+//		    String line = br.readLine();
+//
+//  
+//		    while (line != null) {
+//		    	String[] out = line.split(",");
+//		    	double[] leftA = {Double.parseDouble(out[0]),Double.parseDouble(out[1]),Double.parseDouble(out[4])};
+//		    	double[] rightA = {Double.parseDouble(out[2]),Double.parseDouble(out[3]),Double.parseDouble(out[4])};
+//		    	left.add(leftA);
+//		    	right.add(right);
+//		    	
+//		        line = br.readLine();
+//		    }
+//
+//		} finally {
+//		    br.close();
+//		}
+//		
+//		profile.kNumPoints = left.size();
+//		profile.leftPoints = (double[][]) left.toArray();
+//		profile.rightPoints = (double[][]) right.toArray();
+//		
+//		return profile;
+//	}
 	public void configure()// probably want new name
 	{
 		isFinished = false;
@@ -77,15 +116,19 @@ public class BulldogMotionProfile
 		for (int i = 0; i < totalCnt; ++i)
 		{
 			double positionRot = profile[i][0];
+			System.out.println("arrayvelocity "+profile[i][1]);
 			double velocityRPM = profile[i][1];
 
-			point.position = positionRot * 4096; // Prac 478mm Tina 318mm
-			point.velocity = velocityRPM* 4096 / 600.0;// ((velocityRPM * 6.6) * 4096 / 600.0);
+			System.out.println("positionRot "+positionRot+"VelocityRpm "+velocityRPM);
+			point.position = (positionRot/478) * 4096; // Prac 478mm Tina 318mm
+			point.velocity = (velocityRPM * .871489);// * 52.2894);// * (4096.0/4700.0)));
+			System.out.println("pointPosition"+point.position+"pointVelocity"+point.velocity);
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
 
 			point.zeroPos = false;
 			point.isLastPoint = false;
+			
 
 			point.profileSlotSelect0 = 0; // there are multiple pid slots now
 			point.profileSlotSelect1 = 0;
@@ -130,6 +173,11 @@ public class BulldogMotionProfile
 		}
 	}
 
+	public double tragectoryVelocity()
+	{
+		return talon.getActiveTrajectoryVelocity();
+		
+	}
 	public boolean isFinished()
 	{
 		return isFinished;
