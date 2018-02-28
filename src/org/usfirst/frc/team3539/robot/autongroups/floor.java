@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
-import org.usfirst.frc.team3539.robot.profiles.profile;
+//import org.usfirst.frc.team3539.robot.profiles.profile;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -11,7 +11,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class floor extends CommandGroup {
 
     public floor() {
-		addSequential(new AutonMotionProfileCommand(profile.PointsR, profile.PointsL, profile.kNumPoints));
+	//	addSequential(new AutonMotionProfileCommand(profile.PointsR, profile.PointsL, profile.kNumPoints));
 
         // Add Commands here:
         // e.g. addSequential(new Command1());

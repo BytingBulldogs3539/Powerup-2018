@@ -26,6 +26,11 @@ public class BulldogMotionProfile
 	private MotionProfileStatus status = new MotionProfileStatus();
 	private SetValueMotionProfile setValue = SetValueMotionProfile.Disable;
 	private boolean isFinished = false;
+	double heading;
+	double pos;
+	double vel;
+
+
 
 	public BulldogMotionProfile(TalonSRX talon, String name)
 	{
@@ -116,13 +121,13 @@ public class BulldogMotionProfile
 		for (int i = 0; i < totalCnt; ++i)
 		{
 			double positionRot = profile[i][0];
-			System.out.println("arrayvelocity "+profile[i][1]);
+		//	System.out.println("arrayvelocity "+profile[i][1]);
 			double velocityRPM = profile[i][1];
 
-			System.out.println("positionRot "+positionRot+"VelocityRpm "+velocityRPM);
+		//	System.out.println("positionRot "+positionRot+"VelocityRpm "+velocityRPM);
 			point.position = (positionRot/478) * 4096; // Prac 478mm Tina 318mm
 			point.velocity = (velocityRPM * .871489);// * 52.2894);// * (4096.0/4700.0)));
-			System.out.println("pointPosition"+point.position+"pointVelocity"+point.velocity);
+		//	System.out.println("pointPosition"+point.position+"pointVelocity"+point.velocity);
 			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
 			point.headingDeg = 0;
 
@@ -147,32 +152,42 @@ public class BulldogMotionProfile
 	{
 		talon.getMotionProfileStatus(status);
 
-		System.out.println("statusCnt" + status.btmBufferCnt);
+		//System.out.println("statusCnt" + status.btmBufferCnt);
 
 		if (status.btmBufferCnt > 5)
 		{
-			System.out.println("print btm buffercn is true");
+			//System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
+			
 		}
 
 		talon.set(ControlMode.MotionProfile, setValue.value);
 		talon.getMotionProfileStatus(status);
+		 heading = talon.getActiveTrajectoryHeading();
+		pos = talon.getActiveTrajectoryPosition();
+		vel = talon.getActiveTrajectoryVelocity();
 
-		System.out.println("tragectory position" + talon.getActiveTrajectoryPosition());
-		System.out.println("EncPos" + talon.getSelectedSensorPosition(0));
-		System.out.println("tragectory Velocity" + talon.getActiveTrajectoryVelocity());
-		System.out.println("EncVel" + talon.getSelectedSensorVelocity(0));
+		/* printfs and/or logging */
+		Instrumentation.process(status, pos, vel, heading,isFinished);
+//
+//		System.out.println("tragectory position" + talon.getActiveTrajectoryPosition());
+//		System.out.println("EncPos" + talon.getSelectedSensorPosition(0));
+//		System.out.println("tragectory Velocity" + talon.getActiveTrajectoryVelocity());
+//		System.out.println("EncVel" + talon.getSelectedSensorVelocity(0));
 
 		if (status.isLast && status.activePointValid)
 		{
+			System.out.println(name + "Finished");
+
 			process.stop();
 
 			isFinished = true;
-			System.out.println(name + "Finished");
 			setValue = SetValueMotionProfile.Disable;
+			talon.set(ControlMode.MotionProfile, setValue.value);
 		}
 	}
-
+	
+	
 	public double tragectoryVelocity()
 	{
 		return talon.getActiveTrajectoryVelocity();
