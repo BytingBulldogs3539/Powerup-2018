@@ -2,21 +2,35 @@ package org.usfirst.frc.team3539.robot.instantcommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
+import edu.wpi.first.wpilibj.command.Command;
 
-public class PitchManualCommand extends InstantCommand
+public class PitchManualCommand extends Command
 {
-	private double power;
-
-	public PitchManualCommand(double power)
+	public PitchManualCommand()
 	{
 		requires(Robot.pitch);
-		this.power = power;
 	}
 
 	protected void initialize()
 	{
-		Robot.pitch.rotate(power);
-		System.out.println(Robot.pitch.getEncoder());
+		
+	}
+	
+	protected void execute()
+	{
+		Robot.pitch.rotate(Robot.oi.two.getRightStickY()/2.0);
+		System.out.println("arm move pos " + Robot.pitch.getEncoder());
+	}
+
+	@Override
+	protected boolean isFinished()
+	{
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	protected void end()
+	{
+		Robot.pitch.rotate(0);
 	}
 }

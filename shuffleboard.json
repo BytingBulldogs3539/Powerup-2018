@@ -1,19 +1,6 @@
 {
-  "dividerPosition": 0.33263816475495306,
+  "dividerPosition": 0.3310526315789474,
   "tabPane": [
-          },
-    {
-      "title": "LiveWindow",
-      "autoPopulate": true,
-      "autoPopulatePrefix": "LiveWindow/",
-      "widgetPane": {
-        "gridSize": 128.0,
-        "showGrid": true,
-        "hgap": 16.0,
-        "vgap": 16.0,
-        "tiles": {}
-      }
-    },
     {
       "title": "Tab 3",
       "autoPopulate": false,
@@ -26,102 +13,32 @@
         "tiles": {
           "0,0": {
             "size": [
-              5,
-              2
+              8,
+              3
             ],
             "content": {
               "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Right Encoder",
-              "_source1": "network_table:///SmartDashboard/Left Encoder",
-              "_title": "Distance R and L",
-              "Visible time": 30.0,
-              "SmartDashboard/Left Encoder visible": true,
-              "SmartDashboard/Right Encoder visible": true
+              "_source0": "network_table:///SmartDashboard/tragectoryPositionR",
+              "_source1": "network_table:///SmartDashboard/EncPos",
+              "_title": "Graph (2 sources)",
+              "Visible time": 60.0,
+              "SmartDashboard/EncPos visible": false,
+              "SmartDashboard/tragectoryPositionR visible": true
             }
           },
-          "6,3": {
+          "0,3": {
             "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Auton mode",
-              "_title": "SmartDashboard/Auton mode"
-            }
-          },
-          "7,1": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/drivePea",
-              "_title": "/SmartDashboard/drivePea"
-            }
-          },
-          "7,2": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveEye",
-              "_title": "/SmartDashboard/driveEye"
-            }
-          },
-          "7,3": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveDee",
-              "_title": "/SmartDashboard/driveDee"
-            }
-          },
-          "7,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveFFF",
-              "_title": "/SmartDashboard/driveFFF"
-            }
-          },
-          "0,2": {
-            "size": [
-              5,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Right Enc VEL",
-              "_source1": "network_table:///SmartDashboard/Left Enc VEL",
-              "_title": "Vel R and L",
-              "Visible time": 30.0,
-              "SmartDashboard/Left Enc VEL visible": true,
-              "SmartDashboard/Right Enc VEL visible": true
-            }
-          },
-          "0,4": {
-            "size": [
-              5,
+              8,
               2
             ],
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/tragectoryVelocityR",
-              "_source1": "network_table:///SmartDashboard/tragectoryVelocityL",
-              "_title": "TragVel R and L",
-              "Visible time": 30.0,
-              "SmartDashboard/tragectoryVelocityL visible": true,
-              "SmartDashboard/tragectoryVelocityR visible": true
+              "_source1": "network_table:///SmartDashboard/EncVel",
+              "_title": "Graph (2 sources)",
+              "Visible time": 60.0,
+              "SmartDashboard/EncVel visible": false,
+              "SmartDashboard/tragectoryVelocityR visible": false
             }
           }
         }

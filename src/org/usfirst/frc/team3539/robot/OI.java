@@ -39,11 +39,11 @@ public class OI
 		// Pitch
 		// two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
 
-		two.buttonPadDown.whenPressed(new PitchManualCommand(.5));
-		two.buttonPadUp.whenPressed(new PitchManualCommand(-.5));
+		//two.buttonPadDown.whenPressed(new PitchManualCommand(.5));
+		//two.buttonPadUp.whenPressed(new PitchManualCommand(-.5));
 
-		two.buttonPadUp.whenReleased(new PitchManualCommand(0));
-		two.buttonPadDown.whenReleased(new PitchManualCommand(0));
+		//two.buttonPadUp.whenReleased(new PitchManualCommand(0));
+		//two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
 		two.buttonTR.whenPressed(new IntakeCommand(-1));
@@ -54,6 +54,6 @@ public class OI
 		two.buttonA.whenPressed(new ElevatorPositionCommand(20));
 		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
 		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
-		two.buttonB.whenPressed(new PitchCommand(90));
+		//two.buttonB.whenPressed(new PitchCommand());
 	}
 }

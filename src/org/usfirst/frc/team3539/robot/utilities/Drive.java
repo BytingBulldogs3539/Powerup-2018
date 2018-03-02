@@ -51,33 +51,45 @@ public final class Drive
 		moveValue = limitValue(moveValue);
 		rotateValue = limitValue(rotateValue);
 
-		if (moveValue > 0.0)
+		double maxInput = Math.copySign(Math.max(Math.abs(moveValue), Math.abs(rotateValue)), moveValue);
+		
+		if (moveValue >= 0.0)
 		{
-			if (rotateValue > 0.0)
+			if (rotateValue >= 0.0)
 			{
 				leftMotorSpeed = moveValue - rotateValue;
+				//leftMotorSpeed = maxInput;
 				rightMotorSpeed = Math.max(moveValue, rotateValue);
+				//rightMotorSpeed = moveValue - rotateValue;
 			}
 			else
 			{
 				leftMotorSpeed = Math.max(moveValue, -rotateValue);
+				//leftMotorSpeed = moveValue + rotateValue;
 				rightMotorSpeed = moveValue + rotateValue;
+				//rightMotorSpeed = maxInput;
 			}
 		}
 		else
 		{
-			if (rotateValue > 0.0)
+			if (rotateValue >= 0.0)
 			{
 				leftMotorSpeed = -Math.max(-moveValue, rotateValue);
+				//leftMotorSpeed = moveValue + rotateValue;
 				rightMotorSpeed = moveValue + rotateValue;
+				//rightMotorSpeed = maxInput;
 			}
 			else
 			{
 				leftMotorSpeed = moveValue - rotateValue;
+				//leftMotorSpeed = maxInput;
 				rightMotorSpeed = -Math.max(-moveValue, -rotateValue);
+				//rightMotorSpeed = moveValue - rotateValue;
 			}
 		}
 		setMotorOutputs(-rightMotorSpeed, -leftMotorSpeed);
+		//System.out.println("left speed " + leftMotorSpeed + "  right speed " + rightMotorSpeed);
+		//setMotorOutputs(rightMotorSpeed, leftMotorSpeed);
 	}
 
 	public void setMotorOutputs(double right, double left)

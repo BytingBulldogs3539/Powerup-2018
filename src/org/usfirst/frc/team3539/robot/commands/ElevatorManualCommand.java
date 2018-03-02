@@ -17,12 +17,13 @@ public class ElevatorManualCommand extends Command
 
 	protected void initialize()
 	{
+		
 	}
 
 	protected void execute()
 	{
 		Robot.elevator.setMotorPower(-Robot.oi.two.getLeftStickY());
-		// System.out.println(Robot.elevator.getEncoder());
+		//System.out.println(Robot.elevator.getEncoder());
 	}
 
 	protected boolean isFinished()

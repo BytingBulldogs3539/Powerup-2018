@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.PitchCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -22,20 +24,20 @@ public class LateralPitch extends Subsystem
 	{
 		pitch = new TalonSRX(RobotMap.pitch);
 
-		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
 
 		pitch.configNominalOutputForward(0, 10);
 		pitch.configNominalOutputReverse(0, 10);
 
-		pitch.configPeakOutputReverse(-1, 10);
-		pitch.configPeakOutputForward(1, 10);
+		pitch.configPeakOutputReverse(-.5 ,10);
+		pitch.configPeakOutputForward(.5, 10);
 
 		configureBrakeMode();
-		configureSoftLimits();
-		shouldSoftLimit(true);
+		//configureSoftLimits();
+		shouldSoftLimit(false);
 		zeroEncoder();
+		setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee, RobotMap.pitchFFF);
 	}
-
 	private void configureBrakeMode()
 	{
 		pitch.setNeutralMode(NeutralMode.Brake);
@@ -43,18 +45,13 @@ public class LateralPitch extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		pitch.configForwardSoftLimitThreshold(550000, 10); // TODO
+		pitch.configForwardSoftLimitThreshold(7500, 10); // TODO
 		pitch.configReverseSoftLimitThreshold(0, 10); // TODO
 
-		pitch.configForwardSoftLimitEnable(false, 10);
-		pitch.configReverseSoftLimitEnable(false, 10);
+		pitch.configForwardSoftLimitEnable(true, 10);
+		pitch.configReverseSoftLimitEnable(true, 10);
 	}
-
-	public void zeroEncoder()
-	{
-		pitch.setSelectedSensorPosition(0, 0, 0);
-		pitch.getSensorCollection().setPulseWidthPosition(0, 10);
-	}
+	
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
@@ -66,24 +63,25 @@ public class LateralPitch extends Subsystem
 		pitch.set(ControlMode.PercentOutput, power);
 	}
 
-	public void setPID(double P, double I, double D)
+	public void setPID(double P, double I, double D, double F)
 	{
 		pitch.config_kP(0, P, 0);
 
 		pitch.config_kI(0, I, 0);
 
 		pitch.config_kD(0, D, 0);
+		
+		pitch.config_kF(0, F, 0);
+	}
+	public void zeroEncoder()
+	{
+		pitch.setSelectedSensorPosition(0, 0, 0);
+		
 	}
 
-	public double angleToEncoder(double angle)
+	public void setSetpointPitch(double enc)
 	{
-		System.out.println(angle * 4834.25);
-		return angle * 4834.25;
-	}
-
-	public void setSetpointPitch(double angle)
-	{
-		pitch.set(ControlMode.Position, angleToEncoder(angle));
+		pitch.set(ControlMode.Position, enc);
 	}
 
 	private int maxLoopNumber = 0;
@@ -132,6 +130,7 @@ public class LateralPitch extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
+		setDefaultCommand(new PitchCommand());
 	}
 
 	public double getEncoder()
