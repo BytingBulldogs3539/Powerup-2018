@@ -33,8 +33,8 @@ public class OI
 		// two.buttonX.whenPressed(new ElevatorPositionCommand(ElevatorPosition.CLIMB));
 		// two.buttonY.whenPressed(new ElevatorPositionCommand(ElevatorPosition.SCALE));
 
-		two.buttonBL.whenPressed(new IntakeSolenoidCommand());
-		two.buttonBR.whenPressed(new ShiftSolenoidCommand());
+		two.buttonBR.whenPressed(new IntakeSolenoidCommand());
+		two.buttonBL.whenPressed(new ShiftSolenoidCommand());
 
 		// Pitch
 		// two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
@@ -46,8 +46,8 @@ public class OI
 		//two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
-		two.buttonTR.whenPressed(new IntakeCommand(-1));
-		two.buttonTL.whenPressed(new IntakeCommand(1));
+		two.buttonTL.whenPressed(new IntakeCommand(-1));
+		two.buttonTR.whenPressed(new IntakeCommand(1));
 
 		two.buttonTR.whenReleased(new IntakeCommand(0));
 		two.buttonTL.whenReleased(new IntakeCommand(0));

@@ -14,12 +14,13 @@ public class PitchCommand extends Command
 {
 	double enc;
 	int scale;
+	boolean checker;
 
 	public PitchCommand()
 	{
 		requires(Robot.pitch);
 		this.enc = 0;
-		scale = 10;
+		scale = 135;
 	}
 
 	protected void initialize()
@@ -31,20 +32,30 @@ public class PitchCommand extends Command
 		enc = Robot.pitch.getEncoder();
 		Robot.pitch.setSetpointPitch(enc);
 		System.out.println(Robot.pitch.getEncoder());
+		checker = true;
 	}
 	
 	protected void execute()
 	{
-		if(Robot.oi.two.getRightStickY() > .2)
+		// Change (stick is up or down enough)
+		if(Robot.oi.two.getRightStickY() >= .2 || Robot.oi.two.getRightStickY() <= -.2)
 		{
 			enc = enc + scale * Robot.oi.two.getRightStickY();
+			if(enc > 8000) enc = 8000;
+			if(enc < 0) enc = 0;
 			Robot.pitch.setSetpointPitch(enc);
+			checker = true;
 		}
-		if(Robot.oi.two.getRightStickY() < -.2)
+		// Deadband reset (hold)
+		else if(Robot.oi.two.getRightStickY() < .2 && Robot.oi.two.getRightStickY() > -.2 && checker)
 		{
-			enc = enc + scale * Robot.oi.two.getRightStickY();
+			enc = Robot.pitch.getEncoder();
+			if(enc > 8000) enc = 8000;
+			if(enc < 0) enc = 0;
 			Robot.pitch.setSetpointPitch(enc);
+			checker = false;
 		}
+		// Manual reset
 		if(Robot.oi.two.buttonB.get())
 		{
 			enc = Robot.pitch.getEncoder();

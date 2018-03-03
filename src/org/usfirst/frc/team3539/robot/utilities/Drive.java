@@ -99,6 +99,7 @@ public final class Drive
 			//System.out.println(left + " " + right);
 			talon1.set(ControlMode.PercentOutput, right);
 			talon2.set(ControlMode.PercentOutput, left);
+			System.out.println("left v: " + talon2.getMotorOutputVoltage() + "   right v: " + talon1.getMotorOutputVoltage());
 
 		}
 		if (driveMode == DriveMode.FOUR)

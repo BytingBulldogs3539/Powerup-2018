@@ -76,7 +76,9 @@ public class LateralPitch extends Subsystem
 	public void zeroEncoder()
 	{
 		pitch.setSelectedSensorPosition(0, 0, 0);
-		
+		pitch.getSensorCollection().setPulseWidthPosition(0, 0);
+		pitch.getSensorCollection().setQuadraturePosition(0, 0);
+		pitch.getSensorCollection().setAnalogPosition(0, 0);
 	}
 
 	public void setSetpointPitch(double enc)
