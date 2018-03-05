@@ -1,5 +1,12 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.logging.FileHandler;
+
 import org.usfirst.frc.team3539.robot.PracMap;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
@@ -11,6 +18,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -24,12 +32,35 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public final class DriveTrain extends Subsystem
 {
+	public FileWriter fw;
+	public PrintWriter log;
+	
 	private ADXRS450_Gyro gyro;
 	public TalonSRX lf, lb, rf, rb;
 	private Drive drive;
+	
+	private int maxLoopNumber = 0;
+	private int onTargetCounter = 0;
+	private int allowedErrorRange = 0;
 
+	private boolean logging = false;
+	
 	public DriveTrain()
 	{
+		if (logging) {
+			try
+			{
+				String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
+				fw = new FileWriter("/home/lvuser/logs/drivetrain_" + timestamp + ".csv");
+				log = new PrintWriter(fw);		
+			}
+			catch (SecurityException | IOException e)
+			{
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
 		lf = new TalonSRX(RobotMap.lf);
@@ -89,7 +120,7 @@ public final class DriveTrain extends Subsystem
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
-		// enableCurrentLimit();
+		enableCurrentLimit();
 
 		// SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
@@ -134,11 +165,17 @@ public final class DriveTrain extends Subsystem
 	@SuppressWarnings("unused")
 	private void enableCurrentLimit()
 	{
-		lf.configContinuousCurrentLimit(35, 0);
-		rf.configContinuousCurrentLimit(35, 0);
+		lf.configPeakCurrentLimit(35, 10);
+		rf.configPeakCurrentLimit(35, 10);
+		
+		lf.configPeakCurrentDuration(200, 10);
+		rf.configPeakCurrentDuration(200, 10);
+		
+		lf.configContinuousCurrentLimit(35, 10);
+		rf.configContinuousCurrentLimit(35, 10);
 
-		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
-		rf.enableCurrentLimit(false);
+		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
+		rf.enableCurrentLimit(true);
 	}
 
 	public void setSensorPhase(boolean phase)
@@ -204,7 +241,7 @@ public final class DriveTrain extends Subsystem
 
 		System.out.println("setpoint: " + degreesToEncoder(setpointdegrees));
 
-		lf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
+		lf.set(ControlMode.Position, -degreesToEncoder(setpointdegrees));
 		rf.set(ControlMode.Position, degreesToEncoder(setpointdegrees));
 	}
 
@@ -213,23 +250,25 @@ public final class DriveTrain extends Subsystem
 		return inchToEncoder((RobotMap.robotCir / 360) * degrees);
 	}
 
-	private int maxLoopNumber = 0;
-	private int onTargetCounter = 0;
-	private int allowedErrorRange = 0;
+
 
 	public boolean onTarget()
 	{
 		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange && Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
 		{
 			onTargetCounter++;
+			System.out.println(onTargetCounter);
 		}
 		else
 		{
+			System.out.println(onTargetCounter);
 			onTargetCounter = 0;
 		}
 
 		if (maxLoopNumber <= onTargetCounter)
 		{
+			System.out.println(onTargetCounter);
+
 			return true;
 		}
 
@@ -246,6 +285,8 @@ public final class DriveTrain extends Subsystem
 
 		// set tolerance in ticks
 		allowedErrorRange = ticks;
+		
+		this.maxLoopNumber=maxLoopNumber;
 	}
 
 	public double inchToEncoder(double inches)
@@ -256,6 +297,18 @@ public final class DriveTrain extends Subsystem
 
 	public void updateEncoders()
 	{
+
+		if(logging)
+		{
+			log.print(lf.getSelectedSensorPosition(0) + "," + 
+					lf.getSelectedSensorVelocity(0) + "," +
+					lf.getMotorOutputPercent() + "," +
+					rf.getSelectedSensorPosition(0) + "," + 
+					rf.getSelectedSensorVelocity(0) + "," + 
+					rf.getMotorOutputPercent()
+					);
+			log.println("");
+		}
 		SmartDashboard.putNumber("tragectoryVelocityR", rightTrack.tragectoryVelocity());
 
 		SmartDashboard.putNumber("tragectoryVelocityL", leftTrack.tragectoryVelocity());

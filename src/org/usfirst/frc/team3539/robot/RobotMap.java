@@ -14,7 +14,7 @@ public class RobotMap
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botProfile = new PracMap();
+	private static IMap botProfile = new CompMap();
 
 	// PDP
 	public static final int pdp = 30;
@@ -36,10 +36,10 @@ public class RobotMap
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	
-	public static double pitchPea = .0;
+	public static double pitchPea = .23;
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
-	public static double pitchFFF = 0;
+	public static double pitchFFF = -.03;
 
 	
 	public static int pitchEncPosDown = 0; // SOME INT
@@ -53,14 +53,19 @@ public class RobotMap
 	public static final int rf = botProfile.getRf();
 	public static final int rb = botProfile.getRb();
 
-	public static double drivePea = .5;
+	public static double drivePea = .05;
 	public static double driveEye = 0.0;
-	public static double driveDee = 0.0;
-	public static double driveFFF = .145;
+	public static double driveDee = 0.10;
+	public static double driveFFF = .0;
+	
+//	public static double drivePea = .5;
+//	public static double driveEye = 0.0;
+//	public static double driveDee = 0.0;
+//	public static double driveFFF = .145;
 
 	public static double turnPeaWheels = 0.1;
-	public static double turnEyeWheels = 0.0000023;
-	public static double turnDeeWheels = 0.1;
+	public static double turnEyeWheels = 0.00005;
+	public static double turnDeeWheels = 0;
 	public static double turnFFFWheels = 0;
 
 	public static double turnPeaGyro = 0.1;
@@ -76,7 +81,7 @@ public class RobotMap
 	// Tina - Change to new bot
 	public static final double wheelCir = 18.84;
 	// Tina - Change to new bot
-	public static final double robotCir = 103.62;
+	public static final double robotCir = 91;
 
 	// Drivetrain Deadbands
 	public static double throttleDeadband = 0.02;
@@ -108,9 +113,9 @@ public class RobotMap
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
 	
-	public static double elevatorPea = .075;
-	public static double elevatorEye = 0.0001;
-	public static double elevatorDee = 0.0000001;
+	public static double elevatorPea = .5;
+	public static double elevatorEye = 0.0;
+	public static double elevatorDee = 0.0;
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING

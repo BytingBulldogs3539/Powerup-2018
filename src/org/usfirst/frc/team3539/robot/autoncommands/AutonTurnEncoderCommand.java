@@ -24,10 +24,10 @@ public class AutonTurnEncoderCommand extends Command
 	{
 		Robot.driveTrain.zeroEncoders();
 
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
-				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("TurnP", RobotMap.turnPeaWheels), SmartDashboard.getNumber("TurnI", RobotMap.turnEyeWheels), SmartDashboard.getNumber("TurnD", RobotMap.turnDeeWheels),
+				SmartDashboard.getNumber("TurnF", RobotMap.turnFFFWheels));
 
-		Robot.driveTrain.setupOnTarget(500, 20);
+		Robot.driveTrain.setupOnTarget(500, 50);
 
 		Robot.driveTrain.setSetpointTurn(targetAngle);
 	}
@@ -38,11 +38,16 @@ public class AutonTurnEncoderCommand extends Command
 
 	protected boolean isFinished()
 	{
+		if(Robot.driveTrain.onTarget() || isTimedOut())
+		{
+			System.out.println("Finished");
+		}
 		return Robot.driveTrain.onTarget() || isTimedOut();
 	}
 
 	protected void end()
 	{
+		System.out.println("End");
 		Robot.driveTrain.driveArcade(0, 0);
 		Robot.driveTrain.zeroEncoders();
 	}

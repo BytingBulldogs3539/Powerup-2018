@@ -2,7 +2,6 @@ package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.PitchCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.PitchManualCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -76,7 +75,9 @@ public class LateralPitch extends Subsystem
 	public void zeroEncoder()
 	{
 		pitch.setSelectedSensorPosition(0, 0, 0);
-		
+		pitch.getSensorCollection().setPulseWidthPosition(0, 0);
+		pitch.getSensorCollection().setQuadraturePosition(0, 0);
+		pitch.getSensorCollection().setAnalogPosition(0, 0);
 	}
 
 	public void setSetpointPitch(double enc)
