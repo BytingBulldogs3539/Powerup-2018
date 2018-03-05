@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.3310526315789474,
+  "dividerPosition": 0.17413972888425444,
   "tabPane": [
     {
       "title": "Tab 3",
@@ -11,37 +11,144 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "0,0": {
+          "0,1": {
             "size": [
-              8,
+              3,
               3
             ],
             "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/tragectoryPositionR",
-              "_source1": "network_table:///SmartDashboard/EncPos",
-              "_title": "Graph (2 sources)",
-              "Visible time": 60.0,
-              "SmartDashboard/EncPos visible": false,
-              "SmartDashboard/tragectoryPositionR visible": true
+              "_type": "Camera Stream",
+              "_source0": "camera_server://USB Camera 0",
+              "_title": "USB Camera 0"
             }
           },
-          "0,3": {
+          "7,0": {
             "size": [
-              8,
+              2,
+              2
+            ],
+            "content": {
+              "_type": "PDP",
+              "_source0": "network_table:///SmartDashboard/PDP",
+              "_title": "/SmartDashboard/PDP",
+              "showIndicatorText": true
+            }
+          },
+          "7,2": {
+            "size": [
+              2,
               2
             ],
             "content": {
               "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/tragectoryVelocityR",
-              "_source1": "network_table:///SmartDashboard/EncVel",
-              "_title": "Graph (2 sources)",
-              "Visible time": 60.0,
-              "SmartDashboard/EncVel visible": false,
-              "SmartDashboard/tragectoryVelocityR visible": false
+              "_source0": "network_table:///SmartDashboard/Right Enc",
+              "_title": "SmartDashboard/Right Enc",
+              "Visible time": 30.0,
+              "SmartDashboard/Right Enc visible": true
+            }
+          },
+          "7,4": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Graph",
+              "_source0": "network_table:///SmartDashboard/Left Enc",
+              "_title": "SmartDashboard/Left Enc",
+              "Visible time": 30.0,
+              "SmartDashboard/Left Enc visible": true
+            }
+          },
+          "0,0": {
+            "size": [
+              3,
+              1
+            ],
+            "content": {
+              "_type": "Basic FMS Info",
+              "_title": ""
+            }
+          },
+          "4,1": {
+            "size": [
+              2,
+              2
+            ],
+            "content": {
+              "_type": "Network Table Tree",
+              "_source0": "network_table:///CameraPublisher",
+              "_title": "CameraPublisher"
+            }
+          },
+          "4,4": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "ComboBox Chooser",
+              "_source0": "network_table:///SmartDashboard/Auton mode",
+              "_title": "SmartDashboard/Auton mode"
+            }
+          },
+          "1,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/drivePea",
+              "_title": "SmartDashboard/drivePea"
+            }
+          },
+          "1,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveEye",
+              "_title": "SmartDashboard/driveEye"
+            }
+          },
+          "2,4": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveDee",
+              "_title": "SmartDashboard/driveDee"
+            }
+          },
+          "2,5": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Text View",
+              "_source0": "network_table:///SmartDashboard/driveFFF",
+              "_title": "SmartDashboard/driveFFF"
             }
           }
         }
+      }
+    },
+    {
+      "title": "Tab 2",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {}
       }
     }
   ]

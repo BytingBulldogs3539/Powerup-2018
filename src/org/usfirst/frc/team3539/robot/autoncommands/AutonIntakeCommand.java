@@ -23,7 +23,6 @@ public class AutonIntakeCommand extends Command
 	// Called just before this Command runs the first time
 	protected void initialize()
 	{
-		System.out.println("---------intake-------");
 		Robot.intake.setMotorPower(MotorPower);
 	}
 

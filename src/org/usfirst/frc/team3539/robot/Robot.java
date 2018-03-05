@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
 import org.usfirst.frc.team3539.robot.autongroups.CurveAuton100;
+import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
 import org.usfirst.frc.team3539.robot.autongroups.I_DontCare;
 import org.usfirst.frc.team3539.robot.autongroups.Lol200;
 import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
@@ -19,6 +21,7 @@ import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import edu.wpi.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -63,17 +66,16 @@ public class Robot extends IterativeRobot
 		c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
-		//
-		// try
-		// {
-		// cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
-		// cameraOne.setResolution(480, 360);
-		// cameraTwo = CameraServer.getInstance().startAutomaticCapture(1);
-		// cameraTwo.setResolution(480, 360);
-		// }
-		// catch (Error e)
-		// {
-		// }
+
+		try
+		{
+			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
+			cameraOne.setResolution(240, 135);
+			cameraOne.setFPS(20);
+		}
+		catch (Error e)
+		{
+		}
 	}
 
 	/**
@@ -92,6 +94,7 @@ public class Robot extends IterativeRobot
 	public void disabledPeriodic()
 	{
 		Scheduler.getInstance().run();
+		//driveTrain.log.flush();
 	}
 
 	public void autonomousInit()
@@ -144,12 +147,14 @@ public class Robot extends IterativeRobot
 	{
 		autonChooser.addObject("lol200", new Lol200());
 		autonChooser.addObject("I_DontCare", new I_DontCare());
-		autonChooser.addObject("CurveAuton100",new CurveAuton100() );
+		autonChooser.addObject("CurveAuton100", new CurveAuton100());
 		autonChooser.addObject("motionProfile315", new Straight315());
 		autonChooser.addObject("motionProfile100", new MotionProfileTestAuton());
 		autonChooser.addObject("jfloor", new floor());
 		autonChooser.addObject("straight50", new Straight50());
 		autonChooser.addObject("straight200", new Straight200());
+		autonChooser.addObject("Default Auton Center", new DefaultAuton());
+		autonChooser.addObject("Tune Turn 45", new AutonTurnEncoderCommand(45, 100));
 
 		autonChooser.addObject("RightswitchAuton", new RightSwitchAuton());
 		autonChooser.addObject("MotionProfile", new MotionProfileTestAuton());
@@ -168,7 +173,7 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putData("Alliance", allianceChooser);
 		System.out.println("Settings");
-		
+
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
 		SmartDashboard.putNumber("driveEye", RobotMap.driveEye);
 		SmartDashboard.putNumber("driveDee", RobotMap.driveDee);

@@ -19,12 +19,29 @@ public class Intake extends Subsystem
 	{
 		intakeMotorLeft = new TalonSRX(RobotMap.lIntakeMotor);
 		intakeMotorRight = new TalonSRX(RobotMap.rIntakeMotor);
+		
+		enableCurrentLimit();
 	}
 
 	public void setMotorPower(double power)
 	{
 		intakeMotorLeft.set(ControlMode.PercentOutput, power);
 		intakeMotorRight.set(ControlMode.PercentOutput, -power);
+	}
+	
+	private void enableCurrentLimit()
+	{
+		intakeMotorLeft.configPeakCurrentLimit(35, 10);
+		intakeMotorRight.configPeakCurrentLimit(35, 10);
+		
+		intakeMotorLeft.configPeakCurrentDuration(200, 10);
+		intakeMotorRight.configPeakCurrentDuration(200, 10);
+		
+		intakeMotorLeft.configContinuousCurrentLimit(35, 10);
+		intakeMotorRight.configContinuousCurrentLimit(35, 10);
+
+		intakeMotorLeft.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
+		intakeMotorRight.enableCurrentLimit(true);
 	}
 
 	public void initDefaultCommand()

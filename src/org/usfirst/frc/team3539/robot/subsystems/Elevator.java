@@ -36,8 +36,6 @@ public class Elevator extends Subsystem
 		liftMaster.configPeakOutputForward(1, 10);
 
 		liftSlave = new TalonSRX(RobotMap.elevatorMotorOne);
-		// liftSlave.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute,
-		// 0, 10);
 
 		liftSlave.configNominalOutputForward(0, 10);
 		liftSlave.configNominalOutputReverse(0, 10);
@@ -51,11 +49,7 @@ public class Elevator extends Subsystem
 
 		configureSoftLimits();
 
-		updateEncoders();
-
 		configureBrakeMode();
-
-		setPID(RobotMap.elevatorPea, RobotMap.elevatorEye, RobotMap.elevatorDee, RobotMap.elevatorFFF);
 
 		zeroEncoders();
 
@@ -75,11 +69,11 @@ public class Elevator extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		liftMaster.configForwardSoftLimitThreshold(45000, 0); // TODO
-		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
+		liftMaster.configForwardSoftLimitThreshold(50000, 0); // TODO
+		liftMaster.configReverseSoftLimitThreshold(300, 0); // TODO
 
-		liftMaster.configForwardSoftLimitEnable(false, 10);
-		liftMaster.configReverseSoftLimitEnable(false, 10);
+		liftMaster.configForwardSoftLimitEnable(true, 10);
+		liftMaster.configReverseSoftLimitEnable(true, 10);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
@@ -113,6 +107,7 @@ public class Elevator extends Subsystem
 	public void zeroEncoders()
 	{
 		liftMaster.getSensorCollection().setPulseWidthPosition(0, 0);
+		liftMaster.getSensorCollection().setQuadraturePosition(0, 0);
 		liftMaster.setSelectedSensorPosition(0, 0, 0);
 	}
 
