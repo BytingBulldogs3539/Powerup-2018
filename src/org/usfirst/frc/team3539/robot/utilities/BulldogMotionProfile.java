@@ -19,6 +19,8 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Notifier;
 
+
+
 public class BulldogMotionProfile
 {
 	private String name;
@@ -30,15 +32,19 @@ public class BulldogMotionProfile
 	double pos;
 	double vel;
 
+	private Notifier process = new Notifier(new PeriodicRunnable());
 
 
 	public BulldogMotionProfile(TalonSRX talon, String name)
 	{
+	
 		this.talon = talon;
 		this.name = name;
+		talon.changeMotionControlFramePeriod(5);
+		process.startPeriodic(0.005);
+
 	}
 
-	private Notifier process = new Notifier(new PeriodicRunnable());
 
 	class PeriodicRunnable implements java.lang.Runnable
 	{
@@ -52,9 +58,9 @@ public class BulldogMotionProfile
 		//check for file
 		
 	}
-//	public MotionProfile readFile(String filename)
-//	{
-//		MotionProfile profile = new MotionProfile();
+	public MotionProfile readFile(String filename)
+	{
+		MotionProfile profile = new MotionProfile();
 //		BufferedReader br;
 //		    List<double[]> left = new ArrayList<double[]>();
 //		    List<double[]> right = new ArrayList<double[]>();
@@ -82,21 +88,20 @@ public class BulldogMotionProfile
 //		profile.leftPoints = (double[][]) left.toArray();
 //		profile.rightPoints = (double[][]) right.toArray();
 //		
-//		return profile;
-//	}
+		return profile;
+	}
 	public void configure()// probably want new name
 	{
 		isFinished = false;
+		talon.clearMotionProfileTrajectories();
 		setValue = SetValueMotionProfile.Disable;
 
-		talon.clearMotionProfileTrajectories();
+		
+
 		talon.setSelectedSensorPosition(0, 0, 10);
-
-		talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
-
+	//	talon.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		// talon.setSensorPhase(true);
 		talon.configNeutralDeadband(RobotMap.kNeutralDeadband, RobotMap.kTimeoutMs);
-
 		talon.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
 		/*
 		 * status 10 provides the trajectory target for motion profile AND motion magic
@@ -106,11 +111,11 @@ public class BulldogMotionProfile
 
 	public void startFilling(double[][] profile, int totalCnt)
 	{
-		process.startPeriodic(0.005);
 		TrajectoryPoint point = new TrajectoryPoint();
 
 		if (status.hasUnderrun)
 		{
+			Instrumentation.OnUnderrun();
 			talon.clearMotionProfileHasUnderrun(0);
 		}
 
@@ -121,23 +126,14 @@ public class BulldogMotionProfile
 		for (int i = 0; i < totalCnt; ++i)
 		{
 			double positionRot = profile[i][0];
-		//	System.out.println("arrayvelocity "+profile[i][1]);
 			double velocityRPM = profile[i][1];
-
-		//	System.out.println("positionRot "+positionRot+"VelocityRpm "+velocityRPM);
-			point.position = (positionRot/478) * 4096; // Prac 478mm Tina 318mm
-			point.velocity = (velocityRPM * .871489);// * 52.2894);// * (4096.0/4700.0)));
-		//	System.out.println("pointPosition"+point.position+"pointVelocity"+point.velocity);
-			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
+			point.position = (positionRot) * 4096; // Prac 478mm Tina 318mm
+			point.velocity = (velocityRPM )*4096/600;// * 52.2894);// * (4096.0/4700.0)));
 			point.headingDeg = 0;
-
-			point.zeroPos = false;
-			point.isLastPoint = false;
-			
-
 			point.profileSlotSelect0 = 0; // there are multiple pid slots now
 			point.profileSlotSelect1 = 0;
-
+			point.timeDur = GetTrajectoryDuration((int) profile[i][2]);
+			point.zeroPos = false;
 			if (i == 0)
 				point.zeroPos = true;
 
@@ -154,7 +150,7 @@ public class BulldogMotionProfile
 
 		//System.out.println("statusCnt" + status.btmBufferCnt);
 
-		if (status.btmBufferCnt > 5)
+		if (status.btmBufferCnt > 10)
 		{
 			//System.out.println("print btm buffercn is true");
 			setValue = SetValueMotionProfile.Enable;
@@ -180,9 +176,8 @@ public class BulldogMotionProfile
 			System.out.println(name + "Finished");
 
 			process.stop();
-
 			isFinished = true;
-			setValue = SetValueMotionProfile.Disable;
+			setValue = SetValueMotionProfile.Hold;
 			talon.set(ControlMode.MotionProfile, setValue.value);
 		}
 	}
@@ -191,6 +186,11 @@ public class BulldogMotionProfile
 	public double tragectoryVelocity()
 	{
 		return talon.getActiveTrajectoryVelocity();
+		
+	}
+	public double tragectoryPosition()
+	{
+		return talon.getActiveTrajectoryPosition();
 		
 	}
 	public boolean isFinished()

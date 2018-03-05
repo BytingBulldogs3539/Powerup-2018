@@ -30,11 +30,8 @@ public class AutonMotionProfileCommand extends Command
 		
 
 		Robot.driveTrain.leftTrack.configure();
-		Robot.driveTrain.rightTrack.configure();
-
-		Robot.driveTrain.setMotionProfile();
-		System.out.println("-----motion profile mode set on talon----");
-
+		Robot.driveTrain.rightTrack.configure();//Robot.driveTrain.setMotionProfile();
+		//System.out.println("-----motion profile mode set on talon----");
 		Robot.driveTrain.leftTrack.startFilling(ProfileL, totalPointNum);
 		Robot.driveTrain.rightTrack.startFilling(ProfileR, totalPointNum);
 
