@@ -14,7 +14,7 @@ public class LogitechF310 extends Joystick
 	private static final int Y = 4;
 
 	private static final int START = 8;
-	private static final int SELECT = 3539;
+	private static final int SELECT = 7;
 
 	private static final int LS = 9;
 	private static final int RS = 10;

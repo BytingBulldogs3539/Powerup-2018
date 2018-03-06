@@ -84,6 +84,15 @@ public class LateralPitch extends Subsystem
 	{
 		pitch.set(ControlMode.Position, enc);
 	}
+	public void setAngleSetpointPitch(double angle)
+	{
+		pitch.set(ControlMode.Position, angleToEnc(angle));
+	}
+
+	private double angleToEnc(double angle)
+	{
+		return angle*45;
+	}
 
 	private int maxLoopNumber = 0;
 	private int onTargetCounter = 0;
@@ -138,5 +147,6 @@ public class LateralPitch extends Subsystem
 	{
 		return pitch.getSelectedSensorPosition(0);
 	}
+
 
 }
