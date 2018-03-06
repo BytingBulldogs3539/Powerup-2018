@@ -1,7 +1,6 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
-import org.usfirst.frc.team3539.robot.profiles.MotionProfile;
 import org.usfirst.frc.team3539.robot.profiles.cal50;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

@@ -14,7 +14,7 @@ public class RobotMap
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botProfile = new CompMap();
+	private static IMap botProfile = new PracMap();
 
 	// PDP
 	public static final int pdp = 30;
@@ -53,10 +53,10 @@ public class RobotMap
 	public static final int rf = botProfile.getRf();
 	public static final int rb = botProfile.getRb();
 
-	public static double drivePea = .05;
+	public static double drivePea = .5;
 	public static double driveEye = 0.0;
-	public static double driveDee = 0.10;
-	public static double driveFFF = .0;
+	public static double driveDee = 0.0;
+	public static double driveFFF = .145;
 	
 //	public static double drivePea = .5;
 //	public static double driveEye = 0.0;

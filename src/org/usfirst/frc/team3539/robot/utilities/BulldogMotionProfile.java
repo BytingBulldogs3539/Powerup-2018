@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
-import org.usfirst.frc.team3539.robot.profiles.MotionProfile;
+
 
 import com.ctre.phoenix.motion.MotionProfileStatus;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
@@ -58,38 +58,38 @@ public class BulldogMotionProfile
 		//check for file
 		
 	}
-	public MotionProfile readFile(String filename)
-	{
-		MotionProfile profile = new MotionProfile();
-//		BufferedReader br;
-//		    List<double[]> left = new ArrayList<double[]>();
-//		    List<double[]> right = new ArrayList<double[]>();
-//
-//		    try {
-//			br = new BufferedReader(new FileReader(filename));
-//		    String line = br.readLine();
-//
-//  
-//		    while (line != null) {
-//		    	String[] out = line.split(",");
-//		    	double[] leftA = {Double.parseDouble(out[0]),Double.parseDouble(out[1]),Double.parseDouble(out[4])};
-//		    	double[] rightA = {Double.parseDouble(out[2]),Double.parseDouble(out[3]),Double.parseDouble(out[4])};
-//		    	left.add(leftA);
-//		    	right.add(right);
-//		    	
-//		        line = br.readLine();
-//		    }
-//
-//		} finally {
-//		    br.close();
-//		}
-//		
-//		profile.kNumPoints = left.size();
-//		profile.leftPoints = (double[][]) left.toArray();
-//		profile.rightPoints = (double[][]) right.toArray();
-//		
-		return profile;
-	}
+//	public MotionProfile readFile(String filename)
+//	{
+//		//MotionProfile profile = new MotionProfile();
+////		BufferedReader br;
+////		    List<double[]> left = new ArrayList<double[]>();
+////		    List<double[]> right = new ArrayList<double[]>();
+////
+////		    try {
+////			br = new BufferedReader(new FileReader(filename));
+////		    String line = br.readLine();
+////
+////  
+////		    while (line != null) {
+////		    	String[] out = line.split(",");
+////		    	double[] leftA = {Double.parseDouble(out[0]),Double.parseDouble(out[1]),Double.parseDouble(out[4])};
+////		    	double[] rightA = {Double.parseDouble(out[2]),Double.parseDouble(out[3]),Double.parseDouble(out[4])};
+////		    	left.add(leftA);
+////		    	right.add(right);
+////		    	
+////		        line = br.readLine();
+////		    }
+////
+////		} finally {
+////		    br.close();
+////		}
+////		
+////		profile.kNumPoints = left.size();
+////		profile.leftPoints = (double[][]) left.toArray();
+////		profile.rightPoints = (double[][]) right.toArray();
+////		
+//	//	return profile;
+//	}
 	public void configure()// probably want new name
 	{
 		isFinished = false;
@@ -127,8 +127,8 @@ public class BulldogMotionProfile
 		{
 			double positionRot = profile[i][0];
 			double velocityRPM = profile[i][1];
-			point.position = (positionRot) * 4096; // Prac 478mm Tina 318mm
-			point.velocity = (velocityRPM )*4096/600;// * 52.2894);// * (4096.0/4700.0)));
+			point.position = positionRot * 4096; // Prac 478mm Tina 318mm
+			point.velocity = velocityRPM *4096/600;// * 52.2894);// * (4096.0/4700.0)));
 			point.headingDeg = 0;
 			point.profileSlotSelect0 = 0; // there are multiple pid slots now
 			point.profileSlotSelect1 = 0;
