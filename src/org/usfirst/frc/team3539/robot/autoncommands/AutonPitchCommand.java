@@ -12,17 +12,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class AutonPitchCommand extends InstantCommand
 {
-	private double enc=0;
+	private double angle=0;
 
-	public AutonPitchCommand(int enc)
+	public AutonPitchCommand(int angle)
 	{
 		requires(Robot.pitch);
-		this.enc = enc;
+		this.angle = angle;
 	}
 
 	protected void initialize()
 	{
 		Robot.pitch.setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee, RobotMap.pitchFFF);
-		Robot.pitch.setSetpointPitch(enc);
+		Robot.pitch.setAngleSetpointPitch(angle);
 	}
 }

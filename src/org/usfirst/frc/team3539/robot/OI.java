@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.commands.PitchCommand;
 import org.usfirst.frc.team3539.robot.commands.loadClass;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.LockSolenoidCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ShiftSolenoidCommand;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
@@ -55,7 +56,7 @@ public class OI
 		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
 		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
 		
-		two.buttonSELECT.whenPressed(new loadClass());
+		two.buttonSELECT.whenPressed(new LockSolenoidCommand());
 		//two.buttonB.whenPressed(new PitchCommand());
 	}
 }
