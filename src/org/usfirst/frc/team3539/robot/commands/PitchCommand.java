@@ -31,7 +31,7 @@ public class PitchCommand extends Command
 		
 		enc = Robot.pitch.getEncoder();
 		Robot.pitch.setSetpointPitch(enc);
-		System.out.println(Robot.pitch.getEncoder());
+	//	System.out.println(Robot.pitch.getEncoder());
 		checker = true;
 	}
 	
@@ -60,7 +60,7 @@ public class PitchCommand extends Command
 			enc = Robot.pitch.getEncoder();
 			Robot.pitch.setSetpointPitch(enc);
 		}
-		System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
+	//	System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
 	}
 
 	@Override

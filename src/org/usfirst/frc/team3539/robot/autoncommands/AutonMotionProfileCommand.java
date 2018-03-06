@@ -23,7 +23,7 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void initialize()
 	{		//m.reset();
-
+		m.Tragectory();
 		System.out.println("initialize=====================");
 		m.statusFrame();
 
@@ -36,6 +36,7 @@ public class AutonMotionProfileCommand extends Command
 	protected void execute()
 	
 	{
+		m.Tragectory();
 		System.out.println("Execute=====================");
 
 		m.control();
@@ -54,7 +55,7 @@ public class AutonMotionProfileCommand extends Command
 
 	protected void end()
 	{
-	//	m.reset();
+		m.reset();
 	}
 
 	protected void interrupted()

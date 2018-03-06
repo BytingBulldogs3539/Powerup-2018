@@ -25,28 +25,24 @@ package org.usfirst.frc.team3539.robot.utilities;
 
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.*;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.profiles.cal50;
 
 import com.ctre.phoenix.motion.*;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
 
-public class MotionProfile {
-	static double[][] pointsr;
-	static double[][]pointsl;
-	static int numPoints;
-	private static boolean isfinished = false;
+public class MotionProfileExample {
+
 	/**
 	 * The status of the motion profile executer and buffer inside the Talon.	 * keep one copy.
 	 */
-	private static MotionProfileStatus _status = new MotionProfileStatus();
-	private static MotionProfileStatus statusR = new MotionProfileStatus();
+	private MotionProfileStatus _status = new MotionProfileStatus();
+	private MotionProfileStatus statusR = new MotionProfileStatus();
 
 	/** additional cache for holding the active trajectory point */
 	double _pos=0,_vel=0,_heading=0;
@@ -56,13 +52,12 @@ public class MotionProfile {
 	 * or call set(), just get motion profile status and make decisions based on
 	 * motion profile.
 	 */
-	public static TalonSRX _talon;
-	public static TalonSRX talonR;
+	private TalonSRX _talon,talonR;
 	/**
 	 * State machine to make sure we let enough of the motion profile stream to
 	 * talon before we fire it.
 	 */
-	private static int _state = 0;
+	private int _state = 0;
 	/**
 	 * Any time you have a state machine that waits for external events, its a
 	 * good idea to add a timeout. Set to -1 to disable. Set to nonzero to count
@@ -71,19 +66,19 @@ public class MotionProfile {
 	 * timeout. Getting time-stamps would certainly work too, this is just
 	 * simple (no need to worry about timer overflows).
 	 */
-	private static int _loopTimeout = -1;
+	private int _loopTimeout = -1;
 	/**
 	 * If start() gets called, this flag is set and in the control() we will
 	 * service it.
 	 */
-	private static boolean _bStart = false;
+	private boolean _bStart = false;
 
 	/**
 	 * Since the CANTalon.set() routine is mode specific, deduce what we want
 	 * the set value to be and let the calling module apply it whenever we
 	 * decide to switch to MP mode.
 	 */
-	private static SetValueMotionProfile _setValue = SetValueMotionProfile.Disable;
+	private SetValueMotionProfile _setValue = SetValueMotionProfile.Disable;
 	/**
 	 * How many trajectory points do we wait for before firing the motion
 	 * profile.
@@ -105,8 +100,7 @@ public class MotionProfile {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() {  _talon.processMotionProfileBuffer();  talonR.processMotionProfileBuffer(); 
-	   }
+	    public void run() {  _talon.processMotionProfileBuffer();  talonR.processMotionProfileBuffer();  }
 	}
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	
@@ -117,7 +111,7 @@ public class MotionProfile {
 	 * @param talon
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
-	public MotionProfile(TalonSRX talon,TalonSRX talonRight,double[][] pointsR,int numpoints,double[][] profileL) {
+	public MotionProfileExample(TalonSRX talonRight,TalonSRX talon) {
 		_talon = talon;
 		talonR = talonRight;
 		/*
@@ -127,23 +121,18 @@ public class MotionProfile {
 		_talon.changeMotionControlFramePeriod(5);
 		talonR.changeMotionControlFramePeriod(5);
 		_notifer.startPeriodic(0.005);
-		
-		pointsr=pointsR;
-		numPoints=numpoints;
-		pointsl=profileL;
 	}
 
 	/**
 	 * Called to clear Motion profile buffer and reset state info during
 	 * disabled and when Talon is not in MP control mode.
 	 */
-	public static void reset() {
+	public void reset() {
 		/*
 		 * Let's clear the buffer just in case user decided to disable in the
 		 * middle of an MP, and now we have the second half of a profile just
 		 * sitting in memory.
 		 */
-		
 		_talon.clearMotionProfileTrajectories();
 		talonR.clearMotionProfileTrajectories();
 
@@ -162,10 +151,7 @@ public class MotionProfile {
 	/**
 	 * Called every loop.
 	 */
-	public static void control() {
-		setMotion();
-		
-		System.out.println("controlloop---");
+	public void control() {
 		/* Get the motion profile status every loop */
 		_talon.getMotionProfileStatus(_status);
 		talonR.getMotionProfileStatus(statusR);
@@ -184,7 +170,7 @@ public class MotionProfile {
 				 * something is wrong. Talon is not present, unplugged, breaker
 				 * tripped
 				 */
-				Instrumentation.OnNoProgress();
+			//	Instrumentation.OnNoProgress();
 			} else {
 				--_loopTimeout;
 			}
@@ -192,12 +178,11 @@ public class MotionProfile {
 
 		/* first check if we are in MP mode */
 		if (_talon.getControlMode() != ControlMode.MotionProfile) {
-			
-			System.out.println(_talon.getControlMode());
 			/*
 			 * we are not in MP mode. We are probably driving the robot around
 			 * using gamepads or some other mode.
 			 */
+			System.out.println("not in motionprofile");
 			_state = 0;
 			_loopTimeout = -1;
 		} else {
@@ -208,13 +193,12 @@ public class MotionProfile {
 			 */
 			switch (_state) {
 				case 0: /* wait for application to tell us to start an MP */
-					System.out.println("case0-------------------------------------------");
+					System.out.println("case 0");
 					if (_bStart) {
-					
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-						startFilling(pointsr,numPoints,pointsl);
+						startFilling();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -223,25 +207,22 @@ public class MotionProfile {
 					}
 					break;
 				case 1: 
-					System.out.println("case1-------------------------------------------");
-
-					/*
+					System.out.println("case 1");
+/*
 						 * wait for MP to stream to Talon, really just the first few
 						 * points
 						 */
 					/* do we have a minimum numberof points in Talon */
-					System.out.println("bufferCnt="+_status.btmBufferCnt);
 					if (_status.btmBufferCnt > kMinPointsInTalon) {
 						/* start (once) the motion profile */
 						_setValue = SetValueMotionProfile.Enable;
-						/* MP will start once the con
-						 * trol frame gets scheduled */
+						/* MP will start once the control frame gets scheduled */
 						_state = 2;
 						_loopTimeout = kNumLoopsTimeout;
 					}
 					break;
 				case 2:
-					System.out.println("case2-------------------------------------------");
+					System.out.println("case 2");
 /* check the status of the MP */
 					/*
 					 * if talon is reporting things are good, keep adding to our
@@ -261,8 +242,7 @@ public class MotionProfile {
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done
 						 */
-						 isfinished = true;
-						_setValue = SetValueMotionProfile.Disable;
+						_setValue = SetValueMotionProfile.Hold;
 						_state = 0;
 						_loopTimeout = -1;
 					}
@@ -273,12 +253,12 @@ public class MotionProfile {
 			_talon.getMotionProfileStatus(_status);
 			talonR.getMotionProfileStatus(statusR);
 
-//			_heading = _talon.getActiveTrajectoryHeading();
-//			_pos = _talon.getActiveTrajectoryPosition();
-//			_vel = _talon.getActiveTrajectoryVelocity();
+			_heading = _talon.getActiveTrajectoryHeading();
+			_pos = _talon.getActiveTrajectoryPosition();
+			_vel = _talon.getActiveTrajectoryVelocity();
 
 			/* printfs and/or logging */
-		//	Instrumentation.process(_status, _pos, _vel, _heading);
+			//Instrumentation.process(_status, _pos, _vel, _heading);
 		}
 	}
 	/**
@@ -286,7 +266,7 @@ public class MotionProfile {
 	 * @param durationMs
 	 * @return enum equivalent of durationMs
 	 */
-	private static TrajectoryDuration GetTrajectoryDuration(int durationMs)
+	private TrajectoryDuration GetTrajectoryDuration(int durationMs)
 	{	 
 		/* create return value */
 		TrajectoryDuration retval = TrajectoryDuration.Trajectory_Duration_0ms;
@@ -300,13 +280,14 @@ public class MotionProfile {
 		return retval;
 	}
 	/** Start filling the MPs to all of the involved Talons. */
-//	public static void startFilling(double[][] pointsR,double numPoints,double[][] pointsL) {
-//		/* since this example only has one talon, just update that one */
-//		startFilling(pointsR,numPoints,pointsL);
-//	}
+	private void startFilling() {
+		
+		/* since this example only has one talon, just update that one */
+		startFilling(cal50.PointsR, cal50.kNumPoints,cal50.PointsL);
+	}
 
-	public static void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
-System.out.println("filling--------------------------------------------------------------------");
+	private void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
+
 		/* create an empty point */
 		TrajectoryPoint point = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
@@ -333,11 +314,12 @@ System.out.println("filling-----------------------------------------------------
 
 
 		/* set the base trajectory period to zero, use the individual trajectory period below */
-		_talon.configMotionProfileTrajectoryPeriod(10, 10);
-		talonR.configMotionProfileTrajectoryPeriod(10, 10);
+		_talon.configMotionProfileTrajectoryPeriod(0, 10);
+		talonR.configMotionProfileTrajectoryPeriod(0, 10);
 
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
+			System.out.println(i);
 			double positionRot = profileL[i][0];
 			double positionRotR = profileR[i][0];
 
@@ -347,7 +329,6 @@ System.out.println("filling-----------------------------------------------------
 			/* for each point, fill our structure and pass it to API */
 			point.position = positionRot * 4096; //Convert Revolutions to Units
 			pointR.position = positionRotR * 4096; //Convert Revolutions to Units
-			System.out.println("fedposition"+ point.position + "arrayposition"+profileL[i][0]);
 
 			point.velocity = velocityRPM * 4096 / 600.0; //Convert RPM to Units/100ms
 			pointR.velocity = velocityRPMR * 4096 / 600.0; //Convert RPM to Units/100ms
@@ -384,14 +365,12 @@ System.out.println("filling-----------------------------------------------------
 			_talon.pushMotionProfileTrajectory(point);
 			talonR.pushMotionProfileTrajectory(pointR);
 		}
-		System.out.println("FINISHED FILLING");
-
 	}
 	/**
 	 * Called by application to signal Talon to start the buffered MP (when it's
 	 * able to).
 	 */
-	public static void startMotionProfile() {
+	public void startMotionProfile() {
 		_bStart = true;
 	}
 
@@ -401,39 +380,18 @@ System.out.println("filling-----------------------------------------------------
 	 *         motion-profile output, 1 for enable motion-profile, 2 for hold
 	 *         current motion profile trajectory point.
 	 */
-	SetValueMotionProfile getSetValue() {
+	public SetValueMotionProfile getSetValue() {
 		return _setValue;
 	}
-	
-	public static void statusFrame()
+	public void update()
 	{
-		_talon.configMotionProfileTrajectoryPeriod(10, 10);
-		talonR.configMotionProfileTrajectoryPeriod(10, 10);
-		_talon.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
-		talonR.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
 
+		SmartDashboard.putNumber("tragectoryPosition", _talon.getActiveTrajectoryPosition());
+		SmartDashboard.putNumber("RtragectoryPosition", talonR.getActiveTrajectoryPosition());
+		SmartDashboard.putNumber("tragectoryVelocity", _talon.getActiveTrajectoryVelocity());
+		SmartDashboard.putNumber("RtragectoryVelociyt", talonR.getActiveTrajectoryVelocity());
 
-	}
-	
-	public static void setMotion()
-	{
-		_talon.set(ControlMode.MotionProfile, _setValue.value);
-	talonR.set(ControlMode.MotionProfile, _setValue.value);
-	}
 	
 	
-	public static void Tragectory()
-	{
-		SmartDashboard.putNumber("LeftTrag", _talon.getActiveTrajectoryPosition());
-		SmartDashboard.putNumber("RightTrag", talonR.getActiveTrajectoryPosition());
-		SmartDashboard.putNumber("LeftTragVel", _talon.getActiveTrajectoryVelocity());
-		SmartDashboard.putNumber("RightTragVel", talonR.getActiveTrajectoryVelocity());
-
-		
 	}
-	public static boolean isFinished()
-	{
-		return isfinished;
-	}
-	}
-
+}

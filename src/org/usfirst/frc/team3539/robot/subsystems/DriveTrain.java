@@ -71,10 +71,10 @@ public final class DriveTrain extends Subsystem
 
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
-		lf.configPeakOutputReverse(-peakOut, 10);
+	lf.configPeakOutputReverse(-peakOut, 10);
 
-		rf.configPeakOutputForward(peakOut, 10);
-		rf.configPeakOutputReverse(-peakOut, 10);
+	rf.configPeakOutputForward(peakOut, 10);
+	rf.configPeakOutputReverse(-peakOut, 10);
 
 		lb.configPeakOutputForward(peakOut, 10);
 		lb.configPeakOutputReverse(-peakOut, 10);
@@ -92,18 +92,16 @@ public final class DriveTrain extends Subsystem
 		lb.configNominalOutputForward(0, 10);
 		rb.configNominalOutputForward(0, 10);
 
-		lb.configNominalOutputReverse(0, 10);
-		rb.configNominalOutputReverse(0, 10);
+	lb.configNominalOutputReverse(0, 10);
+	rb.configNominalOutputReverse(0, 10);
 
 		drive = new Drive(rf, lf);
 
-		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 10, 10);
+	lf.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 10, 10);
 		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 10, 10);
 
-		// lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
-		// 0);
-		// rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,
-		// 0);
+		 lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0,0);
+		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 
 		lf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
 		rf.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 0);
@@ -113,10 +111,10 @@ public final class DriveTrain extends Subsystem
 		lb.clearStickyFaults(0);
 		rb.clearStickyFaults(0);
 
-		leftTrack = new BulldogMotionProfile(lf, "Left Track ");
-		rightTrack = new BulldogMotionProfile(rf, "Right Track ");
+//		leftTrack = new BulldogMotionProfile(lf, "Left Track ");
+//		rightTrack = new BulldogMotionProfile(rf, "Right Track ");
 
-		setBrakeMode(true);
+		//setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
@@ -174,8 +172,8 @@ public final class DriveTrain extends Subsystem
 		lf.configContinuousCurrentLimit(35, 10);
 		rf.configContinuousCurrentLimit(35, 10);
 
-		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
-		rf.enableCurrentLimit(true);
+		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
+		rf.enableCurrentLimit(false);
 	}
 
 	public void setSensorPhase(boolean phase)
@@ -309,9 +307,7 @@ public final class DriveTrain extends Subsystem
 					);
 			log.println("");
 		}
-		SmartDashboard.putNumber("tragectoryVelocityR", rightTrack.tragectoryVelocity());
-
-		SmartDashboard.putNumber("tragectoryVelocityL", leftTrack.tragectoryVelocity());
+	
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
@@ -346,15 +342,15 @@ public final class DriveTrain extends Subsystem
 		return (Math.abs(value) > Math.abs(deadband)) ? value : 0.0;
 	}
 
-	public BulldogMotionProfile leftTrack;
-	public BulldogMotionProfile rightTrack;
-
-	public void setMotionProfile()
-	{
-		leftTrack.set();
-		rightTrack.set();
-
-	}
+//	public BulldogMotionProfile leftTrack;
+//	public BulldogMotionProfile rightTrack;
+//
+//	public void setMotionProfile()
+//	{
+//		leftTrack.set();
+//		rightTrack.set();
+//
+//	}
 
 	public void MotionProfile()
 	{
@@ -362,10 +358,10 @@ public final class DriveTrain extends Subsystem
 		rf.changeMotionControlFramePeriod(5);
 	}
 
-	public boolean isFinished()
-	{
-		return leftTrack.isFinished();
-	}
+//	public boolean isFinished()
+//	{
+//		return leftTrack.isFinished();
+//	}
 
 	public void testTalons()
 	{
@@ -415,14 +411,14 @@ public final class DriveTrain extends Subsystem
 		Motors.toString();
 	}
 
-	public void DisabledMotionProfile()// probably want new name
-	{
-		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-		// status 10 provides the trajectory target for motion profile AND motion magic
-		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
-	}
+//	public void DisabledMotionProfile()// probably want new name
+//	{
+//		lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+//		// status 10 provides the trajectory target for motion profile AND motion magic
+//		lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+//		rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
+//		rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+//	}
 
 	@Override
 	protected void initDefaultCommand()

@@ -3,12 +3,8 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
 import org.usfirst.frc.team3539.robot.autongroups.CurveAuton100;
 import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
-import org.usfirst.frc.team3539.robot.autongroups.I_DontCare;
 import org.usfirst.frc.team3539.robot.autongroups.Lol200;
-import org.usfirst.frc.team3539.robot.autongroups.MotionProfileTestAuton;
-import org.usfirst.frc.team3539.robot.autongroups.RightSwitchAuton;
 import org.usfirst.frc.team3539.robot.autongroups.Straight200;
-import org.usfirst.frc.team3539.robot.autongroups.Straight315;
 import org.usfirst.frc.team3539.robot.autongroups.Straight50;
 import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
 import org.usfirst.frc.team3539.robot.autongroups.floor;
@@ -86,9 +82,9 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.start();
+		c.stop();
 		Scheduler.getInstance().run();
-		Robot.driveTrain.DisabledMotionProfile();
+		//Robot.driveTrain.DisabledMotionProfile();
 	}
 
 	public void disabledPeriodic()
@@ -99,7 +95,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		Robot.driveTrain.zeroEncoders();
+		//Robot.driveTrain.zeroEncoders();
 		// Robot.driveTrain.calibrateGyro();
 		String gameData;
 		gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -145,19 +141,14 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		autonChooser.addObject("lol200", new Lol200());
-		autonChooser.addObject("I_DontCare", new I_DontCare());
-		autonChooser.addObject("CurveAuton100", new CurveAuton100());
-		autonChooser.addObject("motionProfile315", new Straight315());
-		autonChooser.addObject("motionProfile100", new MotionProfileTestAuton());
-		autonChooser.addObject("jfloor", new floor());
+		//autonChooser.addObject("lol200", new Lol200());
+	//	autonChooser.addObject("CurveAuton100", new CurveAuton100());
+	//	autonChooser.addObject("jfloor", new floor());
 		autonChooser.addObject("straight50", new Straight50());
-		autonChooser.addObject("straight200", new Straight200());
-		autonChooser.addObject("Default Auton Center", new DefaultAuton());
-		autonChooser.addObject("Tune Turn 45", new AutonTurnEncoderCommand(45, 100));
+	//	autonChooser.addObject("straight200", new Straight200());
+	//	autonChooser.addObject("Default Auton Center", new DefaultAuton());
+	//	autonChooser.addObject("Tune Turn 45", new AutonTurnEncoderCommand(45, 100));
 
-		autonChooser.addObject("RightswitchAuton", new RightSwitchAuton());
-		autonChooser.addObject("MotionProfile", new MotionProfileTestAuton());
 		autonChooser.addObject("TestAuto", new TestAuto());
 
 		positionChooser.addObject("Left", null);

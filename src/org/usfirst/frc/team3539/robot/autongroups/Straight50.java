@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.profiles.cal50;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -14,7 +15,7 @@ public class Straight50 extends CommandGroup
 	public Straight50()
 	{
 		
-		addSequential(new AutonMotionProfileCommand(cal50.PointsR, cal50.PointsL, cal50.kNumPoints));
+		addSequential(new AutonMotionProfileEx());
 		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
