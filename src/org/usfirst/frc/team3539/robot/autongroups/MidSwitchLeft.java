@@ -1,22 +1,25 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileCommand;
-
-import org.usfirst.frc.team3539.robot.profiles.cal200;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class Straight200 extends CommandGroup
+public class MidSwitchLeft extends CommandGroup
 {
 
-	public Straight200()
+	public MidSwitchLeft()
 	{
+		addParallel( new AutonElevatorArm());
+		addParallel(new AutonExtakeIntake(2.2));
+		addSequential(new AutonMotionProfileEx(LeftSwitch.PointsR,LeftSwitch.PointsL,LeftSwitch.kNumPoints));
 		
-		addSequential(new AutonMotionProfileCommand(cal200.PointsR, cal200.PointsL, cal200.kNumPoints));
-		// Add Commands here:
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.

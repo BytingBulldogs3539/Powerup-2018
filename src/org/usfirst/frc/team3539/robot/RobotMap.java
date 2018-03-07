@@ -22,8 +22,8 @@ public class RobotMap
 	// PCM
 	public static final int pcm = 20;// Disable 00 Prac 20 Comp 20
 
-	public static int intakesolOn = 1;
-	public static int intakesolOff = 0;
+	public static int intakesolOn = 0;
+	public static int intakesolOff = 1;
 
 	public static int locksolOn = 5;
 	public static int locksolOff = 4;
@@ -56,7 +56,7 @@ public class RobotMap
 	public static double drivePea = .5;
 	public static double driveEye = 0.0;
 	public static double driveDee = 0.0;
-	public static double driveFFF = .3;
+	public static double driveFFF = .145;
 	
 //	public static double drivePea = .5;
 //	public static double driveEye = 0.0;

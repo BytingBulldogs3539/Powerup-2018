@@ -1,13 +1,12 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
-import org.usfirst.frc.team3539.robot.autongroups.CurveAuton100;
 import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
-import org.usfirst.frc.team3539.robot.autongroups.Lol200;
-import org.usfirst.frc.team3539.robot.autongroups.Straight200;
-import org.usfirst.frc.team3539.robot.autongroups.Straight50;
+import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
+import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
+import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
+import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.TestAuto;
-import org.usfirst.frc.team3539.robot.autongroups.floor;
 import org.usfirst.frc.team3539.robot.profiles.lol200;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
@@ -82,7 +81,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.stop();
+		c.start();
 		Scheduler.getInstance().run();
 		//Robot.driveTrain.DisabledMotionProfile();
 	}
@@ -95,6 +94,8 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		Robot.elevator.zeroEncoders();
+		Robot.pitch.zeroEncoder();
 		//Robot.driveTrain.zeroEncoders();
 		// Robot.driveTrain.calibrateGyro();
 		String gameData;
@@ -127,6 +128,7 @@ public class Robot extends IterativeRobot
 	public void teleopInit()
 	{
 		Robot.driveTrain.zeroEncoders();
+		Robot.elevator.setMotorPower(0);
 	}
 
 	public void teleopPeriodic()
@@ -144,7 +146,13 @@ public class Robot extends IterativeRobot
 		//autonChooser.addObject("lol200", new Lol200());
 	//	autonChooser.addObject("CurveAuton100", new CurveAuton100());
 	//	autonChooser.addObject("jfloor", new floor());
-		autonChooser.addObject("straight50", new Straight50());
+		autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
+		autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
+		
+		autonChooser.addObject("LeftSwitchLEft", new LeftSwitchLeft());
+		autonChooser.addObject("RightSwitchRight", new RightSwitchRight2());
+
+
 	//	autonChooser.addObject("straight200", new Straight200());
 	//	autonChooser.addObject("Default Auton Center", new DefaultAuton());
 	//	autonChooser.addObject("Tune Turn 45", new AutonTurnEncoderCommand(45, 100));

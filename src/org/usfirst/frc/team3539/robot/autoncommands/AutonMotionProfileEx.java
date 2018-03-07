@@ -22,11 +22,11 @@ public class AutonMotionProfileEx extends Command
 	private int totalPointNum;
 	public MotionProfileExample m;
 	SetValueMotionProfile setOutput;
-	public AutonMotionProfileEx()//double[][] ProfileR, double[][] ProfileL, int totalPointNum)
+	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum)
 	{
 		requires(Robot.driveTrain);
 
-		m = new MotionProfileExample(Robot.driveTrain.rf,Robot.driveTrain.lf);
+		m = new MotionProfileExample(Robot.driveTrain.rf,Robot.driveTrain.lf,ProfileR,ProfileL,totalPointNum);
 
 	}
 

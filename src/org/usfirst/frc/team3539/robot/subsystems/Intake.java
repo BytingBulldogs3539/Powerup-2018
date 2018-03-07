@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.subsystems;
 import org.usfirst.frc.team3539.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -19,7 +20,10 @@ public class Intake extends Subsystem
 	{
 		intakeMotorLeft = new TalonSRX(RobotMap.lIntakeMotor);
 		intakeMotorRight = new TalonSRX(RobotMap.rIntakeMotor);
-		
+		intakeMotorRight.setNeutralMode(NeutralMode.Brake);
+		intakeMotorLeft.setNeutralMode(NeutralMode.Brake);
+
+
 		enableCurrentLimit();
 	}
 

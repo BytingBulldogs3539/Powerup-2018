@@ -31,7 +31,7 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3539.robot.profiles.cal50;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 
 import com.ctre.phoenix.motion.*;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
@@ -43,6 +43,9 @@ public class MotionProfileExample {
 	 */
 	private MotionProfileStatus _status = new MotionProfileStatus();
 	private MotionProfileStatus statusR = new MotionProfileStatus();
+	private double[][] pointsr;
+	private double[][] pointsl;
+	private int numpoints;
 
 	/** additional cache for holding the active trajectory point */
 	double _pos=0,_vel=0,_heading=0;
@@ -111,7 +114,11 @@ public class MotionProfileExample {
 	 * @param talon
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
-	public MotionProfileExample(TalonSRX talonRight,TalonSRX talon) {
+	public MotionProfileExample(TalonSRX talonRight,TalonSRX talon,double[][] ProfileR, double[][] ProfileL, int totalPointNum) {
+	pointsr = ProfileR;
+	pointsl = ProfileL;
+	numpoints = totalPointNum;
+		
 		_talon = talon;
 		talonR = talonRight;
 		/*
@@ -283,7 +290,7 @@ public class MotionProfileExample {
 	private void startFilling() {
 		
 		/* since this example only has one talon, just update that one */
-		startFilling(cal50.PointsR, cal50.kNumPoints,cal50.PointsL);
+		startFilling(pointsr, numpoints,pointsl);
 	}
 
 	private void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
