@@ -39,7 +39,6 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
 		Robot.driveTrain.rf.setSelectedSensorPosition(0, 0, 10);
 		Robot.driveTrain.lf.setSelectedSensorPosition(0, 0, 10);
-		System.out.println("end of initilize");
 		setOutput = m.getSetValue();
 
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);

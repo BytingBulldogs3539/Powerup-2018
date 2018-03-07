@@ -11,9 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonElevatorArm extends CommandGroup {
 
-    public AutonElevatorArm() {
-    	addSequential( new ElevatorPositionCommand(30));
-		addSequential( new AutonPitchCommand(90));
+    public AutonElevatorArm(double elevatorPos,int pitchPos ) {
+    	addSequential( new ElevatorPositionCommand(elevatorPos));
+		addSequential( new AutonPitchCommand(pitchPos));
 
     }
 }
