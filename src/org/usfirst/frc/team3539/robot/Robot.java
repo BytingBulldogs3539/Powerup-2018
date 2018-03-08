@@ -10,6 +10,7 @@ import org.usfirst.frc.team3539.robot.autongroups.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
+import org.usfirst.frc.team3539.robot.autongroups.RightRightScaleorSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autongroups.RightRightSwitchOrRightScale2;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
@@ -156,6 +157,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("----MiddleSwitch", new AutonMiddleSwitch());
 		autonChooser.addObject("LeftLeftSwitchOrScale", new LeftLeftSwitchOrLeftScale());
 		autonChooser.addObject("RightRightSwitchOrRightScale2", new RightRightSwitchOrRightScale2());
+		autonChooser.addObject("LeftLeftScaleorSwitch", new LeftLeftScaleOrSwitchOrStraight());
+		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleorSwitchOrStraight());
 		
 		
 		
