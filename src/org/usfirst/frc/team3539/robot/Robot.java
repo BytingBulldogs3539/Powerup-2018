@@ -2,9 +2,11 @@ package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonMiddleSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
+import org.usfirst.frc.team3539.robot.autongroups.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
@@ -102,19 +104,19 @@ public class Robot extends IterativeRobot
 		Robot.pitch.zeroEncoder();
 		//Robot.driveTrain.zeroEncoders();
 		// Robot.driveTrain.calibrateGyro();
-		String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
-
-		if (gameData.charAt(0) == 'L')
-		{
-			System.out.println("left auton");
-			// Put left auto code here
-		}
-		else
-		{
-			System.out.println("right auton");
-			// Put right auto code here
-		}
+//		String gameData;
+//		gameData = DriverStation.getInstance().getGameSpecificMessage();
+//
+//		if (gameData.charAt(0) == 'L')
+//		{
+//			System.out.println("left auton");
+//			// Put left auto code here
+//		}
+//		else
+//		{
+//			System.out.println("right auton");
+//			// Put right auto code here
+//		}
 
 		autonMode = (Command) autonChooser.getSelected();
 		if (autonMode != null)
@@ -147,11 +149,15 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		//autonChooser.addObject("lol200", new Lol200());
-	//	autonChooser.addObject("CurveAuton100", new CurveAuton100());
-	//	autonChooser.addObject("jfloor", new floor());
-		autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
-		autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
+;
+		//autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
+	//	autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
+		autonChooser.addObject("----MiddleSwitch", new AutonMiddleSwitch());
+		autonChooser.addObject("LeftLeftSwitchOrScale", new LeftLeftSwitchOrLeftScale());
+
+		
+		
+		
 		
 		autonChooser.addObject("LeftSwitchLEft", new LeftSwitchLeft());
 		autonChooser.addObject("RightSwitchRight", new RightSwitchRight2());
@@ -161,9 +167,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("MidleScaleLeft", new MidScaleLeft());
 
 
-	//	autonChooser.addObject("straight200", new Straight200());
-	//	autonChooser.addObject("Default Auton Center", new DefaultAuton());
-	//	autonChooser.addObject("Tune Turn 45", new AutonTurnEncoderCommand(45, 100));
+	
 
 		autonChooser.addObject("TestAuto", new TestAuto());
 
