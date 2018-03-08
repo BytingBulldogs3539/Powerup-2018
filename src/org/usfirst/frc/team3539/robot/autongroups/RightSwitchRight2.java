@@ -4,7 +4,12 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.RightForwardCube;
+import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
 import org.usfirst.frc.team3539.robot.profiles.switchRight2;
 
@@ -18,10 +23,18 @@ public class RightSwitchRight2 extends CommandGroup
 
 	public RightSwitchRight2()
 	{
-		addParallel( new AutonElevatorArm(30,90));
+		addSequential( new AutonElevatorArm(30,90));
 		addParallel(new AutonExtakeIntake(3.2));
 		addSequential(new AutonMotionProfileEx(switchRight2.PointsR,switchRight2.PointsL,switchRight2.kNumPoints));
 		
+		
+		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,RightSwitchReverse.kNumPoints));
+		addSequential(new AutonElevatorArm(0,90));
+		addSequential(new AutonMotionProfileEx(RightForwardCube.PointsR,RightForwardCube.PointsL,RightForwardCube.kNumPoints));
+		//addParallel(new AutonIntakeCommand(1,15));
+		addParallel(new AutonWaitElevator(30,.5));
+		addParallel(new AutonIntakeCommand(1,3));
+		addSequential(new IntakeSolenoidCommand());
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.

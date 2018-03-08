@@ -157,7 +157,7 @@ public class Robot extends IterativeRobot
 	//	autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
 		autonChooser.addObject("----MiddleSwitch", new AutonMiddleSwitch());
 		autonChooser.addObject("LeftLeftSwitchOrScale", new LeftLeftSwitchOrLeftScale());
-		autonChooser.addObject("RightRightSwitchOrRightScale2", new RightRightSwitchOrRightScale2());
+		autonChooser.addObject("RightRightSwitchOrRightScale", new RightRightSwitchOrRightScale2());
 		autonChooser.addObject("LeftLeftScaleorSwitch", new LeftLeftScaleOrSwitchOrStraight());
 		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleorSwitchOrStraight());
 		

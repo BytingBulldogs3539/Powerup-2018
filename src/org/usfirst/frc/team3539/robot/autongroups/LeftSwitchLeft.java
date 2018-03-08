@@ -35,6 +35,7 @@ public class LeftSwitchLeft extends CommandGroup
 		addParallel(new AutonWaitElevator(30,.5));
 		addParallel(new AutonIntakeCommand(1,3));
 		addSequential(new IntakeSolenoidCommand());
+		
 
 
 		
