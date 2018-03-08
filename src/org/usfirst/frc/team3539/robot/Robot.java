@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonMiddleSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
+import org.usfirst.frc.team3539.robot.autongroups.LeftLeftScaleOrSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autongroups.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;

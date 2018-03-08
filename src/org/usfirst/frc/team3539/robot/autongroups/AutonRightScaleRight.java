@@ -3,9 +3,11 @@ package org.usfirst.frc.team3539.robot.autongroups;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
+import org.usfirst.frc.team3539.robot.profiles.Reverse1000;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
 import org.usfirst.frc.team3539.robot.profiles.switchRight2;
@@ -23,6 +25,10 @@ public class AutonRightScaleRight extends CommandGroup
 		addParallel( new AutonElevatorArm(85,45));
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR,RightScaleRight.PointsL,RightScaleRight.kNumPoints));
 	addSequential(new AutonIntakeCommand(-1,2));
+	addSequential(new AutonWaitCommand(1));
+	addSequential(new AutonMotionProfileEx(Reverse1000.PointsR,Reverse1000.PointsL,Reverse1000.kNumPoints));
+
+	
 		//	addParallel(new AutonExtakeIntake(3.2));
 
 		// e.g. addSequential(new Command1());
