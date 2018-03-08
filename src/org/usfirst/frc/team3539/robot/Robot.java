@@ -1,8 +1,12 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.DefaultAuton;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
+import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
@@ -81,7 +85,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.start();
+		c.stop();
 		Scheduler.getInstance().run();
 		//Robot.driveTrain.DisabledMotionProfile();
 	}
@@ -151,6 +155,10 @@ public class Robot extends IterativeRobot
 		
 		autonChooser.addObject("LeftSwitchLEft", new LeftSwitchLeft());
 		autonChooser.addObject("RightSwitchRight", new RightSwitchRight2());
+		autonChooser.addObject("RightScaleRight", new AutonRightScaleRight());
+		autonChooser.addObject("RightScaleLeft", new AutonRightScaleLeft2());
+		autonChooser.addObject("LeftScaleLeft", new AutonLeftScaleLeft());
+		autonChooser.addObject("MidleScaleLeft", new MidScaleLeft());
 
 
 	//	autonChooser.addObject("straight200", new Straight200());

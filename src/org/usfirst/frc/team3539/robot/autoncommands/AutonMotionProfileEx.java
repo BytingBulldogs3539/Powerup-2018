@@ -21,17 +21,19 @@ public class AutonMotionProfileEx extends Command
 	private double[][] ProfileL;
 	private int totalPointNum;
 	public MotionProfileExample m;
+	private boolean isfinished = false;
 	SetValueMotionProfile setOutput;
+
 	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum)
 	{
 		requires(Robot.driveTrain);
 
-		m = new MotionProfileExample(Robot.driveTrain.rf,Robot.driveTrain.lf,ProfileR,ProfileL,totalPointNum);
+		m = new MotionProfileExample(Robot.driveTrain.rf, Robot.driveTrain.lf, ProfileR, ProfileL, totalPointNum);
 
 	}
 
 	protected void initialize()
-	{		
+	{
 		m.reset();
 		Robot.driveTrain.rf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.lf.configMotionProfileTrajectoryPeriod(10, 10);
@@ -46,7 +48,6 @@ public class AutonMotionProfileEx extends Command
 		m.startMotionProfile();
 		m.update();
 
-
 	}
 
 	protected void execute()
@@ -58,19 +59,28 @@ public class AutonMotionProfileEx extends Command
 		setOutput = m.getSetValue();
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
-	
+		
+		if(setOutput== SetValueMotionProfile.Hold)
+		{
+			isfinished = true;
+		}
+		else
+		{isfinished = false;
+		}
 
 	
 	}
 
 	protected boolean isFinished()
 	{
-	return false;
+
+		return isfinished;
 	}
 
 	protected void end()
 	{
 		m.reset();
+		isfinished = false;
 	}
 
 	protected void interrupted()

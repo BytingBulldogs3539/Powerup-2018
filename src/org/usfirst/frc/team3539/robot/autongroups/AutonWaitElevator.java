@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonElevatorArm extends CommandGroup {
+public class AutonWaitElevator extends CommandGroup {
 
-    public AutonElevatorArm(double elevatorPos,int pitchPos ) {
-    	addParallel( new ElevatorPositionCommand(elevatorPos));
-		addSequential( new AutonPitchCommand(pitchPos));
+    public AutonWaitElevator(double elevatorPos,double wait ) {
+    	addSequential(new AutonWaitCommand(wait));
+    	addSequential( new ElevatorPositionCommand(elevatorPos));
 
     }
 }
