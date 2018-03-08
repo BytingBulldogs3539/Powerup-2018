@@ -115,7 +115,7 @@ public class Robot extends IterativeRobot
 //		else
 //		{
 //			System.out.println("right auton");
-//			// Put right auto code here
+//			// Put right auto code00 here
 //		}
 
 		autonMode = (Command) autonChooser.getSelected();
