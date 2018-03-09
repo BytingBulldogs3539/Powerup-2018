@@ -8,6 +8,7 @@ import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftScaleLeft;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.Reverse1000;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
@@ -27,7 +28,7 @@ public class AutonLeftScaleLeft extends CommandGroup
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR,LeftScaleLeft.PointsL,LeftScaleLeft.kNumPoints));
 	addSequential(new AutonIntakeCommand(-1,2));
 	addSequential(new AutonWaitCommand(1));
-	addSequential(new AutonMotionProfileEx(Reverse1000.PointsR,Reverse1000.PointsL,Reverse1000.kNumPoints));
+	addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
 
 
 		//	addParallel(new AutonExtakeIntake(3.2));
