@@ -21,8 +21,8 @@ public class PitchCommand extends Command
 	{
 		requires(Robot.pitch);
 		this.enc = 0;
-		scale = 120;
-		lowerPseudo = 8500; // higher = lower
+		scale = 180;
+		lowerPseudo = 9000; // higher = lower
 	}
 
 	protected void initialize()
@@ -60,7 +60,7 @@ public class PitchCommand extends Command
 			enc = Robot.pitch.getEncoder();
 			Robot.pitch.setSetpointPitch(enc);
 		}
-	//	System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
+		System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
 	}
 
 	@Override

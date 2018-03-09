@@ -34,6 +34,8 @@ public class AutonMotionProfileEx extends Command
 
 	protected void initialize()
 	{
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		m.reset();
 		Robot.driveTrain.rf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.lf.configMotionProfileTrajectoryPeriod(10, 10);

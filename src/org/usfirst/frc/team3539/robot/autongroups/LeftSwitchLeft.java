@@ -23,18 +23,18 @@ public class LeftSwitchLeft extends CommandGroup
 
 	public LeftSwitchLeft()
 	{
-		
-		addSequential( new AutonElevatorArm(30,90));
-		addParallel(new AutonExtakeIntake(3.2));
+//		
+//		addSequential( new AutonElevatorArm(30,90));
+//		addParallel(new AutonExtakeIntake(3.2));
 		addSequential(new AutonMotionProfileEx(SwitchLeft2.PointsR,SwitchLeft2.PointsL,SwitchLeft2.kNumPoints));
 		
-		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
-		addSequential(new AutonElevatorArm(0,90));
-		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
-		//addParallel(new AutonIntakeCommand(1,15));
-		addParallel(new AutonWaitElevator(30,.5));
-		addParallel(new AutonIntakeCommand(1,3));
-		addSequential(new IntakeSolenoidCommand());
+//		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
+//		addSequential(new AutonElevatorArm(0,90));
+//		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
+//		//addParallel(new AutonIntakeCommand(1,15));
+//		addParallel(new AutonWaitElevator(30,.5));
+//		addParallel(new AutonIntakeCommand(1,3));
+//		addSequential(new IntakeSolenoidCommand());
 		
 
 

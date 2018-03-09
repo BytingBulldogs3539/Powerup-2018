@@ -1,6 +1,10 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
+import org.usfirst.frc.team3539.robot.autongroups.AutonCal100;
+import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
+import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
+import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.AutonMiddleSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
@@ -49,6 +53,8 @@ public class Robot extends IterativeRobot
 	public static LateralPitch pitch = new LateralPitch();
 	public static Solenoids solenoids = new Solenoids();
 	public static SerialSub serialSub = new SerialSub();
+	
+	public static String gameData;
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres
 	// actually an arudion on it
@@ -90,7 +96,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.stop();
+		c.start();
 		Scheduler.getInstance().run();
 		//Robot.driveTrain.DisabledMotionProfile();
 	}
@@ -103,6 +109,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		Robot.elevator.zeroEncoders();
 		Robot.pitch.zeroEncoder();
 		//Robot.driveTrain.zeroEncoders();
@@ -162,8 +169,12 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleorSwitchOrStraight());
 		
 		
-		
-		
+		autonChooser.addObject("Cal50", new AutonCal50());
+
+		autonChooser.addObject("Cal100", new AutonCal100());
+		autonChooser.addObject("Cal200", new AutonCal200());
+		autonChooser.addObject("Reverse switch turn", new AutonCalReverseSwitch());
+
 		autonChooser.addObject("LeftSwitchLEft", new LeftSwitchLeft());
 		autonChooser.addObject("RightSwitchRight", new RightSwitchRight2());
 		autonChooser.addObject("RightScaleRight", new AutonRightScaleRight());
