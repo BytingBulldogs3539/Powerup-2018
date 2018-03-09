@@ -1,5 +1,5 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class Cal200 implements IProfile
+public class cal200 implements IProfile
 {
   public static final int kNumPoints = 298;
   public static double PointsR[][] = new double[][] {

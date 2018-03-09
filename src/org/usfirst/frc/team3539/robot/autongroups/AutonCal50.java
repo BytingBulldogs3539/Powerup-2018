@@ -6,7 +6,6 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.Cal100;
-import org.usfirst.frc.team3539.robot.profiles.Cal200;
 import org.usfirst.frc.team3539.robot.profiles.Cal50;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;

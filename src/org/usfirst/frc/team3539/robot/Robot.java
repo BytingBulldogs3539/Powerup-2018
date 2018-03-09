@@ -137,6 +137,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousPeriodic()
 	{
+		gameData = DriverStation.getInstance().getGameSpecificMessage();
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}

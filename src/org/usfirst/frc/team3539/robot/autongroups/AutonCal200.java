@@ -6,13 +6,13 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.Cal100;
-import org.usfirst.frc.team3539.robot.profiles.Cal200;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.RightForwardCube;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
+import org.usfirst.frc.team3539.robot.profiles.cal200;
 import org.usfirst.frc.team3539.robot.profiles.switchRight2;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -26,7 +26,7 @@ public class AutonCal200 extends CommandGroup
 	public AutonCal200()
 	{
 	
-		addSequential(new AutonMotionProfileEx(Cal200.PointsR,Cal200.PointsL,Cal200.kNumPoints));
+		addSequential(new AutonMotionProfileEx(cal200.PointsR,cal200.PointsL,cal200.kNumPoints));
 
 		// To run multiple commands at the same time,
 		// use addParallel()

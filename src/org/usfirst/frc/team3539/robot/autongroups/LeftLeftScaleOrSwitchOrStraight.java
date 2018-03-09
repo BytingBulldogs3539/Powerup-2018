@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
@@ -17,15 +18,17 @@ public class LeftLeftScaleOrSwitchOrStraight extends CommandGroup
 {
 
 	public LeftLeftScaleOrSwitchOrStraight() {
-    	String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
 
-		if (gameData.charAt(0) == 'L')
+		while(Robot.gameData.equals(""))
+		{
+			
+		}
+		if (Robot.gameData.charAt(0) == 'L')
 		{
 		 	addSequential (new AutonLeftScaleLeft());
 
 		}
-		else if(gameData.charAt(1)== 'L')
+		else if(Robot.gameData.charAt(1)== 'L')
 		{
 				addSequential(new LeftSwitchLeft());
 
