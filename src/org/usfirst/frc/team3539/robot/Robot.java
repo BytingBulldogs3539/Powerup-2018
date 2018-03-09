@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftTurnNewTest;
 import org.usfirst.frc.team3539.robot.autongroups.AutonMiddleSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
@@ -171,7 +172,9 @@ public class Robot extends IterativeRobot
 		
 		
 		autonChooser.addObject("Cal50", new AutonCal50());
+		autonChooser.addObject("New left turn test", new AutonLeftTurnNewTest());
 
+		
 		autonChooser.addObject("Cal100", new AutonCal100());
 		autonChooser.addObject("Cal200", new AutonCal200());
 		autonChooser.addObject("Reverse switch turn", new AutonCalReverseSwitch());

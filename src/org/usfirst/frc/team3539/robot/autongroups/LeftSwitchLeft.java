@@ -11,6 +11,7 @@ import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.LeftTurnNew;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -24,9 +25,9 @@ public class LeftSwitchLeft extends CommandGroup
 	public LeftSwitchLeft()
 	{
 //		
-//		addSequential( new AutonElevatorArm(30,90));
-//		addParallel(new AutonExtakeIntake(3.2));
-		addSequential(new AutonMotionProfileEx(SwitchLeft2.PointsR,SwitchLeft2.PointsL,SwitchLeft2.kNumPoints));
+		addSequential( new AutonElevatorArm(30,90));
+		addParallel(new AutonExtakeIntake(4));
+		addSequential(new AutonMotionProfileEx(LeftTurnNew.PointsR,LeftTurnNew.PointsL,LeftTurnNew.kNumPoints));
 		
 //		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
 //		addSequential(new AutonElevatorArm(0,90));

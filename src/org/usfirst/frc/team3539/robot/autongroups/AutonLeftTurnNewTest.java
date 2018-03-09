@@ -22,13 +22,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonCal50 extends CommandGroup
+public class AutonLeftTurnNewTest extends CommandGroup
 {
 
-	public AutonCal50()
+	public AutonLeftTurnNewTest()
 	{
 	
-		addSequential(new AutonMotionProfileEx(RightTurnNewtest.PointsR,RightTurnNewtest.PointsL,RightTurnNewtest.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftTurnNew.PointsR,LeftTurnNew.PointsL,LeftTurnNew.kNumPoints));
 
 		// To run multiple commands at the same time,
 		// use addParallel()

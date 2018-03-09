@@ -1,5 +1,7 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
+import org.usfirst.frc.team3539.robot.Robot;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonGameDataCheck;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
@@ -17,14 +19,13 @@ public class RightRightSwitchOrRightScale2 extends CommandGroup
 {
 
 	public RightRightSwitchOrRightScale2() {
-    	String gameData;
-		gameData = DriverStation.getInstance().getGameSpecificMessage();
+    	addSequential(new AutonGameDataCheck());
 
-		if (gameData.charAt(0) == 'R')
+		if (Robot.gameData.charAt(0) == 'R')
 		{
 				addSequential(new RightSwitchRight2());
 		}
-		else if(gameData.charAt(1)== 'R')
+		else if(Robot.gameData.charAt(1)== 'R')
 		{
 			 	addSequential (new AutonRightScaleRight());
 		}

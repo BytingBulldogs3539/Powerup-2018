@@ -29,12 +29,16 @@ public class RightSwitchRight2 extends CommandGroup
 		
 		
 		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,RightSwitchReverse.kNumPoints));
-		addSequential(new AutonElevatorArm(0,90));
-		addSequential(new AutonMotionProfileEx(RightForwardCube.PointsR,RightForwardCube.PointsL,RightForwardCube.kNumPoints));
-		//addParallel(new AutonIntakeCommand(1,15));
-		addParallel(new AutonWaitElevator(30,.5));
-		addParallel(new AutonIntakeCommand(1,3));
-		addSequential(new IntakeSolenoidCommand());
+//second cube
+		//		addSequential(new AutonElevatorArm(0,90));
+//		addSequential(new AutonMotionProfileEx(RightForwardCube.PointsR,RightForwardCube.PointsL,RightForwardCube.kNumPoints));
+//		addParallel(new AutonWaitElevator(30,.5));
+//		addParallel(new AutonIntakeCommand(1,3));
+//		addSequential(new IntakeSolenoidCommand());
+//		
+		
+		
+		
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.
