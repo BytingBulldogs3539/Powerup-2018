@@ -24,7 +24,7 @@ public class AutonGameDataCheck extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.gameData.equals("");
+        return !Robot.gameData.equals("   ");
     }
 
     // Called once after isFinished returns true

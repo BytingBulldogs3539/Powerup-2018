@@ -199,15 +199,15 @@ public class Elevator extends Subsystem
 	// Will be a different conversion ratio
 	public double inchToEncoder(double inches)
 	{
-		System.out.println(inches * 548.15);
-		return (inches * 548.15);
+		System.out.println((inches * 826)*.82);
+		return ((inches * 826)*.82);
 
 	}
 
 	public double encoderToInches(double inches)
 	{
-		System.out.println(inches / 548.15);
-		return (inches / 548.15);
+		System.out.println((inches / 826)/.82);
+		return ((inches / 826)/.82);
 	}
 
 	public void updateEncoders()

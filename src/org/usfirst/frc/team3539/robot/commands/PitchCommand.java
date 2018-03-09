@@ -21,7 +21,7 @@ public class PitchCommand extends Command
 	{
 		requires(Robot.pitch);
 		this.enc = 0;
-		scale = 180;
+		scale = 220;
 		lowerPseudo = 9000; // higher = lower
 	}
 

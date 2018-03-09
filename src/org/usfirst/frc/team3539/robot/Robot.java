@@ -55,7 +55,7 @@ public class Robot extends IterativeRobot
 	public static Solenoids solenoids = new Solenoids();
 	public static SerialSub serialSub = new SerialSub();
 	
-	public static String gameData;
+	public static String gameData="   ";
 
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres
 	// actually an arudion on it

@@ -22,21 +22,21 @@ public class RobotMap
 	// PCM
 	public static final int pcm = 20;// Disable 00 Prac 20 Comp 20
 
-	public static int intakesolOn = 0;
-	public static int intakesolOff = 1;
+	public static int intakesolOn = 1;
+	public static int intakesolOff = 0;
 
 	public static int locksolOn = 5;
 	public static int locksolOff = 4;
 
-	public static int shiftersolOn = 2;
-	public static int shiftersolOff = 3;
+	public static int shiftersolOn = 3;
+	public static int shiftersolOff = 2;
 
 	// PITCH
 	public static final int pitch = 6;
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	
-	public static double pitchPea = .23;
+	public static double pitchPea = .6;
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
 	public static double pitchFFF = -.03;
@@ -114,9 +114,9 @@ public class RobotMap
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
 	
-	public static double elevatorPea = .5;
+	public static double elevatorPea = .95;
 	public static double elevatorEye = 0.0;
-	public static double elevatorDee = 0.0;
+	public static double elevatorDee = 1;
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING
