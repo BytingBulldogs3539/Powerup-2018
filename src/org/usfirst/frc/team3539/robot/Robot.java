@@ -210,7 +210,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-		//Robot.driveTrain.enableRamp();
+		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
 	}
