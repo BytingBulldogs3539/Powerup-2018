@@ -35,7 +35,7 @@ public class RightRightSwitchOrRightScale2 extends CommandGroup
 			}
 			else
 			{
-				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
+				addSequential(new RightToLeftSwitchAuton());
 			}
 		}
 		catch (Exception e)

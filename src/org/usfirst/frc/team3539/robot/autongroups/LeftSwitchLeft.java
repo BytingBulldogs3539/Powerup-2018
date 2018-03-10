@@ -10,9 +10,8 @@ import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchLeftProfile;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
-import org.usfirst.frc.team3539.robot.profiles.LeftToRightSwitch;
-import org.usfirst.frc.team3539.robot.profiles.LeftTurnNew;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
 
@@ -30,10 +29,10 @@ public class LeftSwitchLeft extends CommandGroup
 		addSequential( new AutonElevatorArm(30,90));
 		addParallel(new AutonIntakeCommand(.7, 1));
 	//addParallel(new AutonExtakeIntake(4));
-		addSequential(new AutonMotionProfileEx(LeftToRightSwitch.PointsR,LeftToRightSwitch.PointsL,LeftToRightSwitch.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftSwitchLeftProfile.PointsR,LeftSwitchLeftProfile.PointsL,LeftSwitchLeftProfile.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5,1));
 
-		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
 //		addSequential(new AutonElevatorArm(0,90));
 //		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
 //		//addParallel(new AutonIntakeCommand(1,15));

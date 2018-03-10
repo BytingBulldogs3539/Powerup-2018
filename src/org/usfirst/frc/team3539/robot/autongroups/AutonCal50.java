@@ -10,7 +10,6 @@ import org.usfirst.frc.team3539.robot.profiles.Cal50;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
-import org.usfirst.frc.team3539.robot.profiles.LeftTurnNew;
 import org.usfirst.frc.team3539.robot.profiles.RightForwardCube;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.RightTurnNewtest;

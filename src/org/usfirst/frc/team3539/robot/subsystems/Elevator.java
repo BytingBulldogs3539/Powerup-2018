@@ -50,6 +50,10 @@ public class Elevator extends Subsystem
 		configureSoftLimits();
 
 		configureBrakeMode();
+		
+		enableRamp();
+		
+		//disableRamp();
 
 		zeroEncoders();
 
@@ -70,10 +74,20 @@ public class Elevator extends Subsystem
 	private void configureSoftLimits()
 	{
 		liftMaster.configForwardSoftLimitThreshold(50000, 0); // TODO
-		liftMaster.configReverseSoftLimitThreshold(300, 0); // TODO
+		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
 
-		liftMaster.configForwardSoftLimitEnable(false, 10);
-		liftMaster.configReverseSoftLimitEnable(false, 10);
+		liftMaster.configForwardSoftLimitEnable(true, 10);
+		liftMaster.configReverseSoftLimitEnable(true, 10);
+	}
+	
+	public void enableRamp()
+	{
+		liftMaster.configOpenloopRamp(.075, 10);
+	}
+	
+	public void disableRamp()
+	{
+		liftMaster.configOpenloopRamp(0, 0);
 	}
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
