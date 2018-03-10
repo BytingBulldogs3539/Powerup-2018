@@ -19,21 +19,34 @@ public class LeftLeftSwitchOrLeftScale extends CommandGroup
 {
 
 	public LeftLeftSwitchOrLeftScale() {
-    	addSequential(new AutonGameDataCheck());
-
-
-		if (Robot.gameData.charAt(0) == 'L')
+    	
+		//addSequential(new AutonGameDataCheck());
+		System.out.println("Started leftleftswitchorscale");
+		try
 		{
+			System.out.println("char at 0: " + Robot.gameData.charAt(0) + " char at 1: " + Robot.gameData);
+			if (Robot.gameData.charAt(0) == 'L')
+			{
 				addSequential(new LeftSwitchLeft());
+			}
+			else if(Robot.gameData.charAt(1)== 'L')
+			{
+				addSequential (new AutonLeftScaleLeft());
+			}
+			else
+			{
+				addSequential(new LeftToRightSwich());
+				//addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR,DriveStraightLine3000.PointsL,DriveStraightLine3000.kNumPoints));
+			}
 		}
-		else if(Robot.gameData.charAt(1)== 'L')
+		catch(Exception e)
 		{
-			 	addSequential (new AutonLeftScaleLeft());
-		}
-		else
-		{
+			System.out.println("Catch");
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR,DriveStraightLine3000.PointsL,DriveStraightLine3000.kNumPoints));
+
 		}
+		
+		
    
 
     }

@@ -18,22 +18,31 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightRightSwitchOrRightScale2 extends CommandGroup
 {
 
-	public RightRightSwitchOrRightScale2() {
-    	addSequential(new AutonGameDataCheck());
+	public RightRightSwitchOrRightScale2()
+	{
+		addSequential(new AutonGameDataCheck());
 
-		if (Robot.gameData.charAt(0) == 'R')
+		try
 		{
+
+			if (Robot.gameData.charAt(0) == 'R')
+			{
 				addSequential(new RightSwitchRight2());
+			}
+			else if (Robot.gameData.charAt(1) == 'R')
+			{
+				addSequential(new AutonRightScaleRight());
+			}
+			else
+			{
+				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
+			}
 		}
-		else if(Robot.gameData.charAt(1)== 'R')
+		catch (Exception e)
 		{
-			 	addSequential (new AutonRightScaleRight());
-		}
-		else
-		{
-			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR,DriveStraightLine3000.PointsL,DriveStraightLine3000.kNumPoints));
-		}
-   
+			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 
-    }
+		}
+
+	}
 }

@@ -17,7 +17,7 @@ public class AutonIntakeCommand extends Command
 		// eg. requires(chassis);
 		requires(Robot.intake);
 		setTimeout(timeout);
-		MotorPower = power;
+		MotorPower = -power;
 	}
 
 	// Called just before this Command runs the first time

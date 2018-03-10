@@ -12,6 +12,7 @@ public class AutonGameDataCheck extends Command {
     public AutonGameDataCheck() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	this.setTimeout(1);
     }
 
     // Called just before this Command runs the first time
@@ -24,11 +25,14 @@ public class AutonGameDataCheck extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !Robot.gameData.equals("   ");
+        return !Robot.gameData.equals("   ") || this.isTimedOut();
     }
 
     // Called once after isFinished returns true
-    protected void end() {
+    protected void end() 
+    {
+    	System.out.println("AUTON GAME DATA ENDED============================================");
+    	System.out.println(Robot.gameData);
     }
 
     // Called when another command which requires one or more of the same

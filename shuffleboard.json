@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.17413972888425444,
+  "dividerPosition": 0.17421052631578948,
   "tabPane": [
     {
       "title": "Tab 3",
@@ -42,7 +42,7 @@
             "content": {
               "_type": "Graph",
               "_source0": "network_table:///SmartDashboard/Right Enc",
-              "_title": "SmartDashboard/Right Enc",
+              "_title": "/SmartDashboard/Right Enc",
               "Visible time": 30.0,
               "SmartDashboard/Right Enc visible": true
             }

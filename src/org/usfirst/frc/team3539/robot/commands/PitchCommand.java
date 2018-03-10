@@ -57,10 +57,10 @@ public class PitchCommand extends Command
 		if(Robot.oi.two.buttonB.get())
 		{
 			Robot.pitch.zeroEncoder();
-			enc = Robot.pitch.getEncoder();
+			enc = 0;
 			Robot.pitch.setSetpointPitch(enc);
 		}
-		System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
+	//	System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
 	}
 
 	@Override

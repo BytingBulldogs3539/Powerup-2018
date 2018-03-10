@@ -55,6 +55,7 @@ public class AutonMotionProfileEx extends Command
 	protected void execute()
 	
 	{
+		Robot.driveTrain.printEnc();
 	///	System.out.println(Robot.driveTrain.rf.getControlMode());
 		m.control();
 		

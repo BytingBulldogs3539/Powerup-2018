@@ -18,25 +18,32 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftLeftScaleOrSwitchOrStraight extends CommandGroup
 {
 
-	public LeftLeftScaleOrSwitchOrStraight() {
+	public LeftLeftScaleOrSwitchOrStraight()
+	{
 
-    	addSequential(new AutonGameDataCheck());
-
-		if (Robot.gameData.charAt(0) == 'L')
+		addSequential(new AutonGameDataCheck());
+		try
 		{
-		 	addSequential (new AutonLeftScaleLeft());
+			if (Robot.gameData.charAt(1) == 'L')
+			{
+				addSequential(new AutonLeftScaleLeft());
 
-		}
-		else if(Robot.gameData.charAt(1)== 'L')
-		{
+			}
+			else if (Robot.gameData.charAt(0) == 'L')
+			{
 				addSequential(new LeftSwitchLeft());
 
+			}
+			else
+			{
+				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
+			}
 		}
-		else
+		catch (Exception e)
 		{
-			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR,DriveStraightLine3000.PointsL,DriveStraightLine3000.kNumPoints));
-		}
-   
+			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 
-    }
+		}
+
+	}
 }

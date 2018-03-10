@@ -26,7 +26,8 @@ public class RightSwitchRight2 extends CommandGroup
 		addSequential( new AutonElevatorArm(30,90));
 		addParallel(new AutonExtakeIntake(3.2));
 		addSequential(new AutonMotionProfileEx(switchRight2.PointsR,switchRight2.PointsL,switchRight2.kNumPoints));
-		
+		addSequential(new AutonIntakeCommand(-.5,1));
+
 		
 		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,RightSwitchReverse.kNumPoints));
 //second cube

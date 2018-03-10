@@ -14,6 +14,7 @@ public class AutonElevatorArm extends CommandGroup {
     public AutonElevatorArm(double elevatorPos,int pitchPos ) {
     	addParallel( new ElevatorPositionCommand(elevatorPos));
 		addSequential( new AutonPitchCommand(pitchPos));
+		
 
     }
 }

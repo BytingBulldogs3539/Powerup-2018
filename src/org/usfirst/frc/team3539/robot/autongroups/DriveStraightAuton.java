@@ -4,27 +4,29 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
+import org.usfirst.frc.team3539.robot.profiles.Cal100;
+import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
-import org.usfirst.frc.team3539.robot.profiles.MidSwitchRightPoints;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchForwardCube;
+import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.RightForwardCube;
+import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.SwitchLeft2;
+import org.usfirst.frc.team3539.robot.profiles.switchRight2;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class MidSwitchRight extends CommandGroup
+public class DriveStraightAuton extends CommandGroup
 {
 
-	public MidSwitchRight()
+	public DriveStraightAuton()
 	{
-		//addParallel( new AutonElevatorArm(30,90));
-		//addParallel(new AutonExtakeIntake(2.5));
-		addSequential(new AutonMotionProfileEx(MidSwitchRightPoints.PointsR,MidSwitchRightPoints.PointsL,MidSwitchRightPoints.kNumPoints));
-		//addSequential(new AutonIntakeCommand(-.7, 1));
-
-		// e.g. addSequential(new Command1());
-		// addSequential(new Command2());
-		// these will run in order.
+	
+		addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 
 		// To run multiple commands at the same time,
 		// use addParallel()

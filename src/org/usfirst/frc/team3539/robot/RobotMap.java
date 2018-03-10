@@ -22,8 +22,8 @@ public class RobotMap
 	// PCM
 	public static final int pcm = 20;// Disable 00 Prac 20 Comp 20
 
-	public static int intakesolOn = 1;
-	public static int intakesolOff = 0;
+	public static int intakesolOn = 0;
+	public static int intakesolOff = 1;
 
 	public static int locksolOn = 5;
 	public static int locksolOff = 4;
@@ -32,7 +32,7 @@ public class RobotMap
 	public static int shiftersolOff = 2;
 
 	// PITCH
-	public static final int pitch = 6;
+	public static final int pitch = 3;  // EMERGENCY COMP CHANGE. WAS 6
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	
