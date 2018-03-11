@@ -7,7 +7,6 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
-import org.usfirst.frc.team3539.robot.autongroups.AutonLeftTurnNewTest;
 import org.usfirst.frc.team3539.robot.autongroups.AutonMiddleSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
@@ -125,22 +124,6 @@ public class Robot extends IterativeRobot
 		Robot.elevator.zeroEncoders();
 		Robot.pitch.zeroEncoder();
 		Robot.driveTrain.disableRamp();
-		// Robot.driveTrain.zeroEncoders();
-		// Robot.driveTrain.calibrateGyro();
-		// String gameData;
-		// gameData = DriverStation.getInstance().getGameSpecificMessage();
-		//
-		// if (gameData.charAt(0) == 'L')
-		// {
-		// System.out.println("left auton");
-		// // Put left auto code here
-		// }
-		// else
-		// {
-		// System.out.println("right auton");
-		// // Put right auto code00 here
-		// }
-
 	}
 
 	public void autonomousPeriodic()
@@ -149,7 +132,6 @@ public class Robot extends IterativeRobot
 		System.out.println("counter " + counter);
 		if (counter > 50 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
-
 			if (!done)
 			{
 				gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -200,10 +182,6 @@ public class Robot extends IterativeRobot
 			}
 
 		}
-		// if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
-		// {
-		// gameData = DriverStation.getInstance().getGameSpecificMessage();
-		// }
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
@@ -227,7 +205,6 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		;
 		// autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
 		// autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
 		autonChooser.addObject("MiddleSwitch", new AutonMiddleSwitch());
@@ -254,19 +231,7 @@ public class Robot extends IterativeRobot
 
 		// autonChooser.addObject("TestAuto", new TestAuto());
 
-		positionChooser.addObject("Left", null);
-		positionChooser.addDefault("Middle", null);
-		positionChooser.addObject("Right", null);
-
-		allianceChooser.addDefault("Red", null);
-		allianceChooser.addObject("Blue", null);
-
 		SmartDashboard.putData("Auton mode", autonChooser);
-
-		SmartDashboard.putData("Auton Position", positionChooser);
-
-		SmartDashboard.putData("Alliance", allianceChooser);
-		System.out.println("Settings");
 
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
 		SmartDashboard.putNumber("driveEye", RobotMap.driveEye);

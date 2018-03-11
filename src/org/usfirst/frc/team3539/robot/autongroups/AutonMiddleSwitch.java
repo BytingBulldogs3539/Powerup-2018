@@ -13,10 +13,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonMiddleSwitch extends CommandGroup
 {
-
+	
+	
+	
 	public AutonMiddleSwitch()
 	{
-		
+
 		try
 		{
 

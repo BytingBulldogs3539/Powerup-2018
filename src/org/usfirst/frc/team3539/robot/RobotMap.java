@@ -35,13 +35,12 @@ public class RobotMap
 	public static final int pitch = botProfile.getPitch();
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
-	
+
 	public static double pitchPea = .6;
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
 	public static double pitchFFF = -.03;
 
-	
 	public static int pitchEncPosDown = 0; // SOME INT
 	public static int pitchEncPosUp = 0; // SOME INT
 	public static int pitchEncPosIntake = 0; // SOME INT
@@ -52,17 +51,16 @@ public class RobotMap
 
 	public static final int rf = botProfile.getRf();
 	public static final int rb = botProfile.getRb();
-	
 
-	public static double drivePea = .7;
-	public static double driveEye = 0.0;
-	public static double driveDee = 0.0;
-	public static double driveFFF = .13;
-	
-//	public static double drivePea = .5;
-//	public static double driveEye = 0.0;
-//	public static double driveDee = 0.0;
-//	public static double driveFFF = .145;
+	public static double drivePea = botProfile.getDrivePea();
+	public static double driveEye = botProfile.getDriveEye();
+	public static double driveDee = botProfile.getDriveDee();
+	public static double driveFFF = botProfile.getDriveFFF();
+
+	// public static double drivePea = .5;
+	// public static double driveEye = 0.0;
+	// public static double driveDee = 0.0;
+	// public static double driveFFF = .145;
 
 	public static double turnPeaWheels = 0.1;
 	public static double turnEyeWheels = 0.00005;
@@ -113,7 +111,7 @@ public class RobotMap
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
-	
+
 	public static double elevatorPea = .95;
 	public static double elevatorEye = 0.0;
 	public static double elevatorDee = 1;
