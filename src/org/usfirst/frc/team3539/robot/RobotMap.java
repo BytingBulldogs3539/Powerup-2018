@@ -32,7 +32,7 @@ public class RobotMap
 	public static int shiftersolOff = 2;
 
 	// PITCH
-	public static final int pitch = 3;  // EMERGENCY COMP CHANGE. WAS 6
+	public static final int pitch = botProfile.getPitch();
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 	

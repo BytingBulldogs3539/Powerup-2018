@@ -32,5 +32,10 @@ public class TinaMap implements IMap
 	{
 		return 3;
 	}
+	
+	public int getPitch()
+	{
+		return 3539;
+	}
 
 }

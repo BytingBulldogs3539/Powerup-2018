@@ -34,4 +34,9 @@ public class PracMap implements IMap
 		return 1;
 	}
 	
+	public int getPitch()
+	{
+		return 6;
+	}
+	
 }

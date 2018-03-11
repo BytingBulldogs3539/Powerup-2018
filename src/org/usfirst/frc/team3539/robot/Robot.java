@@ -116,7 +116,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		
+
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
@@ -190,7 +190,7 @@ public class Robot extends IterativeRobot
 				}
 				default:
 				{
-					autonMode = new AutonMotionProfileEx(DriveStraightLine3000.PointsR,DriveStraightLine3000.PointsL,DriveStraightLine3000.kNumPoints);
+					autonMode = new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints);
 					break;
 				}
 				}

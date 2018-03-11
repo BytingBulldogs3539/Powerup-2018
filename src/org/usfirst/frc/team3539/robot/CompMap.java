@@ -33,5 +33,9 @@ public class CompMap implements IMap
 	{
 		return 1;
 	}
+	public int getPitch()
+	{
+		return 3;
+	}
 
 }

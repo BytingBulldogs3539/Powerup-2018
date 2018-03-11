@@ -9,5 +9,7 @@ public interface IMap
 
 	public int getRf();
 	public int getRb();
+	
+	public int getPitch();
 
 }
