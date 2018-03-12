@@ -14,7 +14,6 @@ public class RightToLeftSwitchAuton extends CommandGroup
 
 	public RightToLeftSwitchAuton()
 	{
-<<<<<<< HEAD
 //		
 		addSequential( new AutonElevatorArm(30,90));
 		addParallel(new AutonExtakeIntake(9));
@@ -42,30 +41,5 @@ public class RightToLeftSwitchAuton extends CommandGroup
 		//addParallel(new AutonElevatorCommand(30));
 		//addParallel(new AutonIntakeCommand(1,2));
 		
-		addSequential(new AutonIntakeCommand(-1,1));
-=======
-		//
-		addSequential(new AutonElevatorArm(30, 90));
-		addParallel(new AutonExtakeIntake(4));
-		addSequential(new AutonMotionProfileEx(RightToLeftSwitch.PointsR, RightToLeftSwitch.PointsL, RightToLeftSwitch.kNumPoints));
-		addSequential(new AutonIntakeCommand(-.5, 1));
->>>>>>> 19b22d74ca6e974dcd9f8ddef79c0dd556335c38
-
-		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR, RightSwitchReverse.PointsL, RightSwitchReverse.kNumPoints));
-		// addSequential(new AutonElevatorArm(0,90));
-		// addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
-		// //addParallel(new AutonIntakeCommand(1,15));
-		// addParallel(new AutonWaitElevator(30,.5));
-		// addParallel(new AutonIntakeCommand(1,3));
-		// addSequential(new IntakeSolenoidCommand());
-
-		//
-		// addParallel(new AutonElevatorCommand(30));
-		// addSequential(new AutonIntakeCommand(1,2));
-
-		// addParallel(new AutonElevatorCommand(30));
-		// addParallel(new AutonIntakeCommand(1,2));
-
-		addSequential(new AutonIntakeCommand(-1, 1));
 	}
 }
