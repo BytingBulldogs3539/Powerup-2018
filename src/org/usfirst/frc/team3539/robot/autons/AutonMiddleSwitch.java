@@ -1,11 +1,9 @@
-package org.usfirst.frc.team3539.robot.autongroups;
+package org.usfirst.frc.team3539.robot.autons;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
+import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -16,7 +14,7 @@ public class AutonMiddleSwitch extends CommandGroup
 
 	public AutonMiddleSwitch()
 	{
-		
+		// Ran when auton starts to select which direction the robot goes while in the center position.
 		try
 		{
 

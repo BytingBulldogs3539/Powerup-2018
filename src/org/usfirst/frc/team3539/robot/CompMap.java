@@ -34,4 +34,34 @@ public class CompMap implements IMap
 		return 1;
 	}
 
+	@Override
+	public int getPitch()
+	{
+		return 3;
+	}
+
+	@Override
+	public double getDrivePea()
+	{
+		return .7;
+	}
+
+	@Override
+	public double getDriveEye()
+	{
+		return 0.0;
+	}
+
+	@Override
+	public double getDriveDee()
+	{
+		return 0.0;
+	}
+
+	@Override
+	public double getDriveFFF()
+	{
+		return .13;
+	}
+
 }

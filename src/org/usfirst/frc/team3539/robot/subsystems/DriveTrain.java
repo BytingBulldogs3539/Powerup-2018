@@ -435,12 +435,10 @@ public final class DriveTrain extends Subsystem
 
 	public void printEnc()
 	{
-		System.out.println(" leftPosition "+	lf.getSelectedSensorPosition(0)+" rightPosition "+rf.getSelectedSensorPosition(0)+" rightVelocity "+rf.getSelectedSensorVelocity(0)+" leftVelocity "+lf.getSelectedSensorVelocity(0));
-System.out.println(" leftTragPos "+lf.getActiveTrajectoryPosition()+" leftTragVel "+lf.getActiveTrajectoryPosition());		
+		System.out.println(" leftPosition " + lf.getSelectedSensorPosition(0) + " rightPosition " + rf.getSelectedSensorPosition(0) + " rightVelocity " + rf.getSelectedSensorVelocity(0) + " leftVelocity " + lf.getSelectedSensorVelocity(0));
+		System.out.println(" leftTragPos " + lf.getActiveTrajectoryPosition() + " leftTragVel " + lf.getActiveTrajectoryPosition());
 
-System.out.println(" RightTragPos "+rf.getActiveTrajectoryPosition()+" RightTragVel "+rf.getActiveTrajectoryVelocity());		
+		System.out.println(" RightTragPos " + rf.getActiveTrajectoryPosition() + " RightTragVel " + rf.getActiveTrajectoryVelocity());
 
-	
-	
 	}
 }

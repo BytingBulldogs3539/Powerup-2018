@@ -32,5 +32,34 @@ public class TinaMap implements IMap
 	{
 		return 3;
 	}
+	
+	public int getPitch()
+	{
+		return 3539;
+	}
+
+	@Override
+	public double getDrivePea()
+	{
+ 		return 0;
+	}
+
+	@Override
+	public double getDriveEye()
+	{
+		return 0;
+	}
+
+	@Override
+	public double getDriveDee()
+	{
+		return 0;
+	}
+
+	@Override
+	public double getDriveFFF()
+	{
+		return 0;
+	}
 
 }

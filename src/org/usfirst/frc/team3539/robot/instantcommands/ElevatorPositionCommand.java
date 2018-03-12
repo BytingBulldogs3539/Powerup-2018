@@ -1,10 +1,7 @@
 package org.usfirst.frc.team3539.robot.instantcommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.InstantCommand;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -36,6 +33,6 @@ public class ElevatorPositionCommand extends InstantCommand
 
 	protected void initialize()
 	{
-		Robot.elevator.setSetpointLift(myinches);	
+		Robot.elevator.setSetpointLift(myinches);
 	}
 }

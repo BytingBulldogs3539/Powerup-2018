@@ -9,5 +9,12 @@ public interface IMap
 
 	public int getRf();
 	public int getRb();
+	
+	public int getPitch();
+	
+	public double getDrivePea();
+	public double getDriveEye();
+	public double getDriveDee();
+	public double getDriveFFF();
 
 }
