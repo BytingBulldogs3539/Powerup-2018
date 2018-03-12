@@ -50,10 +50,10 @@ public class Elevator extends Subsystem
 		configureSoftLimits();
 
 		configureBrakeMode();
-		
+
 		enableRamp();
-		
-		//disableRamp();
+
+		// disableRamp();
 
 		zeroEncoders();
 
@@ -79,12 +79,12 @@ public class Elevator extends Subsystem
 		liftMaster.configForwardSoftLimitEnable(true, 10);
 		liftMaster.configReverseSoftLimitEnable(true, 10);
 	}
-	
+
 	public void enableRamp()
 	{
 		liftMaster.configOpenloopRamp(.075, 10);
 	}
-	
+
 	public void disableRamp()
 	{
 		liftMaster.configOpenloopRamp(0, 0);
@@ -213,15 +213,15 @@ public class Elevator extends Subsystem
 	// Will be a different conversion ratio
 	public double inchToEncoder(double inches)
 	{
-		System.out.println((inches * 826)*.82);
-		return ((inches * 826)*.82);
+		System.out.println((inches * 826) * .82);
+		return ((inches * 826) * .82);
 
 	}
 
 	public double encoderToInches(double inches)
 	{
-		System.out.println((inches / 826)/.82);
-		return ((inches / 826)/.82);
+		System.out.println((inches / 826) / .82);
+		return ((inches / 826) / .82);
 	}
 
 	public void updateEncoders()

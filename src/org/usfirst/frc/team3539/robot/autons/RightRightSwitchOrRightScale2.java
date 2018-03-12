@@ -1,15 +1,11 @@
-package org.usfirst.frc.team3539.robot.autongroups;
+package org.usfirst.frc.team3539.robot.autons;
 
 import org.usfirst.frc.team3539.robot.Robot;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonGameDataCheck;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
+import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
-import org.usfirst.frc.team3539.robot.profiles.LeftScaleLeft;
-
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -20,8 +16,6 @@ public class RightRightSwitchOrRightScale2 extends CommandGroup
 
 	public RightRightSwitchOrRightScale2()
 	{
-		addSequential(new AutonGameDataCheck());
-
 		try
 		{
 
