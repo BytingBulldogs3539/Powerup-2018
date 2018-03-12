@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class AutonExtakeIntake extends CommandGroup {
 
     public AutonExtakeIntake(double T1) {
-		addSequential(new AutonIntakeCommand(.4,T1));
+		addSequential(new AutonIntakeCommand(.3,T1));
 		//addSequential(new AutonIntakeCommand(-1,1));
 	//	addSequential(new IntakeSolenoidCommand());
 

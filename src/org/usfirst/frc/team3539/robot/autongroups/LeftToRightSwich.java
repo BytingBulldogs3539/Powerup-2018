@@ -26,7 +26,7 @@ public class LeftToRightSwich extends CommandGroup
 	{
 //		
 		addSequential( new AutonElevatorArm(30,90));
-		addParallel(new AutonExtakeIntake(4));
+		addParallel(new AutonExtakeIntake(9));
 		addSequential(new AutonMotionProfileEx(LeftToRightSwitch.PointsR,LeftToRightSwitch.PointsL,LeftToRightSwitch.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5,1));
 

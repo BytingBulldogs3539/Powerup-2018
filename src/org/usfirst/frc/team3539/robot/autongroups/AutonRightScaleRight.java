@@ -27,7 +27,7 @@ public class AutonRightScaleRight extends CommandGroup
 		addParallel(new AutonIntakeCommand(.4, 1));
 
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR,RightScaleRight.PointsL,RightScaleRight.kNumPoints));
-	addSequential(new AutonIntakeCommand(-1,2));
+	addSequential(new AutonIntakeCommand(-.5,2));
 	addSequential(new AutonWaitCommand(1));
 	addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,RightSwitchReverse.kNumPoints));
 
