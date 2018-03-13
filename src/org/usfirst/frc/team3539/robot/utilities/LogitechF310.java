@@ -45,12 +45,13 @@ public class LogitechF310 extends Joystick
 	public JoystickButton buttonBL = new JoystickButton(this, BL);
 	public JoystickButton buttonBR = new JoystickButton(this, BR);
 
-	public TriggerButton buttonTL = new TriggerButton(this, LEFT_TRIGGER);
-	public TriggerButton buttonTR = new TriggerButton(this, RIGHT_TRIGGER);
+	//public TriggerButton buttonTL = new TriggerButton(this, LEFT_TRIGGER);
+	//public TriggerButton buttonTR = new TriggerButton(this, RIGHT_TRIGGER);
 
 	public JoystickButton buttonSTART = new JoystickButton(this, START);
 	public JoystickButton buttonSELECT = new JoystickButton(this, SELECT);
 
+	
 	public JoystickButton buttonLS = new JoystickButton(this, LS);
 	public JoystickButton buttonRS = new JoystickButton(this, RS);
 
@@ -59,6 +60,14 @@ public class LogitechF310 extends Joystick
 	public DirectionalButton buttonPadUp = new DirectionalButton(this, Direction.UP);
 	public DirectionalButton buttonPadDown = new DirectionalButton(this, Direction.DOWN);
 
+	public double getLeftTrigger()
+	{
+		return getRawAxis(LEFT_TRIGGER);
+	}
+	public double getRightTrigger()
+	{
+		return getRawAxis(RIGHT_TRIGGER);
+	}
 	public double getLeftStickX()
 	{
 		return getRawAxis(X_AxisL);

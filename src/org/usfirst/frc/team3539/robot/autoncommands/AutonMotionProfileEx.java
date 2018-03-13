@@ -49,6 +49,7 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
 		m.startMotionProfile();
 		m.update();
+		Robot.driveTrain.updateEncoders();
 
 	}
 

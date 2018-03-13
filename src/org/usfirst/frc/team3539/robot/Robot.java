@@ -20,6 +20,7 @@ import org.usfirst.frc.team3539.robot.autons.LeftLeftScaleOrSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autons.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autons.RightRightScaleorSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autons.RightRightSwitchOrRightScale2;
+import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.lol200;
@@ -50,7 +51,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static Logger l = new Logger();
+	//public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
@@ -286,5 +287,7 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putData(Scheduler.getInstance());
 	}
+	
+
 
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -233,5 +234,8 @@ public class Elevator extends Subsystem
 	@Override
 	protected void initDefaultCommand()
 	{
+		setDefaultCommand(new ElevatorManualCommand());
 	}
+	
+	
 }

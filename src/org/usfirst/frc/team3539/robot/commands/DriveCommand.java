@@ -23,7 +23,7 @@ public class DriveCommand extends Command
 	{
 		// effectiveArcadeDrive
 		Robot.driveTrain.driveArcade(Robot.oi.one.getLeftStickY(), Robot.oi.one.getRightStickX());
-	 Robot.driveTrain.printEnc();
+	// Robot.driveTrain.printEnc();
 	}
 
 	@Override

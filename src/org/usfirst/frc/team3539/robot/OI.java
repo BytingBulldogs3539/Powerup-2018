@@ -24,7 +24,7 @@ public class OI
 		// TWO -------------------------------
 
 		// Elevator
-		two.buttonSTART.whenPressed(new ElevatorManualCommand());
+	//	two.buttonSTART.whenPressed(new ElevatorManualCommand());
 
 		// two.buttonA.whenPressed(new ElevatorPositionCommand(ElevatorPosition.FLOOR));
 		// two.buttonB.whenPressed(new
@@ -36,6 +36,7 @@ public class OI
 		two.buttonBR.whenPressed(new IntakeSolenoidCommand());
 		two.buttonBL.whenPressed(new ShiftSolenoidCommand());
 
+		
 		// Pitch
 		// two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
 
@@ -46,16 +47,16 @@ public class OI
 		//two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
-		two.buttonTL.whenPressed(new IntakeCommand(-0.6));
-		two.buttonTR.whenPressed(new IntakeCommand(1));
+		//two.buttonTL.whenPressed(new IntakeCommand(two.getLeftTrigger()));
+		//two.buttonTR.whenPressed(new IntakeCommand(two.getRightTrigger()));
 
-		two.buttonTR.whenReleased(new IntakeCommand(0));
-		two.buttonTL.whenReleased(new IntakeCommand(0));
+		//two.buttonTR.whenReleased(new IntakeCommand(0));
+		//two.buttonTL.whenReleased(new IntakeCommand(0));
 		two.buttonA.whenPressed(new ElevatorPositionCommand(20));
 		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
 		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
 		
-		two.buttonSELECT.whenPressed(new LockSolenoidCommand());
+	//	two.buttonSELECT.whenPressed(new IntakeCommand());
 		//two.buttonB.whenPressed(new PitchCommand());
 	}
 }

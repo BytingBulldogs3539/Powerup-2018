@@ -1,6 +1,8 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.DriveCommand;
+import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -15,6 +17,7 @@ public class Intake extends Subsystem
 {
 	private TalonSRX intakeMotorLeft;
 	private TalonSRX intakeMotorRight;
+	
 
 	public Intake()
 	{
@@ -50,5 +53,8 @@ public class Intake extends Subsystem
 
 	public void initDefaultCommand()
 	{
+		setDefaultCommand(new IntakeCommand());
+
+		
 	}
 }
