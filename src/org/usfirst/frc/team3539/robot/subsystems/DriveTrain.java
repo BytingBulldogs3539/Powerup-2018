@@ -119,6 +119,7 @@ public final class DriveTrain extends Subsystem
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
 		enableCurrentLimit();
+		//enableRamp();
 
 		// SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);

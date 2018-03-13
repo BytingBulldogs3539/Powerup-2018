@@ -14,7 +14,7 @@ public class RobotMap
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botProfile = new CompMap();
+	private static IMap botProfile = new PracMap();
 
 	// PDP
 	public static final int pdp = 30;
@@ -36,7 +36,7 @@ public class RobotMap
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 
-	public static double pitchPea = .6;
+	public static double pitchPea = .23;//.6 comp 
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
 	public static double pitchFFF = -.03;
@@ -112,9 +112,9 @@ public class RobotMap
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
 
-	public static double elevatorPea = .95;
+	public static double elevatorPea = .95;//.95 comp
 	public static double elevatorEye = 0.0;
-	public static double elevatorDee = 1;
+	public static double elevatorDee = 1;;//1 comp
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING

@@ -42,7 +42,7 @@ public class PracMap implements IMap
 	@Override
 	public double getDrivePea()
 	{
-		return .5;
+		return .5;//.5
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class PracMap implements IMap
 	@Override
 	public double getDriveFFF()
 	{
-		return .145;
+		return .145;//.145
 	}
 
 }
