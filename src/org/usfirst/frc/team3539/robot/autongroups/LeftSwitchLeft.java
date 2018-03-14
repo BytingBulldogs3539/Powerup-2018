@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonDriveSlow;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchLeftProfile;
@@ -19,7 +20,9 @@ public class LeftSwitchLeft extends CommandGroup
 		addParallel(new AutonIntakeCommand(.7, 1));
 		// addParallel(new AutonExtakeIntake(4));
 		addSequential(new AutonMotionProfileEx(LeftSwitchLeftProfile.PointsR, LeftSwitchLeftProfile.PointsL, LeftSwitchLeftProfile.kNumPoints));
-		addSequential(new AutonIntakeCommand(-.5, 1));
+	
+		//		addSequential(new AutonIntakeCommand(-.5, 1));
+addSequential(new AutonExtakeDrive(.25));
 
 		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR, LeftSwitchReverse.PointsL, LeftSwitchReverse.kNumPoints));
 		// addSequential(new AutonElevatorArm(0,90));
@@ -36,8 +39,7 @@ public class LeftSwitchLeft extends CommandGroup
 		// addParallel(new AutonElevatorCommand(30));
 		// addParallel(new AutonIntakeCommand(1,2));
 
-		addSequential(new AutonIntakeCommand(-1, 1));
-
+	//	addSequential(new AutonIntakeCommand(-1, 1));
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.
