@@ -23,9 +23,11 @@ public class IntakeCommand extends Command
 
 	protected void execute()
 	{
+		double x =-Robot.oi.two.getLeftTrigger()+Robot.oi.two.getRightTrigger();
 		//System.out.println("execute");
-		Robot.intake.setMotorPower((-Robot.oi.two.getLeftTrigger()+Robot.oi.two.getRightTrigger()));
-
+		Robot.intake.setMotorPower(Math.copySign(Math.sqrt(Math.abs(x)), x));
+		//System.out.println("power"+Math.copySign(Math.sqrt(Math.abs(x)), x));
+	//	System.out.println(x);
 	}
 
 	protected boolean isFinished()

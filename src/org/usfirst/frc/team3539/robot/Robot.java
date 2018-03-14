@@ -66,7 +66,7 @@ public class Robot extends IterativeRobot
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres
 	// actually an arudion on it
 
-	public static PowerDistributionPanel pdp;
+	//public static PowerDistributionPanel pdp;
 	public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
@@ -79,7 +79,7 @@ public class Robot extends IterativeRobot
 	public void robotInit()
 	{
 		oi = new OI();
-		pdp = new PowerDistributionPanel(RobotMap.pdp);
+//		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
 
 		SmartInit();
@@ -89,6 +89,8 @@ public class Robot extends IterativeRobot
 			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 			cameraOne.setResolution(240, 135);
 			cameraOne.setFPS(20);
+			cameraOne.setExposureManual(50);
+			cameraOne.setBrightness(50);
 		}
 		catch (Error e)
 		{
@@ -171,6 +173,11 @@ public class Robot extends IterativeRobot
 					autonMode = new DriveStraightAuton();
 					break;
 				}
+				case "AutonLeftScaleLeft":
+				{
+					autonMode = new AutonLeftScaleLeft();
+					break;
+				}
 				default:
 				{
 					autonMode = new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints);
@@ -214,6 +221,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftLeftScaleorSwitch", new LeftLeftScaleOrSwitchOrStraight());
 		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleorSwitchOrStraight());
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
+		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
 
 		// autonChooser.addObject("Cal50", new AutonCal50());
 		// autonChooser.addObject("New left turn test", new AutonLeftTurnNewTest());
@@ -258,7 +266,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("ElevatorD", RobotMap.elevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
-		SmartDashboard.putData("PDP", pdp);
+		//SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
