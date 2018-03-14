@@ -6,6 +6,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCal100;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
+import org.usfirst.frc.team3539.robot.autongroups.AutonExtakeDrive;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
@@ -187,6 +188,11 @@ public class Robot extends IterativeRobot
 					autonMode = new AutonLeftScaleLeft();
 					break;
 				}
+				case "AutonExtakeDrive":
+				{
+					autonMode =  new AutonExtakeDrive(2);
+					break;
+				}
 				default:
 				{
 					autonMode = new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints);
@@ -232,6 +238,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleorSwitchOrStraight());
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
 		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
+		autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
 
 		// autonChooser.addObject("Cal50", new AutonCal50());
 		// autonChooser.addObject("New left turn test", new AutonLeftTurnNewTest());
