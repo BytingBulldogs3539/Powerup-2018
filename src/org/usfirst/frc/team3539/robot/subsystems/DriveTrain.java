@@ -8,10 +8,12 @@ import java.util.Calendar;
 import java.util.logging.FileHandler;
 
 import org.usfirst.frc.team3539.robot.PracMap;
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.BulldogMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
+import org.usfirst.frc.team3539.robot.logger.Log;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -31,8 +33,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public final class DriveTrain extends Subsystem
 {
-	public FileWriter fw;
-	public PrintWriter log;
 
 	private ADXRS450_Gyro gyro;
 	public TalonSRX lf, lb, rf, rb;
@@ -42,24 +42,19 @@ public final class DriveTrain extends Subsystem
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	private boolean logging = false;
-
+	@Log(level = 1) int leftEncoderPos;
+	@Log(level = 1) int rightEncoderPos;
+	@Log(level = 1) int leftEncoderVel;
+	@Log(level = 1) int rightEncoderVel;
+	@Log(level = 1) double leftMotorPercent;
+	@Log(level = 1) double rightMotorPercent;
+	@Log(level = 1) double driveForwardStick;
+	@Log(level = 1) double driveTurnStick;
+	@Log(level = 1) double leftCurrent;
+	@Log(level = 1) double rightCurrent;
+	
 	public DriveTrain()
 	{
-		if (logging)
-		{
-			try
-			{
-				String timestamp = new SimpleDateFormat("yyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
-				fw = new FileWriter("/home/lvuser/logs/drivetrain_" + timestamp + ".csv");
-				log = new PrintWriter(fw);
-			}
-			catch (SecurityException | IOException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
 
 		gyro = new ADXRS450_Gyro(SPI.Port.kOnboardCS0);
 
@@ -125,6 +120,21 @@ public final class DriveTrain extends Subsystem
 		SmartDashboard.putData("Gyro", gyro);
 
 		setSensorPhase(false);
+	}
+	
+	public void updateLog()
+	{
+		leftEncoderPos = lf.getSelectedSensorPosition(0);
+		rightEncoderPos = rf.getSelectedSensorPosition(0);
+		leftEncoderVel = lf.getSelectedSensorVelocity(0);
+		rightEncoderVel = rf.getSelectedSensorVelocity(0);
+		driveForwardStick = Robot.oi.one.getLeftStickY();
+		driveTurnStick = Robot.oi.one.getRightStickX();
+		leftMotorPercent = lf.getMotorOutputPercent();
+		rightMotorPercent = rf.getMotorOutputPercent();
+		leftCurrent = lf.getOutputCurrent();
+		rightCurrent = rf.getOutputCurrent();
+		
 	}
 
 	public void setBrakeMode(boolean shouldBrakeMode)
@@ -309,13 +319,13 @@ public final class DriveTrain extends Subsystem
 	public void updateEncoders()
 	{
 
-		if (logging)
-		{
-			log.print(lf.getSelectedSensorPosition(0) + "," + lf.getSelectedSensorVelocity(0) + "," + lf.getMotorOutputPercent() + "," + rf.getSelectedSensorPosition(0) + "," + rf.getSelectedSensorVelocity(0) + ","
-					+ rf.getMotorOutputPercent());
-			log.println("");
-		}
-
+//		if (logging)
+//		{
+//			log.print(lf.getSelectedSensorPosition(0) + "," + lf.getSelectedSensorVelocity(0) + "," + lf.getMotorOutputPercent() + "," + rf.getSelectedSensorPosition(0) + "," + rf.getSelectedSensorVelocity(0) + ","
+//					+ rf.getMotorOutputPercent());
+//			log.println("");
+//		}
+		
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
