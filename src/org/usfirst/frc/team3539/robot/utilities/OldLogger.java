@@ -4,7 +4,7 @@ package org.usfirst.frc.team3539.robot.utilities;
 import java.text.SimpleDateFormat;
 import java.io.*;
 
-public class Logger
+public class OldLogger
 {
 	private static int DEBUG = 0; // special stream for solving a problem
 	private static int INFO = 1; // any information, like statuses, constant
@@ -35,7 +35,7 @@ public class Logger
 
 	private boolean hasFiles = false;
 
-	private Logger(boolean isPeriodicLogging, boolean isEventLogging, boolean isCommandLogging)
+	private OldLogger(boolean isPeriodicLogging, boolean isEventLogging, boolean isCommandLogging)
 	{
 		startLogging(isPeriodicLogging, isEventLogging, isCommandLogging);
 	}
@@ -84,27 +84,27 @@ public class Logger
 
 	public void logDeb(String msg)
 	{
-		log(Logger.DEBUG, msg, true);
+		log(OldLogger.DEBUG, msg, true);
 	}
 
 	public void logInfo(String msg)
 	{
-		log(Logger.INFO, msg, true);
+		log(OldLogger.INFO, msg, true);
 	}
 
 	public void logErr(String msg)
 	{
-		log(Logger.ERROR, msg, true);
+		log(OldLogger.ERROR, msg, true);
 	}
 
 	public void logCom(String msg)
 	{
-		log(Logger.COMMAND, msg, true);
+		log(OldLogger.COMMAND, msg, true);
 	}
 
 	public void logEve(String msg)
 	{
-		log(Logger.EVENT, msg, true);
+		log(OldLogger.EVENT, msg, true);
 	}
 
 	private void log(int type, String msg, boolean printlin)
@@ -148,7 +148,7 @@ public class Logger
 				e.printStackTrace();
 			}
 
-			if(type == Logger.EVENT)
+			if(type == OldLogger.EVENT)
 			{
 				try
 				{
@@ -161,7 +161,7 @@ public class Logger
 				}
 			}
 
-			if(type == Logger.COMMAND)
+			if(type == OldLogger.COMMAND)
 			{
 				try
 				{

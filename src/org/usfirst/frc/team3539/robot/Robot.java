@@ -22,6 +22,8 @@ import org.usfirst.frc.team3539.robot.autons.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autons.RightRightScaleorSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autons.RightRightSwitchOrRightScale2;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
+import org.usfirst.frc.team3539.robot.logger.Logger;
+import org.usfirst.frc.team3539.robot.logger.Reader;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.lol200;
@@ -31,7 +33,7 @@ import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
 import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
-import org.usfirst.frc.team3539.robot.utilities.Logger;
+import org.usfirst.frc.team3539.robot.utilities.OldLogger;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -52,7 +54,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	//public static Logger l = new Logger();
+	public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
@@ -82,6 +84,12 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 //		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
+		
+		l.add(new Reader(driveTrain, 1 , true));
+		l.add(new Reader(intake, 1, true));
+		l.add(new Reader(elevator, 1, true));
+		l.add(new Reader(pitch, 1, true));
+		l.add(new Reader(solenoids, 1, true));
 
 		SmartInit();
 
@@ -115,11 +123,12 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
+		l.stop();
 	}
 
 	public void autonomousInit()
 	{
-
+		l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
@@ -202,6 +211,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
+		l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
