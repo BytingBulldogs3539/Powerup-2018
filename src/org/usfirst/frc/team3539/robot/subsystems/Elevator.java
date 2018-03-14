@@ -77,13 +77,13 @@ public class Elevator extends Subsystem
 		liftMaster.configForwardSoftLimitThreshold(50000, 0); // TODO
 		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
 
-		liftMaster.configForwardSoftLimitEnable(false, 10);
+		liftMaster.configForwardSoftLimitEnable(true, 10);
 		liftMaster.configReverseSoftLimitEnable(true, 10);
 	}
 
 	public void enableRamp()
 	{
-		liftMaster.configOpenloopRamp(.075, 10);
+		liftMaster.configOpenloopRamp(.5, 10);
 	}
 
 	public void disableRamp()

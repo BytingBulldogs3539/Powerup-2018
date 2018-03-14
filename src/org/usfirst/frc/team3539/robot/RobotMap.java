@@ -36,7 +36,7 @@ public class RobotMap
 	public static final int pitchLimitUp = 0;
 	public static final int pitchLimitDown = 0;
 
-	public static double pitchPea = .23;//.6 comp 
+	public static double pitchPea = .6;//.6 comp //.23 prac
 	public static double pitchEye = .0;
 	public static double pitchDee = .0;
 	public static double pitchFFF = -.03;
