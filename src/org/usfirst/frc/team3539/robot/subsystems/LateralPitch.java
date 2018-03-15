@@ -28,15 +28,16 @@ public class LateralPitch extends Subsystem
 		pitch.configNominalOutputForward(0, 10);
 		pitch.configNominalOutputReverse(0, 10);
 
-		pitch.configPeakOutputReverse(-.5 ,10);
+		pitch.configPeakOutputReverse(-.5, 10);
 		pitch.configPeakOutputForward(.5, 10);
 
 		configureBrakeMode();
-		//configureSoftLimits();
+		// configureSoftLimits();
 		shouldSoftLimit(false);
 		zeroEncoder();
 		setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee, RobotMap.pitchFFF);
 	}
+
 	private void configureBrakeMode()
 	{
 		pitch.setNeutralMode(NeutralMode.Brake);
@@ -50,11 +51,11 @@ public class LateralPitch extends Subsystem
 		pitch.configForwardSoftLimitEnable(true, 10);
 		pitch.configReverseSoftLimitEnable(true, 10);
 	}
-	
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
-		pitch.overrideSoftLimitsEnable(shouldSoftLimit);
+		pitch.configForwardSoftLimitEnable(shouldSoftLimit, 10);
+		pitch.configReverseSoftLimitEnable(shouldSoftLimit, 10);
 	}
 
 	public void rotate(double power)
@@ -69,9 +70,10 @@ public class LateralPitch extends Subsystem
 		pitch.config_kI(0, I, 0);
 
 		pitch.config_kD(0, D, 0);
-		
+
 		pitch.config_kF(0, F, 0);
 	}
+
 	public void zeroEncoder()
 	{
 		pitch.setSelectedSensorPosition(0, 0, 0);
@@ -84,6 +86,7 @@ public class LateralPitch extends Subsystem
 	{
 		pitch.set(ControlMode.Position, enc);
 	}
+
 	public void setAngleSetpointPitch(double angle)
 	{
 		pitch.set(ControlMode.Position, angleToEnc(angle));
@@ -91,7 +94,7 @@ public class LateralPitch extends Subsystem
 
 	private double angleToEnc(double angle)
 	{
-		return angle*45;
+		return angle * 45;
 	}
 
 	private int maxLoopNumber = 0;
@@ -147,6 +150,5 @@ public class LateralPitch extends Subsystem
 	{
 		return pitch.getSelectedSensorPosition(0);
 	}
-
 
 }

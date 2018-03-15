@@ -21,6 +21,7 @@ import org.usfirst.frc.team3539.robot.autons.LeftLeftScaleOrSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autons.LeftLeftSwitchOrLeftScale;
 import org.usfirst.frc.team3539.robot.autons.RightRightScaleorSwitchOrStraight;
 import org.usfirst.frc.team3539.robot.autons.RightRightSwitchOrRightScale2;
+import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.logger.Logger;
 import org.usfirst.frc.team3539.robot.logger.Reader;
@@ -311,6 +312,7 @@ public class Robot extends IterativeRobot
 		// autonChooser.addObject("Auton Turn 180", new AutonTurn(180));
 
 		SmartDashboard.putData(Scheduler.getInstance());
+		SmartDashboard.putData(new DisableSoftLimits());
 	}
 	
 

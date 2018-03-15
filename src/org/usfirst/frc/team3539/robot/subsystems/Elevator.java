@@ -111,8 +111,8 @@ public class Elevator extends Subsystem
 
 	public void shouldSoftLimit(boolean shouldSoftLimit)
 	{
-		liftMaster.configForwardSoftLimitEnable(true, 10);
-		liftMaster.configReverseSoftLimitEnable(true, 10);
+		liftMaster.configForwardSoftLimitEnable(shouldSoftLimit, 10);
+		liftMaster.configReverseSoftLimitEnable(shouldSoftLimit, 10);
 	}
 
 	public void setMotorPower(double throttle)
