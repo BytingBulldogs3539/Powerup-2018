@@ -160,7 +160,7 @@ public class Logger {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		logTimer.cancel();
+		//logTimer.cancel(); // hey uncomment this soon
 	}
 	
 	//adds the reader object that interrogates the desired class object

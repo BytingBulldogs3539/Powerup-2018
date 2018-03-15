@@ -23,7 +23,8 @@ public class IntakeCommand extends Command
 
 	protected void execute()
 	{
-		double x =-Robot.oi.two.getLeftTrigger()+Robot.oi.two.getRightTrigger();
+		double x = -Robot.oi.two.getLeftTrigger()+Robot.oi.two.getRightTrigger();
+		x = Math.max(x, -.6);
 		//System.out.println("execute");
 		Robot.intake.setMotorPower(Math.copySign(Math.sqrt(Math.abs(x)), x));
 		//System.out.println("power"+Math.copySign(Math.sqrt(Math.abs(x)), x));

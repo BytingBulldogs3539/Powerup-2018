@@ -54,7 +54,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static Logger l = new Logger();
+	//public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
@@ -85,11 +85,11 @@ public class Robot extends IterativeRobot
 //		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
 		
-		l.add(new Reader(driveTrain, 1 , true));
-		l.add(new Reader(intake, 1, true));
-		l.add(new Reader(elevator, 1, true));
-		l.add(new Reader(pitch, 1, true));
-		l.add(new Reader(solenoids, 1, true));
+//		l.add(new Reader(driveTrain, 1 , true));
+//		l.add(new Reader(intake, 1, true));
+//		l.add(new Reader(elevator, 1, true));
+//		l.add(new Reader(pitch, 1, true));
+//		l.add(new Reader(solenoids, 1, true));
 
 		SmartInit();
 
@@ -123,12 +123,12 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
-		l.stop();
+//		l.stop();
 	}
 
 	public void autonomousInit()
 	{
-		l.start();
+//		l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
@@ -211,7 +211,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-		l.start();
+//		l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
