@@ -63,4 +63,52 @@ public class PracMap implements IMap
 		return .145;//.145
 	}
 
+	@Override
+	public double getPitchPea() {
+		// TODO Auto-generated method stub
+		return .23;
+	}
+
+	@Override
+	public double getPitchEye() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getPitchDee() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getPitchFFF() {
+		// TODO Auto-generated method stub
+		return -.03;
+	}
+
+	@Override
+	public int getLIntakeMotor() {
+		// TODO Auto-generated method stub
+		return 7;
+	}
+
+	@Override
+	public int getRIntakeMotor() {
+		// TODO Auto-generated method stub
+		return 8;
+	}
+
+	@Override
+	public int getElevatorMotor1() {
+		// TODO Auto-generated method stub
+		return 4;
+	}
+
+	@Override
+	public int getElevatorMotor2() {
+		// TODO Auto-generated method stub
+		return 5;
+	}
+
 }

@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.logger;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 import java.util.ArrayList;
@@ -9,6 +10,8 @@ public class Reader {
 
 	private Object o;
 	private List<String> fields = new ArrayList<String>();
+	private List<String> methods = new ArrayList<String>();
+	
 	private int level = 3;
 	private boolean readPrivate = false;
 	
@@ -20,7 +23,7 @@ public class Reader {
 		
 		this.Update();
 	}
-	
+
 	public int setLevel(int level)
 	{
 		this.level = level;
@@ -33,6 +36,17 @@ public class Reader {
 		this.readPrivate = readPrivate;
 		this.Update();
 		return this.readPrivate;
+	}
+	
+	public void addMethod(String name)
+	{
+		for(Method m: getMethods())
+		{
+			if(m.getParameterTypes().length == 0 && name == m.getName())
+			{
+				this.methods.add(m.getName());
+			}
+		}		
 	}
 	
 	public void Update()
@@ -73,7 +87,7 @@ public class Reader {
 				if (m != null)
 					name = m.invoke(o, null).toString() + "." + f.getName();
 				else
-					name = o.getClass().getName() + "xx." + f.getName();
+					name = o.getClass().getName() + "--." + f.getName();
 			}
 			catch(Exception e)
 			{
@@ -81,6 +95,10 @@ public class Reader {
 			}
 			values.add(name);
 
+		}
+		for(String str : methods)
+		{
+			values.add(str + "()");
 		}
 		return String.join(",", values);		
 	}
@@ -102,6 +120,25 @@ public class Reader {
 				e.printStackTrace();
 			}
 		}
+		for(String str : methods)
+		{
+			Method m = getMethod(str);
+
+			try {
+				try {
+					values.add(m.invoke(o, null).toString());
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		
 		return String.join(",", values);
 	}
@@ -111,11 +148,30 @@ public class Reader {
 		return o.getClass().getFields();
 	}
 	
+	private Method[] getMethods()
+	{
+		return o.getClass().getMethods();
+	}
+	
 	private Field getField(String name)
 	{
 		try {
 			return o.getClass().getField(name);
 		} catch (NoSuchFieldException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	private Method getMethod(String name)
+	{
+		try {
+			return o.getClass().getMethod(name);
+		} catch (NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (SecurityException e) {

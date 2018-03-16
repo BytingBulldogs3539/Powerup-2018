@@ -17,13 +17,8 @@ public class AutonElevatorCommand extends InstantCommand
 	// requires(Robot.elevator);
 	//
 	// Robot.elevator.setSetpointLift(position);
-	// Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea",
-	// RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye",
-	// RobotMap.elevatorEye),
-	// SmartDashboard.getNumber("elevatorDee",
-	// RobotMap.elevatorDee),SmartDashboard.getNumber("elevatorFFF",
-	// RobotMap.elevatorFFF));
-	//
+
+	
 	// }
 
 	public AutonElevatorCommand(double inches)
@@ -36,6 +31,12 @@ public class AutonElevatorCommand extends InstantCommand
 
 	protected void initialize()
 	{
+		 Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea",
+				 RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye",
+				 RobotMap.elevatorEye),
+				 SmartDashboard.getNumber("elevatorDee",
+				 RobotMap.elevatorDee),SmartDashboard.getNumber("elevatorFFF",
+				 RobotMap.elevatorFFF));
 		Robot.elevator.setSetpointLift(myinches);	
 	}
 }

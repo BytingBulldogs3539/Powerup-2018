@@ -42,9 +42,9 @@ public final class DriveTrain extends Subsystem
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	@Log(level = 1) int leftEncoderPos;
-	@Log(level = 1) int rightEncoderPos;
-	@Log(level = 1) int leftEncoderVel;
+	@Log(level = 1) public int leftEncoderPos;
+	@Log(level = 1) public int rightEncoderPos;
+	@Log(level = 1) public int leftEncoderVel;
 	@Log(level = 1) int rightEncoderVel;
 	@Log(level = 1) double leftMotorPercent;
 	@Log(level = 1) double rightMotorPercent;

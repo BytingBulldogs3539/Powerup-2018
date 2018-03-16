@@ -1,7 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autoncommands.AutonElevatorCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
+import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 //import org.usfirst.frc.team3539.robot.commands.loadClass;
 import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
@@ -52,11 +54,13 @@ public class OI
 
 		//two.buttonTR.whenReleased(new IntakeCommand(0));
 		//two.buttonTL.whenReleased(new IntakeCommand(0));
-		two.buttonA.whenPressed(new ElevatorPositionCommand(20));
-		two.buttonX.whenPressed(new ElevatorPositionCommand(30));
-		two.buttonY.whenPressed(new ElevatorPositionCommand(60));
+		two.buttonA.whenPressed(new TeleopElevatorPositionCommand(2));
+		two.buttonX.whenPressed(new TeleopElevatorPositionCommand(30));
+		two.buttonY.whenPressed(new TeleopElevatorPositionCommand(66));
+	//	two.buttonY.whenPressed(new ElevatorPositionCommand(66.14));
 		
 	//	two.buttonSELECT.whenPressed(new IntakeCommand());
 		//two.buttonB.whenPressed(new PitchCommand());
+		two.buttonSTART.whenPressed(new ElevatorManualCommand());
 	}
 }
