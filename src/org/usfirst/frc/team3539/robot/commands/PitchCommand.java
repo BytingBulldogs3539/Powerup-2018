@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class PitchCommand extends Command
 {
-	double enc;
 	int scale;
 	boolean checker;
 	int lowerPseudo;
@@ -16,7 +15,6 @@ public class PitchCommand extends Command
 	public PitchCommand()
 	{
 		requires(Robot.pitch);
-		this.enc = 0;
 		scale = 220;
 		lowerPseudo = 9000; // higher = lower
 	}
@@ -25,8 +23,8 @@ public class PitchCommand extends Command
 	{
 		// Robot.pitch.setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee, RobotMap.pitchFFF);
 
-		enc = Robot.pitch.getEncoder();
-		Robot.pitch.setSetpointPitch(enc);
+		Robot.pitch.enc = Robot.pitch.getEncoder();
+		Robot.pitch.setSetpointPitch(Robot.pitch.enc);
 		// System.out.println(Robot.pitch.getEncoder());
 		checker = true;
 	}
@@ -36,29 +34,29 @@ public class PitchCommand extends Command
 		// Change (stick is up or down enough)
 		if (Robot.oi.two.getRightStickY() >= .2 || Robot.oi.two.getRightStickY() <= -.2)
 		{
-			enc = enc + scale * Robot.oi.two.getRightStickY();
-			if (enc > lowerPseudo)
-				enc = lowerPseudo;
-			Robot.pitch.setSetpointPitch(enc);
+			Robot.pitch.enc += scale * Robot.oi.two.getRightStickY();
+			if (Robot.pitch.enc > lowerPseudo)
+				Robot.pitch.enc = lowerPseudo;
+			Robot.pitch.setSetpointPitch(Robot.pitch.enc);
 			checker = true;
 		}
 		// Deadband reset (hold)
 		else if (Robot.oi.two.getRightStickY() < .2 && Robot.oi.two.getRightStickY() > -.2 && checker)
 		{
-			enc = Robot.pitch.getEncoder();
-			if (enc > lowerPseudo)
-				enc = lowerPseudo;
-			Robot.pitch.setSetpointPitch(enc);
+			Robot.pitch.enc = Robot.pitch.getEncoder();
+			if (Robot.pitch.enc > lowerPseudo)
+				Robot.pitch.enc = lowerPseudo;
+			Robot.pitch.setSetpointPitch(Robot.pitch.enc);
 			checker = false;
 		}
 		// Manual reset
 		if (Robot.oi.two.buttonB.get())
 		{
 			Robot.pitch.zeroEncoder();
-			enc = 0;
-			Robot.pitch.setSetpointPitch(enc);
+			Robot.pitch.enc = 0;
+			Robot.pitch.setSetpointPitch(Robot.pitch.enc);
 		}
-		// System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + enc);
+		// System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + Robot.pitch.enc);
 	}
 
 	@Override

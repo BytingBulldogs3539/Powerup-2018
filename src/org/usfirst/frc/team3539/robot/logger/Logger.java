@@ -18,7 +18,7 @@ public class Logger {
 	public static final double WRITE_TIME = .1;
 	public static final long READ_TIME_MS = 10;
 	
-	private List<Reader> readers = new ArrayList<Reader>();
+	private List<Reader> Readers = new ArrayList<Reader>();
 	
 	private static Logger inst = null;
 	private File logFile = null;
@@ -33,7 +33,7 @@ public class Logger {
 	private Thread writeThread;
 	private Thread readThread;
 	
-	//Singleton for logger instance
+	//Singleton for Logger instance
 	public static Logger getInstance()
 	{
 		if (inst == null)
@@ -56,12 +56,13 @@ public class Logger {
 		}
 		
 		logFile = new File(getLogDirectory(), String.format("%04d.log",number+1));
-
+		logTimer = new Timer("Logger");
 		try{
 			FileOutputStream out = new FileOutputStream(logFile);
 			OutputStreamWriter stream = new OutputStreamWriter(out);
 			writer = new BufferedWriter(stream);
 		} catch (IOException e) {
+			System.out.println("Error creating file");
 			e.printStackTrace();
 		}
 	}
@@ -95,10 +96,11 @@ public class Logger {
 			{
 				public void run()
 				{
+					System.out.println("Reading");
 					List<String> elements = new ArrayList<String>();
  
 					elements.add(Float.toString(System.currentTimeMillis() - counter));
-					for (Reader r : readers)
+					for (Reader r : Readers)
 					{
 						elements.add(r.read());
 					}
@@ -115,14 +117,14 @@ public class Logger {
 				}
 			};
 	
-	//Start the logger but starting the read and write threads.
+	//Start the Logger but starting the read and write threads.
 	public void start()
 	{
 		if (writer != null)
 		{
 			List<String> elements = new ArrayList<String>();
 			elements.add("time (ms)");
-			for (Reader r : readers)
+			for (Reader r : Readers)
 			{
 				elements.add(r.header());
 
@@ -136,7 +138,8 @@ public class Logger {
 				e.printStackTrace();
 			}	
 			
-			logTimer = new Timer("logger");
+			logTimer = new Timer("Logger");
+
 			logTimer.schedule(readTask, 0L, READ_TIME_MS);
 
 			writeThread = new Thread(writeTask);
@@ -146,11 +149,11 @@ public class Logger {
 			writeThread.start();
 		} else 
 		{
-			System.out.println("[logger] No writer enabled...");
+			System.out.println("[Logger] No writer enabled...");
 		}
 	}
 
-	//stops the writer and reader thread. Writer must be stopped first or the thread will lock.
+	//stops the writer and Reader thread. Writer must be stopped first or the thread will lock.
 	public void stop()
 	{
 		this.finished = true;
@@ -160,14 +163,14 @@ public class Logger {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		//logTimer.cancel(); // hey uncomment this soon
+		//logTimer.();
 	}
 	
-	//adds the reader object that interrogates the desired class object
+	//adds the Reader object that interrogates the desired class object
 	public void add(Reader o)
 	{
 		if (writeThread == null)
-			readers.add(o);
+			Readers.add(o);
 	}
 	
 	//Find the UNIX mount point or defaults to "C:/test"
@@ -182,7 +185,7 @@ public class Logger {
             iter--;
         }
         //return new File("C:\\test");
-        return new File("/home/lvuser/logs");
+        return new File("/home/lvuser");
 	}
 	
 	//Gets or creats the logging directory ".../log"
@@ -191,7 +194,7 @@ public class Logger {
 		File base = determineMountPoint();
 		if (base == null)
 			return base;
-		
+
 		File logDir = new File(base,"logs");
 		if (!logDir.exists())
 			logDir.mkdirs();

@@ -160,6 +160,7 @@ public class Elevator extends Subsystem
 		// DO NOT ZERO ENCODER
 
 		liftMaster.set(ControlMode.Position, inchToEncoder(inches));
+	//	System.out.println(inchToEncoder(inches));
 	}
 
 	public void setSetpointLift(ElevatorPosition position)
@@ -198,6 +199,7 @@ public class Elevator extends Subsystem
 			if (Math.abs(liftMaster.getClosedLoopError(0)) <= allowedErrorRange)
 			{
 				onTargetCounter++;
+				System.out.println(onTargetCounter);
 			}
 			else
 			{
@@ -227,6 +229,7 @@ public class Elevator extends Subsystem
 
 		// set tolerance in ticks
 		allowedErrorRange = ticks;
+		this.maxLoopNumber=maxLoopNumber;
 	}
 
 	// Will be a different conversion ratio

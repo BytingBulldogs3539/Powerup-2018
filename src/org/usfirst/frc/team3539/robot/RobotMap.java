@@ -1,11 +1,12 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
- * around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into
+ * to a variable name. This provides flexibility changing wiring, makes checking
+ * the wiring easier and significantly reduces the number of magic numbers
+ * floating around.
  */
-public class RobotMap
-{
+public class RobotMap {
 	// CONTROLLER PORT
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
@@ -14,13 +15,13 @@ public class RobotMap
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botProfile = new PracMap();
+	private static IMap botMap = new PracMap();
 
 	// PDP
 	public static final int pdp = 30;
 
 	// PCM
-	public static final int pcm = 20;// Disable 00 Prac 20 Comp 20
+	public static final int pcm = 20;// Disable 00
 
 	public static int intakesolOn = 0;
 	public static int intakesolOff = 1;
@@ -32,35 +33,28 @@ public class RobotMap
 	public static int shiftersolOff = 2;
 
 	// PITCH
-	public static final int pitch = botProfile.getPitch();
-	public static final int pitchLimitUp = 0;
-	public static final int pitchLimitDown = 0;
+	public static final int pitch = botMap.getPitch();
 
-	public static double pitchPea = .6;//.6 comp //.23 prac
-	public static double pitchEye = .0;
-	public static double pitchDee = .0;
-	public static double pitchFFF = -.03;
+	public static double pitchPea = botMap.getPitchPea();
+	public static double pitchEye = botMap.getPitchEye();
+	public static double pitchDee = botMap.getPitchDee();
+	public static double pitchFFF = botMap.getPitchFFF();
 
 	public static int pitchEncPosDown = 0; // SOME INT
 	public static int pitchEncPosUp = 0; // SOME INT
 	public static int pitchEncPosIntake = 0; // SOME INT
 
 	// DRIVETRAIN
-	public static final int lf = botProfile.getLf();
-	public static final int lb = botProfile.getLb();
+	public static final int lf = botMap.getLf();
+	public static final int lb = botMap.getLb();
 
-	public static final int rf = botProfile.getRf();
-	public static final int rb = botProfile.getRb();
+	public static final int rf = botMap.getRf();
+	public static final int rb = botMap.getRb();
 
-	public static double drivePea = botProfile.getDrivePea();
-	public static double driveEye = botProfile.getDriveEye();
-	public static double driveDee = botProfile.getDriveDee();
-	public static double driveFFF = botProfile.getDriveFFF();
-
-	// public static double drivePea = .5;
-	// public static double driveEye = 0.0;
-	// public static double driveDee = 0.0;
-	// public static double driveFFF = .145;
+	public static double drivePea = botMap.getDrivePea();
+	public static double driveEye = botMap.getDriveEye();
+	public static double driveDee = botMap.getDriveDee();
+	public static double driveFFF = botMap.getDriveFFF();
 
 	public static double turnPeaWheels = 0.1;
 	public static double turnEyeWheels = 0.00005;
@@ -101,20 +95,20 @@ public class RobotMap
 	public static int kBaseTrajPeriodMs = 10;
 
 	// INTAKE
-	public static final int lIntakeMotor = 7;// Prac 7
-	public static final int rIntakeMotor = 8;// Prac 8
+	public static final int lIntakeMotor = botMap.getLIntakeMotor();// Prac 7
+	public static final int rIntakeMotor = botMap.getRIntakeMotor();// Prac 8
 
 	// Elevator
-	public static final int elevatorMotorOne = 4;// Prac 3 // Broken talon 4 // Prac backup 3
-	public static final int elevatorMotorTwo = 5;// Prac 5
+	public static final int elevatorMotorOne = botMap.getElevatorMotor1();// Prac 3 // Broken talon 4 // Prac backup 3
+	public static final int elevatorMotorTwo = botMap.getElevatorMotor2();// Prac 5
 	public static final int elevatorEncoderFloor = 0; // SOME INT
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
 
-	public static double elevatorPea = .95;//.95 comp
+	public static double elevatorPea = .75;// .95 comp
 	public static double elevatorEye = 0.0;
-	public static double elevatorDee = 1;;//1 comp
+	public static double elevatorDee = 1;;// 1 comp
 	public static double elevatorFFF = 0;
 
 	// RANGE FINDING

@@ -17,4 +17,13 @@ public interface IMap
 	public double getDriveDee();
 	public double getDriveFFF();
 
+	double getPitchPea();
+	double getPitchEye();
+	double getPitchDee();
+	double getPitchFFF();
+	
+	public int getLIntakeMotor();
+	public int getRIntakeMotor();
+	public int getElevatorMotor1();
+	public int getElevatorMotor2();
 }

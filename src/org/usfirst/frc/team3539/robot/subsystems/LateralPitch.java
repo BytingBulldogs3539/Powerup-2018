@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class LateralPitch extends Subsystem
 {
 	private TalonSRX pitch;
+	public double enc;
 
 	public enum PitchAngle
 	{
@@ -21,6 +22,7 @@ public class LateralPitch extends Subsystem
 
 	public LateralPitch()
 	{
+		enc = 0;
 		pitch = new TalonSRX(RobotMap.pitch);
 
 		pitch.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Absolute, 0, 10);
@@ -76,10 +78,11 @@ public class LateralPitch extends Subsystem
 
 	public void zeroEncoder()
 	{
-		pitch.setSelectedSensorPosition(0, 0, 0);
-		pitch.getSensorCollection().setPulseWidthPosition(0, 0);
-		pitch.getSensorCollection().setQuadraturePosition(0, 0);
-		pitch.getSensorCollection().setAnalogPosition(0, 0);
+		enc=0;
+		pitch.setSelectedSensorPosition(0, 0, 10);
+		pitch.getSensorCollection().setPulseWidthPosition(0, 10);
+		pitch.getSensorCollection().setQuadraturePosition(0, 10);
+		pitch.getSensorCollection().setAnalogPosition(0, 10);
 	}
 
 	public void setSetpointPitch(double enc)
