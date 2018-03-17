@@ -111,4 +111,28 @@ public class PracMap implements IMap
 		return 5;
 	}
 
+	@Override
+	public double getElevatorPea() {
+		// TODO Auto-generated method stub
+		return .2;
+	}
+
+	@Override
+	public double getElevatorEye() {
+		// TODO Auto-generated method stub
+		return 0.0;
+	}
+
+	@Override
+	public double getElevatorDee() {
+		// TODO Auto-generated method stub
+		return 1.2;
+	}
+
+	@Override
+	public double getElevatorFFF() {
+		// TODO Auto-generated method stub
+		return 0.0;
+	}
+
 }

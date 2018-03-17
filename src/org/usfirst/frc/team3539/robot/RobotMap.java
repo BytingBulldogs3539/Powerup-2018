@@ -29,8 +29,8 @@ public class RobotMap {
 	public static int locksolOn = 5;
 	public static int locksolOff = 4;
 
-	public static int shiftersolOn = 3;
-	public static int shiftersolOff = 2;
+	public static int shiftersolOn = 2;
+	public static int shiftersolOff = 3;
 
 	// PITCH
 	public static final int pitch = botMap.getPitch();
@@ -77,8 +77,8 @@ public class RobotMap {
 	public static final double robotCir = 91;
 
 	// Drivetrain Deadbands
-	public static double throttleDeadband = 0.02;
-	public static double wheelDeadband = 0.02;
+	public static double throttleDeadband = 0.05;
+	public static double wheelDeadband = 0.05;
 
 	// Determines the upper threshold where turning is limited to make high speed
 	// travel more controllable
@@ -106,10 +106,10 @@ public class RobotMap {
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
 
-	public static double elevatorPea = .2;// .95 comp
-	public static double elevatorEye = 0.0;
-	public static double elevatorDee = 1.2;;// 1 comp
-	public static double elevatorFFF = 0;
+	public static double elevatorPea = botMap.getElevatorPea();// .95 comp
+	public static double elevatorEye = botMap.getElevatorEye();
+	public static double elevatorDee = botMap.getElevatorDee();// 1 comp
+	public static double elevatorFFF = botMap.getElevatorFFF();
 
 	// RANGE FINDING
 	public static final int frontRangeFinder = 0;

@@ -109,7 +109,7 @@ public final class DriveTrain extends Subsystem
 		// leftTrack = new BulldogMotionProfile(lf, "Left Track ");
 		// rightTrack = new BulldogMotionProfile(rf, "Right Track ");
 
-		// setBrakeMode(true);
+		 setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
@@ -217,7 +217,7 @@ public final class DriveTrain extends Subsystem
 	public void driveArcade(double throttle, double wheel)
 	{
 		//drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle), Math.copySign(Math.pow(wheel, 2), wheel));
-		drive.driveArcade(throttle, wheel);
+		drive.driveArcade(throttle * 0.8, wheel* 0.8);
 	}
 
 	public void setPID(double P, double I, double D, double F)
@@ -333,7 +333,7 @@ public final class DriveTrain extends Subsystem
 		SmartDashboard.putNumber("Left Enc VEL", lf.getSelectedSensorVelocity(0));
 	}
 
-	public void effectiveArcadeDrive(double throttle, double wheel)
+	public void effectiveDriveArcade(double throttle, double wheel)
 	{
 		wheel = applyDeadband(wheel, RobotMap.wheelDeadband);
 		throttle = applyDeadband(throttle, RobotMap.throttleDeadband);

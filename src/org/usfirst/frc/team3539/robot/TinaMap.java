@@ -110,4 +110,28 @@ public class TinaMap implements IMap // tinamap is broken btw  from:devon
 		return 0;
 	}
 
+	@Override
+	public double getElevatorPea() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getElevatorEye() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getElevatorDee() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double getElevatorFFF() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

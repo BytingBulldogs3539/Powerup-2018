@@ -56,13 +56,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static Logger l = new Logger();
+	//public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 	public static Solenoids solenoids = new Solenoids();
-	public static SerialSub serialSub = new SerialSub();
+	//public static SerialSub serialSub = new SerialSub();
 	public static int counter = 0;
 	public static boolean done = false;
 
@@ -77,8 +77,8 @@ public class Robot extends IterativeRobot
 	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
-	SendableChooser<Command> positionChooser = new SendableChooser<Command>();
-	SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
+	//SendableChooser<Command> positionChooser = new SendableChooser<Command>();
+	//SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
 	SendableChooser<Command> autonChooser = new SendableChooser<Command>();
 
 	public void robotInit()
@@ -86,27 +86,28 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 //		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
-		
-		Reader d = new Reader(driveTrain, 1 , true);
-		d.addMethod("getName");
-		l.add(d);
-		Reader i = new Reader(intake, 1 , true);
-		i.addMethod("getName");
-		l.add(i);
-		Reader e = new Reader(elevator, 1 , true);
-		e.addMethod("getName");
-		l.add(e);
-		Reader p = new Reader(pitch, 1 , true);
-		p.addMethod("getName");
-		l.add(p);
-		Reader s = new Reader(solenoids, 1 , true);
-		s.addMethod("getName");
-		l.add(s);
+//		
+//		Reader d = new Reader(driveTrain, 1 , true);
+//		d.addMethod("getName");
+//		l.add(d);
+//		Reader i = new Reader(intake, 1 , true);
+//		i.addMethod("getName");
+//		l.add(i);
+//		Reader e = new Reader(elevator, 1 , true);
+//		e.addMethod("getName");
+//		l.add(e);
+//		Reader p = new Reader(pitch, 1 , true);
+//		p.addMethod("getName");
+//		l.add(p);
+//		Reader s = new Reader(solenoids, 1 , true);
+//		s.addMethod("getName");
+//		l.add(s);
 
 		SmartInit();
 
 		try
 		{
+//		
 			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 			cameraOne.setResolution(240, 135);
 			cameraOne.setFPS(20);

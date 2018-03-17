@@ -33,7 +33,7 @@ public class ElevatorPositionCommand extends InstantCommand {
 		myinches = inches;
 		requires(Robot.elevator);
 
-		Robot.elevator.setupOnTarget(0, 10);
+		Robot.elevator.setupOnTarget(100, 10);
 	}
 
 	protected void initialize() {

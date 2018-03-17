@@ -86,7 +86,7 @@ public class MotionProfileExample {
 	 * How many trajectory points do we wait for before firing the motion
 	 * profile.
 	 */
-	private static final int kMinPointsInTalon = 5;
+	private static final int kMinPointsInTalon = 50;
 	/**
 	 * Just a state timeout to make sure we don't get stuck anywhere. Each loop
 	 * is about 20ms.
@@ -103,7 +103,9 @@ public class MotionProfileExample {
 	 * every 10ms.
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
-	    public void run() {  _talon.processMotionProfileBuffer();  talonR.processMotionProfileBuffer();  }
+	    public void run() {
+	    	_talon.processMotionProfileBuffer();  talonR.processMotionProfileBuffer(); 
+	    }
 	}
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	
@@ -205,7 +207,10 @@ public class MotionProfileExample {
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-						startFilling();
+						Thread filling = new Thread(fill);
+						//filling.setPriority(Thread.);
+						
+						filling.start();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -259,6 +264,9 @@ public class MotionProfileExample {
 			/* Get the motion profile status every loop */
 			_talon.getMotionProfileStatus(_status);
 			talonR.getMotionProfileStatus(statusR);
+			
+			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
+			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
 
 			_heading = _talon.getActiveTrajectoryHeading();
 			_pos = _talon.getActiveTrajectoryPosition();
@@ -287,8 +295,18 @@ public class MotionProfileExample {
 		return retval;
 	}
 	/** Start filling the MPs to all of the involved Talons. */
+	Runnable fill = new Runnable() 
+	{
+		public void run()
+		{
+			startFilling();
+		}
+	
+	};
+	
 	private void startFilling() {
 		
+		System.out.println("filling");
 		/* since this example only has one talon, just update that one */
 		startFilling(pointsr, numpoints,pointsl);
 	}
@@ -324,9 +342,22 @@ public class MotionProfileExample {
 		_talon.configMotionProfileTrajectoryPeriod(0, 10);
 		talonR.configMotionProfileTrajectoryPeriod(0, 10);
 
+		point.headingDeg = 0; /* future feature - not used in this example*/
+		pointR.headingDeg = 0; /* future feature - not used in this example*/
+
+		point.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
+		pointR.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
+
+		point.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
+		pointR.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
+
+		
+		point.timeDur = GetTrajectoryDuration((int)profileL[0][2]);
+		pointR.timeDur = GetTrajectoryDuration((int)profileR[0][2]);//0=i used to be in for loop
+		
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
-			System.out.println(i);
+		//	System.out.println("motion profile i"+i);
 			double positionRot = profileL[i][0];
 			double positionRotR = profileR[i][0];
 
@@ -340,17 +371,8 @@ public class MotionProfileExample {
 			point.velocity = velocityRPM * 4096 / 600.0; //Convert RPM to Units/100ms
 			pointR.velocity = velocityRPMR * 4096 / 600.0; //Convert RPM to Units/100ms
 
-			point.headingDeg = 0; /* future feature - not used in this example*/
-			pointR.headingDeg = 0; /* future feature - not used in this example*/
-
-			point.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
-			pointR.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
-
-			point.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
-			pointR.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
-
-			point.timeDur = GetTrajectoryDuration((int)profileL[i][2]);
-			pointR.timeDur = GetTrajectoryDuration((int)profileR[i][2]);
+	
+			
 
 			point.zeroPos = false;
 			pointR.zeroPos = false;

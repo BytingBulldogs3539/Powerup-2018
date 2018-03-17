@@ -22,6 +22,11 @@ public interface IMap
 	double getPitchDee();
 	double getPitchFFF();
 	
+	double getElevatorPea();
+	double getElevatorEye();
+	double getElevatorDee();
+	double getElevatorFFF();
+	
 	public int getLIntakeMotor();
 	public int getRIntakeMotor();
 	public int getElevatorMotor1();
