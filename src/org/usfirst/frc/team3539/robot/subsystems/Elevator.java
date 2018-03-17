@@ -146,13 +146,14 @@ public class Elevator extends Subsystem
 
 	public void setPID(double P, double I, double D, double F)
 	{
-		liftMaster.config_kF(0, F, 10);
-
-		liftMaster.config_kP(0, P, 10);
-
-		liftMaster.config_kI(0, I, 10);
-
-		liftMaster.config_kD(0, D, 10);
+//		liftMaster.config_kF(0, F, 10);
+//
+//		liftMaster.config_kP(0, P, 10);
+//
+//		liftMaster.config_kI(0, I, 10);
+//
+//		liftMaster.config_kD(0, D, 10);
+	//	liftMaster.configClosedloopRamp(.15, 10);
 	}
 
 	public void setSetpointLift(double inches)

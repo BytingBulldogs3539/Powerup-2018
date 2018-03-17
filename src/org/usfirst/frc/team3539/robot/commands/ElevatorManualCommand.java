@@ -19,11 +19,12 @@ public class ElevatorManualCommand extends Command
 
 	protected void initialize()
 	{
-		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
-				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
-				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
-		
+//	{
+//		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
+//				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
+//				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
+//				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
+//		
 		
 	}
 

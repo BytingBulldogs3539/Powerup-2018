@@ -29,15 +29,16 @@ public class TeleopElevatorPositionCommand extends Command {
 		requires(Robot.elevator);
 
 
-//		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
-//				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-//				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
-//				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
+		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
+			SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
+		SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
+		SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
+		
 
 		myinches = inches;
 
-		Robot.elevator.setupOnTarget(0, 10);
-		setTimeout(2);
+		Robot.elevator.setupOnTarget(200, 10);
+		setTimeout(3);
 
 	}
 

@@ -177,14 +177,14 @@ public final class DriveTrain extends Subsystem
 		lf.configPeakCurrentLimit(35, 10);
 		rf.configPeakCurrentLimit(35, 10);
 
-		lf.configPeakCurrentDuration(200, 10);
-		rf.configPeakCurrentDuration(200, 10);
+		lf.configPeakCurrentDuration(100, 10);
+		rf.configPeakCurrentDuration(100, 10);
 
-		lf.configContinuousCurrentLimit(35, 10);
-		rf.configContinuousCurrentLimit(35, 10);
+		lf.configContinuousCurrentLimit(30, 10);
+		rf.configContinuousCurrentLimit(30, 10);
 
-		lf.enableCurrentLimit(false); // TODO - Change to true and add rest of current code
-		rf.enableCurrentLimit(false);
+		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
+		rf.enableCurrentLimit(true);
 	}
 
 	public void setSensorPhase(boolean phase)
@@ -216,6 +216,7 @@ public final class DriveTrain extends Subsystem
 
 	public void driveArcade(double throttle, double wheel)
 	{
+		//drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle), Math.copySign(Math.pow(wheel, 2), wheel));
 		drive.driveArcade(throttle, wheel);
 	}
 
