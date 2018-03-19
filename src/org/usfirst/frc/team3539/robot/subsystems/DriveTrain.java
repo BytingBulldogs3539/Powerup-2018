@@ -14,6 +14,7 @@ import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.utilities.BulldogMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
 import org.usfirst.frc.team3539.robot.logger.Log;
+import org.usfirst.frc.team3539.robot.logger.Reader;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -42,17 +43,27 @@ public final class DriveTrain extends Subsystem
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	@Log(level = 1) public int leftEncoderPos;
-	@Log(level = 1) public int rightEncoderPos;
-	@Log(level = 1) public int leftEncoderVel;
-	@Log(level = 1) int rightEncoderVel;
-	@Log(level = 1) double leftMotorPercent;
-	@Log(level = 1) double rightMotorPercent;
-	@Log(level = 1) double driveForwardStick;
-	@Log(level = 1) double driveTurnStick;
-	@Log(level = 1) double leftCurrent;
-	@Log(level = 1) double rightCurrent;
-	
+	@Log(level = 1)
+	public int leftEncoderPos;
+	@Log(level = 1)
+	public int rightEncoderPos;
+	@Log(level = 1)
+	public int leftEncoderVel;
+	@Log(level = 1)
+	public int rightEncoderVel;
+	@Log(level = 1)
+	public double leftMotorPercent;
+	@Log(level = 1)
+	public double rightMotorPercent;
+	@Log(level = 1)
+	public double driveForwardStick;
+	@Log(level = 1)
+	public double driveTurnStick;
+	@Log(level = 1)
+	double leftCurrent;
+	@Log(level = 1)
+	double rightCurrent;
+
 	public DriveTrain()
 	{
 
@@ -63,6 +74,10 @@ public final class DriveTrain extends Subsystem
 
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
+
+		Reader r = new Reader(rf, 1, true);
+		r.addMethod("getSelectedSensorPosition");
+		Robot.l.add(r);
 
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
@@ -109,19 +124,19 @@ public final class DriveTrain extends Subsystem
 		// leftTrack = new BulldogMotionProfile(lf, "Left Track ");
 		// rightTrack = new BulldogMotionProfile(rf, "Right Track ");
 
-		 setBrakeMode(true);
+		setBrakeMode(true);
 		setFollower();
 		setInverted();
 		// Omar CTRE I hate you sometimes - Do not remove
 		enableCurrentLimit();
-		//enableRamp();
+		// enableRamp();
 
 		// SmartDashboard.putData("Accelerometer", accelerometer);
 		SmartDashboard.putData("Gyro", gyro);
 
 		setSensorPhase(false);
 	}
-	
+
 	public void updateLog()
 	{
 		leftEncoderPos = lf.getSelectedSensorPosition(0);
@@ -134,7 +149,7 @@ public final class DriveTrain extends Subsystem
 		rightMotorPercent = rf.getMotorOutputPercent();
 		leftCurrent = lf.getOutputCurrent();
 		rightCurrent = rf.getOutputCurrent();
-		
+
 	}
 
 	public void setBrakeMode(boolean shouldBrakeMode)
@@ -145,8 +160,7 @@ public final class DriveTrain extends Subsystem
 			rf.setNeutralMode(NeutralMode.Brake);
 			lb.setNeutralMode(NeutralMode.Brake);
 			rb.setNeutralMode(NeutralMode.Brake);
-		}
-		else
+		} else
 		{
 			lf.setNeutralMode(NeutralMode.Coast);
 			rf.setNeutralMode(NeutralMode.Coast);
@@ -216,8 +230,9 @@ public final class DriveTrain extends Subsystem
 
 	public void driveArcade(double throttle, double wheel)
 	{
-		//drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle), Math.copySign(Math.pow(wheel, 2), wheel));
-		drive.driveArcade(throttle * 0.8, wheel* 0.8);
+		// drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle),
+		// Math.copySign(Math.pow(wheel, 2), wheel));
+		drive.driveArcade(throttle * 0.8, wheel * 0.8);
 	}
 
 	public void setPID(double P, double I, double D, double F)
@@ -276,12 +291,12 @@ public final class DriveTrain extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange && Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
+		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
+				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
 		{
 			onTargetCounter++;
 			System.out.println(onTargetCounter);
-		}
-		else
+		} else
 		{
 			System.out.println(onTargetCounter);
 			onTargetCounter = 0;
@@ -319,14 +334,16 @@ public final class DriveTrain extends Subsystem
 
 	public void updateEncoders()
 	{
+		updateLog();
+		// if (logging)
+		// {
+		// log.print(lf.getSelectedSensorPosition(0) + "," +
+		// lf.getSelectedSensorVelocity(0) + "," + lf.getMotorOutputPercent() + "," +
+		// rf.getSelectedSensorPosition(0) + "," + rf.getSelectedSensorVelocity(0) + ","
+		// + rf.getMotorOutputPercent());
+		// log.println("");
+		// }
 
-//		if (logging)
-//		{
-//			log.print(lf.getSelectedSensorPosition(0) + "," + lf.getSelectedSensorVelocity(0) + "," + lf.getMotorOutputPercent() + "," + rf.getSelectedSensorPosition(0) + "," + rf.getSelectedSensorVelocity(0) + ","
-//					+ rf.getMotorOutputPercent());
-//			log.println("");
-//		}
-		
 		SmartDashboard.putNumber("Right Encoder", rf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Left Encoder", lf.getSelectedSensorPosition(0));
 		SmartDashboard.putNumber("Right Enc VEL", rf.getSelectedSensorVelocity(0));
@@ -433,10 +450,13 @@ public final class DriveTrain extends Subsystem
 	// public void DisabledMotionProfile()// probably want new name
 	// {
 	// lf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-	// // status 10 provides the trajectory target for motion profile AND motion magic
-	// lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+	// // status 10 provides the trajectory target for motion profile AND motion
+	// magic
+	// lf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,
+	// RobotMap.kTimeoutMs);
 	// rf.configMotionProfileTrajectoryPeriod(10, RobotMap.kTimeoutMs);
-	// rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, RobotMap.kTimeoutMs);
+	// rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10,
+	// RobotMap.kTimeoutMs);
 	// }
 
 	@Override
@@ -447,10 +467,14 @@ public final class DriveTrain extends Subsystem
 
 	public void printEnc()
 	{
-		System.out.println(" leftPosition " + lf.getSelectedSensorPosition(0) + " rightPosition " + rf.getSelectedSensorPosition(0) + " rightVelocity " + rf.getSelectedSensorVelocity(0) + " leftVelocity " + lf.getSelectedSensorVelocity(0));
-		System.out.println(" leftTragPos " + lf.getActiveTrajectoryPosition() + " leftTragVel " + lf.getActiveTrajectoryPosition());
+		System.out.println(" leftPosition " + lf.getSelectedSensorPosition(0) + " rightPosition "
+				+ rf.getSelectedSensorPosition(0) + " rightVelocity " + rf.getSelectedSensorVelocity(0)
+				+ " leftVelocity " + lf.getSelectedSensorVelocity(0));
+		System.out.println(" leftTragPos " + lf.getActiveTrajectoryPosition() + " leftTragVel "
+				+ lf.getActiveTrajectoryPosition());
 
-		System.out.println(" RightTragPos " + rf.getActiveTrajectoryPosition() + " RightTragVel " + rf.getActiveTrajectoryVelocity());
+		System.out.println(" RightTragPos " + rf.getActiveTrajectoryPosition() + " RightTragVel "
+				+ rf.getActiveTrajectoryVelocity());
 
 	}
 }
