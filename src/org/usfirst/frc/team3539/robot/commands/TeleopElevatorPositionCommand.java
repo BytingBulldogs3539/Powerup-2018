@@ -37,7 +37,7 @@ public class TeleopElevatorPositionCommand extends Command {
 
 		myinches = inches;
 
-		Robot.elevator.setupOnTarget(200, 10);
+		Robot.elevator.setupOnTarget(250, 10);
 		setTimeout(3);
 
 	}
