@@ -207,10 +207,11 @@ public class MotionProfileExample {
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-						Thread filling = new Thread(fill);
+						startFilling();
+					//	Thread filling = new Thread(fill);
 						//filling.setPriority(Thread.);
 						
-						filling.start();
+				//		filling.start();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
