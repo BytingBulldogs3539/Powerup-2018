@@ -1,5 +1,5 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class backscale implements IProfile
+public class RightScaleReverse2 implements IProfile
 {
   public static final int kNumPoints = 160;
   public static double PointsR[][] = new double[][] {
