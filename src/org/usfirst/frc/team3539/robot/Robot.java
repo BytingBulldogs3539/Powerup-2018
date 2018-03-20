@@ -157,7 +157,7 @@ public class Robot extends IterativeRobot
 	{
 		counter++;
 		System.out.println("counter " + counter);
-		if (counter > 50 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
+		if (counter > 25 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
 			if (!done)
 			{
@@ -219,7 +219,7 @@ public class Robot extends IterativeRobot
 			}
 
 		}
-		Robot.driveTrain.updateEncoders();
+		//Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
 

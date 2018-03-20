@@ -227,7 +227,7 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.config_kF(0, F, 10);
 
-		lf.config_kP(0, P, 10);
+		lf.config_kP(0, P, 10);//change back just checking something
 
 		lf.config_kI(0, I, 10);
 

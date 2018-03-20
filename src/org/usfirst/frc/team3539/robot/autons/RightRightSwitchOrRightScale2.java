@@ -4,6 +4,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAuton;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -27,9 +28,15 @@ public class RightRightSwitchOrRightScale2 extends CommandGroup
 			{
 				addSequential(new AutonRightScaleRight());
 			}
-			else
+			else if (Robot.gameData.charAt(0) == 'L')
 			{
-				addSequential(new RightToLeftSwitchAuton());
+				addSequential(new RightToLeftScaleAuton());
+
+				//addSequential(new RightToLeftSwitchAuton());
+			}
+			else 
+			{
+				addSequential(new RightToLeftScaleAuton());
 			}
 		}
 		catch (Exception e)
