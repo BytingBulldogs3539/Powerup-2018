@@ -14,9 +14,9 @@ public class Logger {
 
 	private float  counter = 0;
 	
-	public boolean debug = true;
+	public boolean debug = false;
 	public static final double WRITE_TIME = .1;
-	public static final long READ_TIME_MS = 10;
+	public static final long READ_TIME_MS = 20;
 	
 	private List<Reader> Readers = new ArrayList<Reader>();
 	
@@ -96,7 +96,6 @@ public class Logger {
 			{
 				public void run()
 				{
-					System.out.println("Reading");
 					List<String> elements = new ArrayList<String>();
  
 					elements.add(Float.toString(System.currentTimeMillis() - counter));
@@ -120,6 +119,7 @@ public class Logger {
 	//Start the Logger but starting the read and write threads.
 	public void start()
 	{
+		this.finished=false;
 		if (writer != null)
 		{
 			List<String> elements = new ArrayList<String>();
@@ -139,7 +139,7 @@ public class Logger {
 			}	
 			
 			logTimer = new Timer("Logger");
-
+			
 			logTimer.schedule(readTask, 0L, READ_TIME_MS);
 
 			writeThread = new Thread(writeTask);
