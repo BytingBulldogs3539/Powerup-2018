@@ -11,8 +11,9 @@ public class Reader
 
 	private Object o;
 	private List<String> fields = new ArrayList<String>();
-	private List<String> methods = new ArrayList<String>();
-	private List<Object> perameters = new ArrayList<Object>();
+	private List<LogMethod> methods = new ArrayList<LogMethod>();
+	
+	
 
 	private int level = 3;
 	private boolean readPrivate = false;
@@ -40,18 +41,16 @@ public class Reader
 		return this.readPrivate;
 	}
 
-	public void addMethod(String name, Object... pram)
+	public void addMethod(String className, String name, Object... pram)
 	{
 		for (Method m : getMethods())
 		{
 			System.out.println(m.getName() + ":" + m.getParameterTypes().length + ":" + name);
 			if (m.getParameterTypes().length < 4 && name == m.getName())
 			{
-				this.methods.add(m.getName());
-				this.perameters.add(pram);
+				this.methods.add(new LogMethod(className+"."+m.getName(),m,pram));
 			}
 		}
-		System.out.println(this.methods.size());
 	}
 
 	public void Update()
@@ -99,9 +98,9 @@ public class Reader
 			values.add(name);
 
 		}
-		for (String str : methods)
+		for (LogMethod lm : methods)
 		{
-			values.add(str + "()");
+			values.add(lm.name + "()");
 		}
 		return String.join(",", values);
 	}
@@ -126,31 +125,9 @@ public class Reader
 				e.printStackTrace();
 			}
 		}
-		for (String str : methods)
+		for (LogMethod lm : methods)
 		{
-
-			Method m = getMethod(str);
-			System.out.println(m.getName());
-			try
-			{
-				try
-				{
-					System.out.println("found");
-					values.add(m.invoke(o, 0).toString());//////////////////////////////////////////// Change me
-				} catch (IllegalAccessException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalArgumentException e)
-				{
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			} catch (InvocationTargetException e)
-			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			values.add(lm.invoke(o));
 		}
 
 		return String.join(",", values);
@@ -175,26 +152,6 @@ public class Reader
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (SecurityException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private Method getMethod(String name)
-	{
-		try
-		{
-			System.out.println("HERE");
-			for (Method m : getMethods())
-			{
-				if (m.getParameterTypes().length < 4 && name == m.getName())
-				{
-					return m;
-				}
-			}
 		} catch (SecurityException e)
 		{
 			// TODO Auto-generated catch block

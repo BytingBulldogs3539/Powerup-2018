@@ -44,25 +44,10 @@ public final class DriveTrain extends Subsystem
 	private int allowedErrorRange = 0;
 
 	@Log(level = 1)
-	public int leftEncoderPos;
-	@Log(level = 1)
-	public int rightEncoderPos;
-	@Log(level = 1)
-	public int leftEncoderVel;
-	@Log(level = 1)
-	public int rightEncoderVel;
-	@Log(level = 1)
-	public double leftMotorPercent;
-	@Log(level = 1)
-	public double rightMotorPercent;
-	@Log(level = 1)
 	public double driveForwardStick;
 	@Log(level = 1)
 	public double driveTurnStick;
-	@Log(level = 1)
-	double leftCurrent;
-	@Log(level = 1)
-	double rightCurrent;
+
 
 	public DriveTrain()
 	{
@@ -76,8 +61,18 @@ public final class DriveTrain extends Subsystem
 		rb = new TalonSRX(RobotMap.rb);
 
 		Reader r = new Reader(rf, 1, true);
-		r.addMethod("getSelectedSensorPosition");
+		r.addMethod("rf", "getSelectedSensorPosition", 0);
+		r.addMethod("rf", "getSelectedSensorVelocity", 0);
+		r.addMethod("rf", "getOutputCurrent");
+		r.addMethod("rf", "getMotorOutputPercent");
 		Robot.l.add(r);
+
+		Reader l = new Reader(lf, 1, true);
+		l.addMethod("lf", "getSelectedSensorPosition", 0);
+		l.addMethod("lf", "getSelectedSensorVelocity", 0);
+		l.addMethod("lf", "getOutputCurrent");
+		l.addMethod("lf", "getMotorOutputPercent");
+		Robot.l.add(l);
 
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
@@ -139,16 +134,9 @@ public final class DriveTrain extends Subsystem
 
 	public void updateLog()
 	{
-		leftEncoderPos = lf.getSelectedSensorPosition(0);
-		rightEncoderPos = rf.getSelectedSensorPosition(0);
-		leftEncoderVel = lf.getSelectedSensorVelocity(0);
-		rightEncoderVel = rf.getSelectedSensorVelocity(0);
 		driveForwardStick = Robot.oi.one.getLeftStickY();
 		driveTurnStick = Robot.oi.one.getRightStickX();
-		leftMotorPercent = lf.getMotorOutputPercent();
-		rightMotorPercent = rf.getMotorOutputPercent();
-		leftCurrent = lf.getOutputCurrent();
-		rightCurrent = rf.getOutputCurrent();
+
 
 	}
 
