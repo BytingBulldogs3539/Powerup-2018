@@ -34,6 +34,7 @@ public class AutonMotionProfileEx extends Command
 
 	protected void initialize()
 	{
+		
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
 				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		m.reset();
@@ -48,6 +49,7 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
 		m.startMotionProfile();
+
 		//m.update();
 	///Robot.driveTrain.updateEncoders();
 
@@ -71,6 +73,12 @@ public class AutonMotionProfileEx extends Command
 		else
 		{isfinished = false;
 		}
+		int z =0;
+		if ( z <1) {
+		//	m.startFilling(ProfileL, totalPointNum, ProfileR, totalPointNum);
+			z++;
+		}
+
 
 	
 	}

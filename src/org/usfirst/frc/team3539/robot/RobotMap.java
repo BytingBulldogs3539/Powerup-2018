@@ -15,7 +15,7 @@ public class RobotMap {
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botMap = new TinaMap();
+	private static IMap botMap = new PracMap();
 
 	// PDP
 	public static final int pdp = 30;

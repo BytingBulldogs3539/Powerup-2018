@@ -307,6 +307,7 @@ public class MotionProfileExample {
 	private void startFilling() {
 		
 		System.out.println("filling");
+		
 		/* since this example only has one talon, just update that one */
 		startFilling(pointsr, numpoints,pointsl);
 	}
@@ -395,6 +396,70 @@ public class MotionProfileExample {
 			talonR.pushMotionProfileTrajectory(pointR);
 		}
 	}
+//	public void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
+//	{
+//
+//		TrajectoryPoint pointL = new TrajectoryPoint();
+//		TrajectoryPoint pointR = new TrajectoryPoint();
+//
+//		if (statusR.hasUnderrun)
+//		{
+//			talonR.clearMotionProfileHasUnderrun(0);
+//
+//		}
+//		if (_status.hasUnderrun)
+//			_talon.clearMotionProfileHasUnderrun(0);
+//
+//		_talon.clearMotionProfileTrajectories();// make sure nothing is interrupted
+//		talonR.clearMotionProfileTrajectories();
+//
+//		_talon.configMotionProfileTrajectoryPeriod(0,10);
+//		talonR.configMotionProfileTrajectoryPeriod(0,10);
+//
+//		for (int i = 0; i < totalCntL; ++i)
+//		{
+//			double positionRotR = profileR[i][0];
+//			double positionRotL = profileL[i][0];
+//
+//			double velocityRPMR = profileR[i][1];
+//			double velocityRPML = profileL[i][1];
+//
+//
+////			pointR.position = ((positionRotR)/318) * 4096;
+////			pointR.velocity = (velocityRPMR/318) * 4096 / 600.0;
+////			pointL.position = (positionRotL/318) * 4096; // Convert Revolutions to Units
+////			pointL.velocity = (velocityRPML/318) * 4096 / 600.0; // Convert RPM to Units/100ms
+//			
+//			//318
+//			pointR.position = (positionRotR) * 4096;
+//			pointR.velocity = (velocityRPMR) * 4096 / 600.0;
+//			pointL.position = (positionRotL) * 4096; // Convert Revolutions to Units
+//			pointL.velocity = (velocityRPML) * 4096 / 600.0; // Convert RPM to Units/100ms
+//
+//			pointL.timeDur = GetTrajectoryDuration((int) profileL[i][2]);
+//			pointR.timeDur = GetTrajectoryDuration((int) profileR[i][2]);
+//			pointR.zeroPos = false;
+//			pointL.zeroPos = false;
+//			pointR.isLastPoint = false;
+//			pointL.isLastPoint = false;
+//
+//			pointL.profileSlotSelect0 = 0; // there are multiple pid slots now
+//			pointR.profileSlotSelect0 = 0;
+//
+//			if (i == 0)
+//				pointR.zeroPos = true;
+//			pointL.zeroPos = true;
+//
+//			if ((i + 1) == totalCntL)
+//				pointL.isLastPoint = true;
+//
+//			if ((i + 1) == totalCntR)
+//				pointR.isLastPoint = true; /* set this to true on the last point */
+//
+//			_talon.pushMotionProfileTrajectory(pointL);
+//			talonR.pushMotionProfileTrajectory(pointR);
+//		}
+//	}
 	/**
 	 * Called by application to signal Talon to start the buffered MP (when it's
 	 * able to).
