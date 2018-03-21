@@ -47,6 +47,8 @@ public class FixProfile
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
 	public void Init()
 	{
+		
+		System.out.println("-------------------Init-----------------");
 
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
 				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
@@ -60,6 +62,7 @@ public class FixProfile
 		rf.changeMotionControlFramePeriod(5);
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, _setValue.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, _setValue.value);
+		fill();
 	}
 	public void fill() {
 		_notifer.startPeriodic(0.005);
@@ -90,7 +93,8 @@ public class FixProfile
 	}
 
 	public void start()
-	{
+	{ 
+		System.out.println( "starting--------------");
 		if ((_status.btmBufferCnt > kMinPointsInTalon)&& !started) {
 			/* start (once) the motion profile */	_setValue = SetValueMotionProfile.Enable;
 			started = true;
@@ -110,6 +114,7 @@ public class FixProfile
 	
 	private void startFilling(double[][] profileR, int totalCnt, double[][] profileL)
 	{
+		System.out.println("-------------------Start FIlling-----------------");
 
 		TrajectoryPoint point = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
