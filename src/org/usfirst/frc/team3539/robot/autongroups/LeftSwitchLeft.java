@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.autongroups;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonDriveSlow;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autoncommands.NewAutonMotionCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchLeftProfile;
 import org.usfirst.frc.team3539.robot.profiles.LeftSwitchReverse;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -19,7 +20,7 @@ public class LeftSwitchLeft extends CommandGroup
 		addSequential(new AutonElevatorArm(30, 90));
 		addParallel(new AutonIntakeCommand(.7, 1));
 		// addParallel(new AutonExtakeIntake(4));
-		addSequential(new AutonMotionProfileEx(LeftSwitchLeftProfile.PointsR, LeftSwitchLeftProfile.PointsL, LeftSwitchLeftProfile.kNumPoints));
+		addSequential(new NewAutonMotionCommand(LeftSwitchLeftProfile.PointsR, LeftSwitchLeftProfile.PointsL, LeftSwitchLeftProfile.kNumPoints));
 	
 		//		addSequential(new AutonIntakeCommand(-.5, 1));
 addSequential(new AutonExtakeDrive(.25));
