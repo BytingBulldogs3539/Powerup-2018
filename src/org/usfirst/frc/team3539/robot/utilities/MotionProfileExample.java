@@ -104,7 +104,8 @@ public class MotionProfileExample {
 	 */
 	class PeriodicRunnable implements java.lang.Runnable {
 	    public void run() {
-	    	_talon.processMotionProfileBuffer();  talonR.processMotionProfileBuffer(); 
+	    	_talon.processMotionProfileBuffer();  
+	    	talonR.processMotionProfileBuffer(); 
 	    }
 	}
 	Notifier _notifer = new Notifier(new PeriodicRunnable());
@@ -129,7 +130,6 @@ public class MotionProfileExample {
 		 */
 		_talon.changeMotionControlFramePeriod(5);
 		talonR.changeMotionControlFramePeriod(5);
-		_notifer.startPeriodic(0.005);
 	}
 
 	/**
@@ -310,6 +310,8 @@ public class MotionProfileExample {
 		
 		/* since this example only has one talon, just update that one */
 		startFilling(pointsr, numpoints,pointsl);
+		_notifer.startPeriodic(0.005);
+
 	}
 
 	private void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
@@ -343,8 +345,8 @@ public class MotionProfileExample {
 		_talon.configMotionProfileTrajectoryPeriod(0, 10);
 		talonR.configMotionProfileTrajectoryPeriod(0, 10);
 
-		point.headingDeg = 0; /* future feature - not used in this example*/
-		pointR.headingDeg = 0; /* future feature - not used in this example*/
+	//	point.headingDeg = 0; /* future feature - not used in this example*/
+	//	pointR.headingDeg = 0; /* future feature - not used in this example*/
 
 		point.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
 		pointR.profileSlotSelect0 = 0; /* which set of gains would you like to use [0,3]? */
