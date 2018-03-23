@@ -1,5 +1,9 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
+import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal100;
@@ -18,10 +22,6 @@ import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
-import org.usfirst.frc.team3539.robot.autons.LeftLeftSwitchScaleRightScale;
-import org.usfirst.frc.team3539.robot.autons.LeftLeftSwitchScaleRightSwitch;
-import org.usfirst.frc.team3539.robot.autons.RightRightScaleLeftScale;
-import org.usfirst.frc.team3539.robot.autons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
@@ -191,7 +191,7 @@ public class Robot extends IterativeRobot
 				}
 				case "RightRightScaleLeftScale":
 				{
-					autonMode = new RightRightScaleLeftScale();
+					autonMode = new RightScale();
 					break;
 				}
 				case "DriveStraightAuton":
@@ -257,7 +257,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftLeftSwitchOrScale", new LeftLeftSwitchScaleRightSwitch());
 		autonChooser.addObject("RightRightSwitchOrRightScale", new RightRightSwitchScaleLeftScale());
 		autonChooser.addObject("LeftLeftScaleorSwitch", new LeftLeftSwitchScaleRightScale());
-		autonChooser.addObject("RightRightScaleorSwitch", new RightRightScaleLeftScale());
+		autonChooser.addObject("RightRightScaleorSwitch", new RightScale());
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
 		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
 		autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));

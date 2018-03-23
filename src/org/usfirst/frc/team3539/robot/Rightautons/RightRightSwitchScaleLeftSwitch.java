@@ -1,4 +1,4 @@
-package org.usfirst.frc.team3539.robot.autons;
+package org.usfirst.frc.team3539.robot.Rightautons;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
@@ -12,31 +12,34 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightRightScaleLeftScale extends CommandGroup
+public class RightRightSwitchScaleLeftSwitch extends CommandGroup
 {
 
-	public RightRightScaleLeftScale()
+	public RightRightSwitchScaleLeftSwitch()
 	{
 		try
 		{
 
-			if (Robot.gameData.charAt(1) == 'R')
+			if (Robot.gameData.charAt(0) == 'R')
+			{
+				addSequential(new RightSwitchRight2());
+			}
+			else if (Robot.gameData.charAt(1) == 'R')
 			{
 				addSequential(new AutonRightScaleRight());
-
 			}
-			
-			else if (Robot.gameData.charAt(1) == 'L')
+			else 
 			{
+				addSequential(new RightToLeftSwitchAuton());
+
 				//addSequential(new RightToLeftSwitchAuton());
-				addSequential(new RightToLeftScaleAuton());
-				///addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 			}
-	
+		
 		}
 		catch (Exception e)
 		{
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
+
 		}
 
 	}
