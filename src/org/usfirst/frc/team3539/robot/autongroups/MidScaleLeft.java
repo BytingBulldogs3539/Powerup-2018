@@ -13,7 +13,7 @@ public class MidScaleLeft extends CommandGroup
 
 	public MidScaleLeft()
 	{
-		addParallel(new AutonElevatorArm(85, 45));
+		addParallel(new AutonElevatorArm(85, 45,0,0));
 		addSequential(new AutonMotionProfileEx(MiddleScaleLeft.PointsR, MiddleScaleLeft.PointsL, MiddleScaleLeft.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 2));
 

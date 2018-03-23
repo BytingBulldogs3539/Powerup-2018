@@ -22,13 +22,13 @@ public class AutonTest extends CommandGroup
 
 	public AutonTest()
 	{
-		addParallel(new AutonElevatorArm(70, 45));
+		addParallel(new AutonElevatorArm(70, 45,2.5,0));
 		addParallel(new AutonIntakeCommand(.4, 1));
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
 //	addSequential(new AutonElevatorArm(70, 45));
 
 		addSequential(new AutonIntakeCommand(-1, 2));
-		addSequential(new AutonElevatorArm(30,70));
+		addSequential(new AutonElevatorArm(30,70,0,0));
 		//addSequential(new AutonMotionProfileEx(RightReverseSpin.PointsR, RightReverseSpin.PointsL, RightReverseSpin.kNumPoints));
 		addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
 		addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));

@@ -16,7 +16,7 @@ public class AutonRightScaleRight extends CommandGroup
 	public AutonRightScaleRight()
 	{
 		System.out.println("RightScale started---------------");
-		addParallel(new AutonElevatorArm(70, 45));
+		addParallel(new AutonElevatorArm(70, 45,2.5,0));
 		addParallel(new AutonIntakeCommand(.4, 1));
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 2));

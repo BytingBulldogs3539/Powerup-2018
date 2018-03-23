@@ -17,7 +17,7 @@ public class LeftSwitchLeft extends CommandGroup
 	public LeftSwitchLeft()
 	{
 		//
-		addSequential(new AutonElevatorArm(30, 90));
+		addSequential(new AutonElevatorArm(30, 90,0,0));
 		addParallel(new AutonIntakeCommand(.7, 1));
 		// addParallel(new AutonExtakeIntake(4));
 		addSequential(new AutonMotionProfileEx(LeftSwitchLeftProfile.PointsR, LeftSwitchLeftProfile.PointsL, LeftSwitchLeftProfile.kNumPoints));

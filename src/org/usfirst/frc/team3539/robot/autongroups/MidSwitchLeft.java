@@ -13,7 +13,7 @@ public class MidSwitchLeft extends CommandGroup
 
 	public MidSwitchLeft()
 	{
-		addParallel( new AutonElevatorArm(30,90));
+		addParallel( new AutonElevatorArm(30,90,0,0));
 		addParallel(new AutonExtakeIntake(2.5));
 		addSequential(new AutonMotionProfileEx(LeftSwitch.PointsR,LeftSwitch.PointsL,LeftSwitch.kNumPoints));
 	//	addSequential(new AutonExtakeDrive(2));

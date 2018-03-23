@@ -15,12 +15,12 @@ public class LeftToRightSwich extends CommandGroup
 	public LeftToRightSwich()
 	{
 //		
-		addSequential( new AutonElevatorArm(30,90));
+		addSequential( new AutonElevatorArm(30,90,0,0));
 		addParallel(new AutonExtakeIntake(9));
 		addSequential(new AutonMotionProfileEx(LeftToRightSwitch.PointsR,LeftToRightSwitch.PointsL,LeftToRightSwitch.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5,1));
 
-		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
+		//addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR,LeftSwitchReverse.PointsL,LeftSwitchReverse.kNumPoints));
 //		addSequential(new AutonElevatorArm(0,90));
 //		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
 //		//addParallel(new AutonIntakeCommand(1,15));

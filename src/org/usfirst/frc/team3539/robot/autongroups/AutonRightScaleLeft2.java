@@ -17,7 +17,7 @@ public class AutonRightScaleLeft2 extends CommandGroup
 
 	public AutonRightScaleLeft2()
 	{
-		addParallel(new AutonElevatorArm(80, 45));
+		addParallel(new AutonElevatorArm(80, 45,0,0));
 		addSequential(new AutonMotionProfileEx(RightScaleLeft.PointsR, RightScaleLeft.PointsL, RightScaleLeft.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 2));
 		addSequential(new AutonWaitCommand(1));

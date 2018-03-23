@@ -14,7 +14,7 @@ public class RightSwitchRight2 extends CommandGroup
 
 	public RightSwitchRight2()
 	{
-		addSequential(new AutonElevatorArm(30, 90));
+		addSequential(new AutonElevatorArm(30, 90,0,0));
 		addParallel(new AutonExtakeIntake(3.2));
 		addSequential(new AutonMotionProfileEx(switchRight2.PointsR, switchRight2.PointsL, switchRight2.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5, 1));

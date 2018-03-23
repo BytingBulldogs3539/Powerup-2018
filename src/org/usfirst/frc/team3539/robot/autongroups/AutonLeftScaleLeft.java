@@ -22,7 +22,7 @@ public class AutonLeftScaleLeft extends CommandGroup
 
 	public AutonLeftScaleLeft()
 	{
-		addParallel(new AutonElevatorArm(35, 45));
+		addParallel(new AutonElevatorArm(35, 45,0,0));
 		addParallel(new AutonIntakeCommand(.4, 1));
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 2)); // shoot

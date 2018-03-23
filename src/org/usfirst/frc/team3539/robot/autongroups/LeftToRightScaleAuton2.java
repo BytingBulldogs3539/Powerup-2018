@@ -2,11 +2,14 @@ package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftToRightScale;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
 import org.usfirst.frc.team3539.robot.profiles.RightToLeftScale;
 import org.usfirst.frc.team3539.robot.profiles.RightToLeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.ScaleReverse;
+import org.usfirst.frc.team3539.robot.profiles.Straight533;
+import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -20,13 +23,21 @@ public class LeftToRightScaleAuton2 extends CommandGroup
 	{
 //		
 	//	addSequential( new AutonElevatorArm(70,45));
-		//addParallel(new AutonExtakeIntake(9));
-		addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR,LeftToRightScale.PointsL,LeftToRightScale.kNumPoints));
-		addSequential( new AutonElevatorArm(70,45));
+		//addSequential( new AutonElevatorArm(70,45));
+				//addParallel(new AutonExtakeIntake(9));
+				addParallel(new AutonElevatorArm(70, 40,4.5,0));
+				addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR,LeftToRightScale.PointsL,LeftToRightScale.kNumPoints));
+			//	addSequential( new AutonElevatorArm(70,45,0));
+				addSequential(new AutonWaitCommand(1));
+				addSequential(new AutonIntakeCommand(-1,1));
+				//second cube
+				addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
+				addSequential(new AutonElevatorArm(5,40,0,2));
+				addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));
+				addSequential( new AutonElevatorArm(30,40,0,0));
+				addSequential(new AutonIntakeCommand(-1,1));
 
-		addSequential(new AutonIntakeCommand(-.5,1));
-
-		addSequential(new AutonMotionProfileEx(ScaleReverse.PointsR,ScaleReverse.PointsL,ScaleReverse.kNumPoints));
+				
 //		addSequential(new AutonElevatorArm(0,90));
 //		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));
 //		//addParallel(new AutonIntakeCommand(1,15));
