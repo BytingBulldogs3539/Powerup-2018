@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonMiddleSwitch extends CommandGroup
+public class MiddleSwitch extends CommandGroup
 {
 
-	public AutonMiddleSwitch()
+	public MiddleSwitch()
 	{
 		// Ran when auton starts to select which direction the robot goes while in the center position.
 		try

@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftLeftScaleOrSwitchOrStraight extends CommandGroup
+public class LeftLeftSwitchScaleRightScale extends CommandGroup
 {
 
-	public LeftLeftScaleOrSwitchOrStraight()
+	public LeftLeftSwitchScaleRightScale()
 	{
 
 		try

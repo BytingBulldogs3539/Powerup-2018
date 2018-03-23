@@ -12,10 +12,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightRightScaleorSwitchOrStraight extends CommandGroup
+public class RightRightScaleLeftScale extends CommandGroup
 {
 
-	public RightRightScaleorSwitchOrStraight()
+	public RightRightScaleLeftScale()
 	{
 		try
 		{
@@ -32,11 +32,7 @@ public class RightRightScaleorSwitchOrStraight extends CommandGroup
 				addSequential(new RightToLeftScaleAuton());
 				///addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 			}
-			else if (Robot.gameData.charAt(0) == 'R')
-			{
-				addSequential(new RightSwitchRight2());
-
-			}
+	
 		}
 		catch (Exception e)
 		{

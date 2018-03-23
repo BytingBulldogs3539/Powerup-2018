@@ -11,10 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftLeftSwitchOrLeftScale extends CommandGroup
+public class LeftLeftSwitchScaleRightSwitch extends CommandGroup
 {
 
-	public LeftLeftSwitchOrLeftScale()
+	public LeftLeftSwitchScaleRightSwitch()
 	{
 		System.out.println("Started leftleftswitchorscale");
 		try
