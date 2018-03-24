@@ -86,7 +86,7 @@ public class MotionProfileExample {
 	 * How many trajectory points do we wait for before firing the motion
 	 * profile.
 	 */
-	private static final int kMinPointsInTalon = 10;
+	private static final int kMinPointsInTalon = 20;
 	/**
 	 * Just a state timeout to make sure we don't get stuck anywhere. Each loop
 	 * is about 20ms.
@@ -207,10 +207,10 @@ public class MotionProfileExample {
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-					startFilling();
-							//Thread filling = new Thread(fill);
-						//	filling.setPriority(Thread.MAX_PRIORITY);
-							//filling.start();
+				//	startFilling();
+							Thread filling = new Thread(fill);
+							filling.setPriority(Thread.MAX_PRIORITY);
+					filling.start();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -257,9 +257,10 @@ public class MotionProfileExample {
 						_setValue = SetValueMotionProfile.Hold;
 						_state = 0;
 						_loopTimeout = -1;
+						_notifer.stop();
 					}
 					break;
-			}
+			}  
 
 			/* Get the motion profile status every loop */
 			_talon.getMotionProfileStatus(_status);

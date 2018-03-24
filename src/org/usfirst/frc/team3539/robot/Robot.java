@@ -1,9 +1,17 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal100;
@@ -13,7 +21,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonExtakeDrive;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
-import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
@@ -57,7 +65,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	public static Logger l = new Logger();
+	//public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
@@ -87,22 +95,22 @@ public class Robot extends IterativeRobot
 		oi = new OI();
 //		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
-		
-		Reader d = new Reader(driveTrain, 1 , true);
-		//d.addMethod("getName");
-		l.add(d);
-		Reader i = new Reader(intake, 1 , true);
-//		i.addMethod("getName");
-		l.add(i);
-		Reader e = new Reader(elevator, 1 , true);
-//		e.addMethod("getName");
-		l.add(e);
-		Reader p = new Reader(pitch, 1 , true);
-//		p.addMethod("getName");
-		l.add(p);
-		Reader s = new Reader(solenoids, 1 , true);
-//		s.addMethod("getName");
-		l.add(s);
+//		
+//		Reader d = new Reader(driveTrain, 1 , true);
+//		//d.addMethod("getName");
+//		l.add(d);
+//		Reader i = new Reader(intake, 1 , true);
+////		i.addMethod("getName");
+//		l.add(i);
+//		Reader e = new Reader(elevator, 1 , true);
+////		e.addMethod("getName");
+//		l.add(e);
+//		Reader p = new Reader(pitch, 1 , true);
+////		p.addMethod("getName");
+//		l.add(p);
+//		Reader s = new Reader(solenoids, 1 , true);
+////		s.addMethod("getName");
+//		l.add(s);
 
 		SmartInit();
 
@@ -131,7 +139,7 @@ public class Robot extends IterativeRobot
 		c.start();
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
-		l.stop();
+		//l.stop();
 	}
 
 	public void disabledPeriodic()
@@ -152,74 +160,32 @@ public class Robot extends IterativeRobot
 		Robot.elevator.zeroEncoders();
 		Robot.pitch.zeroEncoder();
 		Robot.driveTrain.disableRamp();
+		done = false;
+		counter = 0;
 	}
 
 	public void autonomousPeriodic()
 	{
-		counter++;
-		System.out.println("counter " + counter);
+		
 		if (counter > 25 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
+			counter++;
+			System.out.println("counter " + counter);
 			if (!done)
 			{
 				gameData = DriverStation.getInstance().getGameSpecificMessage();
 				System.out.println("entered auton setter");
 				autonMode = (Command) autonChooser.getSelected();
-				switch (autonMode.getName())
-				{
-				case "LeftLeftSwitchScaleRightSwitch":
-				{
-					System.out.println("switch selected " + autonMode.getName());
-					autonMode = new LeftLeftSwitchScaleRightSwitch();
-					break;
-				}
-				case "MiddleSwitch":
-				{
-					autonMode = new MiddleSwitch();
-					break;
-				}
-				case "RightRightSwitchScaleLeftScale":
-				{
-					autonMode = new RightRightSwitchScaleLeftScale();
-					break;
-				}
-				case "LeftLeftSwitchScaleRightScale" + 
-						"":
-				{
-					autonMode = new LeftLeftSwitchScaleRightScale();
-					break;
-				}
-				case "RightRightScaleLeftScale":
-				{
-					autonMode = new RightScale();
-					break;
-				}
-				case "DriveStraightAuton":
-				{
-					autonMode = new DriveStraightAuton();
-					break;
-				}
-				case "AutonLeftScaleLeft":
-				{
-					autonMode = new AutonLeftScaleLeft();
-					break;
-				}
-				case "AutonExtakeDrive":
-				{
-					autonMode =  new AutonExtakeDrive(2);
-					break;
-				}
-				case "AutonTest":
-				{
-					autonMode = new AutonTest();
-					break;
-				}
-				default:
-				{
-					autonMode = new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints);
-					break;
-				}
-				}
+			
+					try {
+						autonMode = autonMode.getClass().newInstance();
+					} catch (InstantiationException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (IllegalAccessException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 
 				autonMode.start();
 				done = true;
@@ -233,7 +199,7 @@ public class Robot extends IterativeRobot
 	public void teleopInit()
 	{
 	
-		l.start();
+	//	l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
@@ -254,14 +220,36 @@ public class Robot extends IterativeRobot
 		// autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
 		// autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
 		autonChooser.addObject("MiddleSwitch", new MiddleSwitch());
-		autonChooser.addObject("LeftLeftSwitchOrScale", new LeftLeftSwitchScaleRightSwitch());
-		autonChooser.addObject("RightRightSwitchOrRightScale", new RightRightSwitchScaleLeftScale());
-		autonChooser.addObject("LeftLeftScaleorSwitch", new LeftLeftSwitchScaleRightScale());
-		autonChooser.addObject("RightRightScaleorSwitch", new RightScale());
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
-		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
-		autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
-		autonChooser.addObject("AutonTest",new AutonTest());
+		autonChooser.addObject("AutonTest", new AutonTest());
+
+		
+		//LeftAutos
+		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
+		autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
+		autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
+		autonChooser.addObject("LeftLeftSwitchScaleRightSwitch", new LeftLeftSwitchScaleRightSwitch());
+		autonChooser.addObject("LeftScale", new LeftScale());
+		autonChooser.addObject("LeftSwitch", new LeftSwitch());
+		
+		
+
+		
+		
+		
+		//RightAutos
+		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
+		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
+		autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());
+		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
+		autonChooser.addObject("RightScale", new RightScale());
+		autonChooser.addObject("RightSwitch", new RightSwitch());
+		
+		
+		
+//		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
+//		autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
+//		autonChooser.addObject("AutonTest",new AutonTest());
 
 
 		// autonChooser.addObject("Cal50", new AutonCal50());

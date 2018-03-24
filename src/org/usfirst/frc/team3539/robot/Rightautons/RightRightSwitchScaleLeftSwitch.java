@@ -2,7 +2,7 @@ package org.usfirst.frc.team3539.robot.Rightautons;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
-import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRight;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAuton;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
@@ -26,7 +26,7 @@ public class RightRightSwitchScaleLeftSwitch extends CommandGroup
 			}
 			else if (Robot.gameData.charAt(1) == 'R')
 			{
-				addSequential(new AutonRightScaleRight());
+				addSequential(new AutonRightScaleRightThenSwitch());
 			}
 			else 
 			{

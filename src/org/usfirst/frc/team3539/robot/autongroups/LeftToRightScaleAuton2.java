@@ -25,16 +25,16 @@ public class LeftToRightScaleAuton2 extends CommandGroup
 	//	addSequential( new AutonElevatorArm(70,45));
 		//addSequential( new AutonElevatorArm(70,45));
 				//addParallel(new AutonExtakeIntake(9));
-				addParallel(new AutonElevatorArm(70, 40,4.5,0));
+				addParallel(new AutonElevatorArm(73, 40,4.3,0));
 				addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR,LeftToRightScale.PointsL,LeftToRightScale.kNumPoints));
 			//	addSequential( new AutonElevatorArm(70,45,0));
 				addSequential(new AutonWaitCommand(1));
 				addSequential(new AutonIntakeCommand(-1,1));
 				//second cube
 				addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
-				addSequential(new AutonElevatorArm(5,40,0,2));
+				addSequential(new AutonElevatorArm(2,20,0,2));
 				addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));
-				addSequential( new AutonElevatorArm(30,40,0,0));
+			//	addSequential( new AutonElevatorArm(30,40,0,0));
 				addSequential(new AutonIntakeCommand(-1,1));
 
 				

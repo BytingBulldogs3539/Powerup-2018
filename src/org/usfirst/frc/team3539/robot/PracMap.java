@@ -66,7 +66,7 @@ public class PracMap implements IMap
 	@Override
 	public double getPitchPea() {
 		// TODO Auto-generated method stub
-		return .23;
+		return .26;
 	}
 
 	@Override

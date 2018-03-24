@@ -54,9 +54,9 @@ public class OI
 
 		//two.buttonTR.whenReleased(new IntakeCommand(0));
 		//two.buttonTL.whenReleased(new IntakeCommand(0));
-		two.buttonA.whenPressed(new TeleopElevatorPositionCommand(2));
+		two.buttonA.whenPressed(new TeleopElevatorPositionCommand(0));
 		two.buttonX.whenPressed(new TeleopElevatorPositionCommand(30));
-		two.buttonY.whenPressed(new TeleopElevatorPositionCommand(66));
+		two.buttonY.whenPressed(new TeleopElevatorPositionCommand(70));
 	//	two.buttonY.whenPressed(new ElevatorPositionCommand(66.14));
 		
 	//	two.buttonSELECT.whenPressed(new IntakeCommand());
