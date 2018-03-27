@@ -136,4 +136,9 @@ public class CompMap implements IMap
 		return 0;
 	}
 
+	@Override
+	public int getBotType() {
+		return 1;
+	}
+
 }

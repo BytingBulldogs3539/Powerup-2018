@@ -135,4 +135,9 @@ public class PracMap implements IMap
 		return 0.0;
 	}
 
+	@Override
+	public int getBotType() {
+		return 0;
+	}
+
 }

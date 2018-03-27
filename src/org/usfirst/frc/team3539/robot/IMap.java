@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot;
 public interface IMap
 {
 	public String getName();
+	public int getBotType();
 	
 	public int getLf();
 	public int getLb();

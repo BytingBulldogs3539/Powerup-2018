@@ -144,6 +144,7 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
+		System.out.println("arm enc: " + Robot.pitch.getEncoder());
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
 		//System.out.println("Im Disabled");
@@ -166,7 +167,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousPeriodic()
 	{
-		
+		SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		if (counter > 25 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
 			counter++;
@@ -180,10 +181,8 @@ public class Robot extends IterativeRobot
 					try {
 						autonMode = autonMode.getClass().newInstance();
 					} catch (InstantiationException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					} catch (IllegalAccessException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
 
@@ -207,6 +206,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
+		SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}

@@ -134,4 +134,10 @@ public class TinaMap implements IMap // tinamap is broken btw  from:devon
 		return 0;
 	}
 
+	@Override
+	public int getBotType() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

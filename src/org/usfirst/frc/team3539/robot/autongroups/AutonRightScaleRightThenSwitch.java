@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.autongroups;
 
+import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
@@ -30,8 +31,8 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 		
 		addParallel(new AutonElevatorArm(0,100,0,0));
 
+		if (Robot.gameData.charAt(0) == 'R') {
 		addSequential(new IntakeSolenoidCommand());
-
 		addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 		addParallel(new AutonIntakeCommand(.7,2.3));
 		addSequential(new IntakeSolenoidCommand());
@@ -42,6 +43,7 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 		addSequential(new AutonIntakeCommand(-1,1));
 		addSequential(new AutonMotionProfileEx(TwoCubeReverse.PointsR, TwoCubeReverse.PointsL, TwoCubeReverse.kNumPoints));
 		addSequential(new IntakeSolenoidCommand());
+		}
 
 	}
 }
