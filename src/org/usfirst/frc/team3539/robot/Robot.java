@@ -234,7 +234,7 @@ public class Robot extends IterativeRobot
 	{
 		// autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
 		// autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
-		autonChooser.addObject("MiddleSwitch", new MiddleSwitch());
+		autonChooser.addObject("MiddleSwitch", new MiddleSwitch()); // lines up
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
 		autonChooser.addObject("AutonTest", new AutonTest());
 		
@@ -255,17 +255,17 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightSwitch", new RightSwitch());
 		
 		//Calibration
-		autonChooser.addObject("Turn600", new Turn600());
-		autonChooser.addObject("Turn620", new Turn620());
-		autonChooser.addObject("Turn640", new Turn640());
-		autonChooser.addObject("Turn660", new Turn660());
-		autonChooser.addObject("Turn680", new Turn680());
-		autonChooser.addObject("Turn700", new Turn700());
-		autonChooser.addObject("Turn720", new Turn720());
-		autonChooser.addObject("Turn740", new Turn740());
-		autonChooser.addObject("Turn760", new Turn760());
-		autonChooser.addObject("Turn780", new Turn780());
-		autonChooser.addObject("Turn800", new Turn800());
+//		autonChooser.addObject("Turn600", new Turn600());
+//		autonChooser.addObject("Turn620", new Turn620());
+//		autonChooser.addObject("Turn640", new Turn640());
+//		autonChooser.addObject("Turn660", new Turn660());
+//		autonChooser.addObject("Turn680", new Turn680());
+//		autonChooser.addObject("Turn700", new Turn700());
+//		autonChooser.addObject("Turn720", new Turn720());
+//		autonChooser.addObject("Turn740", new Turn740());
+//		autonChooser.addObject("Turn760", new Turn760());
+//		autonChooser.addObject("Turn780", new Turn780());
+//		autonChooser.addObject("Turn800", new Turn800());
 
 		
 		
