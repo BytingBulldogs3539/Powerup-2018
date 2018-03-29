@@ -10,6 +10,7 @@ import org.usfirst.frc.team3539.robot.Leftautons.LeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
@@ -333,6 +334,14 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new LeftLeftSwitchScaleRightSwitch());
 		SmartDashboard.putData(new LeftScale());
 		SmartDashboard.putData(new LeftSwitch());
+		
+		
+		SmartDashboard.putData(new RightRightSwitchScaleLeftScale());
+		SmartDashboard.putData(new RightRightScaleSwitchLeftScaleDoubleScale());
+		SmartDashboard.putData(new RightRightScaleSwitchLeftSwitch());
+		SmartDashboard.putData(new RightRightSwitchScaleLeftSwitch());
+		SmartDashboard.putData(new RightScale());
+		SmartDashboard.putData(new RightSwitch());
 		
 		
 		
