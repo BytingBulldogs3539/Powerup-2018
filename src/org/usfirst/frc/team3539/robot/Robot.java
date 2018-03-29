@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
@@ -325,6 +326,20 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(new DisableSoftLimits());
 		SmartDashboard.putData(new MiddleSwitch());
+		
+		SmartDashboard.putData(new LeftLeftSwitchScaleRightScale());
+		SmartDashboard.putData(new LeftLeftScaleSwitchRightScaleDoubleScale());
+		SmartDashboard.putData(new LeftLeftScaleSwitchRightSwitch());
+		SmartDashboard.putData(new LeftLeftSwitchScaleRightSwitch());
+		SmartDashboard.putData(new LeftScale());
+		SmartDashboard.putData(new LeftSwitch());
+		
+		
+		
+		
+
+		
+
 	}
 	
 
