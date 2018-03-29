@@ -159,7 +159,7 @@ public class Robot extends IterativeRobot
 
 	public void disabledPeriodic()
 	{
-		System.out.println("arm enc: " + Robot.pitch.getEncoder());
+		//System.out.println("arm enc: " + Robot.pitch.getEncoder());
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
 		//System.out.println("Im Disabled");
@@ -182,11 +182,11 @@ public class Robot extends IterativeRobot
 
 	public void autonomousPeriodic()
 	{
-		SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
+		//SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		if (counter > 25 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
 			counter++;
-			System.out.println("counter " + counter);
+			//System.out.println("counter " + counter);
 			if (!done)
 			{
 				gameData = DriverStation.getInstance().getGameSpecificMessage();
@@ -221,7 +221,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
-		SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
+		//SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
@@ -237,7 +237,6 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("MiddleSwitch", new MiddleSwitch());
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
 		autonChooser.addObject("AutonTest", new AutonTest());
-
 		
 		//LeftAutos
 		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
@@ -247,11 +246,6 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftScale", new LeftScale());
 		autonChooser.addObject("LeftSwitch", new LeftSwitch());
 		
-		
-
-		
-		
-		
 		//RightAutos
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
 		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
@@ -259,6 +253,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("RightSwitch", new RightSwitch());
+		
+		//Calibration
 		autonChooser.addObject("Turn600", new Turn600());
 		autonChooser.addObject("Turn620", new Turn620());
 		autonChooser.addObject("Turn640", new Turn640());
