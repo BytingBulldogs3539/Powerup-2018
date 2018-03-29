@@ -27,6 +27,17 @@ import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
+import org.usfirst.frc.team3539.robot.autongroups.Turn600;
+import org.usfirst.frc.team3539.robot.autongroups.Turn620;
+import org.usfirst.frc.team3539.robot.autongroups.Turn640;
+import org.usfirst.frc.team3539.robot.autongroups.Turn660;
+import org.usfirst.frc.team3539.robot.autongroups.Turn680;
+import org.usfirst.frc.team3539.robot.autongroups.Turn700;
+import org.usfirst.frc.team3539.robot.autongroups.Turn720;
+import org.usfirst.frc.team3539.robot.autongroups.Turn740;
+import org.usfirst.frc.team3539.robot.autongroups.Turn760;
+import org.usfirst.frc.team3539.robot.autongroups.Turn780;
+import org.usfirst.frc.team3539.robot.autongroups.Turn800;
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
@@ -244,7 +255,18 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("RightSwitch", new RightSwitch());
-		
+		autonChooser.addObject("Turn600", new Turn600());
+		autonChooser.addObject("Turn620", new Turn620());
+		autonChooser.addObject("Turn640", new Turn640());
+		autonChooser.addObject("Turn660", new Turn660());
+		autonChooser.addObject("Turn680", new Turn680());
+		autonChooser.addObject("Turn700", new Turn700());
+		autonChooser.addObject("Turn720", new Turn720());
+		autonChooser.addObject("Turn740", new Turn740());
+		autonChooser.addObject("Turn760", new Turn760());
+		autonChooser.addObject("Turn780", new Turn780());
+		autonChooser.addObject("Turn800", new Turn800());
+
 		
 		
 //		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());

@@ -36,7 +36,7 @@ public class PracMap implements IMap
 
 	public int getPitch()
 	{
-		return 6;
+		return 3;
 	}
 
 	@Override
