@@ -4,7 +4,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autongroups.AutonElevatorArm;
-import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
@@ -31,7 +31,7 @@ public class LeftLeftScaleSwitchRightSwitch extends CommandGroup
 		{
 			if (Robot.gameData.charAt(1) == 'L')
 			{
-				addSequential(new AutonLeftScaleLeft());
+				addSequential(new AutonLeftScaleLeftThenSwitch());
 
 			}
 			else if(Robot.gameData.charAt(0)== 'L') {

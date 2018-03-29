@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
@@ -9,6 +10,7 @@ import org.usfirst.frc.team3539.robot.Leftautons.LeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
@@ -19,13 +21,14 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonExtakeDrive;
-import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
+<<<<<<< HEAD
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
 import org.usfirst.frc.team3539.robot.autongroups.Turn600;
 import org.usfirst.frc.team3539.robot.autongroups.Turn620;
@@ -38,6 +41,9 @@ import org.usfirst.frc.team3539.robot.autongroups.Turn740;
 import org.usfirst.frc.team3539.robot.autongroups.Turn760;
 import org.usfirst.frc.team3539.robot.autongroups.Turn780;
 import org.usfirst.frc.team3539.robot.autongroups.Turn800;
+=======
+import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
+>>>>>>> f367dc547fe5afd9d8b52d0a92b8d6b6dfa81d4d
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
@@ -346,6 +352,29 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(new DisableSoftLimits());
+		SmartDashboard.putData(new MiddleSwitch());
+		
+		SmartDashboard.putData(new LeftLeftSwitchScaleRightScale());
+		SmartDashboard.putData(new LeftLeftScaleSwitchRightScaleDoubleScale());
+		SmartDashboard.putData(new LeftLeftScaleSwitchRightSwitch());
+		SmartDashboard.putData(new LeftLeftSwitchScaleRightSwitch());
+		SmartDashboard.putData(new LeftScale());
+		SmartDashboard.putData(new LeftSwitch());
+		
+		
+		SmartDashboard.putData(new RightRightSwitchScaleLeftScale());
+		SmartDashboard.putData(new RightRightScaleSwitchLeftScaleDoubleScale());
+		SmartDashboard.putData(new RightRightScaleSwitchLeftSwitch());
+		SmartDashboard.putData(new RightRightSwitchScaleLeftSwitch());
+		SmartDashboard.putData(new RightScale());
+		SmartDashboard.putData(new RightSwitch());
+		
+		
+		
+		
+
+		
+
 	}
 	
 

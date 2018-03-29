@@ -1,8 +1,8 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class RightRightScaleTurn implements IProfile
+public class LeftLeftScaleTurn implements IProfile
 {
   public static final int kNumPoints = 113;
-  public static double PointsL[][] = new double[][] {
+  public static double PointsR[][] = new double[][] {
       {0,-0.348422141775193,10},
       {-4.66215942554607E-05,-2.45609873736474,10},
       {-0.000460016614363236,-2.82144346458472,10},
@@ -117,7 +117,7 @@ public class RightRightScaleTurn implements IProfile
       {-0.947510166476088,-9.03881252552566,10},
       {-0.949016608618698,-8.10632713390664,10},
   }; 
-  public static double PointsR[][] = new double[][] {
+  public static double PointsL[][] = new double[][] {
       {0,0.348422141775193,10},
       {4.66215942554607E-05,2.45609873736474,10},
       {0.000460016614363236,2.82144346458472,10},
