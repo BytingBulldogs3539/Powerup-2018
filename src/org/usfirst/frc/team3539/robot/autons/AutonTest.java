@@ -9,7 +9,6 @@ import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
-import org.usfirst.frc.team3539.robot.profiles.MidRightReverse;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
 import org.usfirst.frc.team3539.robot.profiles.RightReverseSpin;
 import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;

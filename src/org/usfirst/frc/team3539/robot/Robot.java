@@ -324,6 +324,7 @@ public class Robot extends IterativeRobot
 
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(new DisableSoftLimits());
+		SmartDashboard.putData(new MiddleSwitch());
 	}
 	
 
