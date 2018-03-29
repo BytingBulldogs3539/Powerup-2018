@@ -28,8 +28,7 @@ import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
-<<<<<<< HEAD
-import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight2;
+
 import org.usfirst.frc.team3539.robot.autongroups.Turn600;
 import org.usfirst.frc.team3539.robot.autongroups.Turn620;
 import org.usfirst.frc.team3539.robot.autongroups.Turn640;
@@ -41,9 +40,8 @@ import org.usfirst.frc.team3539.robot.autongroups.Turn740;
 import org.usfirst.frc.team3539.robot.autongroups.Turn760;
 import org.usfirst.frc.team3539.robot.autongroups.Turn780;
 import org.usfirst.frc.team3539.robot.autongroups.Turn800;
-=======
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
->>>>>>> f367dc547fe5afd9d8b52d0a92b8d6b6dfa81d4d
+
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
