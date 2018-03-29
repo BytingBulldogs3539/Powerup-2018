@@ -259,7 +259,7 @@ public class Robot extends IterativeRobot
 //		autonChooser.addObject("Turn620", new Turn620());
 //		autonChooser.addObject("Turn640", new Turn640());
 //		autonChooser.addObject("Turn660", new Turn660());
-//		autonChooser.addObject("Turn680", new Turn680());
+		autonChooser.addObject("Turn680", new Turn680());
 //		autonChooser.addObject("Turn700", new Turn700());
 //		autonChooser.addObject("Turn720", new Turn720());
 //		autonChooser.addObject("Turn740", new Turn740());
