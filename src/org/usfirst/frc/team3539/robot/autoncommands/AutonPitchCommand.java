@@ -22,6 +22,7 @@ public class AutonPitchCommand extends InstantCommand
 
 	protected void initialize()
 	{
+		Robot.pitch.setupOnTarget(250, 10);
 		Robot.pitch.setPID(RobotMap.pitchPea, RobotMap.pitchEye, RobotMap.pitchDee, RobotMap.pitchFFF);
 		Robot.pitch.setAngleSetpointPitch(angle);
 	}
