@@ -258,9 +258,11 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("RightSwitch", new RightSwitch());
 		autonChooser.addObject("RightSwitchonly", new RightSwitchOnly());
+		autonChooser.addObject("RightRightScaleSwitchLeftScaleDoubleScale", new RightRightScaleSwitchLeftScaleDoubleScale());
+
 
 		//Calibration
-//		autonChooser.addObject("Turn600", new Turn600());
+	autonChooser.addObject("Turn600", new Turn600());
 //		autonChooser.addObject("Turn620", new Turn620());
 //		autonChooser.addObject("Turn640", new Turn640());
 //		autonChooser.addObject("Turn660", new Turn660());
