@@ -355,6 +355,8 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new LeftLeftSwitchScaleRightSwitch());
 		SmartDashboard.putData(new LeftScale());
 		SmartDashboard.putData(new LeftSwitch());
+		SmartDashboard.putData(new LeftSwitchOnly());
+
 		
 		
 		SmartDashboard.putData(new RightRightSwitchScaleLeftScale());
@@ -363,7 +365,8 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new RightRightSwitchScaleLeftSwitch());
 		SmartDashboard.putData(new RightScale());
 		SmartDashboard.putData(new RightSwitch());
-		
+		SmartDashboard.putData(new RightSwitchOnly());
+
 		
 		
 		
