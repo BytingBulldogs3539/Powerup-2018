@@ -27,10 +27,10 @@ public class MidSwitchRight extends CommandGroup
 		//addSequential(new AutonExtakeDrive(2));
 		addSequential(new AutonIntakeCommand(-.7, 1));
 		addSequential(new  AutonWaitCommand(1));
-		addSequential(new AutonMotionProfileEx(MiddleRightReverse.PointsR,MiddleRightReverse.PointsL,MiddleRightReverse.kNumPoints));
-		addSequential (new IntakeSolenoidCommand());
-		addSequential( new AutonElevatorCommand(0));
-		
+//		addSequential(new AutonMotionProfileEx(MiddleRightReverse.PointsR,MiddleRightReverse.PointsL,MiddleRightReverse.kNumPoints));
+//		addSequential (new IntakeSolenoidCommand());
+//		addSequential( new AutonElevatorCommand(0));
+//		
 		
 		//if lines up 
 //		addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));

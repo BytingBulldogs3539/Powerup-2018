@@ -27,9 +27,9 @@ public class MidSwitchLeft extends CommandGroup
 	//	addSequential(new AutonExtakeDrive(2));
 		addSequential(new AutonIntakeCommand(-.7, 1));
 		addSequential(new  AutonWaitCommand(1));
-		addSequential(new AutonMotionProfileEx(MiddleLeftReverse.PointsR,MiddleLeftReverse.PointsL,MiddleLeftReverse.kNumPoints));
-
-		
+//		addSequential(new AutonMotionProfileEx(MiddleLeftReverse.PointsR,MiddleLeftReverse.PointsL,MiddleLeftReverse.kNumPoints));
+//
+//		
 //		//if lines up 
 //				addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));
 //				addSequential(new  AutonWaitCommand(.5));
