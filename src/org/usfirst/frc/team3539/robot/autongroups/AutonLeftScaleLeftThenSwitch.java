@@ -37,6 +37,12 @@ public class AutonLeftScaleLeftThenSwitch extends CommandGroup
 		//addSequential(new AutonWaitCommand(1));
 		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
 //If lines up
+
+
+		addParallel(new AutonElevatorArm(0,100,0,0));
+		addSequential(new IntakeSolenoidCommand());
+	addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+		
 		
 	//	-----------------
 //		if (Robot.gameData.charAt(0) == 'L') {
