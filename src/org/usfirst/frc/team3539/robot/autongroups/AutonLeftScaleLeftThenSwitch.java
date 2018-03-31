@@ -35,13 +35,13 @@ public class AutonLeftScaleLeftThenSwitch extends CommandGroup
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 2)); // shoot
 		//addSequential(new AutonWaitCommand(1));
-		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
+		//addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
 //If lines up
 
 
-		addParallel(new AutonElevatorArm(0,100,0,0));
-		addSequential(new IntakeSolenoidCommand());
-	addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+		//addParallel(new AutonElevatorArm(0,100,0,0));
+		//addSequential(new IntakeSolenoidCommand());
+	//addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 		
 		
 	//	-----------------
