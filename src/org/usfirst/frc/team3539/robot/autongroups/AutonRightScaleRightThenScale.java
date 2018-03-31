@@ -40,11 +40,11 @@ public class AutonRightScaleRightThenScale extends CommandGroup
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonWaitCommand(.5));
 		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
-		addParallel(new AutonElevatorArm(73, 45,2,0));
+		addParallel(new AutonElevatorArm(73, 45,0,0));
 //		
 		//if lines up
-//		addSequential(new AutonMotionProfileEx(StraightScale.PointsR, StraightScale.PointsL, StraightScale.kNumPoints));
-//		addSequential(new AutonIntakeCommand(-1, 1));
+		addSequential(new AutonMotionProfileEx(StraightScale.PointsR, StraightScale.PointsL, StraightScale.kNumPoints));
+		addSequential(new AutonIntakeCommand(-1, 1));
 //		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 
 
