@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot.Leftautons;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenScale;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
@@ -23,7 +24,7 @@ public class LeftLeftScaleSwitchRightScaleDoubleScale extends CommandGroup
 			System.out.println("char at 0: " + Robot.gameData.charAt(0) + " char at 1: " + Robot.gameData);
 			if (Robot.gameData.charAt(1) == 'L')
 			{
-				addSequential(new AutonLeftScaleLeftThenSwitch());
+				addSequential(new AutonLeftScaleLeftThenScale());
 
 			}
 			else if (Robot.gameData.charAt(0) == 'L')

@@ -2,7 +2,7 @@ package org.usfirst.frc.team3539.robot.profiles;
 public class LeftReverseCube implements IProfile
 {
   public static final int kNumPoints = 205;
-  public static double PointsR[][] = new double[][] {
+  public static double PointsL[][] = new double[][] {
       {0,-0.29837821817412,10},
       {-6.21621295643568E-05,-2.9678777008282,10},
       {-0.000572760237894709,-3.3359219960792,10},
@@ -209,7 +209,7 @@ public class LeftReverseCube implements IProfile
       {-6.29463757877162,-12.3319499298118,10},
       {-6.29674560342003,-11.0163649045319,10},
   }; 
-  public static double PointsL[][] = new double[][] {
+  public static double PointsR[][] = new double[][] {
       {0,-0.29837821817412,10},
       {-6.21621295643568E-05,-2.8094739614219,10},
       {-0.000567794270577393,-3.38781207260514,10},
