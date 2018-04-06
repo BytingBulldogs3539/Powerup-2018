@@ -106,6 +106,7 @@ public class RobotMap {
 	public static final int elevatorEncoderSwitch = 0; // SOME INT
 	public static final int elevatorEncoderClimb = 0; // SOME INT
 	public static final int elevatorEncoderScale = 0; // SOME INT
+	public static final int climbMotor = 18;
 
 	public static double elevatorPea = botMap.getElevatorPea();// .95 comp
 	public static double elevatorEye = botMap.getElevatorEye();

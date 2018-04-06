@@ -38,6 +38,7 @@ import org.usfirst.frc.team3539.robot.logger.Reader;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.lol200;
+import org.usfirst.frc.team3539.robot.subsystems.Climb;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
@@ -65,12 +66,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-	//public static Logger l = new Logger();
+	public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
 	public static LateralPitch pitch = new LateralPitch();
 	public static Solenoids solenoids = new Solenoids();
+	public static Climb climb = new Climb();
+
 	//public static SerialSub serialSub = new SerialSub();
 	public static int counter = 0;
 	public static boolean done = false;
@@ -96,21 +99,21 @@ public class Robot extends IterativeRobot
 //		pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
 //		
-//		Reader d = new Reader(driveTrain, 1 , true);
-//		//d.addMethod("getName");
-//		l.add(d);
-//		Reader i = new Reader(intake, 1 , true);
-////		i.addMethod("getName");
-//		l.add(i);
-//		Reader e = new Reader(elevator, 1 , true);
-////		e.addMethod("getName");
-//		l.add(e);
-//		Reader p = new Reader(pitch, 1 , true);
-////		p.addMethod("getName");
-//		l.add(p);
-//		Reader s = new Reader(solenoids, 1 , true);
-////		s.addMethod("getName");
-//		l.add(s);
+		Reader d = new Reader(driveTrain, 1 , true);
+		//d.addMethod("getName");
+		l.add(d);
+		Reader i = new Reader(intake, 1 , true);
+//		i.addMethod("getName");
+		l.add(i);
+		Reader e = new Reader(elevator, 1 , true);
+//		e.addMethod("getName");
+		l.add(e);
+		Reader p = new Reader(pitch, 1 , true);
+//		p.addMethod("getName");
+		l.add(p);
+		Reader s = new Reader(solenoids, 1 , true);
+//		s.addMethod("getName");
+		l.add(s);
 
 		SmartInit();
 
@@ -137,9 +140,10 @@ public class Robot extends IterativeRobot
 	public void disabledInit()
 	{
 		c.start();
+	//	c.stop();//TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
-		//l.stop();
+		l.stop();
 	}
 
 	public void disabledPeriodic()
@@ -152,7 +156,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-		//l.start();
+		l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
@@ -197,8 +201,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-	
-	//	l.start();
+		l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
