@@ -7,7 +7,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonElevatorArm;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
-import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAuton;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.RightReverseSpin;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
@@ -36,7 +36,7 @@ public class RightScale extends CommandGroup
 			
 			else
 			{
-				addSequential(new RightToLeftScaleAuton());
+				addSequential(new RightToLeftScaleAutonAndSwitch());
 			}
 	
 		}

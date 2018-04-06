@@ -260,7 +260,6 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightSwitchonly", new RightSwitchOnly());
 		autonChooser.addObject("RightRightScaleSwitchLeftScaleDoubleScale", new RightRightScaleSwitchLeftScaleDoubleScale());
 
-
 		//Calibration
 	autonChooser.addObject("Turn600", new Turn600());
 //		autonChooser.addObject("Turn620", new Turn620());

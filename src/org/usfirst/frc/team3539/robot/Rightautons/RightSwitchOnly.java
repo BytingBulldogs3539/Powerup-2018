@@ -8,7 +8,7 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
-import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAuton;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.RightReverseSpin;

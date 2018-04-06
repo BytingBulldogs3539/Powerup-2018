@@ -16,10 +16,8 @@ public class RightToLeftSwitchAuton extends CommandGroup
 	{
 //		
 		addParallel( new AutonElevatorArm(30,90,0,8)); // 30, 90, 2, 0
-	//	addParallel(new AutonExtakeIntake(9));
 		addSequential(new AutonMotionProfileEx(RightToLeftSwitch.PointsR,RightToLeftSwitch.PointsL,RightToLeftSwitch.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5,1));
-
 		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR,RightSwitchReverse.PointsL,RightSwitchReverse.kNumPoints));
 //		addSequential(new AutonElevatorArm(0,90));
 //		addSequential(new AutonMotionProfileEx(LeftSwitchForwardCube.PointsR,LeftSwitchForwardCube.PointsL,LeftSwitchForwardCube.kNumPoints));

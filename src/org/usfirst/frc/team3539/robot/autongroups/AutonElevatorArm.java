@@ -22,7 +22,6 @@ public class AutonElevatorArm extends CommandGroup
 		addSequential(new AutonWaitCommand(time));
 		addParallel(new AutonIntakeCommand(.4, intakeTime));
 		addParallel(new TeleopElevatorPositionCommand(elevatorPos));
-	//	addParallel(new ElevatorPositionCommand(elevatorPos));
 		addSequential(new AutonPitchCommand(pitchPos));
 	}
 }
