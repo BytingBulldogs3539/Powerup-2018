@@ -38,6 +38,8 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
 				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		m.reset();
+		m.reset();
+
 		Robot.driveTrain.rf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.lf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
@@ -65,7 +67,7 @@ public class AutonMotionProfileEx extends Command
 		setOutput = m.getSetValue();
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
-		
+		System.out.println(setOutput);
 		if(setOutput== SetValueMotionProfile.Hold)
 		{
 			isfinished = true;
@@ -92,7 +94,7 @@ public class AutonMotionProfileEx extends Command
 	protected void end()
 	{
 		m.reset();
-		isfinished = false;
+	//	isfinished = false;
 	}
 
 	protected void interrupted()

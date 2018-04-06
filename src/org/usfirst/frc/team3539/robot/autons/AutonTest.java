@@ -10,6 +10,7 @@ import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
+import org.usfirst.frc.team3539.robot.profiles.RightReverseCube;
 import org.usfirst.frc.team3539.robot.profiles.RightReverseSpin;
 import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
@@ -30,42 +31,44 @@ public class AutonTest extends CommandGroup
 
 	public AutonTest()
 	{
-		System.out.println("RightScale started---------------");
-		addParallel(new AutonElevatorArm(73, 45,2,0));
-		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
-		addSequential(new AutonIntakeCommand(-1, 1));
-		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
-		
-		addParallel(new AutonElevatorArm(0,100,0,0));
+		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
 
-		addSequential(new IntakeSolenoidCommand());
-		addSequential(new AutonMotionProfileEx(RightScaleToLeftSwitch.PointsR, RightScaleToLeftSwitch.PointsL, RightScaleToLeftSwitch.kNumPoints));
-		addParallel(new AutonIntakeCommand(.7,2.3));
-		addSequential(new AutonWaitCommand(.5));
-
-		addSequential(new IntakeSolenoidCommand());
-		
-
-		
-//cubetwo
-		addParallel(new AutonIntakeCommand(.7,2));
-		addSequential(new IntakeSolenoidCommand());
-		addSequential(new AutonWaitCommand(.5));
-		addSequential( new AutonElevatorArm(30,100,0,00));
-	addParallel(new TeleopElevatorPositionCommand(30));
-	addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
-		addSequential(new AutonIntakeCommand(-1,1));
-//		addSequential(new AutonMotionProfileEx(TwoCubeReverse.PointsR, TwoCubeReverse.PointsL, TwoCubeReverse.kNumPoints));
-//		addSequential(new IntakeSolenoidCommand());
-//		addParallel( new AutonElevatorArm(30,90,0,0));
-//		addSequential(new AutonMotionProfileEx(MiddleRight.PointsR,MiddleRight.PointsL,MiddleRight.kNumPoints));
-//		addSequential(new AutonIntakeCommand(-.7, 1));
-//		addSequential(new AutonMotionProfileEx(MidRightReverse.PointsR,MidRightReverse.PointsL,MidRightReverse.kNumPoints));
-//		addSequential(new IntakeSolenoidCommand());
+//		System.out.println("RightScale started---------------");
+//		addParallel(new AutonElevatorArm(73, 45,2,0));
+//		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
+//		addSequential(new AutonIntakeCommand(-1, 1));
+//		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
+//		
 //		addParallel(new AutonElevatorArm(0,100,0,0));
-//		addSequential(new AutonMotionProfileEx(StraightSwitchCube.PointsR,StraightSwitchCube.PointsL,StraightSwitchCube.kNumPoints) );
-//		addParallel(new AutonIntakeCommand(.5,1));
+//
 //		addSequential(new IntakeSolenoidCommand());
+//		addSequential(new AutonMotionProfileEx(RightScaleToLeftSwitch.PointsR, RightScaleToLeftSwitch.PointsL, RightScaleToLeftSwitch.kNumPoints));
+//		addParallel(new AutonIntakeCommand(.7,2.3));
+//		addSequential(new AutonWaitCommand(.5));
+//
+//		addSequential(new IntakeSolenoidCommand());
+//		
+//
+//		
+////cubetwo
+//		addParallel(new AutonIntakeCommand(.7,2));
+//		addSequential(new IntakeSolenoidCommand());
+//		addSequential(new AutonWaitCommand(.5));
+//		addSequential( new AutonElevatorArm(30,100,0,00));
+//	addParallel(new TeleopElevatorPositionCommand(30));
+//	addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
+//		addSequential(new AutonIntakeCommand(-1,1));
+////		addSequential(new AutonMotionProfileEx(TwoCubeReverse.PointsR, TwoCubeReverse.PointsL, TwoCubeReverse.kNumPoints));
+////		addSequential(new IntakeSolenoidCommand());
+////		addParallel( new AutonElevatorArm(30,90,0,0));
+////		addSequential(new AutonMotionProfileEx(MiddleRight.PointsR,MiddleRight.PointsL,MiddleRight.kNumPoints));
+////		addSequential(new AutonIntakeCommand(-.7, 1));
+////		addSequential(new AutonMotionProfileEx(MidRightReverse.PointsR,MidRightReverse.PointsL,MidRightReverse.kNumPoints));
+////		addSequential(new IntakeSolenoidCommand());
+////		addParallel(new AutonElevatorArm(0,100,0,0));
+////		addSequential(new AutonMotionProfileEx(StraightSwitchCube.PointsR,StraightSwitchCube.PointsL,StraightSwitchCube.kNumPoints) );
+////		addParallel(new AutonIntakeCommand(.5,1));
+////		addSequential(new IntakeSolenoidCommand());
 
 		
 		

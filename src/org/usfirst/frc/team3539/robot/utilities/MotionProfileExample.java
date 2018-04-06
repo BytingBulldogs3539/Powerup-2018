@@ -154,6 +154,7 @@ public class MotionProfileExample {
 		 * button press
 		 */
 		_bStart = false;
+		_notifer.stop();
 	}
 
 	/**
@@ -206,10 +207,10 @@ public class MotionProfileExample {
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-				//	startFilling();
-							Thread filling = new Thread(fill);
-							filling.setPriority(Thread.MAX_PRIORITY);
-					filling.start();
+					startFilling();
+						//	Thread filling = new Thread(fill);
+							//filling.setPriority(Thread.MAX_PRIORITY);
+				//	filling.start();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -354,9 +355,7 @@ public class MotionProfileExample {
 		point.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 		pointR.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 
-		
-		point.timeDur = GetTrajectoryDuration((int)profileL[0][2]);
-		pointR.timeDur = GetTrajectoryDuration((int)profileR[0][2]);//0=i used to be in for loop
+	
 		
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
@@ -367,6 +366,9 @@ public class MotionProfileExample {
 			double velocityRPM = profileL[i][1];
 			double velocityRPMR = profileR[i][1];
 
+			
+			point.timeDur = GetTrajectoryDuration((int)profileL[i][2]);
+			pointR.timeDur = GetTrajectoryDuration((int)profileR[i][2]);//0=i used to be in for loop
 			/* for each point, fill our structure and pass it to API */
 			point.position = positionRot * 4096; //Convert Revolutions to Units
 			pointR.position = positionRotR * 4096; //Convert Revolutions to Units
