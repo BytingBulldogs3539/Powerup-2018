@@ -16,7 +16,7 @@ public class Logger
 	private long counter = 0;
 
 	public boolean debug = false;
-	public static final double WRITE_TIME = .1;
+	public static final double WRITE_TIME = 100;
 	public static final long READ_TIME_MS = 20;
 	
 

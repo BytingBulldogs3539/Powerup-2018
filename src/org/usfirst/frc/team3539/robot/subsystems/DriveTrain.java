@@ -43,10 +43,6 @@ public final class DriveTrain extends Subsystem
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
 
-	@Log(level = 1)
-	public double driveForwardStick;
-	@Log(level = 1)
-	public double driveTurnStick;
 
 
 	public DriveTrain()
@@ -60,19 +56,19 @@ public final class DriveTrain extends Subsystem
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
 
-//		Reader r = new Reader(rf, 1, true);
-//		r.addMethod("rf", "getSelectedSensorPosition", 0);
-//		r.addMethod("rf", "getSelectedSensorVelocity", 0);
-//		r.addMethod("rf", "getOutputCurrent");
-//		r.addMethod("rf", "getMotorOutputPercent");
-//		//Robot.l.add(r);
-//
-//		Reader l = new Reader(lf, 1, true);
-//		l.addMethod("lf", "getSelectedSensorPosition", 0);
-//		l.addMethod("lf", "getSelectedSensorVelocity", 0);
-//		l.addMethod("lf", "getOutputCurrent");
-//		l.addMethod("lf", "getMotorOutputPercent");
-	//	Robot.l.add(l);
+		Reader r = new Reader(rf, 1, true);
+		r.addMethod("rf", "getSelectedSensorPosition", 0);
+		r.addMethod("rf", "getSelectedSensorVelocity", 0);
+		r.addMethod("rf", "getOutputCurrent");
+		r.addMethod("rf", "getMotorOutputPercent");
+		Robot.l.add(r);
+
+		Reader l = new Reader(lf, 1, true);
+		l.addMethod("lf", "getSelectedSensorPosition", 0);
+		l.addMethod("lf", "getSelectedSensorVelocity", 0);
+		l.addMethod("lf", "getOutputCurrent");
+		l.addMethod("lf", "getMotorOutputPercent");
+		Robot.l.add(l);
 
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
@@ -134,8 +130,6 @@ public final class DriveTrain extends Subsystem
 
 	public void updateLog()
 	{
-		driveForwardStick = Robot.oi.one.getLeftStickY();
-		driveTurnStick = Robot.oi.one.getRightStickX();
 
 
 	}

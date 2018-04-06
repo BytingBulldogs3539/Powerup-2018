@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonElevatorCommand;
+import org.usfirst.frc.team3539.robot.commands.ClimbCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
 import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
@@ -62,5 +63,11 @@ public class OI
 	//	two.buttonSELECT.whenPressed(new IntakeCommand());
 		//two.buttonB.whenPressed(new PitchCommand());
 		two.buttonSTART.whenPressed(new ElevatorManualCommand());
+		;
+		
+		
+	
+
+
 	}
 }
