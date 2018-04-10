@@ -53,7 +53,7 @@ public class AutonMotionProfileEx extends Command
 		m.startMotionProfile();
 
 		//m.update();
-	///Robot.driveTrain.updateEncoders();
+
 
 	}
 
@@ -68,6 +68,12 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
 		System.out.println(setOutput);
+		
+		
+		Robot.driveTrain.updateEncoders();
+		m.update();
+		
+		
 		if(setOutput== SetValueMotionProfile.Hold)
 		{
 			isfinished = true;

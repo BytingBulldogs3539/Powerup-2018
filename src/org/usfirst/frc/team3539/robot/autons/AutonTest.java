@@ -16,6 +16,7 @@ import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleToLeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.Straight;
 import org.usfirst.frc.team3539.robot.profiles.Straight533;
 import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 import org.usfirst.frc.team3539.robot.profiles.StraightSwitchCube;
@@ -31,7 +32,7 @@ public class AutonTest extends CommandGroup
 
 	public AutonTest()
 	{
-		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
+		addSequential(new AutonMotionProfileEx(Straight.PointsR, Straight.PointsL, Straight.kNumPoints));
 
 //		System.out.println("RightScale started---------------");
 //		addParallel(new AutonElevatorArm(73, 45,2,0));

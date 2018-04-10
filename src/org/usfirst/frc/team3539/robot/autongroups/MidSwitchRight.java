@@ -6,9 +6,13 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
+import org.usfirst.frc.team3539.robot.profiles.MiddleRight2;
+import org.usfirst.frc.team3539.robot.profiles.MiddleRightPos;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRightReverse;
 import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 import org.usfirst.frc.team3539.robot.profiles.StraightCubeReverse;
+import org.usfirst.frc.team3539.robot.profiles.StraightCubeSwitch;
+import org.usfirst.frc.team3539.robot.profiles.StraightSwitch;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -25,8 +29,22 @@ public class MidSwitchRight extends CommandGroup
 
 		addSequential(new AutonMotionProfileEx(MiddleRight.PointsR,MiddleRight.PointsL,MiddleRight.kNumPoints));
 		//addSequential(new AutonExtakeDrive(2));
+		addSequential(new AutonIntakeCommand(-.7, .4));
+		addSequential(new AutonMotionProfileEx(MiddleRight2.PointsR,MiddleRight2.PointsL,MiddleRight2.kNumPoints));
+		addParallel( new AutonElevatorArm(0,100,0,0));
+		addSequential( new AutonWaitCommand(0.10));
+		addParallel( new AutonIntakeCommand(1, 5));
+		
+		addSequential(new AutonMotionProfileEx(StraightCubeSwitch.PointsR,StraightCubeSwitch.PointsL,StraightCubeSwitch.kNumPoints));
+		addParallel( new AutonElevatorArm(35,90,0,0));
+		addSequential(new AutonMotionProfileEx(MiddleRightPos.PointsR,MiddleRightPos.PointsL,MiddleRightPos.kNumPoints));
+		addSequential(new AutonMotionProfileEx(StraightSwitch.PointsR,StraightSwitch.PointsL,StraightSwitch.kNumPoints));
+
 		addSequential(new AutonIntakeCommand(-.7, 1));
-		addSequential(new  AutonWaitCommand(1));
+
+
+	//	addSequential(new IntakeSolenoidCommand());
+
 //		addSequential(new AutonMotionProfileEx(MiddleRightReverse.PointsR,MiddleRightReverse.PointsL,MiddleRightReverse.kNumPoints));
 //		addSequential (new IntakeSolenoidCommand());
 //		addSequential( new AutonElevatorCommand(0));

@@ -11,6 +11,7 @@ import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleToLeftSwitch;
 import org.usfirst.frc.team3539.robot.profiles.RightSwitchReverse;
+import org.usfirst.frc.team3539.robot.profiles.ShortScale;
 import org.usfirst.frc.team3539.robot.profiles.Straight533;
 import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 import org.usfirst.frc.team3539.robot.profiles.StraightScale;
@@ -27,25 +28,30 @@ public class AutonRightScaleRightThenScale extends CommandGroup
 	public AutonRightScaleRightThenScale()
 	{
 		System.out.println("RightScale started---------------");
-		addParallel(new AutonElevatorArm(73, 45,2,0));
+		addParallel(new AutonElevatorArm(73, 45,1,0));
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
-		addSequential(new AutonIntakeCommand(-1, 1));
+		addSequential(new AutonIntakeCommand(-1, .4));
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
-		addParallel(new AutonElevatorArm(30,20,0,0));
+		addParallel(new AutonElevatorArm(0,100,0,0));
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 		
 		
 		//go get second cube 
-		addParallel(new AutonIntakeCommand(.5, 1));
+		addParallel(new AutonIntakeCommand(.7, 1.5));
 		addSequential(new IntakeSolenoidCommand());
-		addSequential(new AutonWaitCommand(.5));
+		addSequential(new AutonWaitCommand(.4));
+		
+		addParallel(new AutonElevatorArm(73, 45,0,3));
+
 		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
-		addParallel(new AutonElevatorArm(73, 45,0,0));
-	
+
 //go to scale again
-		addSequential(new AutonMotionProfileEx(StraightScale.PointsR, StraightScale.PointsL, StraightScale.kNumPoints));
-		addSequential(new AutonIntakeCommand(-1, 1));
+		addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
+		
+		addSequential(new IntakeSolenoidCommand());
+
+		//addSequential(new AutonIntakeCommand(-.6, 1));
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 
 

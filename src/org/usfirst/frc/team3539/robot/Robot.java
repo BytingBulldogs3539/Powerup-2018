@@ -156,7 +156,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.start();
+		c.stop();
 	//	c.stop();//TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
@@ -252,6 +252,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftScale", new LeftScale());
 		autonChooser.addObject("LeftSwitch", new LeftSwitch());
 		autonChooser.addObject("LeftSwitchOnly", new LeftSwitchOnly());
+		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
+
 
 		//RightAutos
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
