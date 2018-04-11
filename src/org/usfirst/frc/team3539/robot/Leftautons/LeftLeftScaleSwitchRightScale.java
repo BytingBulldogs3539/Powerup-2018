@@ -20,7 +20,6 @@ public class LeftLeftScaleSwitchRightScale extends CommandGroup
 		System.out.println("Started leftleftswitchorscale");
 		try
 		{
-			System.out.println("char at 0: " + Robot.gameData.charAt(0) + " char at 1: " + Robot.gameData);
 			if (Robot.gameData.charAt(1) == 'L')
 			{
 				addSequential(new AutonLeftScaleLeftThenSwitch());

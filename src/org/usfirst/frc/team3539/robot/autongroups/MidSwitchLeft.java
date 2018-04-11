@@ -4,10 +4,16 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.profiles.MiddleLeft;
+import org.usfirst.frc.team3539.robot.profiles.MiddleLeft2;
+import org.usfirst.frc.team3539.robot.profiles.MiddleLeftPos;
 import org.usfirst.frc.team3539.robot.profiles.MiddleLeftReverse;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
+import org.usfirst.frc.team3539.robot.profiles.MiddleRight2;
+import org.usfirst.frc.team3539.robot.profiles.MiddleRightPos;
 import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 import org.usfirst.frc.team3539.robot.profiles.StraightCubeReverse;
+import org.usfirst.frc.team3539.robot.profiles.StraightCubeSwitch;
+import org.usfirst.frc.team3539.robot.profiles.StraightSwitch;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -20,25 +26,21 @@ public class MidSwitchLeft extends CommandGroup
 	public MidSwitchLeft()
 	{
 		addParallel( new AutonElevatorArm(30,90,0,4));
-
-	//	addSequential( new AutonElevatorArm(30,90,0,4));
-		//addParallel(new AutonExtakeIntake(4));
 		addSequential(new AutonMotionProfileEx(MiddleLeft.PointsR,MiddleLeft.PointsL,MiddleLeft.kNumPoints));
-	//	addSequential(new AutonExtakeDrive(2));
 		addSequential(new AutonIntakeCommand(-.7, 1));
-		addSequential(new  AutonWaitCommand(1));
-//		addSequential(new AutonMotionProfileEx(MiddleLeftReverse.PointsR,MiddleLeftReverse.PointsL,MiddleLeftReverse.kNumPoints));
-//
-//		
-//		//if lines up 
-//				addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));
-//				addSequential(new  AutonWaitCommand(.5));
-//				addParallel(new AutonIntakeCommand(.7,1));
-//
-//				addSequential(new AutonMotionProfileEx(StraightCubeReverse.PointsR,StraightCubeReverse.PointsL,StraightCubeReverse.kNumPoints));
-//				addParallel( new AutonElevatorArm(30,90,0,0));
-//				addSequential(new AutonMotionProfileEx(MiddleRight.PointsR,MiddleRight.PointsL,MiddleRight.kNumPoints));
-//				addSequential(new AutonIntakeCommand(-.7, 1));
-//	
+		
+		
+		
+		addSequential(new AutonMotionProfileEx(MiddleLeft2.PointsR,MiddleRight2.PointsL,MiddleRight2.kNumPoints));
+		addParallel( new AutonElevatorArm(30,100,0,0));// change to 0 when confident 
+		addSequential( new AutonWaitCommand(0.10));
+		addParallel( new AutonIntakeCommand(1, 5));
+		
+		addSequential(new AutonMotionProfileEx(StraightCubeSwitch.PointsR,StraightCubeSwitch.PointsL,StraightCubeSwitch.kNumPoints));
+		addParallel( new AutonElevatorArm(35,90,0,0));
+		addSequential(new AutonMotionProfileEx(MiddleLeftPos.PointsR,MiddleLeftPos.PointsL,MiddleLeftPos.kNumPoints));
+		addSequential(new AutonMotionProfileEx(StraightSwitch.PointsR,StraightSwitch.PointsL,StraightSwitch.kNumPoints));
+
+		addSequential(new AutonIntakeCommand(-.7, 1));
 	}
 }
