@@ -23,10 +23,13 @@ import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
 import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonExtakeDrive;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenScale;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
+import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenScale;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
+import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
@@ -43,7 +46,8 @@ import org.usfirst.frc.team3539.robot.autongroups.Turn760;
 import org.usfirst.frc.team3539.robot.autongroups.Turn780;
 import org.usfirst.frc.team3539.robot.autongroups.Turn800;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
-
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
@@ -359,28 +363,20 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new DisableSoftLimits());
 		SmartDashboard.putData(new MiddleSwitch());
 		
-		SmartDashboard.putData(new LeftLeftSwitchScaleRightScale());
-		SmartDashboard.putData(new LeftLeftScaleSwitchRightScaleDoubleScale());
-		SmartDashboard.putData(new LeftLeftScaleSwitchRightSwitch());
-		SmartDashboard.putData(new LeftLeftSwitchScaleRightSwitch());
-		SmartDashboard.putData(new LeftScale());
-		SmartDashboard.putData(new LeftSwitch());
+		
+		SmartDashboard.putData(new MidSwitchRight());
+		SmartDashboard.putData(new AutonRightScaleRightThenScale());
+		SmartDashboard.putData(new RightToLeftSwitchAuton());
+		SmartDashboard.putData(new RightSwitchRight());
+		SmartDashboard.putData(new AutonRightScaleRightThenSwitch());
+		SmartDashboard.putData(new RightToLeftScaleAutonAndSwitch());
 
 		
-		
-		SmartDashboard.putData(new RightRightSwitchScaleLeftScale());
-		SmartDashboard.putData(new RightRightScaleSwitchLeftScaleDoubleScale());
-		SmartDashboard.putData(new RightRightScaleSwitchLeftSwitch());
-		SmartDashboard.putData(new RightRightSwitchScaleLeftSwitch());
-		SmartDashboard.putData(new RightScale());
-		SmartDashboard.putData(new RightSwitch());
-
-		
-		
-		
-
-		
-
+//		SmartDashboard.putData(new MidSwitchLeft());
+//		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
+//		SmartDashboard.putData(new LeftSwitchLeft());
+//		SmartDashboard.putData(new LeftToRightSwich());
+//		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
 	}
 	
 
