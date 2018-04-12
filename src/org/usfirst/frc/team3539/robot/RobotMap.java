@@ -27,8 +27,8 @@ public class RobotMap {
 	public static int intakesolOn = 0;
 	public static int intakesolOff = 1;
 
-	public static int locksolOn = 5;
-	public static int locksolOff = 4;
+	public static int climbsolOn = 4;
+	public static int climbsolOff = 5;
 
 	public static int shiftersolOn = 2;
 	public static int shiftersolOff = 3;

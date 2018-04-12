@@ -13,13 +13,13 @@ public class Solenoids extends Subsystem
 {
 	public bbDoubleSolenoid intakeSol;
 	public bbDoubleSolenoid shifterSol;
-	public bbDoubleSolenoid lockSol;
+	public bbDoubleSolenoid climbSol;
 
 	public Solenoids()
 	{
 		intakeSol = new bbDoubleSolenoid(RobotMap.intakesolOn, RobotMap.intakesolOff, true);
 		shifterSol = new bbDoubleSolenoid(RobotMap.shiftersolOn, RobotMap.shiftersolOff, false);
-		lockSol = new bbDoubleSolenoid(RobotMap.locksolOn, RobotMap.locksolOff, false);
+		climbSol = new bbDoubleSolenoid(RobotMap.climbsolOn, RobotMap.climbsolOff, true);
 	}
 
 	public void initDefaultCommand()
