@@ -32,7 +32,7 @@ public class RightToLeftScaleAutonAndSwitch extends CommandGroup
 		
 		//turn and go to second cube 
 		addSequential(new AutonMotionProfileEx(LeftScaleTurnReverse.PointsR, LeftScaleTurnReverse.PointsL, LeftScaleTurnReverse.kNumPoints));
-		addSequential(new AutonElevatorArm(0,100,0,0));
+		addSequential(new AutonElevatorArm(30,100,0,0));
 		addSequential(new AutonMotionProfileEx(StraightCube.PointsR,StraightCube.PointsL,StraightCube.kNumPoints));
 		
 
