@@ -24,7 +24,7 @@ public class Climb extends Subsystem
 	public Climb()
 	{
 		ClimbMotor = new TalonSRX(RobotMap.climbMotor);
-		ClimbMotor.setNeutralMode(NeutralMode.Coast);
+		ClimbMotor.setNeutralMode(NeutralMode.Brake);
 		ClimbMotor.enableCurrentLimit(false);
 		double peakOut = 1;// 1 is full ouput
 		ClimbMotor.configPeakOutputForward(peakOut, 10);
