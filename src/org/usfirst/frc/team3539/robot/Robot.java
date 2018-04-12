@@ -6,9 +6,11 @@ import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftScale;
+import org.usfirst.frc.team3539.robot.Leftautons.LeftScaleOnly;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftSwitchOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
+import org.usfirst.frc.team3539.robot.Rightautons.RightScaleOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitchOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
@@ -257,6 +259,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftSwitch", new LeftSwitch());
 		autonChooser.addObject("LeftSwitchOnly", new LeftSwitchOnly());
 		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
+		autonChooser.addObject("LeftScaleOnly", new LeftScaleOnly());
 
 
 		//RightAutos
@@ -267,6 +270,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("RightSwitch", new RightSwitch());
 		autonChooser.addObject("RightSwitchonly", new RightSwitchOnly());
+		autonChooser.addObject("RightScaleOnly", new RightScaleOnly());
+
 		autonChooser.addObject("RightRightScaleSwitchLeftScaleDoubleScale", new RightRightScaleSwitchLeftScaleDoubleScale());
 
 		//Calibration

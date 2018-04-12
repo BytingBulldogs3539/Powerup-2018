@@ -22,10 +22,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonRightScaleRightThenScale extends CommandGroup
+public class RightScaleRightAuton extends CommandGroup
 {
 
-	public AutonRightScaleRightThenScale()
+	public RightScaleRightAuton()
 	{
 		System.out.println("RightScale started---------------");
 		addParallel(new AutonElevatorArm(73, 45,1,0));
@@ -34,8 +34,25 @@ public class AutonRightScaleRightThenScale extends CommandGroup
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 		addParallel(new AutonElevatorArm(30,100,0,0));// change to 0
 		addSequential(new IntakeSolenoidCommand());
+		addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 		
 		
+		//go get second cube 
+		addParallel(new AutonIntakeCommand(.7, 1.5));
+		addSequential(new IntakeSolenoidCommand());
+		addSequential(new AutonWaitCommand(.4));
+		
+		addParallel(new AutonElevatorArm(73, 45,0,3));
+
+		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
+
+//go to scale again
+		addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
+		
+		addSequential(new IntakeSolenoidCommand());
+
+		//addSequential(new AutonIntakeCommand(-.6, 1));
+		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 
 
 	}
