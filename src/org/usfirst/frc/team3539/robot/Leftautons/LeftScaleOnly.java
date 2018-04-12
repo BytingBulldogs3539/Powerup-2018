@@ -30,7 +30,7 @@ public class LeftScaleOnly extends CommandGroup
 	{
 		try
 		{
-			if (Robot.gameData.charAt(0) == 'L')
+			if (Robot.gameData.charAt(1) == 'L')
 			{
 				addSequential(new LeftScaleLeftAuton());
 			}

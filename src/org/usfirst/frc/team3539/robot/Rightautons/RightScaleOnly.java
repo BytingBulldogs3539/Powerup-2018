@@ -31,7 +31,7 @@ public class RightScaleOnly extends CommandGroup
 		try
 		{
 
-			if (Robot.gameData.charAt(0) == 'R')
+			if (Robot.gameData.charAt(1) == 'R')
 			{
 				addSequential(new RightScaleRightAuton());
 			}
