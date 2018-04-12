@@ -162,7 +162,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		c.stop();
+		c.start();
 	//	c.stop();//TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
