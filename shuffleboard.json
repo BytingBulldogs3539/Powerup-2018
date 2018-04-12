@@ -1,8 +1,8 @@
 {
-  "dividerPosition": 0.17421052631578948,
+  "dividerPosition": 0.3961424332344214,
   "tabPane": [
     {
-      "title": "Tab 3",
+      "title": "Tab 2",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -11,108 +11,26 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "7,0": {
+          "0,0": {
             "size": [
-              2,
-              2
+              1,
+              1
             ],
             "content": {
-              "_type": "PDP",
-              "_source0": "network_table:///SmartDashboard/PDP",
-              "_title": "/SmartDashboard/PDP",
-              "showIndicatorText": true
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DisableSoftLimits",
+              "_title": "SmartDashboard/DisableSoftLimits"
             }
           },
-          "7,2": {
+          "1,0": {
             "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Right Enc",
-              "_title": "SmartDashboard/Right Enc",
-              "Visible time": 30.0,
-              "SmartDashboard/Right Enc visible": true
-            }
-          },
-          "7,4": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Left Enc",
-              "_title": "SmartDashboard/Left Enc",
-              "Visible time": 30.0,
-              "SmartDashboard/Left Enc visible": true
-            }
-          },
-          "4,4": {
-            "size": [
-              2,
+              1,
               1
             ],
             "content": {
               "_type": "ComboBox Chooser",
               "_source0": "network_table:///SmartDashboard/Auton mode",
               "_title": "SmartDashboard/Auton mode"
-            }
-          },
-          "1,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/drivePea",
-              "_title": "SmartDashboard/drivePea"
-            }
-          },
-          "1,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveEye",
-              "_title": "SmartDashboard/driveEye"
-            }
-          },
-          "2,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveDee",
-              "_title": "SmartDashboard/driveDee"
-            }
-          },
-          "2,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveFFF",
-              "_title": "SmartDashboard/driveFFF"
-            }
-          },
-          "0,0": {
-            "size": [
-              5,
-              4
-            ],
-            "content": {
-              "_type": "Camera Stream",
-              "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0"
             }
           }
         }
@@ -127,7 +45,74 @@
         "showGrid": true,
         "hgap": 16.0,
         "vgap": 16.0,
-        "tiles": {}
+        "tiles": {
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenScale",
+              "_title": "SmartDashboard/AutonRightScaleRightThenScale"
+            }
+          },
+          "0,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenSwitch",
+              "_title": "SmartDashboard/AutonRightScaleRightThenSwitch"
+            }
+          },
+          "0,2": {
+            "size": [
+              1,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/MidSwitchRight",
+              "_title": "SmartDashboard/MidSwitchRight"
+            }
+          },
+          "0,3": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RightSwitchRight",
+              "_title": "SmartDashboard/RightSwitchRight"
+            }
+          },
+          "2,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RightToLeftScaleAutonAndSwitch",
+              "_title": "SmartDashboard/RightToLeftScaleAutonAndSwitch"
+            }
+          },
+          "2,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/RightToLeftSwitchAuton",
+              "_title": "SmartDashboard/RightToLeftSwitchAuton"
+            }
+          }
+        }
       }
     }
   ]

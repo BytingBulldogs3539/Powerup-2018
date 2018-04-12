@@ -23,9 +23,9 @@ private double speed= 0;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double x = Robot.oi.one.getRightTrigger()-(Robot.oi.one.getLeftTrigger());
+    	double x = -Robot.oi.one.getRightTrigger()+(Robot.oi.one.getLeftTrigger());
     	//System.out.println("climbing power"+x);
-
+    	System.out.println("climb speed"+x);
         Robot.climb.setMotorPower(x);	
 
     }

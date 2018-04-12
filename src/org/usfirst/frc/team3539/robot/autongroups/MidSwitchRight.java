@@ -32,7 +32,7 @@ public class MidSwitchRight extends CommandGroup
 		addSequential(new AutonIntakeCommand(-.7, .4));
 		//cube two 
 		addSequential(new AutonMotionProfileEx(MiddleRight2.PointsR,MiddleRight2.PointsL,MiddleRight2.kNumPoints));
-		addParallel( new AutonElevatorArm(0,100,0,0));// change to 30 when confident 
+		addParallel( new AutonElevatorArm(30,100,0,0));// change to 0 when confident 
 		addSequential( new AutonWaitCommand(0.10));
 		addParallel( new AutonIntakeCommand(1, 5));
 		
