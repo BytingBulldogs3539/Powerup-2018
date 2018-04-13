@@ -43,7 +43,7 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonWaitCommand(.4));
 		
-		addParallel(new AutonElevatorArm(73, 45,0,3));
+		addParallel(new AutonElevatorArm(30, 45,0,3));//73
 
 		addSequential(new AutonMotionProfileEx(LeftReverseCube.PointsR, LeftReverseCube.PointsL, LeftReverseCube.kNumPoints));
 

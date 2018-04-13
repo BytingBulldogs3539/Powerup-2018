@@ -260,7 +260,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftSwitchOnly", new LeftSwitchOnly());
 		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
 		autonChooser.addObject("LeftScaleOnly", new LeftScaleOnly());
-
+		autonChooser.addObject("TwoCubeRight",new AutonRightScaleRightThenScale());
+		autonChooser.addObject("TwoCubeLEft",new AutonLeftScaleLeftThenScale());
 
 		//RightAutos
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
@@ -375,7 +376,9 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new RightSwitchRight());
 		SmartDashboard.putData(new AutonRightScaleRightThenSwitch());
 		SmartDashboard.putData(new RightToLeftScaleAutonAndSwitch());
-
+		
+		
+		SmartDashboard.putData(new AutonRightScaleRightThenScale());
 		
 //		SmartDashboard.putData(new MidSwitchLeft());
 //		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());

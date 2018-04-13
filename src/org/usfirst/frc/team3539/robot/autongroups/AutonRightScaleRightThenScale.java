@@ -6,6 +6,8 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
+import org.usfirst.frc.team3539.robot.profiles.LeftLeftScaleTurn;
+import org.usfirst.frc.team3539.robot.profiles.LeftReverseCube;
 import org.usfirst.frc.team3539.robot.profiles.RightReverseCube;
 import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
@@ -34,7 +36,24 @@ public class AutonRightScaleRightThenScale extends CommandGroup
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 		addParallel(new AutonElevatorArm(30,100,0,0));// change to 0
 		addSequential(new IntakeSolenoidCommand());
+		addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+
+		addParallel(new AutonIntakeCommand(.7, 1.5));
+		addSequential(new IntakeSolenoidCommand());
+		addSequential(new AutonWaitCommand(.4));
 		
+		//addParallel(new AutonElevatorArm(73, 45,0,3));
+
+		addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
+
+//go to scale again
+	addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
+//		
+//		addSequential(new IntakeSolenoidCommand());
+//
+//		addSequential(new AutonIntakeCommand(-.6, 1));
+		//addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
+
 		
 
 
