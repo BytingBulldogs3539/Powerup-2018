@@ -13,6 +13,7 @@ import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScaleOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitchOnly;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleOrSwitchOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
@@ -264,6 +265,9 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("TwoCubeLeft",new AutonLeftScaleLeftThenScale());
 
 		//RightAutos
+		
+		autonChooser.addObject("RightRightScaleOrSwitchOnly", new RightRightScaleOrSwitchOnly());
+
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
 		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
 		autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());

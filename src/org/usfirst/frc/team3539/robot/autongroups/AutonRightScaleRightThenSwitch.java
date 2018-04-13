@@ -35,32 +35,32 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 		// if lines up
 		if (Robot.gameData.charAt(0) == 'R')
 		{
-			addParallel(new AutonElevatorArm(30, 100, 0, 0));// change 30 to zero when confidentt
-			addSequential(new IntakeSolenoidCommand());
-			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
-			addParallel(new AutonIntakeCommand(.5, 1));
-			addSequential(new IntakeSolenoidCommand());
-			addSequential(new AutonWaitCommand(.5));
-			// puts cube in switch
-			addSequential(new TeleopElevatorPositionCommand(30));
-			addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
-			addSequential(new AutonIntakeCommand(-1, 1));
+//			addParallel(new AutonElevatorArm(30, 100, 0, 0));// change 30 to zero when confidentt
+//			addSequential(new IntakeSolenoidCommand());
+//			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+//			addParallel(new AutonIntakeCommand(.5, 1));
+//			addSequential(new IntakeSolenoidCommand());
+//			addSequential(new AutonWaitCommand(.5));
+//			// puts cube in switch
+//			addSequential(new TeleopElevatorPositionCommand(30));
+//			addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
+//			addSequential(new AutonIntakeCommand(-1, 1));
 
 		}
 		else 
 		{
 			
-			addParallel(new AutonElevatorArm(30,100,0,0));// change to 0
-			addSequential(new IntakeSolenoidCommand());
-			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+//			addParallel(new AutonElevatorArm(30,100,0,0));// change to 0
+//			addSequential(new IntakeSolenoidCommand());
+//		//	addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+//
+//			addParallel(new AutonIntakeCommand(.7, 1.5));
+//			addSequential(new IntakeSolenoidCommand());
+//			addSequential(new AutonWaitCommand(.4));
+//			
+//			//addParallel(new AutonElevatorArm(73, 45,0,3));
 
-			addParallel(new AutonIntakeCommand(.7, 1.5));
-			addSequential(new IntakeSolenoidCommand());
-			addSequential(new AutonWaitCommand(.4));
-			
-			//addParallel(new AutonElevatorArm(73, 45,0,3));
-
-			addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
+		//	addSequential(new AutonMotionProfileEx(RightReverseCube.PointsR, RightReverseCube.PointsL, RightReverseCube.kNumPoints));
 
 	//go to scale again
 //			addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
