@@ -35,9 +35,9 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 		// if lines up
 		if (Robot.gameData.charAt(0) == 'R')
 		{
-//			addParallel(new AutonElevatorArm(30, 100, 0, 0));// change 30 to zero when confidentt
-//			addSequential(new IntakeSolenoidCommand());
-//			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
+			addParallel(new AutonElevatorArm(30, 100, 0, 0));// change 30 to zero when confidentt
+			addSequential(new IntakeSolenoidCommand());
+			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 //			addParallel(new AutonIntakeCommand(.5, 1));
 //			addSequential(new IntakeSolenoidCommand());
 //			addSequential(new AutonWaitCommand(.5));

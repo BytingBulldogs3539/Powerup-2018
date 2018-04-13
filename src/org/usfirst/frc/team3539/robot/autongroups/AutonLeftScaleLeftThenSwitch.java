@@ -58,23 +58,7 @@ public class AutonLeftScaleLeftThenSwitch extends CommandGroup
 			}
 			else if(Robot.gameData.charAt(0)=='R')
 			{
-				addParallel(new AutonElevatorArm(30,100,0,0));
-
-				addSequential(new IntakeSolenoidCommand());
-				addSequential(new AutonMotionProfileEx(LeftScaleToRightSwitch.PointsR, LeftScaleToRightSwitch.PointsL, LeftScaleToRightSwitch.kNumPoints));
-				addParallel(new AutonIntakeCommand(.7,2.3));
-				addSequential(new AutonWaitCommand(.5));
-
-				addSequential(new IntakeSolenoidCommand());
 		
-//		//cubetwo
-				addParallel(new AutonIntakeCommand(.7,2));
-				addSequential(new IntakeSolenoidCommand());
-				addSequential(new AutonWaitCommand(.5));
-				addSequential( new AutonElevatorArm(30,100,0,00));
-			addParallel(new TeleopElevatorPositionCommand(30));
-			addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
-				addSequential(new AutonIntakeCommand(-1,1));
 			}
 	
 	
