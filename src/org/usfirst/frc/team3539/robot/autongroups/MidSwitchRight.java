@@ -29,12 +29,12 @@ public class MidSwitchRight extends CommandGroup
 		addSequential(new AutonIntakeCommand(-.7, .4));
 		
 		addSequential(new AutonMotionProfileEx(MiddleRight2.PointsR,MiddleRight2.PointsL,MiddleRight2.kNumPoints));
-		addParallel( new AutonElevatorArm(30,100,0,0));// change to 0 when confident 
+		addParallel( new AutonElevatorArm(3,100,0,0));// change to 0 when confident 
 		addSequential( new AutonWaitCommand(0.10));
 		addParallel( new AutonIntakeCommand(1, 5));
 		
 		addSequential(new AutonMotionProfileEx(StraightCubeSwitch.PointsR,StraightCubeSwitch.PointsL,StraightCubeSwitch.kNumPoints));
-		addParallel( new AutonElevatorArm(2,90,0,0));
+		addParallel( new AutonElevatorArm(30,90,0,0));
 		addSequential(new AutonMotionProfileEx(MiddleRightPos.PointsR,MiddleRightPos.PointsL,MiddleRightPos.kNumPoints));
 		addSequential(new AutonMotionProfileEx(StraightSwitch.PointsR,StraightSwitch.PointsL,StraightSwitch.kNumPoints));
 
