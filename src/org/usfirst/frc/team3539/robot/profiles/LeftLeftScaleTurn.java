@@ -1,5 +1,5 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class RightRightScaleTurn implements IProfile
+public class LeftLeftScaleTurn implements IProfile
 {
   public static final int kNumPoints = 121;
   public static double PointsR[][] = new double[][] {
