@@ -34,7 +34,7 @@ public class MidSwitchRight extends CommandGroup
 		addParallel( new AutonIntakeCommand(1, 5));
 		
 		addSequential(new AutonMotionProfileEx(StraightCubeSwitch.PointsR,StraightCubeSwitch.PointsL,StraightCubeSwitch.kNumPoints));
-		addParallel( new AutonElevatorArm(35,90,0,0));
+		addParallel( new AutonElevatorArm(2,90,0,0));
 		addSequential(new AutonMotionProfileEx(MiddleRightPos.PointsR,MiddleRightPos.PointsL,MiddleRightPos.kNumPoints));
 		addSequential(new AutonMotionProfileEx(StraightSwitch.PointsR,StraightSwitch.PointsL,StraightSwitch.kNumPoints));
 
