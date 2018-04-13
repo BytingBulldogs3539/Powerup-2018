@@ -261,7 +261,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
 		autonChooser.addObject("LeftScaleOnly", new LeftScaleOnly());
 		autonChooser.addObject("TwoCubeRight",new AutonRightScaleRightThenScale());
-		autonChooser.addObject("TwoCubeLEft",new AutonLeftScaleLeftThenScale());
+		autonChooser.addObject("TwoCubeLeft",new AutonLeftScaleLeftThenScale());
 
 		//RightAutos
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
