@@ -1,7 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.Leftautons.LeftDoubleScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScale;
-import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftScaleSwitchRightSwitch;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightScale;
 import org.usfirst.frc.team3539.robot.Leftautons.LeftLeftSwitchScaleRightSwitch;
@@ -13,9 +13,9 @@ import org.usfirst.frc.team3539.robot.Rightautons.RightScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightScaleOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightSwitchOnly;
+import org.usfirst.frc.team3539.robot.Rightautons.RightRightDoubleScaleOrRightSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleOrSwitchOnly;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale;
-import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScaleDoubleScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
@@ -217,75 +217,55 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-		// autonChooser.addObject("MidSwitchLeft", new MidSwitchLeft());
-		// autonChooser.addObject("MidRightSwitch", new MidSwitchRight());
-		autonChooser.addObject("MiddleSwitch", new MiddleSwitch()); // lines up
-		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
-		autonChooser.addObject("AutonTest", new AutonTest());
+		// Middle and Straight
+		autonChooser.addObject("MiddleSwitch", new MiddleSwitch());
+		autonChooser.addObject("DriveStraight", new DriveStraightAuton());
 
-		// Left Autos
-		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
-		autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
-		autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
-		autonChooser.addObject("LeftLeftSwitchScaleRightSwitch", new LeftLeftSwitchScaleRightSwitch());
-		autonChooser.addObject("LeftScale", new LeftScale());
-		autonChooser.addObject("LeftSwitch", new LeftSwitch());
-		autonChooser.addObject("LeftSwitchOnly", new LeftSwitchOnly());
-		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
-		autonChooser.addObject("LeftScaleOnly", new LeftScaleOnly());
+		// Left Side
+		autonChooser.addObject("LeftEitherSwitch", new LeftSwitch());
+		autonChooser.addObject("LeftEitherScale", new LeftScale());
+		autonChooser.addObject("LeftSwitchOrStraight", new LeftSwitchOnly());
+		autonChooser.addObject("LeftScaleOrStraight", new LeftScaleOnly());
+		autonChooser.addObject("LeftBothDoubleScale", new LeftDoubleScale());
+
+		// Right Side
+		autonChooser.addObject("RightEitherSwitch", new RightSwitch());
+		autonChooser.addObject("RightEitherScale", new RightScale());
+		autonChooser.addObject("RightScaleOrSwitch", new RightRightScaleOrSwitchOnly());
+		autonChooser.addObject("RightSwitchOrStraight", new RightSwitchOnly());
+		autonChooser.addObject("RightScaleOrStraight", new RightScaleOnly());
+		autonChooser.addObject("RightDoubleScaleOrRightSwitch", new RightRightDoubleScaleOrRightSwitch());
+		
+		// Testing
+		autonChooser.addObject("AutonTest", new AutonTest());
 		autonChooser.addObject("TwoCubeRight", new AutonRightScaleRightThenScale());
 		autonChooser.addObject("TwoCubeLeft", new AutonLeftScaleLeftThenScale());
-
-		// Right Autos
-
-		autonChooser.addObject("RightRightScaleOrSwitchOnly", new RightRightScaleOrSwitchOnly());
-
-		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
-		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
-		autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());
-		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
-		autonChooser.addObject("RightScale", new RightScale());
-		autonChooser.addObject("RightSwitch", new RightSwitch());
-		autonChooser.addObject("RightSwitchonly", new RightSwitchOnly());
-		autonChooser.addObject("RightScaleOnly", new RightScaleOnly());
-
-		autonChooser.addObject("RightRightScaleSwitchLeftScaleDoubleScale", new RightRightScaleSwitchLeftScaleDoubleScale());
-
+		
 		// Calibration
-		autonChooser.addObject("Turn600", new Turn600());
-		// autonChooser.addObject("Turn620", new Turn620());
-		// autonChooser.addObject("Turn640", new Turn640());
-		// autonChooser.addObject("Turn660", new Turn660());
-		autonChooser.addObject("Turn680", new Turn680());
-		// autonChooser.addObject("Turn700", new Turn700());
-		// autonChooser.addObject("Turn720", new Turn720());
-		// autonChooser.addObject("Turn740", new Turn740());
-		// autonChooser.addObject("Turn760", new Turn760());
-		// autonChooser.addObject("Turn780", new Turn780());
-		// autonChooser.addObject("Turn800", new Turn800());
+//		autonChooser.addObject("Turn600", new Turn600());
+//		autonChooser.addObject("Turn620", new Turn620());
+//		autonChooser.addObject("Turn640", new Turn640());
+//		autonChooser.addObject("Turn660", new Turn660());
+//		autonChooser.addObject("Turn680", new Turn680());
+//		autonChooser.addObject("Turn700", new Turn700());
+//		autonChooser.addObject("Turn720", new Turn720());
+//		autonChooser.addObject("Turn740", new Turn740());
+//		autonChooser.addObject("Turn760", new Turn760());
+//		autonChooser.addObject("Turn780", new Turn780());
+//		autonChooser.addObject("Turn800", new Turn800());
 
-		// autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
-		// autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
-		// autonChooser.addObject("AutonTest",new AutonTest());
+		// Trash Can (The crossovers we don't ever use)
+//		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
+//		autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
+//		autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
+//		autonChooser.addObject("LeftLeftSwitchScaleRightSwitch", new LeftLeftSwitchScaleRightSwitch());
+//		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
+//		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
+//		autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());
+//		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
 
-		// autonChooser.addObject("Cal50", new AutonCal50());
-		// autonChooser.addObject("New left turn test", new AutonLeftTurnNewTest());
-		//
-		//
-		// autonChooser.addObject("Cal100", new AutonCal100());
-		// autonChooser.addObject("Cal200", new AutonCal200());
-		// autonChooser.addObject("Reverse switch turn", new AutonCalReverseSwitch());
-		//
-		// autonChooser.addObject("LeftSwitchLEft", new LeftSwitchLeft());
-		// autonChooser.addObject("RightSwitchRight", new RightSwitchRight2());
-		// autonChooser.addObject("RightScaleRight", new AutonRightScaleRight());
-		// autonChooser.addObject("RightScaleLeft", new AutonRightScaleLeft2());
-		// autonChooser.addObject("LeftScaleLeft", new AutonLeftScaleLeft());
-		// autonChooser.addObject("MidleScaleLeft", new MidScaleLeft());
-
-		// autonChooser.addObject("TestAuto", new TestAuto());
-
-		SmartDashboard.putData("Auton mode", autonChooser);
+		
+		SmartDashboard.putData("Auton Mode", autonChooser);
 
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
 		SmartDashboard.putNumber("driveEye", RobotMap.driveEye);
