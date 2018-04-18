@@ -11,13 +11,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonCal200 extends CommandGroup
 {
-
 	// This auton drives 200 inches (Mainly for tuning PID).
 
 	public AutonCal200()
 	{
-
 		addSequential(new AutonMotionProfileEx(cal200.PointsR, cal200.PointsL, cal200.kNumPoints));
-
 	}
 }

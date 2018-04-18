@@ -19,12 +19,17 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Elevator extends Subsystem
 {
 	private TalonSRX liftMaster, liftSlave;
-	
-	@Log(level = 1) int elevatorEncPos;
-	@Log(level = 1) int elevatorEncVel;
-	@Log(level = 1) double elevatorMotorPercent;
-	@Log(level = 1) double elevatorStick;
-	@Log(level = 1) double elevatorCurrent;
+
+	@Log(level = 1)
+	int elevatorEncPos;
+	@Log(level = 1)
+	int elevatorEncVel;
+	@Log(level = 1)
+	double elevatorMotorPercent;
+	@Log(level = 1)
+	double elevatorStick;
+	@Log(level = 1)
+	double elevatorCurrent;
 
 	public enum ElevatorPosition
 	{
@@ -67,7 +72,7 @@ public class Elevator extends Subsystem
 		zeroEncoders();
 
 	}
-	
+
 	public void updateLog()
 	{
 		elevatorEncPos = liftMaster.getSelectedSensorPosition(0);
@@ -75,7 +80,7 @@ public class Elevator extends Subsystem
 		elevatorStick = Robot.oi.two.getLeftStickY();
 		elevatorMotorPercent = liftMaster.getMotorOutputPercent();
 		elevatorCurrent = liftMaster.getOutputCurrent();
-		
+
 	}
 
 	private void configureBrakeMode()
@@ -146,14 +151,14 @@ public class Elevator extends Subsystem
 
 	public void setPID(double P, double I, double D, double F)
 	{
-//		liftMaster.config_kF(0, F, 10);
-//
-//		liftMaster.config_kP(0, P, 10);
-//
-//		liftMaster.config_kI(0, I, 10);
-//
-//		liftMaster.config_kD(0, D, 10);
-	//	liftMaster.configClosedloopRamp(.15, 10);
+		// liftMaster.config_kF(0, F, 10);
+		//
+		// liftMaster.config_kP(0, P, 10);
+		//
+		// liftMaster.config_kI(0, I, 10);
+		//
+		// liftMaster.config_kD(0, D, 10);
+		// liftMaster.configClosedloopRamp(.15, 10);
 	}
 
 	public void setSetpointLift(double inches)
@@ -161,32 +166,32 @@ public class Elevator extends Subsystem
 		// DO NOT ZERO ENCODER
 
 		liftMaster.set(ControlMode.Position, inchToEncoder(inches));
-	//	System.out.println(inchToEncoder(inches));
+		// System.out.println(inchToEncoder(inches));
 	}
 
-	public void setSetpointLift(ElevatorPosition position)
-	{
-		double inches = 0;
-
-		if (position == ElevatorPosition.SWITCH)
-		{
-			inches = RobotMap.elevatorEncoderSwitch;
-		}
-		else if (position == ElevatorPosition.SCALE)
-		{
-			inches = RobotMap.elevatorEncoderScale;
-		}
-		else if (position == ElevatorPosition.FLOOR)
-		{
-			inches = RobotMap.elevatorEncoderFloor;
-		}
-		else if (position == ElevatorPosition.CLIMB)
-		{
-			inches = RobotMap.elevatorEncoderClimb;
-		}
-
-		setSetpointLift(inches);
-	}
+	// public void setSetpointLift(ElevatorPosition position)
+	// {
+	// double inches = 0;
+	//
+	// if (position == ElevatorPosition.SWITCH)
+	// {
+	// inches = RobotMap.elevatorEncoderSwitch;
+	// }
+	// else if (position == ElevatorPosition.SCALE)
+	// {
+	// inches = RobotMap.elevatorEncoderScale;
+	// }
+	// else if (position == ElevatorPosition.FLOOR)
+	// {
+	// inches = RobotMap.elevatorEncoderFloor;
+	// }
+	// else if (position == ElevatorPosition.CLIMB)
+	// {
+	// inches = RobotMap.elevatorEncoderClimb;
+	// }
+	//
+	// setSetpointLift(inches);
+	// }
 
 	private int maxLoopNumber = 0;
 	private int onTargetCounter = 0;
@@ -230,7 +235,7 @@ public class Elevator extends Subsystem
 
 		// set tolerance in ticks
 		allowedErrorRange = ticks;
-		this.maxLoopNumber=maxLoopNumber;
+		this.maxLoopNumber = maxLoopNumber;
 	}
 
 	// Will be a different conversion ratio
@@ -258,6 +263,5 @@ public class Elevator extends Subsystem
 	{
 		setDefaultCommand(new ElevatorManualCommand());
 	}
-	
-	
+
 }

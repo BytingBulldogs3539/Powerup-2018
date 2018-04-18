@@ -21,7 +21,6 @@ public class AutonDriveCommand extends Command
 
 		setTimeout(seconds);
 		Robot.driveTrain.zeroEncoders();
-
 	}
 
 	protected void initialize()

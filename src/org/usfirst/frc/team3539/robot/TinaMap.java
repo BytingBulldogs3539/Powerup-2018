@@ -1,6 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
-public class TinaMap implements IMap // tinamap is broken btw  from:devon
+public class TinaMap implements IMap // tinamap is broken btw from:devon
 {
 
 	@Override
@@ -32,7 +32,7 @@ public class TinaMap implements IMap // tinamap is broken btw  from:devon
 	{
 		return 3;
 	}
-	
+
 	public int getPitch()
 	{
 		return 3539;
@@ -41,7 +41,7 @@ public class TinaMap implements IMap // tinamap is broken btw  from:devon
 	@Override
 	public double getDrivePea()
 	{
- 		return 0;
+		return 0;
 	}
 
 	@Override
@@ -63,79 +63,92 @@ public class TinaMap implements IMap // tinamap is broken btw  from:devon
 	}
 
 	@Override
-	public double getPitchPea() {
+	public double getPitchPea()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getPitchEye() {
+	public double getPitchEye()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getPitchDee() {
+	public double getPitchDee()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getPitchFFF() {
+	public double getPitchFFF()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getLIntakeMotor() {
+	public int getLIntakeMotor()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getRIntakeMotor() {
+	public int getRIntakeMotor()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getElevatorMotor1() {
+	public int getElevatorMotor1()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getElevatorMotor2() {
+	public int getElevatorMotor2()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getElevatorPea() {
+	public double getElevatorPea()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getElevatorEye() {
+	public double getElevatorEye()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getElevatorDee() {
+	public double getElevatorDee()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getElevatorFFF() {
+	public double getElevatorFFF()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getBotType() {
+	public int getBotType()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}

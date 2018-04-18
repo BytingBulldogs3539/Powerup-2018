@@ -8,11 +8,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonWaitElevator extends CommandGroup {
-
-    public AutonWaitElevator(double elevatorPos,double wait ) {
-    	addSequential(new AutonWaitCommand(wait));
-    	addSequential( new ElevatorPositionCommand(elevatorPos));
-
-    }
+public class AutonWaitElevator extends CommandGroup
+{
+	public AutonWaitElevator(double elevatorPos, double wait)
+	{
+		addSequential(new AutonWaitCommand(wait));
+		addSequential(new ElevatorPositionCommand(elevatorPos));
+	}
 }

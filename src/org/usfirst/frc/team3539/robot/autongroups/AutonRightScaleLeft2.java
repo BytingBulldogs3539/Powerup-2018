@@ -14,7 +14,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class AutonRightScaleLeft2 extends CommandGroup
 {
-
 	public AutonRightScaleLeft2()
 	{
 		addParallel(new AutonElevatorArm(80, 45,0,0));
@@ -22,6 +21,5 @@ public class AutonRightScaleLeft2 extends CommandGroup
 		addSequential(new AutonIntakeCommand(-1, 2));
 		addSequential(new AutonWaitCommand(1));
 		addSequential(new AutonMotionProfileEx(Reverse1000.PointsR, Reverse1000.PointsL, Reverse1000.kNumPoints));
-
 	}
 }

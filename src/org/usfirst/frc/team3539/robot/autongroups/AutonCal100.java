@@ -15,7 +15,6 @@ public class AutonCal100 extends CommandGroup
 
 	public AutonCal100()
 	{
-
 		addSequential(new AutonMotionProfileEx(Cal100.PointsR, Cal100.PointsL, Cal100.kNumPoints));
 	}
 }

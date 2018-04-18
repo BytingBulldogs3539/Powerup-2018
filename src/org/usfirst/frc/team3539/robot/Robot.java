@@ -19,35 +19,13 @@ import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftScale
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitch;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
-import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
-import org.usfirst.frc.team3539.robot.autongroups.AutonCal100;
-import org.usfirst.frc.team3539.robot.autongroups.AutonCal200;
-import org.usfirst.frc.team3539.robot.autongroups.AutonCal50;
-import org.usfirst.frc.team3539.robot.autongroups.AutonCalReverseSwitch;
-import org.usfirst.frc.team3539.robot.autongroups.AutonExtakeDrive;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenScale;
-import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
-import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleLeft2;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenScale;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
-import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
-import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
-import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
-import org.usfirst.frc.team3539.robot.autongroups.MidScaleLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 
 import org.usfirst.frc.team3539.robot.autongroups.Turn600;
-import org.usfirst.frc.team3539.robot.autongroups.Turn620;
-import org.usfirst.frc.team3539.robot.autongroups.Turn640;
-import org.usfirst.frc.team3539.robot.autongroups.Turn660;
 import org.usfirst.frc.team3539.robot.autongroups.Turn680;
-import org.usfirst.frc.team3539.robot.autongroups.Turn700;
-import org.usfirst.frc.team3539.robot.autongroups.Turn720;
-import org.usfirst.frc.team3539.robot.autongroups.Turn740;
-import org.usfirst.frc.team3539.robot.autongroups.Turn760;
-import org.usfirst.frc.team3539.robot.autongroups.Turn780;
-import org.usfirst.frc.team3539.robot.autongroups.Turn800;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
@@ -55,28 +33,19 @@ import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
 import org.usfirst.frc.team3539.robot.autons.AutonTest;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
-import org.usfirst.frc.team3539.robot.commands.DriveCommand;
-import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
-import org.usfirst.frc.team3539.robot.logger.Logger;
-import org.usfirst.frc.team3539.robot.logger.Reader;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
-import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
-import org.usfirst.frc.team3539.robot.profiles.lol200;
 import org.usfirst.frc.team3539.robot.subsystems.Climb;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
 import org.usfirst.frc.team3539.robot.subsystems.Intake;
 import org.usfirst.frc.team3539.robot.subsystems.LateralPitch;
-import org.usfirst.frc.team3539.robot.subsystems.SerialSub;
 import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
-import org.usfirst.frc.team3539.robot.utilities.OldLogger;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -90,7 +59,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot
 {
 	// SUBSYSTEMS
-//	public static Logger l = new Logger();
+	// public static Logger l = new Logger();
 	public static DriveTrain driveTrain = new DriveTrain();
 	public static Intake intake = new Intake();
 	public static Elevator elevator = new Elevator();
@@ -98,7 +67,7 @@ public class Robot extends IterativeRobot
 	public static Solenoids solenoids = new Solenoids();
 	public static Climb climb = new Climb();
 
-	//public static SerialSub serialSub = new SerialSub();
+	// public static SerialSub serialSub = new SerialSub();
 	public static int counter = 0;
 	public static boolean done = false;
 
@@ -107,43 +76,43 @@ public class Robot extends IterativeRobot
 	// public static SerialSub serialSub = new SerialSub(); uncoment when theres
 	// actually an arudion on it
 
-	//public static PowerDistributionPanel pdp;
+	// public static PowerDistributionPanel pdp;
 	public static Compressor c;
 	public static OI oi;
 	public static UsbCamera cameraOne, cameraTwo;
 
 	Command autonMode;
-	//SendableChooser<Command> positionChooser = new SendableChooser<Command>();
-	//SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
+	// SendableChooser<Command> positionChooser = new SendableChooser<Command>();
+	// SendableChooser<Command> allianceChooser = new SendableChooser<Command>();
 	SendableChooser<Command> autonChooser = new SendableChooser<Command>();
 
 	public void robotInit()
 	{
 		oi = new OI();
-//		pdp = new PowerDistributionPanel(RobotMap.pdp);
+		// pdp = new PowerDistributionPanel(RobotMap.pdp);
 		c = new Compressor(RobotMap.pcm);
-//		
-//		Reader d = new Reader(driveTrain, 1 , true);
-//		//d.addMethod("getName");
-//	//	l.add(d);
-//		Reader i = new Reader(intake, 1 , true);
-////		i.addMethod("getName");
-//	//	l.add(i);
-//		Reader e = new Reader(elevator, 1 , true);
-////		e.addMethod("getName");
-//	//	l.add(e);
-//		Reader p = new Reader(pitch, 1 , true);
-////		p.addMethod("getName");
-//	//	l.add(p);
-//		Reader s = new Reader(solenoids, 1 , true);
-////		s.addMethod("getName");
-//	//	l.add(s);
+		//
+		// Reader d = new Reader(driveTrain, 1 , true);
+		// //d.addMethod("getName");
+		// // l.add(d);
+		// Reader i = new Reader(intake, 1 , true);
+		//// i.addMethod("getName");
+		// // l.add(i);
+		// Reader e = new Reader(elevator, 1 , true);
+		//// e.addMethod("getName");
+		// // l.add(e);
+		// Reader p = new Reader(pitch, 1 , true);
+		//// p.addMethod("getName");
+		// // l.add(p);
+		// Reader s = new Reader(solenoids, 1 , true);
+		//// s.addMethod("getName");
+		// // l.add(s);
 
 		SmartInit();
 
 		try
 		{
-//		
+			//
 			cameraOne = CameraServer.getInstance().startAutomaticCapture(0);
 			cameraOne.setResolution(240, 135);
 			cameraOne.setFPS(20);
@@ -164,23 +133,22 @@ public class Robot extends IterativeRobot
 	public void disabledInit()
 	{
 		c.start();
-	//	c.stop();//TODO:REMOVE
+		// c.stop();//TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
-	//	l.stop();
+		// l.stop();
 	}
 
 	public void disabledPeriodic()
 	{
-		//System.out.println("arm enc: " + Robot.pitch.getEncoder());
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
-		//System.out.println("Im Disabled");
+		System.out.println("Im Disabled");
 	}
 
 	public void autonomousInit()
 	{
-	//l.start();
+		// l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
@@ -195,38 +163,42 @@ public class Robot extends IterativeRobot
 
 	public void autonomousPeriodic()
 	{
-		//SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
+		// SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		if (counter > 25 || DriverStation.getInstance().getGameSpecificMessage().length() > 0)
 		{
 			counter++;
-			//System.out.println("counter " + counter);
+			// System.out.println("counter " + counter);
 			if (!done)
 			{
 				gameData = DriverStation.getInstance().getGameSpecificMessage();
 				System.out.println("entered auton setter");
 				autonMode = (Command) autonChooser.getSelected();
-			
-					try {
-						autonMode = autonMode.getClass().newInstance();
-					} catch (InstantiationException e) {
-						e.printStackTrace();
-					} catch (IllegalAccessException e) {
-						e.printStackTrace();
-					}
+
+				try
+				{
+					autonMode = autonMode.getClass().newInstance();
+				}
+				catch (InstantiationException e)
+				{
+					e.printStackTrace();
+				}
+				catch (IllegalAccessException e)
+				{
+					e.printStackTrace();
+				}
 
 				autonMode.start();
 				done = true;
 			}
-				
 
 		}
-		//Robot.driveTrain.updateEncoders();
+		// Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
 
 	public void teleopInit()
 	{
-		//l.start();
+		// l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
 		Robot.elevator.setMotorPower(0);
@@ -234,7 +206,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopPeriodic()
 	{
-		//SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
+		// SmartDashboard.putNumber("pitchEnc", pitch.getEncoder());
 		Robot.driveTrain.updateEncoders();
 		Scheduler.getInstance().run();
 	}
@@ -250,8 +222,8 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("MiddleSwitch", new MiddleSwitch()); // lines up
 		autonChooser.addObject("DriveStraightAuton", new DriveStraightAuton());
 		autonChooser.addObject("AutonTest", new AutonTest());
-		
-		//LeftAutos
+
+		// Left Autos
 		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
 		autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
 		autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
@@ -261,11 +233,11 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("LeftSwitchOnly", new LeftSwitchOnly());
 		autonChooser.addObject("LeftLeftScaleSwitchRightScaleDoubleScale", new LeftLeftScaleSwitchRightScaleDoubleScale());
 		autonChooser.addObject("LeftScaleOnly", new LeftScaleOnly());
-		autonChooser.addObject("TwoCubeRight",new AutonRightScaleRightThenScale());
-		autonChooser.addObject("TwoCubeLeft",new AutonLeftScaleLeftThenScale());
+		autonChooser.addObject("TwoCubeRight", new AutonRightScaleRightThenScale());
+		autonChooser.addObject("TwoCubeLeft", new AutonLeftScaleLeftThenScale());
 
-		//RightAutos
-		
+		// Right Autos
+
 		autonChooser.addObject("RightRightScaleOrSwitchOnly", new RightRightScaleOrSwitchOnly());
 
 		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
@@ -279,25 +251,22 @@ public class Robot extends IterativeRobot
 
 		autonChooser.addObject("RightRightScaleSwitchLeftScaleDoubleScale", new RightRightScaleSwitchLeftScaleDoubleScale());
 
-		//Calibration
-	autonChooser.addObject("Turn600", new Turn600());
-//		autonChooser.addObject("Turn620", new Turn620());
-//		autonChooser.addObject("Turn640", new Turn640());
-//		autonChooser.addObject("Turn660", new Turn660());
+		// Calibration
+		autonChooser.addObject("Turn600", new Turn600());
+		// autonChooser.addObject("Turn620", new Turn620());
+		// autonChooser.addObject("Turn640", new Turn640());
+		// autonChooser.addObject("Turn660", new Turn660());
 		autonChooser.addObject("Turn680", new Turn680());
-//		autonChooser.addObject("Turn700", new Turn700());
-//		autonChooser.addObject("Turn720", new Turn720());
-//		autonChooser.addObject("Turn740", new Turn740());
-//		autonChooser.addObject("Turn760", new Turn760());
-//		autonChooser.addObject("Turn780", new Turn780());
-//		autonChooser.addObject("Turn800", new Turn800());
+		// autonChooser.addObject("Turn700", new Turn700());
+		// autonChooser.addObject("Turn720", new Turn720());
+		// autonChooser.addObject("Turn740", new Turn740());
+		// autonChooser.addObject("Turn760", new Turn760());
+		// autonChooser.addObject("Turn780", new Turn780());
+		// autonChooser.addObject("Turn800", new Turn800());
 
-		
-		
-//		autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
-//		autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
-//		autonChooser.addObject("AutonTest",new AutonTest());
-
+		// autonChooser.addObject("AutonLeftScaleLeft", new AutonLeftScaleLeft());
+		// autonChooser.addObject("AutonExtakeDrive",new AutonExtakeDrive(1));
+		// autonChooser.addObject("AutonTest",new AutonTest());
 
 		// autonChooser.addObject("Cal50", new AutonCal50());
 		// autonChooser.addObject("New left turn test", new AutonLeftTurnNewTest());
@@ -342,7 +311,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("ElevatorD", RobotMap.elevatorDee);
 		SmartDashboard.putNumber("ElevatorF", RobotMap.elevatorFFF);
 
-		//SmartDashboard.putData("PDP", pdp);
+		// SmartDashboard.putData("PDP", pdp);
 
 		SmartDashboard.putNumber("Right Enc", 0);
 		SmartDashboard.putNumber("Left Enc", 0);
@@ -372,25 +341,21 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(Scheduler.getInstance());
 		SmartDashboard.putData(new DisableSoftLimits());
 		SmartDashboard.putData(new MiddleSwitch());
-		
-		
+
 		SmartDashboard.putData(new MidSwitchRight());
 		SmartDashboard.putData(new AutonRightScaleRightThenScale());
 		SmartDashboard.putData(new RightToLeftSwitchAuton());
 		SmartDashboard.putData(new RightSwitchRight());
 		SmartDashboard.putData(new AutonRightScaleRightThenSwitch());
 		SmartDashboard.putData(new RightToLeftScaleAutonAndSwitch());
-		
-		
-		SmartDashboard.putData(new AutonRightScaleRightThenScale());
-		
-		SmartDashboard.putData(new MidSwitchLeft());
-//		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
-//		SmartDashboard.putData(new LeftSwitchLeft());
-//		SmartDashboard.putData(new LeftToRightSwich());
-//		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
-	}
-	
 
+		SmartDashboard.putData(new AutonRightScaleRightThenScale());
+
+		SmartDashboard.putData(new MidSwitchLeft());
+		// SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
+		// SmartDashboard.putData(new LeftSwitchLeft());
+		// SmartDashboard.putData(new LeftToRightSwich());
+		// SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
+	}
 
 }

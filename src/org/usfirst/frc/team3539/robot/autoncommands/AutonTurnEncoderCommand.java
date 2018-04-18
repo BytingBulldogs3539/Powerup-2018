@@ -38,7 +38,7 @@ public class AutonTurnEncoderCommand extends Command
 
 	protected boolean isFinished()
 	{
-		if(Robot.driveTrain.onTarget() || isTimedOut())
+		if (Robot.driveTrain.onTarget() || isTimedOut())
 		{
 			System.out.println("Finished");
 		}
