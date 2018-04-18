@@ -31,7 +31,7 @@ public class MidSwitchLeft extends CommandGroup
 		addSequential(new AutonIntakeCommand(-.7, 1));
 		
 		addSequential(new AutonMotionProfileEx(MiddleLeft2.PointsR,MiddleLeft2.PointsL,MiddleLeft2.kNumPoints));
-		addParallel( new AutonElevatorArm(30,110,0,0));// change to 0 when confident 
+		addParallel( new AutonElevatorArm(0,110,0,0));// change to 0 when confident 
 		addSequential( new AutonWaitCommand(0.10));
 		addParallel( new AutonIntakeCommand(1, 5));
 		

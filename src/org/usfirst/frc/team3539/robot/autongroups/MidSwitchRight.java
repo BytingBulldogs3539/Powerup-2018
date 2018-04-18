@@ -5,6 +5,7 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
+import org.usfirst.frc.team3539.robot.profiles.LeftStraightCubeSwitch;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRight2;
 import org.usfirst.frc.team3539.robot.profiles.MiddleRightPos;
@@ -33,7 +34,7 @@ public class MidSwitchRight extends CommandGroup
 		addSequential( new AutonWaitCommand(0.10));
 		addParallel( new AutonIntakeCommand(1, 5));
 		
-		addSequential(new AutonMotionProfileEx(StraightCubeSwitch.PointsR,StraightCubeSwitch.PointsL,StraightCubeSwitch.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftStraightCubeSwitch.PointsR,LeftStraightCubeSwitch.PointsL,LeftStraightCubeSwitch.kNumPoints));
 		addParallel( new AutonElevatorArm(30,90,0,0));
 		addSequential(new AutonMotionProfileEx(MiddleRightPos.PointsR,MiddleRightPos.PointsL,MiddleRightPos.kNumPoints));
 		addSequential(new AutonMotionProfileEx(StraightSwitch.PointsR,StraightSwitch.PointsL,StraightSwitch.kNumPoints));
