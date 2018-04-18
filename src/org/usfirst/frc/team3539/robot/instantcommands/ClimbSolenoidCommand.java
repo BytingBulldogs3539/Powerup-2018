@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class ClimbSolenoidCommand extends InstantCommand
 {
-
 	public ClimbSolenoidCommand()
 	{
 		requires(Robot.solenoids);

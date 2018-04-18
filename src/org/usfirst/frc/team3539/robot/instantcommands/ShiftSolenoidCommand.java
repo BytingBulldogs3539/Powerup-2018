@@ -9,7 +9,6 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class ShiftSolenoidCommand extends InstantCommand
 {
-
 	public ShiftSolenoidCommand()
 	{
 		requires(Robot.solenoids);

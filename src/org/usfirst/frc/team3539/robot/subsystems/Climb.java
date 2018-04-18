@@ -1,11 +1,7 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.ClimbCommand;
-import org.usfirst.frc.team3539.robot.commands.DriveCommand;
-import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
@@ -19,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Climb extends Subsystem
 {
 	private TalonSRX ClimbMotor;
-	
 
 	public Climb()
 	{
@@ -29,8 +24,6 @@ public class Climb extends Subsystem
 		double peakOut = 1;// 1 is full ouput
 		ClimbMotor.configPeakOutputForward(peakOut, 10);
 		ClimbMotor.configPeakOutputReverse(-peakOut, 10);
-
-
 	}
 
 	public void setMotorPower(double power)
@@ -38,13 +31,8 @@ public class Climb extends Subsystem
 		ClimbMotor.set(ControlMode.PercentOutput, power);
 		System.out.println("current"+ClimbMotor.getOutputCurrent());
 	}
-	
-	
-
 	public void initDefaultCommand()
 	{
-		setDefaultCommand(new ClimbCommand());
-
-		
+		setDefaultCommand(new ClimbCommand());	
 	}
 }

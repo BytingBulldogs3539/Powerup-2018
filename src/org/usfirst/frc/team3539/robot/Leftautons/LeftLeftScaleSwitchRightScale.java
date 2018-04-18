@@ -5,7 +5,6 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
-import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -38,8 +37,6 @@ public class LeftLeftScaleSwitchRightScale extends CommandGroup
 		{
 			System.out.println("Catch");
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
-
 		}
-
 	}
 }

@@ -11,16 +11,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class LeftSwitchLeft extends CommandGroup
 {
-
 	public LeftSwitchLeft()
 	{
-		//
-		addParallel(new AutonElevatorArm(30, 90,0,2));
+		addParallel(new AutonElevatorArm(30, 90, 0, 2));
 		// addParallel(new AutonExtakeIntake(4));
 		addSequential(new AutonMotionProfileEx(LeftSwitch.PointsR, LeftSwitch.PointsL, LeftSwitch.kNumPoints));
-	
+
 		addSequential(new AutonIntakeCommand(-.5, 1));
-		//addSequential(new AutonExtakeDrive(.25));
+		// addSequential(new AutonExtakeDrive(.25));
 
 		addSequential(new AutonMotionProfileEx(LeftSwitchReverse.PointsR, LeftSwitchReverse.PointsL, LeftSwitchReverse.kNumPoints));
 		// addSequential(new AutonElevatorArm(0,90));
@@ -30,14 +28,13 @@ public class LeftSwitchLeft extends CommandGroup
 		// addParallel(new AutonIntakeCommand(1,3));
 		// addSequential(new IntakeSolenoidCommand());
 
-		//
 		// addParallel(new AutonElevatorCommand(30));
 		// addSequential(new AutonIntakeCommand(1,2));
 
 		// addParallel(new AutonElevatorCommand(30));
 		// addParallel(new AutonIntakeCommand(1,2));
 
-	//	addSequential(new AutonIntakeCommand(-1, 1));
+		// addSequential(new AutonIntakeCommand(-1, 1));
 		// e.g. addSequential(new Command1());
 		// addSequential(new Command2());
 		// these will run in order.

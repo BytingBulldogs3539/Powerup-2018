@@ -17,7 +17,6 @@ public class MiddleSwitch extends CommandGroup
 		// Ran when auton starts to select which direction the robot goes while in the center position.
 		try
 		{
-
 			if ((Robot.gameData.charAt(0) == 'L'))
 			{
 				addSequential(new MidSwitchLeft());
@@ -31,6 +30,5 @@ public class MiddleSwitch extends CommandGroup
 		{
 
 		}
-
 	}
 }

@@ -31,7 +31,7 @@ public class PitchCommand extends Command
 
 	protected void execute()
 	{
-		
+
 		// Change (stick is up or down enough)
 		if (Robot.oi.two.getRightStickY() >= .2 || Robot.oi.two.getRightStickY() <= -.2)
 		{

@@ -38,7 +38,6 @@ public class Elevator extends Subsystem
 
 	public Elevator()
 	{
-
 		liftMaster = new TalonSRX(RobotMap.elevatorMotorTwo);
 
 		liftMaster.configSelectedFeedbackSensor(FeedbackDevice.PulseWidthEncodedPosition, 0, 10);
@@ -80,7 +79,6 @@ public class Elevator extends Subsystem
 		elevatorStick = Robot.oi.two.getLeftStickY();
 		elevatorMotorPercent = liftMaster.getMotorOutputPercent();
 		elevatorCurrent = liftMaster.getOutputCurrent();
-
 	}
 
 	private void configureBrakeMode()

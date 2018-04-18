@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
+@SuppressWarnings("unused")
 public class AutonMotionProfileEx extends Command
 {
 	private double[][] ProfileR;

@@ -7,13 +7,6 @@ import org.usfirst.frc.team3539.robot.profiles.LeftStraightCubeSwitch;
 import org.usfirst.frc.team3539.robot.profiles.MiddleLeft;
 import org.usfirst.frc.team3539.robot.profiles.MiddleLeft2;
 import org.usfirst.frc.team3539.robot.profiles.MiddleLeftPos;
-import org.usfirst.frc.team3539.robot.profiles.MiddleLeftReverse;
-import org.usfirst.frc.team3539.robot.profiles.MiddleRight;
-import org.usfirst.frc.team3539.robot.profiles.MiddleRight2;
-import org.usfirst.frc.team3539.robot.profiles.MiddleRightPos;
-import org.usfirst.frc.team3539.robot.profiles.StraightCube;
-import org.usfirst.frc.team3539.robot.profiles.StraightCubeReverse;
-import org.usfirst.frc.team3539.robot.profiles.StraightCubeSwitch;
 import org.usfirst.frc.team3539.robot.profiles.StraightSwitch;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -23,7 +16,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class MidSwitchLeft extends CommandGroup
 {
-
 	public MidSwitchLeft()
 	{
 		addParallel( new AutonElevatorArm(30,90,0,4));

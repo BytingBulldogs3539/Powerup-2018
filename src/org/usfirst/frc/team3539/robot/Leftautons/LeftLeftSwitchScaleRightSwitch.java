@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class LeftLeftSwitchScaleRightSwitch extends CommandGroup
 {
-
 	public LeftLeftSwitchScaleRightSwitch()
 	{
 		System.out.println("Started leftleftswitchorscale");
@@ -39,6 +38,5 @@ public class LeftLeftSwitchScaleRightSwitch extends CommandGroup
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 
 		}
-
 	}
 }

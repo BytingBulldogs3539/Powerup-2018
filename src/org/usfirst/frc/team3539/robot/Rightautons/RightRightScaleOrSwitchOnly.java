@@ -4,10 +4,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
-import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
-import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
-import org.usfirst.frc.team3539.robot.profiles.RightToLeftScale;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -16,12 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class RightRightScaleOrSwitchOnly extends CommandGroup
 {
-
 	public RightRightScaleOrSwitchOnly()
 	{
 		try
 		{
-
 			if (Robot.gameData.charAt(1) == 'R')
 			{
 				addSequential(new AutonRightScaleRightThenSwitch());
@@ -35,7 +30,6 @@ public class RightRightScaleOrSwitchOnly extends CommandGroup
 			else 
 			{
 				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
-
 			}
 	
 		}
@@ -43,6 +37,5 @@ public class RightRightScaleOrSwitchOnly extends CommandGroup
 		{
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 		}
-
 	}
 }

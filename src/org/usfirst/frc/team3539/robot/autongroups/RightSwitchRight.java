@@ -11,10 +11,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class RightSwitchRight extends CommandGroup
 {
-
 	public RightSwitchRight()
 	{
-		addParallel(new AutonElevatorArm(30, 90,0,3.2));
+		addParallel(new AutonElevatorArm(30, 90, 0, 3.2));
 		addSequential(new AutonMotionProfileEx(RightSwitch.PointsR, RightSwitch.PointsL, RightSwitch.kNumPoints));
 		addSequential(new AutonIntakeCommand(-.5, 1));
 		addSequential(new AutonMotionProfileEx(RightSwitchReverse.PointsR, RightSwitchReverse.PointsL, RightSwitchReverse.kNumPoints));
