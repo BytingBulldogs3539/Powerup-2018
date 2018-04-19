@@ -20,12 +20,10 @@ public class RightRightScaleOrSwitchOnly extends CommandGroup
 			if (Robot.gameData.charAt(1) == 'R')
 			{
 				addSequential(new AutonRightScaleRightThenSwitch());
-
 			}
 			else if (Robot.gameData.charAt(0) == 'R')
 			{
 				addSequential(new RightSwitchRight());
-
 			}
 			else 
 			{

@@ -11,22 +11,15 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class LeftLeftScaleSwitchRightScaleDoubleScale extends CommandGroup
+public class LeftDoubleScale extends CommandGroup
 {
-	public LeftLeftScaleSwitchRightScaleDoubleScale()
+	public LeftDoubleScale()
 	{
-		System.out.println("Started leftleftswitchorscale");
 		try
 		{
-			System.out.println("char at 0: " + Robot.gameData.charAt(0) + " char at 1: " + Robot.gameData);
 			if (Robot.gameData.charAt(1) == 'L')
 			{
 				addSequential(new AutonLeftScaleLeftThenScale());
-
-			}
-			else if (Robot.gameData.charAt(0) == 'L')
-			{
-				addSequential(new LeftSwitchLeft());
 			}
 			else
 			{
@@ -35,9 +28,7 @@ public class LeftLeftScaleSwitchRightScaleDoubleScale extends CommandGroup
 		}
 		catch (Exception e)
 		{
-			System.out.println("Catch");
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
-
 		}
 	}
 }

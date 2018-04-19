@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class RightRightScaleSwitchLeftScaleDoubleScale extends CommandGroup
+public class RightRightDoubleScaleOrRightSwitch extends CommandGroup
 {
-	public RightRightScaleSwitchLeftScaleDoubleScale()
+	public RightRightDoubleScaleOrRightSwitch()
 	{
 		try
 		{
@@ -30,7 +30,7 @@ public class RightRightScaleSwitchLeftScaleDoubleScale extends CommandGroup
 			}
 			else 
 			{
-				addSequential(new RightToLeftScaleAutonAndSwitch());
+				//addSequential(new RightToLeftScaleAutonAndSwitch());
 			}
 		}
 		catch (Exception e)

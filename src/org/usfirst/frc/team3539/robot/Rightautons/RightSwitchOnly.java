@@ -20,8 +20,8 @@ public class RightSwitchOnly extends CommandGroup
 			if (Robot.gameData.charAt(0) == 'R')
 			{
 				addSequential(new RightSwitchRight());
-			}		
-			else 
+			}
+			else
 			{
 				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 			}
