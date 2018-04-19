@@ -43,6 +43,7 @@ public class MotionProfileExample {
 	private MotionProfileStatus _status = new MotionProfileStatus();
 	private MotionProfileStatus statusR = new MotionProfileStatus();
 	private double[][] pointsr;
+public TrajectoryPoint p;
 	private double[][] pointsl;
 	private int numpoints;
 
@@ -120,6 +121,7 @@ public class MotionProfileExample {
 	pointsr = ProfileR;
 	pointsl = ProfileL;
 	numpoints = totalPointNum;
+	
 		
 		_talon = talon;
 		talonR = talonRight;
@@ -130,6 +132,8 @@ public class MotionProfileExample {
 		_talon.changeMotionControlFramePeriod(5);
 		talonR.changeMotionControlFramePeriod(5);
 	}
+	
+
 
 	/**
 	 * Called to clear Motion profile buffer and reset state info during
@@ -269,7 +273,6 @@ public class MotionProfileExample {
 			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
 			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
 
-			_heading = _talon.getActiveTrajectoryHeading();
 			_pos = _talon.getActiveTrajectoryPosition();
 			_vel = _talon.getActiveTrajectoryVelocity();
 
@@ -315,12 +318,13 @@ public class MotionProfileExample {
 
 	}
 
+	
 	private void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
 
 		/* create an empty point */
 		TrajectoryPoint point = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-
+		p = point;
 
 		/* did we get an underrun condition since last time we checked ? */
 		if (_status.hasUnderrun) {
@@ -362,7 +366,7 @@ public class MotionProfileExample {
 			System.out.println("motion profile i"+i);
 			double positionRot = profileL[i][0];
 			double positionRotR = profileR[i][0];
-
+			
 			double velocityRPM = profileL[i][1];
 			double velocityRPMR = profileR[i][1];
 
@@ -375,7 +379,7 @@ public class MotionProfileExample {
 
 			point.velocity = velocityRPM * 4096 / 600.0; //Convert RPM to Units/100ms
 			pointR.velocity = velocityRPMR * 4096 / 600.0; //Convert RPM to Units/100ms
-
+			//System.out.println("heading = "+heading+"HeadingDEG = "+point.headingDeg);
 	
 			
 
@@ -400,6 +404,7 @@ public class MotionProfileExample {
 			talonR.pushMotionProfileTrajectory(pointR);
 		}
 	}
+
 //	public void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
 //	{
 //

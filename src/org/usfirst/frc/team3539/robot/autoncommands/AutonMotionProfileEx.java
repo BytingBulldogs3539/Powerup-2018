@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot.autoncommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.utilities.MotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.MotionProfileExample;
 
@@ -33,6 +34,7 @@ public class AutonMotionProfileEx extends Command
 
 	}
 
+
 	protected void initialize()
 	{
 
@@ -55,6 +57,7 @@ public class AutonMotionProfileEx extends Command
 
 		// m.update();
 
+		
 	}
 
 	protected void execute()
@@ -86,6 +89,8 @@ public class AutonMotionProfileEx extends Command
 			// m.startFilling(ProfileL, totalPointNum, ProfileR, totalPointNum);
 			z++;
 		}
+		System.out.println("------------"+m.p.headingDeg+"------------"+m.p.headingDeg);
+	
 
 	}
 

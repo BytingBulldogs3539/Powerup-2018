@@ -1,7 +1,10 @@
 package org.usfirst.frc.team3539.robot.autons;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
+import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.Straight;
+import org.usfirst.frc.team3539.robot.profiles.TESTING;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -13,7 +16,8 @@ public class AutonTest extends CommandGroup
 
 	public AutonTest()
 	{
-		addSequential(new AutonMotionProfileEx(Straight.PointsR, Straight.PointsL, Straight.kNumPoints));
+		addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
+
 
 		// System.out.println("RightScale started---------------");
 		// addParallel(new AutonElevatorArm(73, 45,2,0));
