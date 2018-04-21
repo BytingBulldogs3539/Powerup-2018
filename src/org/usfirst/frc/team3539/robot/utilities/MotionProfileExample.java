@@ -195,7 +195,7 @@ public TrajectoryPoint p;
 			 * we are not in MP mode. We are probably driving the robot around
 			 * using gamepads or some other mode.
 			 */
-			System.out.println("not in motionprofile");
+		//	System.out.println("not in motionprofile");
 			_state = 0;
 			_loopTimeout = -1;
 		} else {
@@ -206,7 +206,7 @@ public TrajectoryPoint p;
 			 */
 			switch (_state) {
 				case 0: /* wait for application to tell us to start an MP */
-					System.out.println("case 0");
+				//	System.out.println("case 0");
 					if (_bStart) {
 						_bStart = false;
 	
@@ -238,7 +238,7 @@ public TrajectoryPoint p;
 					}
 					break;
 				case 2:
-					System.out.println("case 2");
+				//	System.out.println("case 2");
 /* check the status of the MP */
 					/*
 					 * if talon is reporting things are good, keep adding to our
@@ -270,8 +270,8 @@ public TrajectoryPoint p;
 			_talon.getMotionProfileStatus(_status);
 			talonR.getMotionProfileStatus(statusR);
 			
-			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
-			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
+//			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
+//			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
 
 			_pos = _talon.getActiveTrajectoryPosition();
 			_vel = _talon.getActiveTrajectoryVelocity();

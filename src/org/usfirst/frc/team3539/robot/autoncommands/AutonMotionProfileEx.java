@@ -34,11 +34,12 @@ public class AutonMotionProfileEx extends Command
 
 	}
 
-
 	protected void initialize()
 	{
 
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
+				SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+				SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
 				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
 		m.reset();
 		m.reset();
@@ -57,12 +58,13 @@ public class AutonMotionProfileEx extends Command
 
 		// m.update();
 
-		
 	}
 
 	protected void execute()
 
 	{
+		
+
 		// Robot.driveTrain.printEnc();
 		/// System.out.println(Robot.driveTrain.rf.getControlMode());
 		m.control();
@@ -89,8 +91,6 @@ public class AutonMotionProfileEx extends Command
 			// m.startFilling(ProfileL, totalPointNum, ProfileR, totalPointNum);
 			z++;
 		}
-		System.out.println("------------"+m.p.headingDeg+"------------"+m.p.headingDeg);
-	
 
 	}
 

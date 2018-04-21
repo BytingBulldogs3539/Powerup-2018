@@ -121,6 +121,8 @@ public class Robot extends IterativeRobot
 		}
 		catch (Error eeee)
 		{
+
+			System.out.println("--------------");
 		}
 	}
 
@@ -143,7 +145,7 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
-		System.out.println("Im Disabled");
+	//	System.out.println("Im Disabled");
 	}
 
 	public void autonomousInit()

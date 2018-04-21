@@ -22,20 +22,20 @@
               "_title": "SmartDashboard/DisableSoftLimits"
             }
           },
-          "0,1": {
+          "0,2": {
             "size": [
-              2,
+              1,
               1
             ],
             "content": {
               "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Auton mode",
-              "_title": "SmartDashboard/Auton mode"
+              "_source0": "network_table:///SmartDashboard/Auton Mode",
+              "_title": "SmartDashboard/Auton Mode"
             }
           },
           "2,0": {
             "size": [
-              5,
+              4,
               3
             ],
             "content": {
@@ -47,8 +47,8 @@
               "crosshairColor": "#FFFFFFFF",
               "compression": 0.0,
               "fps": -1,
-              "imageWidth": -1,
-              "imageHeight": -1
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           }
         }

@@ -26,7 +26,7 @@ public class ClimbCommand extends Command
 	{
 		double x = -Robot.oi.one.getRightTrigger() + (Robot.oi.one.getLeftTrigger());
 		// System.out.println("climbing power"+x);
-		System.out.println("climb speed" + x);
+	//	System.out.println("climb speed" + x);
 		Robot.climb.setMotorPower(x);
 	}
 

@@ -158,10 +158,10 @@ public final class DriveTrain extends Subsystem
 		rf.configPeakCurrentLimit(35, 10);
 
 		lf.configPeakCurrentDuration(100, 10);
-		rf.configPeakCurrentDuration(100, 10);
+		rf.configPeakCurrentDuration(100, 10);//50
 
 		lf.configContinuousCurrentLimit(30, 10);
-		rf.configContinuousCurrentLimit(30, 10);
+		rf.configContinuousCurrentLimit(30, 10);//25 
 
 		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(true);
@@ -198,7 +198,7 @@ public final class DriveTrain extends Subsystem
 	{
 		// drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle),
 		// Math.copySign(Math.pow(wheel, 2), wheel));
-		drive.driveArcade(throttle * 0.8, wheel * 0.8);
+		drive.driveArcade(throttle, wheel);
 	}
 
 	public void setPID(double P, double I, double D, double F)
@@ -211,9 +211,9 @@ public final class DriveTrain extends Subsystem
 
 		lf.config_kD(0, D, 10);
 
-		rf.config_kF(0, F*1.25, 10);
+		rf.config_kF(0, F*1.3, 10);
 
-		rf.config_kP(0, P*1.25, 10);
+		rf.config_kP(0, P*1.3, 10);
 
 		rf.config_kI(0, I, 10);
 		rf.config_kD(0, D, 10);
