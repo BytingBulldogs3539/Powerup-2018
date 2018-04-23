@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.autons;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
+import org.usfirst.frc.team3539.robot.profiles.RightToLeftScale;
 import org.usfirst.frc.team3539.robot.profiles.Straight;
 import org.usfirst.frc.team3539.robot.profiles.TESTING;
 

@@ -19,7 +19,7 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 	public AutonRightScaleRightThenSwitch()
 	{
 		System.out.println("RightScale started---------------");
-		addParallel(new AutonElevatorArm(73, 45, 1.8, 0));
+		addParallel(new AutonElevatorArm(73, 45, 2, 0));
 		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, 1));
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
