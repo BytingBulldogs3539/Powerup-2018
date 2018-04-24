@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot.autons;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
 import org.usfirst.frc.team3539.robot.profiles.RightToLeftScale;
@@ -17,7 +18,7 @@ public class AutonTest extends CommandGroup
 
 	public AutonTest()
 	{
-		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
+		addSequential(new AutonMotionProfileEx(RightToLeftScale.PointsR, RightToLeftScale.PointsL, RightToLeftScale.kNumPoints));
 
 		//addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 
