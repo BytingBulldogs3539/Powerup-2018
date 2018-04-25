@@ -27,7 +27,7 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints));
 		addSequential(new AutonIntakeCommand(-1, .4));
 		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
-		addParallel(new AutonElevatorArm(0, 100, 0, 0));// change to 0 when confident
+		addParallel(new AutonElevatorArm(30, 100, 0, 0));// change to 0 when confident
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonWaitCommand(.4));
 

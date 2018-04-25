@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.autongroups;
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.RightRightScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.RightScaleRight;
@@ -27,12 +28,12 @@ public class AutonRightScaleRightThenSwitch extends CommandGroup
 		// if lines up
 		if (Robot.gameData.charAt(0) == 'R')
 		{
-			addParallel(new AutonElevatorArm(30, 100, 0, 0));// change 30 to zero when confidentt
+			addParallel(new AutonElevatorArm(30, 110, 0, 0));// change to 0 when ready
 			addSequential(new IntakeSolenoidCommand());
 			addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
-			// addParallel(new AutonIntakeCommand(.5, 1));
-			// addSequential(new IntakeSolenoidCommand());
-			// addSequential(new AutonWaitCommand(.5));
+			addParallel(new AutonIntakeCommand(.5, 1));
+			 addSequential(new IntakeSolenoidCommand());
+			 addSequential(new AutonWaitCommand(.5));
 			// // puts cube in switch
 			// addSequential(new TeleopElevatorPositionCommand(30));
 			// addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));

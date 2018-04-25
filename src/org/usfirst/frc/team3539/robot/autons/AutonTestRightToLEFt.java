@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonTest extends CommandGroup
+public class AutonTestRightToLEFt extends CommandGroup
 {
 
-	public AutonTest()
+	public AutonTestRightToLEFt()
 	{
 		addSequential(new AutonMotionProfileEx(RightToLeftScale.PointsR, RightToLeftScale.PointsL, RightToLeftScale.kNumPoints));
 

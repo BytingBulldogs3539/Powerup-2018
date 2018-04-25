@@ -30,7 +30,7 @@ import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
-import org.usfirst.frc.team3539.robot.autons.AutonTest;
+import org.usfirst.frc.team3539.robot.autons.AutonTestRightToLEFt;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
@@ -239,7 +239,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightDoubleScaleOrRightSwitch", new RightRightDoubleScaleOrRightSwitch());
 		
 		// Testing
-		autonChooser.addObject("AutonTest", new AutonTest());
+		autonChooser.addObject("AutonTest", new AutonTestRightToLEFt());
 		autonChooser.addObject("TwoCubeRight", new AutonRightScaleRightThenScale());
 		autonChooser.addObject("TwoCubeLeft", new AutonLeftScaleLeftThenScale());
 		

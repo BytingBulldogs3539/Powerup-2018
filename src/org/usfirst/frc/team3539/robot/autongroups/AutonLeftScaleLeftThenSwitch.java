@@ -46,7 +46,7 @@ public class AutonLeftScaleLeftThenSwitch extends CommandGroup
 			addParallel(new TeleopElevatorPositionCommand(30));
 			addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
 			addSequential(new AutonIntakeCommand(-1, 1));
-			addSequential(new AutonMotionProfileEx(TwoCubeReverse.PointsR, TwoCubeReverse.PointsL, TwoCubeReverse.kNumPoints));
+		//	addSequential(new AutonMotionProfileEx(TwoCubeReverse.PointsR, TwoCubeReverse.PointsL, TwoCubeReverse.kNumPoints));
 			addSequential(new IntakeSolenoidCommand());
 		}
 		else if (Robot.gameData.charAt(0) == 'R')
