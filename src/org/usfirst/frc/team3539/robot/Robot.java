@@ -236,7 +236,7 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightScaleOrSwitch", new RightRightScaleOrSwitchOnly());
 		autonChooser.addObject("RightSwitchOrStraight", new RightSwitchOnly());
 		autonChooser.addObject("RightScaleOrStraight", new RightScaleOnly());
-		autonChooser.addObject("RightDoubleScaleOrRightSwitch", new RightRightDoubleScaleOrRightSwitch());
+		autonChooser.addObject("RightBothDoubleScale", new RightRightDoubleScaleOrRightSwitch());
 		
 		// Testing
 		autonChooser.addObject("AutonTest", new AutonTestRightToLEFt());

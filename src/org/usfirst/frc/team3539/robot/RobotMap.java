@@ -14,7 +14,7 @@ public class RobotMap
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botMap = new PracMap();
+	private static IMap botMap = new CompMap();
 	public static int botType = botMap.getBotType();
 
 	// PDP

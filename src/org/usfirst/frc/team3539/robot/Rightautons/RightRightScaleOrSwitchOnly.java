@@ -29,7 +29,6 @@ public class RightRightScaleOrSwitchOnly extends CommandGroup
 			{
 				addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
 			}
-	
 		}
 		catch (Exception e)
 		{

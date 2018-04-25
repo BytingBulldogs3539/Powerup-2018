@@ -21,16 +21,10 @@ public class RightRightDoubleScaleOrRightSwitch extends CommandGroup
 			if (Robot.gameData.charAt(1) == 'R')
 			{
 				addSequential(new AutonRightScaleRightThenScale());
-
 			}
-			else if (Robot.gameData.charAt(0) == 'R')
+			else
 			{
-				addSequential(new RightSwitchRight());
-
-			}
-			else 
-			{
-				//addSequential(new RightToLeftScaleAutonAndSwitch());
+				addSequential(new RightToLeftScaleAutonAndSwitch());
 			}
 		}
 		catch (Exception e)
