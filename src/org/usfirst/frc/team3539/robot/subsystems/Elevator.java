@@ -95,7 +95,7 @@ public class Elevator extends Subsystem
 
 	private void configureSoftLimits()
 	{
-		liftMaster.configForwardSoftLimitThreshold(54400, 0); // TODO
+		liftMaster.configForwardSoftLimitThreshold(50380, 0); // TODO
 		liftMaster.configReverseSoftLimitThreshold(0, 0); // TODO
 
 		liftMaster.configForwardSoftLimitEnable(true, 10);

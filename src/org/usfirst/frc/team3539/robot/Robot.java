@@ -30,6 +30,7 @@ import org.usfirst.frc.team3539.robot.autongroups.RightSwitchRight;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftSwitchAuton;
 import org.usfirst.frc.team3539.robot.autons.MiddleSwitch;
+import org.usfirst.frc.team3539.robot.autons.AutonTestLeftToRight;
 import org.usfirst.frc.team3539.robot.autons.AutonTestRightToLEFt;
 import org.usfirst.frc.team3539.robot.autons.DriveStraightAuton;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
@@ -334,6 +335,15 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new AutonRightScaleRightThenScale());
 
 		SmartDashboard.putData(new MidSwitchLeft());
+		
+		
+		//test
+		SmartDashboard.putData(new AutonTestLeftToRight());
+		SmartDashboard.putData(new AutonTestRightToLEFt());
+		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
+		SmartDashboard.putData(new AutonTestRightToLEFt());
+		
+
 		// SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
 		// SmartDashboard.putData(new LeftSwitchLeft());
 		// SmartDashboard.putData(new LeftToRightSwich());
