@@ -154,14 +154,14 @@ public final class DriveTrain extends Subsystem
 	@SuppressWarnings("unused")
 	private void enableCurrentLimit()
 	{
-		lf.configPeakCurrentLimit(35, 10);
-		rf.configPeakCurrentLimit(35, 10);
+		lf.configPeakCurrentLimit(30, 10);
+		rf.configPeakCurrentLimit(30, 10);
 
 		lf.configPeakCurrentDuration(100, 10);
 		rf.configPeakCurrentDuration(100, 10);//50
 
-		lf.configContinuousCurrentLimit(30, 10);
-		rf.configContinuousCurrentLimit(30, 10);//25 
+		lf.configContinuousCurrentLimit(25, 10);
+		rf.configContinuousCurrentLimit(25, 10);//25 
 
 		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(true);
@@ -205,7 +205,7 @@ public final class DriveTrain extends Subsystem
 	{
 		lf.config_kF(0, F, 10);
 
-		lf.config_kP(0, P, 10);// change back just checking something
+		lf.config_kP(0, P, 10);// 
 
 		lf.config_kI(0, I, 10);
 
@@ -214,6 +214,24 @@ public final class DriveTrain extends Subsystem
 		rf.config_kF(0, F, 10);//*1.3 on practice 
 
 		rf.config_kP(0, P, 10);//*1.3 on practice 
+
+		rf.config_kI(0, I, 10);
+		rf.config_kD(0, D, 10);
+
+	}
+	public void setPIDScale(double P, double I, double D, double F)
+	{
+		lf.config_kF(0, F, 10);
+
+		lf.config_kP(0, P, 10);// 
+
+		lf.config_kI(0, I, 10);
+
+		lf.config_kD(0, D, 10);
+
+		rf.config_kF(0, F*1.2, 10);//*1.3 on practice 
+
+		rf.config_kP(0, P*1.2, 10);//*1.3 on practice 
 
 		rf.config_kI(0, I, 10);
 		rf.config_kD(0, D, 10);

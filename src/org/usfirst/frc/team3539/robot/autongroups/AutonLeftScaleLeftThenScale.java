@@ -24,7 +24,7 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 	public AutonLeftScaleLeftThenScale()
 	{
 		addParallel(new AutonElevatorArm(73, 45, 2, 0));
-		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-1, .4));
 		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
 		addParallel(new AutonElevatorArm(30, 100, 0, 0));// change to 0 when confident

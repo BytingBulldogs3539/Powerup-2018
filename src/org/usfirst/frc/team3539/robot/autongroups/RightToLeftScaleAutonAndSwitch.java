@@ -22,7 +22,7 @@ public class RightToLeftScaleAutonAndSwitch extends CommandGroup
 	public RightToLeftScaleAutonAndSwitch()
 	{
 		addParallel(new AutonElevatorArm(70, 40, 6, 0));
-		addSequential(new AutonMotionProfileEx(RightToLeftScale.PointsR, RightToLeftScale.PointsL, RightToLeftScale.kNumPoints));
+		addSequential(new AutonMotionProfileEx(RightToLeftScale.PointsR, RightToLeftScale.PointsL, RightToLeftScale.kNumPoints,true));
 		addSequential(new AutonWaitCommand(.5));
 		//addSequential(new AutonIntakeCommand(-1, 1));
 	addSequential(new IntakeSolenoidCommand());

@@ -19,7 +19,7 @@ public class LeftToRightScaleAuton2 extends CommandGroup
 		// addSequential( new AutonElevatorArm(70,45));
 		// addParallel(new AutonExtakeIntake(9));
 		addParallel(new AutonElevatorArm(73, 40, 4.3, 6));
-		addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR, LeftToRightScale.PointsL, LeftToRightScale.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR, LeftToRightScale.PointsL, LeftToRightScale.kNumPoints,true));
 		// addSequential( new AutonElevatorArm(70,45,0));
 		addSequential(new AutonWaitCommand(1));
 		addSequential(new AutonIntakeCommand(-1, 1));

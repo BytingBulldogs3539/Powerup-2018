@@ -26,7 +26,7 @@ public class AutonLeftScaleLeftThenSwitch extends CommandGroup
 	{
 		addParallel(new AutonElevatorArm(75, 45, 1.5, 0));
 		addParallel(new AutonIntakeCommand(.4, 1));
-		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-1, 2)); // shoot
 		// addSequential(new AutonWaitCommand(1));
 		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));

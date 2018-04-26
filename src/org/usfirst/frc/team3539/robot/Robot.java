@@ -53,8 +53,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the IterativeRobot documentation. If you change the name of this class or the package after creating this
- * project, you must also update the manifest file in the resource directory.
+ * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
+ * described in the IterativeRobot documentation. If you change the name of this class or the package after creating
+ * this project, you must also update the manifest file in the resource directory.
  **/
 
 public class Robot extends IterativeRobot
@@ -128,15 +129,16 @@ public class Robot extends IterativeRobot
 	}
 
 	/**
-	 * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as described in the TimedRobot documentation. If you change the name of this class or the package after creating this
-	 * project, you must also update the build.properties file in the project.
+	 * The VM is configured to automatically run this class, and to call the functions corresponding to each mode, as
+	 * described in the TimedRobot documentation. If you change the name of this class or the package after creating
+	 * this project, you must also update the build.properties file in the project.
 	 */
 
 	@Override
 	public void disabledInit()
 	{
-		//c.start();
-	c.start();//TODO:REMOVE
+		// c.start();
+		c.start();// TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
 		// l.stop();
@@ -146,7 +148,7 @@ public class Robot extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		// driveTrain.log.flush();
-	//	System.out.println("Im Disabled");
+		// System.out.println("Im Disabled");
 	}
 
 	public void autonomousInit()
@@ -238,36 +240,35 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("RightSwitchOrStraight", new RightSwitchOnly());
 		autonChooser.addObject("RightScaleOrStraight", new RightScaleOnly());
 		autonChooser.addObject("RightBothDoubleScale", new RightRightDoubleScaleOrRightSwitch());
-		
+
 		// Testing
 		autonChooser.addObject("AutonTest", new AutonTestRightToLEFt());
 		autonChooser.addObject("TwoCubeRight", new AutonRightScaleRightThenScale());
 		autonChooser.addObject("TwoCubeLeft", new AutonLeftScaleLeftThenScale());
-		
+
 		// Calibration
-//		autonChooser.addObject("Turn600", new Turn600());
-//		autonChooser.addObject("Turn620", new Turn620());
-//		autonChooser.addObject("Turn640", new Turn640());
-//		autonChooser.addObject("Turn660", new Turn660());
-//		autonChooser.addObject("Turn680", new Turn680());
-//		autonChooser.addObject("Turn700", new Turn700());
-//		autonChooser.addObject("Turn720", new Turn720());
-//		autonChooser.addObject("Turn740", new Turn740());
-//		autonChooser.addObject("Turn760", new Turn760());
-//		autonChooser.addObject("Turn780", new Turn780());
-//		autonChooser.addObject("Turn800", new Turn800());
+		// autonChooser.addObject("Turn600", new Turn600());
+		// autonChooser.addObject("Turn620", new Turn620());
+		// autonChooser.addObject("Turn640", new Turn640());
+		// autonChooser.addObject("Turn660", new Turn660());
+		// autonChooser.addObject("Turn680", new Turn680());
+		// autonChooser.addObject("Turn700", new Turn700());
+		// autonChooser.addObject("Turn720", new Turn720());
+		// autonChooser.addObject("Turn740", new Turn740());
+		// autonChooser.addObject("Turn760", new Turn760());
+		// autonChooser.addObject("Turn780", new Turn780());
+		// autonChooser.addObject("Turn800", new Turn800());
 
 		// Trash Can (The crossovers we don't ever use)
-//		autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
-//		autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
-//		autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
-//		autonChooser.addObject("LeftLeftSwitchScaleRightSwitch", new LeftLeftSwitchScaleRightSwitch());
-//		autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
-//		autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
-//		autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());
-//		autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
+		// autonChooser.addObject("LeftLeftScaleSwitchRightScale", new LeftLeftScaleSwitchRightScale());
+		// autonChooser.addObject("LeftLeftScaleSwitchRightSwitch", new LeftLeftScaleSwitchRightSwitch());
+		// autonChooser.addObject("LeftLeftSwitchScaleRightScale", new LeftLeftSwitchScaleRightScale());
+		// autonChooser.addObject("LeftLeftSwitchScaleRightSwitch", new LeftLeftSwitchScaleRightSwitch());
+		// autonChooser.addObject("RightRightScaleSwitchLeftScale", new RightRightScaleSwitchLeftScale());
+		// autonChooser.addObject("RightRightScaleSwitchLeftSwitch", new RightRightScaleSwitchLeftSwitch());
+		// autonChooser.addObject("RightRightSwitchScaleLeftScale", new RightRightSwitchScaleLeftScale());
+		// autonChooser.addObject("RightRightSwitchScaleLeftSwitch", new RightRightSwitchScaleLeftSwitch());
 
-		
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
@@ -335,14 +336,13 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new AutonRightScaleRightThenScale());
 
 		SmartDashboard.putData(new MidSwitchLeft());
-		
-		
-		//test
+
+		// test
 		SmartDashboard.putData(new AutonTestLeftToRight());
 		SmartDashboard.putData(new AutonTestRightToLEFt());
 		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
 		SmartDashboard.putData(new AutonTestRightToLEFt());
-		
+		SmartDashboard.putData(new DriveStraightAuton());
 
 		// SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
 		// SmartDashboard.putData(new LeftSwitchLeft());

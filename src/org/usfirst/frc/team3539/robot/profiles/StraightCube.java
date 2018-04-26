@@ -1,5 +1,5 @@
 package org.usfirst.frc.team3539.robot.profiles;
-public class StraightCubeSwitch implements IProfile
+public class StraightCube implements IProfile
 {
   public static final int kNumPoints = 187;
   public static double PointsR[][] = new double[][] {
