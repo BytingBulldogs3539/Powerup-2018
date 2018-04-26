@@ -24,6 +24,7 @@ public class AutonMotionProfileEx extends Command
 	private int totalPointNum;
 	public MotionProfileExample m;
 	private boolean isfinished = false;
+	private boolean scale = false;
 	SetValueMotionProfile setOutput;
 
 	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum)
@@ -34,13 +35,30 @@ public class AutonMotionProfileEx extends Command
 
 	}
 
+	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum, boolean Scale)
+	{
+		requires(Robot.driveTrain);
+		scale = Scale;
+		m = new MotionProfileExample(Robot.driveTrain.rf, Robot.driveTrain.lf, ProfileR, ProfileL, totalPointNum);
+
+	}
+
 	protected void initialize()
 	{
-
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
-				SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
-				SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
-				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		if (scale)
+		{
+			Robot.driveTrain.setPIDScale(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
+					SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+					SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+					SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		}
+		else
+		{
+			Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
+					SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+					SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+					SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		}
 		m.reset();
 		m.reset();
 
@@ -63,7 +81,6 @@ public class AutonMotionProfileEx extends Command
 	protected void execute()
 
 	{
-		
 
 		// Robot.driveTrain.printEnc();
 		/// System.out.println(Robot.driveTrain.rf.getControlMode());

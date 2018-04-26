@@ -21,7 +21,7 @@ public class RightScaleRightAuton extends CommandGroup
 	{
 		System.out.println("RightScale started---------------");
 		addParallel(new AutonElevatorArm(73, 45, 1, 0));
-		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints));
+		addSequential(new AutonMotionProfileEx(RightScaleRight.PointsR, RightScaleRight.PointsL, RightScaleRight.kNumPoints, true));
 		addSequential(new AutonIntakeCommand(-1, .4));
 		addSequential(new AutonMotionProfileEx(RightRightScaleTurn.PointsR, RightRightScaleTurn.PointsL, RightRightScaleTurn.kNumPoints));
 		addParallel(new AutonElevatorArm(30, 100, 0, 0));// change to 0
