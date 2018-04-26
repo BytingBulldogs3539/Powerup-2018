@@ -1,5 +1,5 @@
 {
-  "dividerPosition": 0.1543026706231454,
+  "dividerPosition": 0.25741839762611274,
   "tabPane": [
     {
       "title": "Tab 2",
@@ -24,7 +24,7 @@
           },
           "0,2": {
             "size": [
-              1,
+              2,
               1
             ],
             "content": {
@@ -64,29 +64,7 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "5,0": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenScale",
-              "_title": "SmartDashboard/AutonRightScaleRightThenScale"
-            }
-          },
-          "5,1": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenSwitch",
-              "_title": "SmartDashboard/AutonRightScaleRightThenSwitch"
-            }
-          },
-          "2,2": {
+          "2,1": {
             "size": [
               2,
               1
@@ -97,17 +75,6 @@
               "_title": "SmartDashboard/MidSwitchRight"
             }
           },
-          "5,2": {
-            "size": [
-              2,
-              1
-            ],
-            "content": {
-              "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/RightSwitchRight",
-              "_title": "SmartDashboard/RightSwitchRight"
-            }
-          },
           "0,0": {
             "size": [
               2,
@@ -115,8 +82,19 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/RightToLeftScaleAutonAndSwitch",
-              "_title": "SmartDashboard/RightToLeftScaleAutonAndSwitch"
+              "_source0": "network_table:///SmartDashboard/AutonLeftScaleLeftThenScale",
+              "_title": "SmartDashboard/AutonLeftScaleLeftThenScale"
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenScale",
+              "_title": "SmartDashboard/AutonRightScaleRightThenScale"
             }
           },
           "0,1": {
@@ -126,8 +104,41 @@
             ],
             "content": {
               "_type": "Command",
-              "_source0": "network_table:///SmartDashboard/RightToLeftSwitchAuton",
-              "_title": "SmartDashboard/RightToLeftSwitchAuton"
+              "_source0": "network_table:///SmartDashboard/AutonTestLeftToRight",
+              "_title": "SmartDashboard/AutonTestLeftToRight"
+            }
+          },
+          "4,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonTestRightToLEFt",
+              "_title": "SmartDashboard/AutonTestRightToLEFt"
+            }
+          },
+          "2,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DriveStraightAuton",
+              "_title": "/SmartDashboard/DriveStraightAuton"
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/MidSwitchLeft",
+              "_title": "SmartDashboard/MidSwitchLeft"
             }
           }
         }

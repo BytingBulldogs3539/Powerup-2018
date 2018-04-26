@@ -198,7 +198,7 @@ public final class DriveTrain extends Subsystem
 	{
 		// drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle),
 		// Math.copySign(Math.pow(wheel, 2), wheel));
-		drive.driveArcade(throttle, wheel);
+		drive.driveArcade(throttle * 0.9, wheel * 0.9);
 	}
 
 	public void setPID(double P, double I, double D, double F)

@@ -5,10 +5,12 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
+import org.usfirst.frc.team3539.robot.profiles.DaveScale;
 import org.usfirst.frc.team3539.robot.profiles.LeftLeftScaleTurn;
 import org.usfirst.frc.team3539.robot.profiles.LeftReverseCube;
 import org.usfirst.frc.team3539.robot.profiles.LeftScaleLeft;
 import org.usfirst.frc.team3539.robot.profiles.LeftStraightCube;
+import org.usfirst.frc.team3539.robot.profiles.Reverse1000;
 import org.usfirst.frc.team3539.robot.profiles.ShortScale;
 import org.usfirst.frc.team3539.robot.profiles.StraightCube;
 
@@ -23,6 +25,11 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 
 	public AutonLeftScaleLeftThenScale()
 	{
+		// dave
+//		addParallel(new AutonElevatorArm(73, 45, 3, 8));
+//		addSequential(new AutonMotionProfileEx(DaveScale.PointsR, DaveScale.PointsL, DaveScale.kNumPoints,true));
+//		addSequential(new AutonIntakeCommand(-1, .4));
+					
 		addParallel(new AutonElevatorArm(73, 45, 2, 0));
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-1, .4));
