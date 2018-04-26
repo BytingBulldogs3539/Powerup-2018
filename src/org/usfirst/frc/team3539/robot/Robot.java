@@ -342,6 +342,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new AutonTestRightToLEFt());
 		SmartDashboard.putData(new AutonLeftScaleLeftThenScale());
 		SmartDashboard.putData(new AutonTestRightToLEFt());
+		SmartDashboard.putData(new DriveStraightAuton());
 		
 
 		// SmartDashboard.putData(new AutonLeftScaleLeftThenScale());

@@ -154,14 +154,14 @@ public final class DriveTrain extends Subsystem
 	@SuppressWarnings("unused")
 	private void enableCurrentLimit()
 	{
-		lf.configPeakCurrentLimit(35, 10);
-		rf.configPeakCurrentLimit(35, 10);
+		lf.configPeakCurrentLimit(30, 10);
+		rf.configPeakCurrentLimit(30, 10);
 
 		lf.configPeakCurrentDuration(100, 10);
 		rf.configPeakCurrentDuration(100, 10);//50
 
-		lf.configContinuousCurrentLimit(30, 10);
-		rf.configContinuousCurrentLimit(30, 10);//25 
+		lf.configContinuousCurrentLimit(25, 10);
+		rf.configContinuousCurrentLimit(25, 10);//25 
 
 		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(true);

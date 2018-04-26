@@ -4,6 +4,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.RightToLeftScaleAutonAndSwitch;
+import org.usfirst.frc.team3539.robot.profiles.Dave;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -24,7 +25,10 @@ public class RightScale extends CommandGroup
 			
 			else
 			{
-				addSequential(new RightToLeftScaleAutonAndSwitch());
+				//addSequential(new RightToLeftScaleAutonAndSwitch());]
+				//dave
+				addSequential(new AutonMotionProfileEx(Dave.PointsR, Dave.PointsL, Dave.kNumPoints));
+				
 			}
 		}
 		catch (Exception e)
