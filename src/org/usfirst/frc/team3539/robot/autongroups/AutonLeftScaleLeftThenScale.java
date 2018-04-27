@@ -50,7 +50,7 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 		addSequential(new AutonMotionProfileEx(LeftReverseCube.PointsR, LeftReverseCube.PointsL, LeftReverseCube.kNumPoints));
 
 		// go to scale again
-//		addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
+		addSequential(new AutonMotionProfileEx(ShortScale.PointsR, ShortScale.PointsL, ShortScale.kNumPoints));
 
 		addSequential(new IntakeSolenoidCommand());
 
