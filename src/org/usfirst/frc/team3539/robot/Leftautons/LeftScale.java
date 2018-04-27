@@ -22,9 +22,7 @@ public class LeftScale extends CommandGroup
 			if (Robot.gameData.charAt(1) == 'L')
 			{
 				addSequential(new AutonLeftScaleLeftThenScale());
-
 			}
-	
 			else
 			{
 				//dave
