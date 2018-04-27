@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot.autongroups;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import org.usfirst.frc.team3539.robot.profiles.LeftToRightScale;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -22,7 +23,8 @@ public class LeftToRightScaleAuton2 extends CommandGroup
 		addSequential(new AutonMotionProfileEx(LeftToRightScale.PointsR, LeftToRightScale.PointsL, LeftToRightScale.kNumPoints,true));
 		// addSequential( new AutonElevatorArm(70,45,0));
 		addSequential(new AutonWaitCommand(1));
-		addSequential(new AutonIntakeCommand(-1, 1));
+		addSequential(new IntakeSolenoidCommand());
+		//addSequential(new AutonIntakeCommand(-1, 1));
 		// second cube
 		// addSequential(new AutonMotionProfileEx(Straight533.PointsR, Straight533.PointsL, Straight533.kNumPoints));
 		// addSequential(new AutonElevatorArm(30,20,0,2));
