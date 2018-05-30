@@ -30,15 +30,16 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 //		addSequential(new AutonMotionProfileEx(DaveScale.PointsR, DaveScale.PointsL, DaveScale.kNumPoints,true));
 //		addSequential(new AutonIntakeCommand(-1, .4));
 					
+		//real
 		addParallel(new AutonElevatorArm(73, 45, 2, 0));
 		addSequential(new AutonMotionProfileEx(LeftScaleLeft.PointsR, LeftScaleLeft.PointsL, LeftScaleLeft.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-1, .4));
 		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
-		addParallel(new AutonElevatorArm(30, 100, 0, 0));// change to 0 when confident
+		addParallel(new AutonElevatorArm(0, 100, 0, 0));// first one change to 0 when confident, 30 for test
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonWaitCommand(.4));
 
-		addSequential(new AutonMotionProfileEx(LeftStraightCube.PointsR, LeftStraightCube.PointsL, LeftStraightCube.kNumPoints));
+		addSequential(new AutonMotionProfileEx(StraightCube.PointsR, StraightCube.PointsL, StraightCube.kNumPoints));
 
 		// go get second cube
 		addParallel(new AutonIntakeCommand(.7, 1.5));
@@ -55,6 +56,6 @@ public class AutonLeftScaleLeftThenScale extends CommandGroup
 		addSequential(new IntakeSolenoidCommand());
 
 		// addSequential(new AutonIntakeCommand(-.6, 1));
-		//addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
+		addSequential(new AutonMotionProfileEx(LeftLeftScaleTurn.PointsR, LeftLeftScaleTurn.PointsL, LeftLeftScaleTurn.kNumPoints));
 	}
 }
