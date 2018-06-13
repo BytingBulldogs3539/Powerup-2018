@@ -9,7 +9,7 @@ public class CompMap implements IMap
 	{
 		return "CompMap";
 	}
-	
+
 	@Override
 	public int getLf()
 	{
@@ -89,55 +89,64 @@ public class CompMap implements IMap
 	}
 
 	@Override
-	public int getLIntakeMotor() {
+	public int getLIntakeMotor()
+	{
 		// TODO Auto-generated method stub
 		return 7;
 	}
 
 	@Override
-	public int getRIntakeMotor() {
+	public int getRIntakeMotor()
+	{
 		// TODO Auto-generated method stub
 		return 8;
 	}
 
 	@Override
-	public int getElevatorMotor1() {
+	public int getElevatorMotor1()
+	{
 		// TODO Auto-generated method stub
 		return 4;
 	}
 
 	@Override
-	public int getElevatorMotor2() {
+	public int getElevatorMotor2()
+	{
 		// TODO Auto-generated method stub
 		return 5;
 	}
 
 	@Override
-	public double getElevatorPea() {
+	public double getElevatorPea()
+	{
 		// TODO Auto-generated method stub
 		return .95;
 	}
 
 	@Override
-	public double getElevatorEye() {
+	public double getElevatorEye()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public double getElevatorDee() {
+	public double getElevatorDee()
+	{
 		// TODO Auto-generated method stub
 		return 1.0;
 	}
 
 	@Override
-	public double getElevatorFFF() {
+	public double getElevatorFFF()
+	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int getBotType() {
+	public int getBotType()
+	{
 		return 1;
 	}
 

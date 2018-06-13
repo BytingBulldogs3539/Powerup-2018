@@ -1,20 +1,8 @@
 package org.usfirst.frc.team3539.robot.subsystems;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.logging.FileHandler;
-
-import org.usfirst.frc.team3539.robot.PracMap;
-import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.DriveCommand;
-import org.usfirst.frc.team3539.robot.utilities.BulldogMotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.Drive;
-import org.usfirst.frc.team3539.robot.logger.Log;
-import org.usfirst.frc.team3539.robot.logger.Reader;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -23,7 +11,6 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -34,7 +21,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public final class DriveTrain extends Subsystem
 {
-
 	private ADXRS450_Gyro gyro;
 	public TalonSRX lf, lb, rf, rb;
 	private Drive drive;
@@ -42,8 +28,6 @@ public final class DriveTrain extends Subsystem
 	private int maxLoopNumber = 0;
 	private int onTargetCounter = 0;
 	private int allowedErrorRange = 0;
-
-
 
 	public DriveTrain()
 	{
@@ -56,19 +40,19 @@ public final class DriveTrain extends Subsystem
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
 
-		Reader r = new Reader(rf, 1, true);
-		r.addMethod("rf", "getSelectedSensorPosition", 0);
-		r.addMethod("rf", "getSelectedSensorVelocity", 0);
-		r.addMethod("rf", "getOutputCurrent");
-		r.addMethod("rf", "getMotorOutputPercent");
-		Robot.l.add(r);
-
-		Reader l = new Reader(lf, 1, true);
-		l.addMethod("lf", "getSelectedSensorPosition", 0);
-		l.addMethod("lf", "getSelectedSensorVelocity", 0);
-		l.addMethod("lf", "getOutputCurrent");
-		l.addMethod("lf", "getMotorOutputPercent");
-		Robot.l.add(l);
+		// Reader r = new Reader(rf, 1, true);
+		// r.addMethod("rf", "getSelectedSensorPosition", 0);
+		// r.addMethod("rf", "getSelectedSensorVelocity", 0);
+		// r.addMethod("rf", "getOutputCurrent");
+		// r.addMethod("rf", "getMotorOutputPercent");
+		// Robot.l.add(r);
+		//
+		// Reader l = new Reader(lf, 1, true);
+		// l.addMethod("lf", "getSelectedSensorPosition", 0);
+		// l.addMethod("lf", "getSelectedSensorVelocity", 0);
+		// l.addMethod("lf", "getOutputCurrent");
+		// l.addMethod("lf", "getMotorOutputPercent");
+		// Robot.l.add(l);
 
 		double peakOut = 1;// 1 is full ouput
 		lf.configPeakOutputForward(peakOut, 10);
@@ -131,7 +115,6 @@ public final class DriveTrain extends Subsystem
 	public void updateLog()
 	{
 
-
 	}
 
 	public void setBrakeMode(boolean shouldBrakeMode)
@@ -142,7 +125,8 @@ public final class DriveTrain extends Subsystem
 			rf.setNeutralMode(NeutralMode.Brake);
 			lb.setNeutralMode(NeutralMode.Brake);
 			rb.setNeutralMode(NeutralMode.Brake);
-		} else
+		}
+		else
 		{
 			lf.setNeutralMode(NeutralMode.Coast);
 			rf.setNeutralMode(NeutralMode.Coast);
@@ -170,14 +154,14 @@ public final class DriveTrain extends Subsystem
 	@SuppressWarnings("unused")
 	private void enableCurrentLimit()
 	{
-		lf.configPeakCurrentLimit(35, 10);
-		rf.configPeakCurrentLimit(35, 10);
+		lf.configPeakCurrentLimit(30, 10);
+		rf.configPeakCurrentLimit(30, 10);
 
 		lf.configPeakCurrentDuration(100, 10);
-		rf.configPeakCurrentDuration(100, 10);
+		rf.configPeakCurrentDuration(100, 10);//50
 
-		lf.configContinuousCurrentLimit(30, 10);
-		rf.configContinuousCurrentLimit(30, 10);
+		lf.configContinuousCurrentLimit(25, 10);
+		rf.configContinuousCurrentLimit(25, 10);//25 
 
 		lf.enableCurrentLimit(true); // TODO - Change to true and add rest of current code
 		rf.enableCurrentLimit(true);
@@ -214,22 +198,40 @@ public final class DriveTrain extends Subsystem
 	{
 		// drive.driveArcade(Math.copySign(Math.pow(throttle, 2), throttle),
 		// Math.copySign(Math.pow(wheel, 2), wheel));
-		drive.driveArcade(throttle * 0.8, wheel * 0.8);
+		drive.driveArcade(throttle * 0.9, wheel * 0.9);
 	}
 
 	public void setPID(double P, double I, double D, double F)
 	{
 		lf.config_kF(0, F, 10);
 
-		lf.config_kP(0, P, 10);//change back just checking something
+		lf.config_kP(0, P, 10);// 
 
 		lf.config_kI(0, I, 10);
 
 		lf.config_kD(0, D, 10);
 
-		rf.config_kF(0, F, 10);
+		rf.config_kF(0, F, 10);//*1.3 on practice 
 
-		rf.config_kP(0, P, 10);
+		rf.config_kP(0, P, 10);//*1.3 on practice 
+
+		rf.config_kI(0, I, 10);
+		rf.config_kD(0, D, 10);
+
+	}
+	public void setPIDScale(double P, double I, double D, double F)
+	{
+		lf.config_kF(0, F, 10);
+
+		lf.config_kP(0, P, 10);// 
+
+		lf.config_kI(0, I, 10);
+
+		lf.config_kD(0, D, 10);
+
+		rf.config_kF(0, F*1.2, 10);//*1.3 on practice 
+
+		rf.config_kP(0, P*1.2, 10);//*1.3 on practice 
 
 		rf.config_kI(0, I, 10);
 		rf.config_kD(0, D, 10);
@@ -273,12 +275,12 @@ public final class DriveTrain extends Subsystem
 
 	public boolean onTarget()
 	{
-		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange
-				&& Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
+		if (Math.abs(lf.getClosedLoopError(0)) <= allowedErrorRange && Math.abs(rf.getClosedLoopError(0)) <= allowedErrorRange)
 		{
 			onTargetCounter++;
 			System.out.println(onTargetCounter);
-		} else
+		}
+		else
 		{
 			System.out.println(onTargetCounter);
 			onTargetCounter = 0;
@@ -449,15 +451,11 @@ public final class DriveTrain extends Subsystem
 
 	public void printEnc()
 	{
-		System.out.println(" leftPosition " + lf.getSelectedSensorPosition(0) + " rightPosition "
-				+ rf.getSelectedSensorPosition(0) + " rightVelocity " + rf.getSelectedSensorVelocity(0)
-				+ " leftVelocity " + lf.getSelectedSensorVelocity(0));
-		System.out.println(" leftTragPos " + lf.getActiveTrajectoryPosition() + " leftTragVel "
-				+ lf.getActiveTrajectoryPosition());
+		System.out.println(" leftPosition " + lf.getSelectedSensorPosition(0) + " rightPosition " + rf.getSelectedSensorPosition(0) + " rightVelocity " + rf.getSelectedSensorVelocity(0) + " leftVelocity " + lf.getSelectedSensorVelocity(0));
+		System.out.println(" leftTragPos " + lf.getActiveTrajectoryPosition() + " leftTragVel " + lf.getActiveTrajectoryPosition());
 
-		System.out.println(" RightTragPos " + rf.getActiveTrajectoryPosition() + " RightTragVel "
-				+ rf.getActiveTrajectoryVelocity());
+		System.out.println(" RightTragPos " + rf.getActiveTrajectoryPosition() + " RightTragVel " + rf.getActiveTrajectoryVelocity());
 
 	}
-	
+
 }

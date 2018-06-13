@@ -1,8 +1,8 @@
 {
-  "dividerPosition": 0.17421052631578948,
+  "dividerPosition": 0.25741839762611274,
   "tabPane": [
     {
-      "title": "Tab 3",
+      "title": "Tab 2",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {
@@ -11,108 +11,44 @@
         "hgap": 16.0,
         "vgap": 16.0,
         "tiles": {
-          "7,0": {
+          "0,0": {
             "size": [
               2,
-              2
+              1
             ],
             "content": {
-              "_type": "PDP",
-              "_source0": "network_table:///SmartDashboard/PDP",
-              "_title": "/SmartDashboard/PDP",
-              "showIndicatorText": true
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DisableSoftLimits",
+              "_title": "SmartDashboard/DisableSoftLimits"
             }
           },
-          "7,2": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Right Enc",
-              "_title": "SmartDashboard/Right Enc",
-              "Visible time": 30.0,
-              "SmartDashboard/Right Enc visible": true
-            }
-          },
-          "7,4": {
-            "size": [
-              2,
-              2
-            ],
-            "content": {
-              "_type": "Graph",
-              "_source0": "network_table:///SmartDashboard/Left Enc",
-              "_title": "SmartDashboard/Left Enc",
-              "Visible time": 30.0,
-              "SmartDashboard/Left Enc visible": true
-            }
-          },
-          "4,4": {
+          "0,2": {
             "size": [
               2,
               1
             ],
             "content": {
               "_type": "ComboBox Chooser",
-              "_source0": "network_table:///SmartDashboard/Auton mode",
-              "_title": "SmartDashboard/Auton mode"
+              "_source0": "network_table:///SmartDashboard/Auton Mode",
+              "_title": "SmartDashboard/Auton Mode"
             }
           },
-          "1,4": {
+          "2,0": {
             "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/drivePea",
-              "_title": "SmartDashboard/drivePea"
-            }
-          },
-          "1,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveEye",
-              "_title": "SmartDashboard/driveEye"
-            }
-          },
-          "2,4": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveDee",
-              "_title": "SmartDashboard/driveDee"
-            }
-          },
-          "2,5": {
-            "size": [
-              1,
-              1
-            ],
-            "content": {
-              "_type": "Text View",
-              "_source0": "network_table:///SmartDashboard/driveFFF",
-              "_title": "SmartDashboard/driveFFF"
-            }
-          },
-          "0,0": {
-            "size": [
-              5,
-              4
+              4,
+              3
             ],
             "content": {
               "_type": "Camera Stream",
               "_source0": "camera_server://USB Camera 0",
-              "_title": "USB Camera 0"
+              "_title": "USB Camera 0",
+              "showControls": false,
+              "showCrosshair": false,
+              "crosshairColor": "#FFFFFFFF",
+              "compression": 0.0,
+              "fps": -1,
+              "imageWidth": 0,
+              "imageHeight": 0
             }
           }
         }
@@ -120,6 +56,96 @@
     },
     {
       "title": "Tab 2",
+      "autoPopulate": false,
+      "autoPopulatePrefix": "",
+      "widgetPane": {
+        "gridSize": 128.0,
+        "showGrid": true,
+        "hgap": 16.0,
+        "vgap": 16.0,
+        "tiles": {
+          "2,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/MidSwitchRight",
+              "_title": "SmartDashboard/MidSwitchRight"
+            }
+          },
+          "0,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonLeftScaleLeftThenScale",
+              "_title": "SmartDashboard/AutonLeftScaleLeftThenScale"
+            }
+          },
+          "4,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonRightScaleRightThenScale",
+              "_title": "SmartDashboard/AutonRightScaleRightThenScale"
+            }
+          },
+          "0,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonTestLeftToRight",
+              "_title": "SmartDashboard/AutonTestLeftToRight"
+            }
+          },
+          "4,1": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/AutonTestRightToLEFt",
+              "_title": "SmartDashboard/AutonTestRightToLEFt"
+            }
+          },
+          "2,2": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/DriveStraightAuton",
+              "_title": "/SmartDashboard/DriveStraightAuton"
+            }
+          },
+          "2,0": {
+            "size": [
+              2,
+              1
+            ],
+            "content": {
+              "_type": "Command",
+              "_source0": "network_table:///SmartDashboard/MidSwitchLeft",
+              "_title": "SmartDashboard/MidSwitchLeft"
+            }
+          }
+        }
+      }
+    },
+    {
+      "title": "Tab 3",
       "autoPopulate": false,
       "autoPopulatePrefix": "",
       "widgetPane": {

@@ -5,11 +5,10 @@ import org.usfirst.frc.team3539.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Utilizes the Drive subsystem to drive the robot
  */
 public class DriveCommand extends Command
 {
-
 	public DriveCommand()
 	{
 		requires(Robot.driveTrain);
@@ -21,9 +20,7 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		// effectiveArcadeDrive
 		Robot.driveTrain.driveArcade(Robot.oi.one.getLeftStickY(), Robot.oi.one.getRightStickX());
-	// Robot.driveTrain.printEnc();
 	}
 
 	@Override
@@ -40,6 +37,5 @@ public class DriveCommand extends Command
 	protected void interrupted()
 	{
 		System.out.println("DriveCommand Interupted!");
-		//end();
 	}
 }

@@ -7,16 +7,15 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
 /**
  *
  */
-public class LockSolenoidCommand extends InstantCommand
+public class ClimbSolenoidCommand extends InstantCommand
 {
-
-	public LockSolenoidCommand()
+	public ClimbSolenoidCommand()
 	{
 		requires(Robot.solenoids);
 	}
 
 	protected void initialize()
 	{
-		Robot.solenoids.lockSol.toggle();
+		Robot.solenoids.climbSol.toggle();
 	}
 }

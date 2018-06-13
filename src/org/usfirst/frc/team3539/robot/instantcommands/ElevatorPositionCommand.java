@@ -9,7 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class ElevatorPositionCommand extends InstantCommand {
+public class ElevatorPositionCommand extends InstantCommand
+{
 	double myinches;
 	// public ElevatorPositionCommand(ElevatorPosition position)
 	// {
@@ -25,10 +26,9 @@ public class ElevatorPositionCommand extends InstantCommand {
 	//
 	// }
 
-	public ElevatorPositionCommand(double inches) {
-		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea),
-				SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye),
-				SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
+	public ElevatorPositionCommand(double inches)
+	{
+		Robot.elevator.setPID(SmartDashboard.getNumber("elevatorPea", RobotMap.elevatorPea), SmartDashboard.getNumber("elevatorEye", RobotMap.elevatorEye), SmartDashboard.getNumber("elevatorDee", RobotMap.elevatorDee),
 				SmartDashboard.getNumber("elevatorFFF", RobotMap.elevatorFFF));
 		myinches = inches;
 		requires(Robot.elevator);
@@ -36,7 +36,8 @@ public class ElevatorPositionCommand extends InstantCommand {
 		Robot.elevator.setupOnTarget(100, 10);
 	}
 
-	protected void initialize() {
+	protected void initialize()
+	{
 		Robot.elevator.setSetpointLift(myinches);
 	}
 }

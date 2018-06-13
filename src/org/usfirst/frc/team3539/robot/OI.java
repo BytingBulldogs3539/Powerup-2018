@@ -1,14 +1,10 @@
 package org.usfirst.frc.team3539.robot;
 
-import org.usfirst.frc.team3539.robot.autoncommands.AutonElevatorCommand;
-import org.usfirst.frc.team3539.robot.commands.ClimbCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
-import org.usfirst.frc.team3539.robot.commands.IntakeCommand;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
-//import org.usfirst.frc.team3539.robot.commands.loadClass;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.LockSolenoidCommand;
+import org.usfirst.frc.team3539.robot.instantcommands.ClimbSolenoidCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.ShiftSolenoidCommand;
 import org.usfirst.frc.team3539.robot.utilities.LogitechF310;
 
@@ -27,7 +23,7 @@ public class OI
 		// TWO -------------------------------
 
 		// Elevator
-	//	two.buttonSTART.whenPressed(new ElevatorManualCommand());
+		// two.buttonSTART.whenPressed(new ElevatorManualCommand());
 
 		// two.buttonA.whenPressed(new ElevatorPositionCommand(ElevatorPosition.FLOOR));
 		// two.buttonB.whenPressed(new
@@ -39,35 +35,30 @@ public class OI
 		two.buttonBR.whenPressed(new IntakeSolenoidCommand());
 		two.buttonBL.whenPressed(new ShiftSolenoidCommand());
 
-		
+		one.buttonBR.whenPressed(new ClimbSolenoidCommand());
 		// Pitch
 		// two.buttonPadRight.whenPressed(new PitchCommand(PitchAngle.INTAKE));
 
-		//two.buttonPadDown.whenPressed(new PitchManualCommand(.5));
-		//two.buttonPadUp.whenPressed(new PitchManualCommand(-.5));
+		// two.buttonPadDown.whenPressed(new PitchManualCommand(.5));
+		// two.buttonPadUp.whenPressed(new PitchManualCommand(-.5));
 
-		//two.buttonPadUp.whenReleased(new PitchManualCommand(0));
-		//two.buttonPadDown.whenReleased(new PitchManualCommand(0));
+		// two.buttonPadUp.whenReleased(new PitchManualCommand(0));
+		// two.buttonPadDown.whenReleased(new PitchManualCommand(0));
 
 		// Intake
-		//two.buttonTL.whenPressed(new IntakeCommand(two.getLeftTrigger()));
-		//two.buttonTR.whenPressed(new IntakeCommand(two.getRightTrigger()));
+		// two.buttonTL.whenPressed(new IntakeCommand(two.getLeftTrigger()));
+		// two.buttonTR.whenPressed(new IntakeCommand(two.getRightTrigger()));
 
-		//two.buttonTR.whenReleased(new IntakeCommand(0));
-		//two.buttonTL.whenReleased(new IntakeCommand(0));
+		// two.buttonTR.whenReleased(new IntakeCommand(0));
+		// two.buttonTL.whenReleased(new IntakeCommand(0));
 		two.buttonA.whenPressed(new TeleopElevatorPositionCommand(0));
 		two.buttonX.whenPressed(new TeleopElevatorPositionCommand(30));
 		two.buttonY.whenPressed(new TeleopElevatorPositionCommand(70));
-	//	two.buttonY.whenPressed(new ElevatorPositionCommand(66.14));
-		
-	//	two.buttonSELECT.whenPressed(new IntakeCommand());
-		//two.buttonB.whenPressed(new PitchCommand());
+		// two.buttonY.whenPressed(new ElevatorPositionCommand(66.14));
+
+		// two.buttonSELECT.whenPressed(new IntakeCommand());
+		// two.buttonB.whenPressed(new PitchCommand());
 		two.buttonSTART.whenPressed(new ElevatorManualCommand());
-		;
-		
-		
-	
-
-
+		two.buttonPadDown.whenPressed(new AutonPitchCommand(90));
 	}
 }

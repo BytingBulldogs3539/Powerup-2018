@@ -15,7 +15,7 @@ public class PitchCommand extends Command
 	public PitchCommand()
 	{
 		requires(Robot.pitch);
-		scale = 220;
+		scale = 400;
 		lowerPseudo = 9000; // higher = lower
 	}
 
@@ -31,7 +31,7 @@ public class PitchCommand extends Command
 
 	protected void execute()
 	{
-		
+
 		// Change (stick is up or down enough)
 		if (Robot.oi.two.getRightStickY() >= .2 || Robot.oi.two.getRightStickY() <= -.2)
 		{
@@ -57,7 +57,7 @@ public class PitchCommand extends Command
 			Robot.pitch.enc = 0;
 			Robot.pitch.setSetpointPitch(Robot.pitch.enc);
 		}
-		 System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + Robot.pitch.enc);
+	//	System.out.println("arm enc: " + Robot.pitch.getEncoder() + " target enc: " + Robot.pitch.enc);
 	}
 
 	@Override

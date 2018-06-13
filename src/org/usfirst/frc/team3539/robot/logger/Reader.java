@@ -1,10 +1,9 @@
 package org.usfirst.frc.team3539.robot.logger;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Reader
 {
@@ -12,8 +11,6 @@ public class Reader
 	private Object o;
 	private List<String> fields = new ArrayList<String>();
 	private List<LogMethod> methods = new ArrayList<LogMethod>();
-	
-	
 
 	private int level = 3;
 	private boolean readPrivate = false;

@@ -2,10 +2,9 @@ package org.usfirst.frc.team3539.robot.Leftautons;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonMotionProfileEx;
-import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeft;
+import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.LeftSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.LeftToRightScaleAuton2;
-import org.usfirst.frc.team3539.robot.autongroups.LeftToRightSwich;
 import org.usfirst.frc.team3539.robot.profiles.DriveStraightLine3000;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -20,10 +19,9 @@ public class LeftLeftScaleSwitchRightScale extends CommandGroup
 		System.out.println("Started leftleftswitchorscale");
 		try
 		{
-			System.out.println("char at 0: " + Robot.gameData.charAt(0) + " char at 1: " + Robot.gameData);
 			if (Robot.gameData.charAt(1) == 'L')
 			{
-				addSequential(new AutonLeftScaleLeft());
+				addSequential(new AutonLeftScaleLeftThenSwitch());
 
 			}
 			else if (Robot.gameData.charAt(0) == 'L')
@@ -39,8 +37,6 @@ public class LeftLeftScaleSwitchRightScale extends CommandGroup
 		{
 			System.out.println("Catch");
 			addSequential(new AutonMotionProfileEx(DriveStraightLine3000.PointsR, DriveStraightLine3000.PointsL, DriveStraightLine3000.kNumPoints));
-
 		}
-
 	}
 }

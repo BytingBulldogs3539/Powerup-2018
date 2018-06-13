@@ -1,12 +1,11 @@
 package org.usfirst.frc.team3539.robot;
 
 /**
- * The RobotMap is a mapping from the ports sensors and actuators are wired into
- * to a variable name. This provides flexibility changing wiring, makes checking
- * the wiring easier and significantly reduces the number of magic numbers
- * floating around.
+ * The RobotMap is a mapping from the ports sensors and actuators are wired into to a variable name. This provides flexibility changing wiring, makes checking the wiring easier and significantly reduces the number of magic numbers floating
+ * around.
  */
-public class RobotMap {
+public class RobotMap
+{
 	// CONTROLLER PORT
 	public static final int DRIVER = 1;
 	public static final int OPERATOR = 0;
@@ -15,7 +14,7 @@ public class RobotMap {
 	/*
 	 * Map - PracMap() or CompMap() or TinaMap()
 	 */
-	private static IMap botMap = new PracMap();
+	private static IMap botMap = new CompMap();
 	public static int botType = botMap.getBotType();
 
 	// PDP
@@ -27,8 +26,8 @@ public class RobotMap {
 	public static int intakesolOn = 0;
 	public static int intakesolOff = 1;
 
-	public static int locksolOn = 5;
-	public static int locksolOff = 4;
+	public static int climbsolOn = 4;
+	public static int climbsolOff = 5;
 
 	public static int shiftersolOn = 2;
 	public static int shiftersolOff = 3;
@@ -102,10 +101,6 @@ public class RobotMap {
 	// Elevator
 	public static final int elevatorMotorOne = botMap.getElevatorMotor1();// Prac 3 // Broken talon 4 // Prac backup 3
 	public static final int elevatorMotorTwo = botMap.getElevatorMotor2();// Prac 5
-	public static final int elevatorEncoderFloor = 0; // SOME INT
-	public static final int elevatorEncoderSwitch = 0; // SOME INT
-	public static final int elevatorEncoderClimb = 0; // SOME INT
-	public static final int elevatorEncoderScale = 0; // SOME INT
 	public static final int climbMotor = 18;
 
 	public static double elevatorPea = botMap.getElevatorPea();// .95 comp

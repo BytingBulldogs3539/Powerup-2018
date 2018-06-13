@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot.autoncommands;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
+import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
 import org.usfirst.frc.team3539.robot.utilities.MotionProfile;
 import org.usfirst.frc.team3539.robot.utilities.MotionProfileExample;
 
@@ -15,6 +16,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
+@SuppressWarnings("unused")
 public class AutonMotionProfileEx extends Command
 {
 	private double[][] ProfileR;
@@ -22,6 +24,7 @@ public class AutonMotionProfileEx extends Command
 	private int totalPointNum;
 	public MotionProfileExample m;
 	private boolean isfinished = false;
+	private boolean scale = false;
 	SetValueMotionProfile setOutput;
 
 	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum)
@@ -32,12 +35,33 @@ public class AutonMotionProfileEx extends Command
 
 	}
 
+	public AutonMotionProfileEx(double[][] ProfileR, double[][] ProfileL, int totalPointNum, boolean Scale)
+	{
+		requires(Robot.driveTrain);
+		scale = Scale;
+		m = new MotionProfileExample(Robot.driveTrain.rf, Robot.driveTrain.lf, ProfileR, ProfileL, totalPointNum);
+
+	}
+
 	protected void initialize()
 	{
-		
-		Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea), SmartDashboard.getNumber("driveEye", RobotMap.driveEye), SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
-				SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		if (scale)
+		{
+			Robot.driveTrain.setPIDScale(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
+					SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+					SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+					SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		}
+		else
+		{
+			Robot.driveTrain.setPID(SmartDashboard.getNumber("drivePea", RobotMap.drivePea),
+					SmartDashboard.getNumber("driveEye", RobotMap.driveEye),
+					SmartDashboard.getNumber("driveDee", RobotMap.driveDee),
+					SmartDashboard.getNumber("driveFFF", RobotMap.driveFFF));
+		}
 		m.reset();
+		m.reset();
+
 		Robot.driveTrain.rf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.lf.configMotionProfileTrajectoryPeriod(10, 10);
 		Robot.driveTrain.rf.setStatusFramePeriod(StatusFrameEnhanced.Status_10_MotionMagic, 10, 10);
@@ -50,37 +74,41 @@ public class AutonMotionProfileEx extends Command
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
 		m.startMotionProfile();
 
-		//m.update();
-	///Robot.driveTrain.updateEncoders();
+		// m.update();
 
 	}
 
 	protected void execute()
-	
+
 	{
-	//	Robot.driveTrain.printEnc();
-	///	System.out.println(Robot.driveTrain.rf.getControlMode());
+
+		// Robot.driveTrain.printEnc();
+		/// System.out.println(Robot.driveTrain.rf.getControlMode());
 		m.control();
-		
+
 		setOutput = m.getSetValue();
 		Robot.driveTrain.rf.set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.lf.set(ControlMode.MotionProfile, setOutput.value);
-		
-		if(setOutput== SetValueMotionProfile.Hold)
+		System.out.println(setOutput);
+
+		Robot.driveTrain.updateEncoders();
+		m.update();
+
+		if (setOutput == SetValueMotionProfile.Hold)
 		{
 			isfinished = true;
 		}
 		else
-		{isfinished = false;
+		{
+			isfinished = false;
 		}
-		int z =0;
-		if ( z <1) {
-		//	m.startFilling(ProfileL, totalPointNum, ProfileR, totalPointNum);
+		int z = 0;
+		if (z < 1)
+		{
+			// m.startFilling(ProfileL, totalPointNum, ProfileR, totalPointNum);
 			z++;
 		}
 
-
-	
 	}
 
 	protected boolean isFinished()
@@ -92,7 +120,7 @@ public class AutonMotionProfileEx extends Command
 	protected void end()
 	{
 		m.reset();
-		isfinished = false;
+		// isfinished = false;
 	}
 
 	protected void interrupted()

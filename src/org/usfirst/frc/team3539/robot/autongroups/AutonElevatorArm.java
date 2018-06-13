@@ -4,9 +4,7 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonPitchCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.commands.TeleopElevatorPositionCommand;
-import org.usfirst.frc.team3539.robot.instantcommands.ElevatorPositionCommand;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -22,7 +20,6 @@ public class AutonElevatorArm extends CommandGroup
 		addSequential(new AutonWaitCommand(time));
 		addParallel(new AutonIntakeCommand(.4, intakeTime));
 		addParallel(new TeleopElevatorPositionCommand(elevatorPos));
-	//	addParallel(new ElevatorPositionCommand(elevatorPos));
 		addSequential(new AutonPitchCommand(pitchPos));
 	}
 }

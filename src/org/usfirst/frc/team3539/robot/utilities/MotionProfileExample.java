@@ -31,7 +31,6 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team3539.robot.profiles.LeftSwitch;
 
 import com.ctre.phoenix.motion.*;
 import com.ctre.phoenix.motion.TrajectoryPoint.TrajectoryDuration;
@@ -44,6 +43,7 @@ public class MotionProfileExample {
 	private MotionProfileStatus _status = new MotionProfileStatus();
 	private MotionProfileStatus statusR = new MotionProfileStatus();
 	private double[][] pointsr;
+public TrajectoryPoint p;
 	private double[][] pointsl;
 	private int numpoints;
 
@@ -86,7 +86,7 @@ public class MotionProfileExample {
 	 * How many trajectory points do we wait for before firing the motion
 	 * profile.
 	 */
-	private static final int kMinPointsInTalon = 20;
+	private static final int kMinPointsInTalon = 5;
 	/**
 	 * Just a state timeout to make sure we don't get stuck anywhere. Each loop
 	 * is about 20ms.
@@ -121,6 +121,7 @@ public class MotionProfileExample {
 	pointsr = ProfileR;
 	pointsl = ProfileL;
 	numpoints = totalPointNum;
+	
 		
 		_talon = talon;
 		talonR = talonRight;
@@ -131,6 +132,8 @@ public class MotionProfileExample {
 		_talon.changeMotionControlFramePeriod(5);
 		talonR.changeMotionControlFramePeriod(5);
 	}
+	
+
 
 	/**
 	 * Called to clear Motion profile buffer and reset state info during
@@ -155,6 +158,7 @@ public class MotionProfileExample {
 		 * button press
 		 */
 		_bStart = false;
+		_notifer.stop();
 	}
 
 	/**
@@ -191,7 +195,7 @@ public class MotionProfileExample {
 			 * we are not in MP mode. We are probably driving the robot around
 			 * using gamepads or some other mode.
 			 */
-			System.out.println("not in motionprofile");
+		//	System.out.println("not in motionprofile");
 			_state = 0;
 			_loopTimeout = -1;
 		} else {
@@ -202,15 +206,15 @@ public class MotionProfileExample {
 			 */
 			switch (_state) {
 				case 0: /* wait for application to tell us to start an MP */
-					System.out.println("case 0");
+				//	System.out.println("case 0");
 					if (_bStart) {
 						_bStart = false;
 	
 						_setValue = SetValueMotionProfile.Disable;
-				//	startFilling();
-							Thread filling = new Thread(fill);
-							filling.setPriority(Thread.MAX_PRIORITY);
-					filling.start();
+					startFilling();
+						//	Thread filling = new Thread(fill);
+							//filling.setPriority(Thread.MAX_PRIORITY);
+				//	filling.start();
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -234,7 +238,7 @@ public class MotionProfileExample {
 					}
 					break;
 				case 2:
-					System.out.println("case 2");
+				//	System.out.println("case 2");
 /* check the status of the MP */
 					/*
 					 * if talon is reporting things are good, keep adding to our
@@ -266,10 +270,9 @@ public class MotionProfileExample {
 			_talon.getMotionProfileStatus(_status);
 			talonR.getMotionProfileStatus(statusR);
 			
-			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
-			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
+//			System.out.println("leftStatusbtmCnt"+_status.btmBufferCnt);
+//			System.out.println("RightStatusbtmCnt"+statusR.btmBufferCnt);
 
-			_heading = _talon.getActiveTrajectoryHeading();
 			_pos = _talon.getActiveTrajectoryPosition();
 			_vel = _talon.getActiveTrajectoryVelocity();
 
@@ -315,12 +318,13 @@ public class MotionProfileExample {
 
 	}
 
+	
 	private void startFilling(double[][] profileR, int totalCnt,double[][] profileL) {
 
 		/* create an empty point */
 		TrajectoryPoint point = new TrajectoryPoint();
 		TrajectoryPoint pointR = new TrajectoryPoint();
-
+		p = point;
 
 		/* did we get an underrun condition since last time we checked ? */
 		if (_status.hasUnderrun) {
@@ -355,26 +359,27 @@ public class MotionProfileExample {
 		point.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 		pointR.profileSlotSelect1 = 0; /* future feature  - not used in this example - cascaded PID [0,1], leave zero */
 
-		
-		point.timeDur = GetTrajectoryDuration((int)profileL[0][2]);
-		pointR.timeDur = GetTrajectoryDuration((int)profileR[0][2]);//0=i used to be in for loop
+	
 		
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
 			System.out.println("motion profile i"+i);
 			double positionRot = profileL[i][0];
 			double positionRotR = profileR[i][0];
-
+			
 			double velocityRPM = profileL[i][1];
 			double velocityRPMR = profileR[i][1];
 
+			
+			point.timeDur = GetTrajectoryDuration((int)profileL[i][2]);
+			pointR.timeDur = GetTrajectoryDuration((int)profileR[i][2]);//0=i used to be in for loop
 			/* for each point, fill our structure and pass it to API */
 			point.position = positionRot * 4096; //Convert Revolutions to Units
 			pointR.position = positionRotR * 4096; //Convert Revolutions to Units
 
 			point.velocity = velocityRPM * 4096 / 600.0; //Convert RPM to Units/100ms
 			pointR.velocity = velocityRPMR * 4096 / 600.0; //Convert RPM to Units/100ms
-
+			//System.out.println("heading = "+heading+"HeadingDEG = "+point.headingDeg);
 	
 			
 
@@ -399,6 +404,7 @@ public class MotionProfileExample {
 			talonR.pushMotionProfileTrajectory(pointR);
 		}
 	}
+
 //	public void startFilling(double[][] profileL, int totalCntL, double[][] profileR, int totalCntR)
 //	{
 //
