@@ -15,10 +15,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class AutonRightScaleRightThenScale extends CommandGroup
+public class RightDoubleScale extends CommandGroup
 {
 
-	public AutonRightScaleRightThenScale()
+	public RightDoubleScale()
 	{
 		System.out.println("RightScale started---------------");
 		addParallel(new AutonElevatorArm(73, 80, 1, 0));

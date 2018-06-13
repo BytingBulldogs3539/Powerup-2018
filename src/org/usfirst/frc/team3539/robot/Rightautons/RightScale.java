@@ -27,7 +27,7 @@ public class RightScale extends CommandGroup
 			{
 				addSequential(new RightToLeftScaleAutonAndSwitch());
 				
-				//dave
+				//dave // half field 
 				//addSequential(new AutonMotionProfileEx(Dave.PointsR, Dave.PointsL, Dave.kNumPoints,true));
 				
 			}

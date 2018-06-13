@@ -9,12 +9,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class IntakeCommand extends Command
 {
-	// double power;
 
-	public IntakeCommand()// double power)
+	public IntakeCommand()
 	{
 		requires(Robot.intake);
-		// this.power = power;
 	}
 
 	protected void initialize()
@@ -23,12 +21,10 @@ public class IntakeCommand extends Command
 
 	protected void execute()
 	{
-		double x = -Robot.oi.two.getLeftTrigger() + Robot.oi.two.getRightTrigger();
-		x = Math.max(x, -.6);
-		// System.out.println("execute");
-		Robot.intake.setMotorPower(Math.copySign(Math.sqrt(Math.abs(x)), x));
-		// System.out.println("power"+Math.copySign(Math.sqrt(Math.abs(x)), x));
-		// System.out.println(x);
+		double intakeSpeed = -Robot.oi.two.getLeftTrigger() + Robot.oi.two.getRightTrigger();
+		intakeSpeed = Math.max(intakeSpeed, -.6);
+		Robot.intake.setMotorPower(Math.copySign(Math.sqrt(Math.abs(intakeSpeed)), intakeSpeed));
+	
 	}
 
 	protected boolean isFinished()

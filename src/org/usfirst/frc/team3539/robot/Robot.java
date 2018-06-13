@@ -20,7 +20,7 @@ import org.usfirst.frc.team3539.robot.Rightautons.RightRightScaleSwitchLeftSwitc
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftScale;
 import org.usfirst.frc.team3539.robot.Rightautons.RightRightSwitchScaleLeftSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.AutonLeftScaleLeftThenScale;
-import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenScale;
+import org.usfirst.frc.team3539.robot.autongroups.RightDoubleScale;
 import org.usfirst.frc.team3539.robot.autongroups.AutonRightScaleRightThenSwitch;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
 
@@ -243,7 +243,7 @@ public class Robot extends IterativeRobot
 
 		// Testing
 		autonChooser.addObject("AutonTest", new AutonTestRightToLEFt());
-		autonChooser.addObject("TwoCubeRight", new AutonRightScaleRightThenScale());
+		autonChooser.addObject("TwoCubeRight", new RightDoubleScale());
 		autonChooser.addObject("TwoCubeLeft", new AutonLeftScaleLeftThenScale());
 
 		// Calibration
@@ -327,13 +327,13 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData(new MiddleSwitch());
 
 		SmartDashboard.putData(new MidSwitchRight());
-		SmartDashboard.putData(new AutonRightScaleRightThenScale());
+		SmartDashboard.putData(new RightDoubleScale());
 		SmartDashboard.putData(new RightToLeftSwitchAuton());
 		SmartDashboard.putData(new RightSwitchRight());
 		SmartDashboard.putData(new AutonRightScaleRightThenSwitch());
 		SmartDashboard.putData(new RightToLeftScaleAutonAndSwitch());
 
-		SmartDashboard.putData(new AutonRightScaleRightThenScale());
+		SmartDashboard.putData(new RightDoubleScale());
 
 		SmartDashboard.putData(new MidSwitchLeft());
 

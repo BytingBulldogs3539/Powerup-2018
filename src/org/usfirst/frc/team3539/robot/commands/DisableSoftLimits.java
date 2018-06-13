@@ -5,7 +5,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Disables softlimits when a button on the dashboard is pressed 
  */
 public class DisableSoftLimits extends Command
 {

@@ -5,7 +5,7 @@ import org.usfirst.frc.team3539.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Utilizes the Drive subsystem to drive the robot
  */
 public class DriveCommand extends Command
 {
