@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class MidSwitchLeft extends CommandGroup
+public class MidSwitchRight extends CommandGroup
 {
-	public MidSwitchLeft()
+	public MidSwitchRight()
 	{
 		addParallel( new AutonElevatorArm(30,90,0,4));
 		//addSequential(new AutonMotionProfileEx2(MiddleLeft.PointsR,MiddleLeft.PointsL,MiddleLeft.kNumPoints));TODO: make new profiles
