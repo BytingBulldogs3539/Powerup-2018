@@ -19,8 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 @SuppressWarnings("unused")
 public class AutonMotionProfileEx extends Command
 {
-	private double[][] ProfileR;
-	private double[][] ProfileL;
+	private double[][] Profile;
 	private int totalPointNum;
 	public MotionProfileExample m;
 	private boolean isfinished = false;
