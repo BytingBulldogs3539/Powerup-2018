@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
+import org.usfirst.frc.team3539.robot.middleAutons.Middle;
 import org.usfirst.frc.team3539.robot.subsystems.Climb;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
@@ -196,7 +197,7 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
-		autonChooser.addObject("AUTONTEST", object);
+		autonChooser.addObject("AUTONTESTMIDDLE", new Middle());
 		
 		
 		
