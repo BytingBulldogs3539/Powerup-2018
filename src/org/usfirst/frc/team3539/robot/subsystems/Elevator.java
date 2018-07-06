@@ -3,7 +3,6 @@ package org.usfirst.frc.team3539.robot.subsystems;
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.RobotMap;
 import org.usfirst.frc.team3539.robot.commands.ElevatorManualCommand;
-import org.usfirst.frc.team3539.robot.logger.Log;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -20,15 +19,10 @@ public class Elevator extends Subsystem
 {
 	private TalonSRX liftMaster, liftSlave;
 
-	@Log(level = 1)
 	int elevatorEncPos;
-	@Log(level = 1)
 	int elevatorEncVel;
-	@Log(level = 1)
 	double elevatorMotorPercent;
-	@Log(level = 1)
 	double elevatorStick;
-	@Log(level = 1)
 	double elevatorCurrent;
 
 	public enum ElevatorPosition

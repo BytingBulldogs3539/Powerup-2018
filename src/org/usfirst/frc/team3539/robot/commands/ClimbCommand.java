@@ -5,13 +5,11 @@ import org.usfirst.frc.team3539.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ * Utilizes Climbing subsystem to climb 
  */
 
-@SuppressWarnings("unused")
 public class ClimbCommand extends Command
 {
-	private double speed = 0;
 
 	public ClimbCommand()
 	{
@@ -25,8 +23,6 @@ public class ClimbCommand extends Command
 	protected void execute()
 	{
 		double x = -Robot.oi.one.getRightTrigger() + (Robot.oi.one.getLeftTrigger());
-		// System.out.println("climbing power"+x);
-	//	System.out.println("climb speed" + x);
 		Robot.climb.setMotorPower(x);
 	}
 
@@ -42,5 +38,6 @@ public class ClimbCommand extends Command
 
 	protected void interrupted()
 	{
+		end();
 	}
 }

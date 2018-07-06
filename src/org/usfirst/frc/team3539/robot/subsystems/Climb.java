@@ -10,7 +10,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
- *
+ * Climbing subsystem
  */
 public class Climb extends Subsystem
 {
@@ -29,7 +29,6 @@ public class Climb extends Subsystem
 	public void setMotorPower(double power)
 	{
 		ClimbMotor.set(ControlMode.PercentOutput, power);
-		System.out.println("current"+ClimbMotor.getOutputCurrent());
 	}
 	public void initDefaultCommand()
 	{
