@@ -56,12 +56,12 @@ public class RobotMap
 	public static double driveDee = botMap.getDriveDee();
 	public static double driveFFF = botMap.getDriveFFF();
 
-	public static double turnPeaWheels = 0.1;
-	public static double turnEyeWheels = 0.00005;
-	public static double turnDeeWheels = 0;
+	public static double turnPeaWheels = 1.3;
+	public static double turnEyeWheels = 0.0001;
+	public static double turnDeeWheels = .08;
 	public static double turnFFFWheels = 0;
 
-	public static double turnPeaGyro = 0.1;
+	public static double turnPeaGyro = 1.3;
 	public static double turnEyeGyro = 0.0000023;
 	public static double turnDeeGyro = 0.1;
 	public static double turnFFFGyro = 0;
@@ -74,7 +74,7 @@ public class RobotMap
 	// Tina - Change to new bot
 	public static final double wheelCir = 18.84;
 	// Tina - Change to new bot
-	public static final double robotCir = 91;
+	public static final double robotCir = 80;
 
 	// Drivetrain Deadbands
 	public static double throttleDeadband = 0.05;
