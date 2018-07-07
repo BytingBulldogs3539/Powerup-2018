@@ -66,6 +66,7 @@ MotionProfileExample2 m;
 	protected void end()
 	{
 		Robot.driveTrain.neutralMotors();
+		Robot.driveTrain.init();
 			// isfinished = false;
 	}
 

@@ -130,7 +130,6 @@ public class MotionProfileExample2 {
 		 * notifer to half that
 		 */
 		_motorController.changeMotionControlFramePeriod(5);
-		_notifer.startPeriodic(0.005);
 	}
 
 	/**
@@ -210,6 +209,8 @@ public class MotionProfileExample2 {
 	
 						_setValue = SetValueMotionProfile.Disable;
 						startFilling();
+						_notifer.startPeriodic(0.005);
+
 						/*
 						 * MP is being sent to CAN bus, wait a small amount of time
 						 */
@@ -249,6 +250,7 @@ public class MotionProfileExample2 {
 						 * because we set the last point's isLast to true, we will
 						 * get here when the MP is done
 						 */
+						_notifer.stop();
 						finished =true;
 						_setValue = SetValueMotionProfile.Hold;
 						_state = 0;

@@ -37,7 +37,7 @@ public class Constants {
 	 * Drive the robot in counter clockwise rotations and measure the units per rotation.
 	 * Take the average of the two.
 	 */
-	public final static int kEncoderUnitsPerRotation = 51711;
+	public final static int kEncoderUnitsPerRotation = 17011;
 
 	/**
 	 * This is a property of the Pigeon IMU, and should not be changed.
@@ -70,10 +70,10 @@ public class Constants {
 	public final static double kNeutralDeadband = 0.001;
 
 	//                                         			   kP   kI   kD   kF              Iz    PeakOut
-	public final static Gains kGains_Distanc = new Gains( 0.025, 0.0,  0.0, 0.0,            100,  0.50 );
-	public final static Gains kGains_Turning = new Gains( 12.0, 0.0,  20.0, 0.0,            200,  1.00 );
-	public final static Gains kGains_Velocit = new Gains( 0.03, 0.0, 20.0, 1023.0/2300.0,  300,  0.50 ); /* measured 6800 velocity units at full motor output */
-	public final static Gains kGains_MotProf = new Gains( .5, 0.0,  0.0, 1023.0/2300.0,  400,  1.00 ); /* measured 6800 velocity units at full motor output */
+	public final static Gains kGains_Distanc = new Gains( 0.1, 0.0,  0.0, 0.0,            100,  0.50 );
+	public final static Gains kGains_Turning = new Gains( 3.2, 0,  15, 0.0,            200,  1.00 );
+	public final static Gains kGains_Velocit = new Gains( 0.04, 0.0, 20.0, 1023.0/2300.0,  300,  0.50 ); /* measured 6800 velocity units at full motor output */
+	public final static Gains kGains_MotProf = new Gains( .2, 0.0,  0.0, 1023.0/2300.0,  400,  1.00 ); 
 
 	public final static int kSlot_Distanc = SLOT_0;
 	public final static int kSlot_Turning = SLOT_1;

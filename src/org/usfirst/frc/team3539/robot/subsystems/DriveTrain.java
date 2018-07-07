@@ -49,8 +49,11 @@ public 	PigeonIMU _imu;
 
 		lb = new TalonSRX(RobotMap.lb);
 		rb = new TalonSRX(RobotMap.rb);
+		init();
 
-		// Reader r = new Reader(rf, 1, true);
+	}
+	public void init()
+	{		// Reader r = new Reader(rf, 1, true);
 		// r.addMethod("rf", "getSelectedSensorPosition", 0);
 		// r.addMethod("rf", "getSelectedSensorVelocity", 0);
 		// r.addMethod("rf", "getOutputCurrent");
@@ -120,6 +123,7 @@ public 	PigeonIMU _imu;
 		SmartDashboard.putData("Gyro", gyro);
 
 		setSensorPhase(false);
+		
 	}
 
 	public void updateLog()

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot;
 
+import org.usfirst.frc.team3539.robot.autongroups.ScaleRight;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.middleAutons.Middle;
 import org.usfirst.frc.team3539.robot.subsystems.Climb;
@@ -107,8 +108,8 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-		// c.start();
-		c.start();// TODO:REMOVE
+		c.start();
+		//c.start();// TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
 		// l.stop();
@@ -198,6 +199,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
 		autonChooser.addObject("AUTONTESTMIDDLE", new Middle());
+		autonChooser.addObject("Scale", new ScaleRight());
 		
 		
 		
