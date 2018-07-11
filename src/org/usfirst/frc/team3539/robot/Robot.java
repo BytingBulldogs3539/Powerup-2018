@@ -3,6 +3,7 @@ package org.usfirst.frc.team3539.robot;
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRight;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.middleAutons.Middle;
+import org.usfirst.frc.team3539.robot.middleAutons.MiddleScale;
 import org.usfirst.frc.team3539.robot.subsystems.Climb;
 import org.usfirst.frc.team3539.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team3539.robot.subsystems.Elevator;
@@ -12,7 +13,9 @@ import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
+import LeftAutons.LeftScale;
 import NewAndImproved.MotionProfileExample2;
+import RightAutons.RightScale;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -198,8 +201,11 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
-		autonChooser.addObject("AUTONTESTMIDDLE", new Middle());
-		autonChooser.addObject("Scale", new ScaleRight());
+		autonChooser.addObject("MIDDLESwitch", new Middle());
+		autonChooser.addObject("middleSwitchScale", new MiddleScale());
+
+		autonChooser.addObject("RightScale", new RightScale());
+		autonChooser.addObject("LeftScale", new LeftScale());
 		
 		
 		
