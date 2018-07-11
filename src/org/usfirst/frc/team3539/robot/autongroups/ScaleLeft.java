@@ -7,6 +7,7 @@ import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 
 import NewAndImproved.AutonMotionProfileEx2;
 import Profiles.RightToLeft;
+import Profiles.ScaleL;
 import Profiles.firstscale;
 import Profiles.getcube;
 import Profiles.mpswitch2;
@@ -22,16 +23,16 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScaleRight extends CommandGroup
+public class ScaleLeft extends CommandGroup
 {
-	public ScaleRight()
+	public ScaleLeft()
 	{
 	
 		addParallel( new AutonElevatorArm(70,90, 2.2,3));
-		addSequential(new AutonMotionProfileEx2(firstscale.Points,firstscale.kNumPoints,true));
+		addSequential(new AutonMotionProfileEx2(ScaleL.Points,ScaleL.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-.8, 1));
 		addSequential(new IntakeSolenoidCommand());
-		addSequential(new AutonTurnEncoderCommand(97, 1));
+		addSequential(new AutonTurnEncoderCommand(-97, 1));
 		addParallel( new AutonElevatorArm(0,105, 0,3));
 		addSequential(new AutonWaitCommand(.7));
 		
@@ -43,7 +44,7 @@ public class ScaleRight extends CommandGroup
 	addSequential(new AutonWaitCommand(.7));
 	addParallel( new AutonElevatorArm(70,90, 0,3));
 
-	addSequential(new AutonTurnEncoderCommand(-160, 1));
+	addSequential(new AutonTurnEncoderCommand(160, 1));
 
 	addSequential(new AutonMotionProfileEx2(secondscale.Points,secondscale.kNumPoints,true));
 	addSequential(new IntakeSolenoidCommand());
