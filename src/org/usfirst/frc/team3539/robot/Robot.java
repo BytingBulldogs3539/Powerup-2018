@@ -1,6 +1,7 @@
 package org.usfirst.frc.team3539.robot;
 
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRight;
+import org.usfirst.frc.team3539.robot.autongroups.TEst;
 import org.usfirst.frc.team3539.robot.commands.DisableSoftLimits;
 import org.usfirst.frc.team3539.robot.middleAutons.Middle;
 import org.usfirst.frc.team3539.robot.middleAutons.MiddleScale;
@@ -206,7 +207,7 @@ public class Robot extends IterativeRobot
 
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("LeftScale", new LeftScale());
-		
+		autonChooser.addObject("test",new TEst());
 		
 		
 		

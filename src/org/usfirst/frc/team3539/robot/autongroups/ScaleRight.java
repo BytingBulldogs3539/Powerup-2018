@@ -27,12 +27,13 @@ public class ScaleRight extends CommandGroup
 	public ScaleRight()
 	{
 	
-		addParallel( new AutonElevatorArm(70,90, 2.2,3));
+		addParallel( new AutonElevatorArm(75,90, 1.5,3));
 		addSequential(new AutonMotionProfileEx2(firstscale.Points,firstscale.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-.8, 1));
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonTurnEncoderCommand(97, 1));
 		addParallel( new AutonElevatorArm(0,105, 0,3));
+		
 		addSequential(new AutonWaitCommand(.7));
 		
 
@@ -43,7 +44,7 @@ public class ScaleRight extends CommandGroup
 	addSequential(new AutonWaitCommand(.7));
 	addParallel( new AutonElevatorArm(70,90, 0,3));
 
-	addSequential(new AutonTurnEncoderCommand(-160, 1));
+	addSequential(new AutonTurnEncoderCommand(-175, 1.25));
 
 	addSequential(new AutonMotionProfileEx2(secondscale.Points,secondscale.kNumPoints,true));
 	addSequential(new IntakeSolenoidCommand());

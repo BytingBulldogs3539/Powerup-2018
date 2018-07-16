@@ -20,7 +20,7 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.driveTrain.driveArcade(Robot.oi.one.getLeftStickY(), Robot.oi.one.getRightStickX());
+		Robot.driveTrain.driveArcade(Robot.oi.one.getLeftStickY(), Robot.oi.one.getRightStickX()*.8);
 	}
 
 	@Override

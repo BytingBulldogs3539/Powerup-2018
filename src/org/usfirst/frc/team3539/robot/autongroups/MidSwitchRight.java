@@ -5,11 +5,8 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 
 import NewAndImproved.AutonMotionProfileEx2;
-<<<<<<< HEAD
 import Profiles.MPSwitch55;
-=======
 import Profiles.mRight;
->>>>>>> c3feb2537b21eb27bbb29ae15c9324c0a795b813
 import Profiles.mpswitch2;
 import Profiles.mpswitch3cube2;
 import Profiles.mpswitch4rev;
@@ -43,13 +40,9 @@ public class MidSwitchRight extends CommandGroup
 
 
 		addParallel( new AutonElevatorArm(35,90,0,0));
-<<<<<<< HEAD
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch3cube2.kNumPoints,false));
-		addSequential(new AutonMotionProfileEx2(MPSwitch55.Points,MPSwitch55.kNumPoints,true));
-=======
-		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch2.kNumPoints,false));
+
 		addSequential(new AutonMotionProfileEx2(mRight.Points,mRight.kNumPoints,true));
->>>>>>> c3feb2537b21eb27bbb29ae15c9324c0a795b813
 
 		addSequential(new AutonIntakeCommand(-.7, 1));
 	}
