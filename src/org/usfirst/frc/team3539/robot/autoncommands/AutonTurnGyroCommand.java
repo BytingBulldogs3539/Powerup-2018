@@ -25,12 +25,15 @@ public class AutonTurnGyroCommand extends PIDCommand
 		// I don't think this line is needed because the constructor already does this
 		// getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro,
 		// RobotMap.turnDeeGyro);
+		this.getPIDController().setOutputRange(-1, 1);
 
-		getPIDController().setSetpoint(targetAngle);
+	//	this.getPIDController().setOutputRange(1, -1);
 
-		getPIDController().setAbsoluteTolerance(1);
+		this.getPIDController().setSetpoint(targetAngle);
 
-		getPIDController().enable();
+		this.getPIDController().setAbsoluteTolerance(2);
+
+		this.getPIDController().enable();
 
 	}
 
@@ -45,9 +48,9 @@ public class AutonTurnGyroCommand extends PIDCommand
 
 	protected void end()
 	{
-		getPIDController().reset();
+		this.getPIDController().reset();
 
-		getPIDController().disable();
+		this.getPIDController().disable();
 
 		Robot.driveTrain.driveArcade(0, 0);
 	}
@@ -61,6 +64,7 @@ public class AutonTurnGyroCommand extends PIDCommand
 	protected double returnPIDInput()
 	{
 		return Robot.driveTrain.getHeading();
+		//return Robot.driveTrain.getPigeonHeading() try this 
 	}
 
 	@Override
