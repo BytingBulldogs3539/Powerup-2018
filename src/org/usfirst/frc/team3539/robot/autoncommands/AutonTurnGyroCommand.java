@@ -18,6 +18,8 @@ public class AutonTurnGyroCommand extends PIDCommand
 		requires(Robot.driveTrain);
 		this.targetAngle = setpointAngle;
 		setTimeout(seconds);
+		Robot.driveTrain._imu.setFusedHeading(0, 0);
+
 	}
 
 	protected void initialize()
@@ -31,7 +33,7 @@ public class AutonTurnGyroCommand extends PIDCommand
 
 		this.getPIDController().setSetpoint(targetAngle);
 
-		this.getPIDController().setAbsoluteTolerance(2);
+		this.getPIDController().setAbsoluteTolerance(1);
 
 		this.getPIDController().enable();
 
@@ -39,6 +41,7 @@ public class AutonTurnGyroCommand extends PIDCommand
 
 	protected void execute()
 	{
+		System.out.println(Robot.driveTrain.getPigeonHeading());
 	}
 
 	protected boolean isFinished()
@@ -63,13 +66,13 @@ public class AutonTurnGyroCommand extends PIDCommand
 	@Override
 	protected double returnPIDInput()
 	{
-		return Robot.driveTrain.getHeading();
-		//return Robot.driveTrain.getPigeonHeading() try this 
+	//return Robot.driveTrain.getHeading();
+		return Robot.driveTrain.getPigeonHeading(); //try this 
 	}
 
 	@Override
 	protected void usePIDOutput(double output)
 	{
-		Robot.driveTrain.driveArcade(0, output);
+		Robot.driveTrain.driveArcade(0, -output);
 	}
 }

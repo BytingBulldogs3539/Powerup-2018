@@ -202,6 +202,10 @@ public 	PigeonIMU _imu;
 	{
 		return gyro.getAngle();
 	}
+	public double getPigeonHeading()
+	{
+		return _imu.getFusedHeading();
+	}
 
 	public void calibrateGyro()
 	{

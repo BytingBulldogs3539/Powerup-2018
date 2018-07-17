@@ -221,10 +221,10 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("PitchP", RobotMap.pitchPea);
 		SmartDashboard.putNumber("PitchD", RobotMap.pitchDee);
 
-		SmartDashboard.putNumber("TurnP", RobotMap.turnPeaWheels);
-		SmartDashboard.putNumber("TurnI", RobotMap.turnEyeWheels);
-		SmartDashboard.putNumber("TurnD", RobotMap.turnDeeWheels);
-		SmartDashboard.putNumber("TurnF", RobotMap.turnFFFWheels);
+		SmartDashboard.putNumber("TurnP", RobotMap.turnPeaGyro);
+		SmartDashboard.putNumber("TurnI", RobotMap.turnEyeGyro);
+		SmartDashboard.putNumber("TurnD", RobotMap.turnDeeGyro);
+		SmartDashboard.putNumber("TurnF", RobotMap.turnFFFGyro);
 
 		SmartDashboard.putNumber("BreakP", RobotMap.breakPea);
 		SmartDashboard.putNumber("BreakI", RobotMap.breakEye);

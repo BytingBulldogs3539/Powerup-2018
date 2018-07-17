@@ -2,6 +2,7 @@ package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnGyroCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 
@@ -32,7 +33,7 @@ public class TEst extends CommandGroup
 	public TEst()
 	{
 	
-		addSequential(new AutonMotionProfileEx2(LeftToRight.Points,LeftToRight.kNumPoints,true));
+		addSequential(new AutonTurnGyroCommand(90, 5));
 		
 		
 		
