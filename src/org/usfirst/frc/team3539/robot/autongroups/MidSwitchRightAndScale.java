@@ -26,10 +26,10 @@ public class MidSwitchRightAndScale extends CommandGroup
 	public MidSwitchRightAndScale()
 	{
 		addParallel( new AutonElevatorArm(30,90,0,4.5));
-		addSequential(new AutonMotionProfileEx2(mptest.Points,mptest.kNumPoints,true));
+		addSequential(new AutonMotionProfileEx2(mRight.Points,mRight.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-.7, 0.5));
 
-		addSequential(new AutonMotionProfileEx2(reverse.Points,reverse.kNumPoints,false));
+		addSequential(new AutonMotionProfileEx2(mRight.Points,mRight.kNumPoints,false));
 		addParallel( new AutonElevatorArm(0,110,0,0));// change to 0 when confident
 		addSequential(new IntakeSolenoidCommand());
 		addSequential( new AutonWaitCommand(0.10));

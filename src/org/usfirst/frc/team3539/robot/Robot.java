@@ -112,6 +112,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
+	//	c.stop();
 		c.start();
 		//c.start();// TODO:REMOVE
 		Scheduler.getInstance().run();
@@ -128,6 +129,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		c.stop();
 		// l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
@@ -178,6 +180,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
+		c.start();
 		// l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
@@ -203,7 +206,7 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
 		autonChooser.addObject("MIDDLESwitch", new Middle());
-		autonChooser.addObject("middleSwitchScale", new MiddleScale());
+		//autonChooser.addObject("middleSwitchScale", new MiddleScale());
 
 		autonChooser.addObject("RightScale", new RightScale());
 		autonChooser.addObject("LeftScale", new LeftScale());
