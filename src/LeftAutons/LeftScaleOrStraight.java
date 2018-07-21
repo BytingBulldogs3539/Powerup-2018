@@ -8,14 +8,17 @@ import org.usfirst.frc.team3539.robot.autongroups.ScaleLeftToRight;
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRightToLeft;
 
+import NewAndImproved.AutonMotionProfileEx2;
+import Profiles.crosslinestraight;
+import Profiles.getcube;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftScale extends CommandGroup {
+public class LeftScaleOrStraight extends CommandGroup {
 
-    public LeftScale() {
+    public LeftScaleOrStraight() {
     	
     	if ((Robot.gameData.charAt(1) == 'L'))
 		{
@@ -23,7 +26,7 @@ public class LeftScale extends CommandGroup {
 		}
 		else
 		{
-			addSequential(new ScaleLeftToRight());
+			addSequential(new AutonMotionProfileEx2(crosslinestraight.Points,crosslinestraight.kNumPoints,true));
 		}
 	}
     }
