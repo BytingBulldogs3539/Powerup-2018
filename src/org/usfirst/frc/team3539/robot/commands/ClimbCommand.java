@@ -5,13 +5,15 @@ import org.usfirst.frc.team3539.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Utilizes the Drive subsystem to drive the robot
+ * Utilizes Climbing subsystem to climb 
  */
-public class DriveCommand extends Command
+
+public class ClimbCommand extends Command
 {
-	public DriveCommand()
+
+	public ClimbCommand()
 	{
-		requires(Robot.driveTrain);
+		requires(Robot.climb);
 	}
 
 	protected void initialize()
@@ -20,10 +22,10 @@ public class DriveCommand extends Command
 
 	protected void execute()
 	{
-		Robot.driveTrain.driveArcade(Robot.oi.one.getLeftStickY(), Robot.oi.one.getRightStickX()*.8);
+		double x = -Robot.oi.one.getRightTrigger() + (Robot.oi.one.getLeftTrigger());
+		Robot.climb.setMotorPower(x);
 	}
 
-	@Override
 	protected boolean isFinished()
 	{
 		return false;
@@ -31,11 +33,11 @@ public class DriveCommand extends Command
 
 	protected void end()
 	{
-		Robot.driveTrain.driveArcade(0, 0);
+		Robot.climb.setMotorPower(0);
 	}
 
 	protected void interrupted()
 	{
-		System.out.println("DriveCommand Interupted!");
+		end();
 	}
 }

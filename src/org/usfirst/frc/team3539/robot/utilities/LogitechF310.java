@@ -1,5 +1,6 @@
 package org.usfirst.frc.team3539.robot.utilities;
 
+import org.usfirst.frc.team3539.robot.utilities.DirectionalButton.Direction;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -54,7 +55,10 @@ public class LogitechF310 extends Joystick
 	public JoystickButton buttonLS = new JoystickButton(this, LS);
 	public JoystickButton buttonRS = new JoystickButton(this, RS);
 
-	
+	public DirectionalButton buttonPadLeft = new DirectionalButton(this, Direction.LEFT);
+	public DirectionalButton buttonPadRight = new DirectionalButton(this, Direction.RIGHT);
+	public DirectionalButton buttonPadUp = new DirectionalButton(this, Direction.UP);
+	public DirectionalButton buttonPadDown = new DirectionalButton(this, Direction.DOWN);
 
 	public double getLeftTrigger()
 	{
