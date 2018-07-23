@@ -2,19 +2,6 @@ package org.usfirst.frc.team3539.robot;
 
 import com.sun.org.apache.regexp.internal.recompile;
 
-<<<<<<< HEAD
-=======
-import LeftAutons.LeftScale;
-import LeftAutons.LeftScaleOrHalf;
-import LeftAutons.LeftScaleOrStraight;
-import NewAndImproved.AutonMotionProfileEx2;
-import NewAndImproved.MotionProfileExample2;
-import Profiles.crosslinestraight;
-import Profiles.getcube;
-import RightAutons.RightScale;
-import RightAutons.RightScaleOrHalf;
-import RightAutons.RightScaleOrStraight;
->>>>>>> 2437f4a23340f4ee84a773a0e5a519090eb33a52
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -78,11 +65,6 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
-<<<<<<< HEAD
-=======
-	//	c.stop();
-		c.start();
->>>>>>> 2437f4a23340f4ee84a773a0e5a519090eb33a52
 		//c.start();// TODO:REMOVE
 		Scheduler.getInstance().run();
 		// Robot.driveTrain.DisabledMotionProfile();
@@ -98,21 +80,6 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
-<<<<<<< HEAD
-=======
-		c.stop();
-		// l.start();
-		System.out.println("Auto Init");
-		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
-		{
-			gameData = DriverStation.getInstance().getGameSpecificMessage();
-		}
-		Robot.elevator.zeroEncoders();
-		Robot.pitch.zeroEncoder();
-		Robot.driveTrain.disableRamp();
-		done = false;
-		counter = 0;
->>>>>>> 2437f4a23340f4ee84a773a0e5a519090eb33a52
 	}
 
 	public void autonomousPeriodic()
@@ -125,7 +92,6 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
-		c.start();
 		// l.start();
 
 	}
@@ -141,27 +107,6 @@ public class Robot extends IterativeRobot
 
 	public void SmartInit()
 	{
-<<<<<<< HEAD
-=======
-		// Middle and Straight
-		//autonChooser.addObject("MiddleSwitch", new MiddleSwitch());
-		
-		SmartDashboard.putData("Auton Mode", autonChooser);
-
-		autonChooser.addObject("MiddleSwitch", new Middle());
-		autonChooser.addObject("DriveStraight", new AutonMotionProfileEx2(crosslinestraight.Points,crosslinestraight.kNumPoints,true));
-
-		autonChooser.addObject("RightScaleCross", new RightScale());
-		autonChooser.addObject("RightScaleOrHalf", new RightScaleOrHalf());
-		autonChooser.addObject("RightScaleOrStraight", new RightScaleOrStraight());
-		
-		autonChooser.addObject("LeftScaleCross", new LeftScale());
-		autonChooser.addObject("LeftScaleOrHalf", new LeftScaleOrHalf());
-		autonChooser.addObject("LeftScaleOrStraight", new LeftScaleOrStraight());
-		
-		autonChooser.addObject("Test",new TEst());
-		
->>>>>>> 2437f4a23340f4ee84a773a0e5a519090eb33a52
 		
 
 	
