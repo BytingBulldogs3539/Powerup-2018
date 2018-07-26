@@ -32,9 +32,9 @@ public class MidSwitchRight extends CommandGroup
 		addSequential(new IntakeSolenoidCommand());
 		addSequential( new AutonWaitCommand(0.10));
 
+		addParallel( new AutonIntakeCommand(.9, 10));
 
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch3cube2.kNumPoints,true));
-		addParallel( new AutonIntakeCommand(.9, 10));
 
 		addSequential(new IntakeSolenoidCommand());
 		addSequential( new AutonWaitCommand(0.30));

@@ -226,8 +226,6 @@ public class Robot extends IterativeRobot
 		autonChooser.addObject("Test",new TEst());
 		
 		
-		
-		
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
 		SmartDashboard.putNumber("driveEye", RobotMap.driveEye);
 		SmartDashboard.putNumber("driveDee", RobotMap.driveDee);

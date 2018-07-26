@@ -50,7 +50,8 @@ public class ScaleRight extends CommandGroup
 	addSequential(new AutonTurnGyroCommand(-125,3));
 
 	addSequential(new AutonMotionProfileEx2(secondscale.Points,secondscale.kNumPoints,true));
-	addSequential(new IntakeSolenoidCommand());
+	addSequential(new AutonIntakeCommand(-.8, 1));
+	//addSequential(new IntakeSolenoidCommand());
 
 	
 
