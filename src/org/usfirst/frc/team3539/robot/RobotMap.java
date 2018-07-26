@@ -61,9 +61,9 @@ public class RobotMap
 	public static double turnDeeWheels = .08;
 	public static double turnFFFWheels = 0;
 
-	public static double turnPeaGyro = 0.02;
-	public static double turnEyeGyro = 0.00015;
-	public static double turnDeeGyro = .1;
+	public static double turnPeaGyro = 1.3;
+	public static double turnEyeGyro = 0;
+	public static double turnDeeGyro = .08;
 	public static double turnFFFGyro = 0;
 
 	public static double breakPea = 0.05;

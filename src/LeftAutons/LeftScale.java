@@ -16,8 +16,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class LeftScale extends CommandGroup {
 
     public LeftScale() {
-    	
-    	if ((Robot.gameData.charAt(1) == 'L'))
+    	if ((Robot.gameData.charAt(0) == 'L'))
 		{
 			addSequential(new ScaleLeft());
 		}

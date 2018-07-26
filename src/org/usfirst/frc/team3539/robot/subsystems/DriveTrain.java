@@ -631,8 +631,6 @@ public 	PigeonIMU _imu;
 		lf.getSensorCollection().setQuadraturePosition(0, NewAndImproved.Constants.kTimeoutMs);
 		rf.getSensorCollection().setQuadraturePosition(0, NewAndImproved.Constants.kTimeoutMs);
 		_imu.setYaw(0,NewAndImproved.Constants.kTimeoutMs);
-		_imu.setYaw(0,NewAndImproved.Constants.kTimeoutMs);
-
 		_imu.setAccumZAngle(0, NewAndImproved.Constants.kTimeoutMs);
 		System.out.println("        [Sensors] All sensors are zeroed.\n");
 	}

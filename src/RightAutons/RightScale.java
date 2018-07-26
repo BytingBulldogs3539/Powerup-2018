@@ -14,8 +14,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class RightScale extends CommandGroup {
 
     public RightScale() {
-    	
-    	if ((Robot.gameData.charAt(1) == 'R'))
+    	if ((Robot.gameData.charAt(0) == 'R'))
 		{
 			addSequential(new ScaleRight());
 		}

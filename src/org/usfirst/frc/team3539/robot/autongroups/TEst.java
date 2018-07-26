@@ -12,8 +12,6 @@ import Profiles.RightSwitch;
 import Profiles.RightSwitchReverse;
 import Profiles.RightToLeft;
 import Profiles.Scale3000;
-import Profiles.firstcrossL;
-import Profiles.firstcrossR;
 import Profiles.firstscale;
 import Profiles.getcube;
 import Profiles.mScaleR;
@@ -34,9 +32,8 @@ public class TEst extends CommandGroup
 {
 	public TEst()
 	{
-		addSequential(new AutonMotionProfileEx2(firstcrossL.Points,firstcrossL.kNumPoints,true));
-
-	//	addSequential(new AutonTurnGyroCommand(-120, 5));
+	
+		addSequential(new AutonTurnGyroCommand(90, 5));
 		
 		
 		

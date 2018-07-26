@@ -8,8 +8,6 @@ import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 import NewAndImproved.AutonMotionProfileEx2;
 import Profiles.LeftToRight;
 import Profiles.RightToLeft;
-import Profiles.firstcrossL;
-import Profiles.firstcrossR;
 import Profiles.firstscale;
 import Profiles.getcube;
 import Profiles.mpswitch2;
@@ -29,10 +27,9 @@ public class ScaleLeftToRight extends CommandGroup
 {
 	public ScaleLeftToRight()
 	{
-		addParallel( new AutonElevatorArm(85,80, 3.5,3));
-		addSequential(new AutonMotionProfileEx2(firstcrossL.Points,firstcrossL.kNumPoints,true));
-		//addSequential(new AutonIntakeCommand(-.8, 1));
-		addSequential(new IntakeSolenoidCommand());
+		addParallel( new AutonElevatorArm(70,90, 4,3));
+		addSequential(new AutonMotionProfileEx2(LeftToRight.Points,LeftToRight.kNumPoints,true));
+		addSequential(new AutonIntakeCommand(-.8, 1));
 		
 		
 //		
