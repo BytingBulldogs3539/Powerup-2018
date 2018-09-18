@@ -70,8 +70,8 @@ public class Constants {
 	public final static double kNeutralDeadband = 0.001;
 
 	//                                         			   kP   kI   kD   kF              Iz    PeakOut
-	public final static Gains kGains_Distanc = new Gains( 0.75, 0.0,  0.0, 0.0,            100,  0.50 );
-	public final static Gains kGains_Turning = new Gains( 4.2, 0,  15, 0.0,            200,  1.00 );
+	public final static Gains kGains_Distanc = new Gains( 0.1, 0.0,  0.0, 0.0,            100,  0.50 );
+	public final static Gains kGains_Turning = new Gains( 3.2, 0,  15, 0.0,            200,  1.00 );
 	public final static Gains kGains_Velocit = new Gains( 0.04, 0.0, 20.0, 1023.0/2300.0,  300,  0.50 ); /* measured 6800 velocity units at full motor output */
 	public final static Gains kGains_MotProf = new Gains( .2, 0.0,  0.0, 1023.0/2300.0,  400,  1.00 ); 
 

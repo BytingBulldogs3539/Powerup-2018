@@ -7,13 +7,11 @@ import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 
 import NewAndImproved.AutonMotionProfileEx2;
-import Profiles.A360;
 import Profiles.LeftToRight;
 import Profiles.RightSwitch;
 import Profiles.RightSwitchReverse;
 import Profiles.RightToLeft;
 import Profiles.Scale3000;
-import Profiles.ScaleL;
 import Profiles.firstscale;
 import Profiles.getcube;
 import Profiles.mScaleR;
@@ -35,7 +33,7 @@ public class TEst extends CommandGroup
 	public TEst()
 	{
 	
-		addSequential(new AutonMotionProfileEx2(A360.Points,A360.kNumPoints,true));
+		addSequential(new AutonTurnGyroCommand(90, 5));
 		
 		
 		
