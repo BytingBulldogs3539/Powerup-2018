@@ -320,9 +320,9 @@ public class MotionProfileExample2 {
 		/* This is fast since it's just into our TOP buffer */
 		for (int i = 0; i < totalCnt; ++i) {
 			double direction = _bForward ? +1 : -1;
-			double positionRot = profile[i][0];
-			double velocityRPM = profile[i][1];
-			double heading = profile[i][3]; /* scale heading progress to position progress */
+			double positionRot = profile[i][0]*2;
+			double velocityRPM = profile[i][1]*2;
+			double heading = 360 * positionRot/finalPositionRot; //=//profile[i][3]; /* scale heading progress to position progress */
 
 			/* for each point, fill our structure and pass it to API */
 			point.position = direction * positionRot * Constants.kSensorUnitsPerRotation * 2; //Convert Revolutions to Units
@@ -363,7 +363,7 @@ public class MotionProfileExample2 {
 	/**
 	 * 
 	 * @return the output value to pass to Talon's set() routine. 0 for disable
-	 *         motion-profile output, 1 for enable motion-profile, 2 for hold
+	 *         motion-profile0output, 1 for enable motion-profile, 2 for hold
 	 *         current motion profile trajectory point.
 	 */
 	SetValueMotionProfile getSetValue() {
