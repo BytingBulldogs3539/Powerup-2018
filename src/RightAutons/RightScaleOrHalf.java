@@ -1,29 +1,30 @@
-package LeftAutons;
+package RightAutons;
 
 import org.usfirst.frc.team3539.robot.Robot;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchLeft;
 import org.usfirst.frc.team3539.robot.autongroups.MidSwitchRight;
-import org.usfirst.frc.team3539.robot.autongroups.ScaleLeft;
-import org.usfirst.frc.team3539.robot.autongroups.ScaleLeftToRight;
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRight;
 import org.usfirst.frc.team3539.robot.autongroups.ScaleRightToLeft;
 
+import NewAndImproved.AutonMotionProfileEx2;
+import Profiles.getcube;
+import Profiles.righthalfcross;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
  *
  */
-public class LeftScale extends CommandGroup {
+public class RightScaleOrHalf extends CommandGroup {
 
-    public LeftScale() {
+    public RightScaleOrHalf() {
     	
-    	if ((Robot.gameData.charAt(1) == 'L'))
+    	if ((Robot.gameData.charAt(1) == 'R'))
 		{
-			addSequential(new ScaleLeft());
+			addSequential(new ScaleRight());
 		}
 		else
 		{
-			addSequential(new ScaleLeftToRight());
+			addSequential(new AutonMotionProfileEx2(righthalfcross.Points,righthalfcross.kNumPoints,true));
 		}
 	}
     }

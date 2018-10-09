@@ -22,22 +22,25 @@ public class MidSwitchLeft extends CommandGroup
 	{
 		addParallel( new AutonElevatorArm(30,90,0,4.5));
 		addSequential(new AutonMotionProfileEx2(mLeft.Points,mLeft.kNumPoints,true));
-		addSequential(new AutonIntakeCommand(-.7, 0.5));
-
+		
+		addSequential(new AutonIntakeCommand(-.7, 0.3));
+		
+		
+		addParallel( new AutonElevatorArm(0,110,.7,0));// change to 0 when confident   put back after test 
 		addSequential(new AutonMotionProfileEx2(mLeft.Points,mLeft.kNumPoints,false));
-		//addParallel( new AutonElevatorArm(0,110,0,0));// change to 0 when confident   put back after test 
+		
 		addSequential(new IntakeSolenoidCommand());
-		addSequential( new AutonWaitCommand(0.10));
-		addParallel( new AutonIntakeCommand(.9, 2));
-
-
+		
+		addParallel( new AutonIntakeCommand(.9, 10));
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch2.kNumPoints,true));
+		
 		addSequential(new IntakeSolenoidCommand());
-		addSequential( new AutonWaitCommand(0.30));
+		//addSequential( new AutonWaitCommand(0.15));
 
 
-		addParallel( new AutonElevatorArm(35,90,0,0));
+		addParallel( new AutonElevatorArm(30,90,.2,0));
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch2.kNumPoints,false));
+		
 		addSequential(new AutonMotionProfileEx2(mLeft.Points,mLeft.kNumPoints,true));
 
 		addSequential(new AutonIntakeCommand(-.7, 1));

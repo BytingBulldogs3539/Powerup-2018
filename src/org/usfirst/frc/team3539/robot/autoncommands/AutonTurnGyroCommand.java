@@ -28,14 +28,16 @@ public class AutonTurnGyroCommand extends PIDCommand
 		// getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro,
 		// RobotMap.turnDeeGyro);
 		this.getPIDController().setOutputRange(-1, 1);
-
 	//	this.getPIDController().setOutputRange(1, -1);
 
 		this.getPIDController().setSetpoint(targetAngle);
 
 		this.getPIDController().setAbsoluteTolerance(1);
 
+
 		this.getPIDController().enable();
+		this.getPIDController().setToleranceBuffer(5);
+		//this.getPIDController().
 
 	}
 
@@ -54,7 +56,7 @@ public class AutonTurnGyroCommand extends PIDCommand
 		this.getPIDController().reset();
 
 		this.getPIDController().disable();
-
+Robot.driveTrain._imu.setFusedHeading(0, 10);
 		Robot.driveTrain.driveArcade(0, 0);
 	}
 

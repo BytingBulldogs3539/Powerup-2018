@@ -2,11 +2,13 @@ package org.usfirst.frc.team3539.robot.autongroups;
 
 import org.usfirst.frc.team3539.robot.autoncommands.AutonIntakeCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnEncoderCommand;
+import org.usfirst.frc.team3539.robot.autoncommands.AutonTurnGyroCommand;
 import org.usfirst.frc.team3539.robot.autoncommands.AutonWaitCommand;
 import org.usfirst.frc.team3539.robot.instantcommands.IntakeSolenoidCommand;
 
 import NewAndImproved.AutonMotionProfileEx2;
 import Profiles.RightToLeft;
+import Profiles.firstcrossR;
 import Profiles.firstscale;
 import Profiles.getcube;
 import Profiles.mpswitch2;
@@ -26,7 +28,6 @@ public class ScaleRightToLeft extends CommandGroup
 {
 	public ScaleRightToLeft()
 	{
-<<<<<<< HEAD
 		addParallel( new AutonElevatorArm(70,80, 4,3));
 		addSequential(new AutonMotionProfileEx2(firstcrossR.Points,firstcrossR.kNumPoints,true));
 		addSequential(new AutonIntakeCommand(-.4, .35));
@@ -47,11 +48,6 @@ public class ScaleRightToLeft extends CommandGroup
 
 		
 
-=======
-		addParallel( new AutonElevatorArm(70,90, 4,3));
-		addSequential(new AutonMotionProfileEx2(RightToLeft.Points,RightToLeft.kNumPoints,true));
-		addSequential(new AutonIntakeCommand(-.8, 1));
->>>>>>> 43fcab2f20e93979348f3ae9fa0d346b6dadf339
 		
 		
 //		

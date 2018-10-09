@@ -15,8 +15,15 @@ import org.usfirst.frc.team3539.robot.subsystems.Solenoids;
 import com.sun.org.apache.regexp.internal.recompile;
 
 import LeftAutons.LeftScale;
+import LeftAutons.LeftScaleOrHalf;
+import LeftAutons.LeftScaleOrStraight;
+import NewAndImproved.AutonMotionProfileEx2;
 import NewAndImproved.MotionProfileExample2;
+import Profiles.crosslinestraight;
+import Profiles.getcube;
 import RightAutons.RightScale;
+import RightAutons.RightScaleOrHalf;
+import RightAutons.RightScaleOrStraight;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -112,6 +119,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit()
 	{
+	//	c.stop();
 		c.start();
 		//c.start();// TODO:REMOVE
 		Scheduler.getInstance().run();
@@ -128,6 +136,7 @@ public class Robot extends IterativeRobot
 
 	public void autonomousInit()
 	{
+		c.stop();
 		// l.start();
 		System.out.println("Auto Init");
 		if (DriverStation.getInstance().getGameSpecificMessage().length() > 0)
@@ -178,6 +187,7 @@ public class Robot extends IterativeRobot
 
 	public void teleopInit()
 	{
+		c.start();
 		// l.start();
 		Robot.driveTrain.disableRamp();
 		Robot.driveTrain.zeroEncoders();
@@ -202,12 +212,18 @@ public class Robot extends IterativeRobot
 		
 		SmartDashboard.putData("Auton Mode", autonChooser);
 
-		autonChooser.addObject("MIDDLESwitch", new Middle());
-		autonChooser.addObject("middleSwitchScale", new MiddleScale());
+		autonChooser.addObject("MiddleSwitch", new Middle());
+		autonChooser.addObject("DriveStraight", new AutonMotionProfileEx2(crosslinestraight.Points,crosslinestraight.kNumPoints,true));
 
-		autonChooser.addObject("RightScale", new RightScale());
-		autonChooser.addObject("LeftScale", new LeftScale());
-		autonChooser.addObject("test",new TEst());
+		autonChooser.addObject("RightScaleCross", new RightScale());
+		autonChooser.addObject("RightScaleOrHalf", new RightScaleOrHalf());
+		autonChooser.addObject("RightScaleOrStraight", new RightScaleOrStraight());
+		
+		autonChooser.addObject("LeftScaleCross", new LeftScale());
+		autonChooser.addObject("LeftScaleOrHalf", new LeftScaleOrHalf());
+		autonChooser.addObject("LeftScaleOrStraight", new LeftScaleOrStraight());
+		
+		autonChooser.addObject("Test",new TEst());
 		
 		
 		SmartDashboard.putNumber("drivePea", RobotMap.drivePea);
