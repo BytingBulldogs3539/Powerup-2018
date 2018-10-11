@@ -29,7 +29,7 @@ public class ScaleLeftToRight extends CommandGroup
 {
 	public ScaleLeftToRight()
 	{
-		addParallel( new AutonElevatorArm(85,80, 3.5,3));
+		addParallel( new AutonElevatorArm(86,80, 3.5,3));
 		addSequential(new AutonMotionProfileEx2(firstcrossL.Points,firstcrossL.kNumPoints,true));
 		//addSequential(new AutonIntakeCommand(-.8, 1));
 		addSequential(new IntakeSolenoidCommand());

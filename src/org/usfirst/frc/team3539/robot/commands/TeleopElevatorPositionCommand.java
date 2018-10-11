@@ -48,8 +48,8 @@ public class TeleopElevatorPositionCommand extends Command
 	protected void execute()
 	{
 		// System.out.println();
-		System.out.println("pid target " + Robot.elevator.inchToEncoder(myinches));
-		System.out.println("encoder " + Robot.elevator.getEncoder());
+//		System.out.println("pid target " + Robot.elevator.inchToEncoder(myinches));
+//		System.out.println("encoder " + Robot.elevator.getEncoder());
 
 	}
 

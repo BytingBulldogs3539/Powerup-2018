@@ -18,12 +18,16 @@ public class AutonTurnGyroCommand extends PIDCommand
 		requires(Robot.driveTrain);
 		this.targetAngle = setpointAngle;
 		setTimeout(seconds);
-		Robot.driveTrain._imu.setFusedHeading(0, 0);
+		Robot.driveTrain._imu.setFusedHeading(0, 10);
+		Robot.driveTrain._imu.setFusedHeading(0, 10);
+
 
 	}
 
 	protected void initialize()
 	{
+	//	Robot.driveTrain._imu.setFusedHeading(0, 10);
+
 		// I don't think this line is needed because the constructor already does this
 		// getPIDController().setPID(RobotMap.turnPeaGyro, RobotMap.turnEyeGyro,
 		// RobotMap.turnDeeGyro);
@@ -56,8 +60,10 @@ public class AutonTurnGyroCommand extends PIDCommand
 		this.getPIDController().reset();
 
 		this.getPIDController().disable();
-Robot.driveTrain._imu.setFusedHeading(0, 10);
+Robot.driveTrain._imu.setFusedHeading(0, 50);
 		Robot.driveTrain.driveArcade(0, 0);
+		Robot.driveTrain._imu.setFusedHeading(0, 50);
+
 	}
 
 	protected void interrupted()

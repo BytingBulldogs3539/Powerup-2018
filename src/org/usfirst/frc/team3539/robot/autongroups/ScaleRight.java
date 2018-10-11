@@ -42,7 +42,7 @@ public class ScaleRight extends CommandGroup
 
 	addSequential(new AutonMotionProfileEx2(getcube.Points,getcube.kNumPoints,true));
 	addSequential(new IntakeSolenoidCommand());
-	addParallel(new AutonIntakeCommand(1,1));
+	addParallel(new AutonIntakeCommand(1,3));
 	addSequential(new AutonWaitCommand(.7));
 	addParallel( new AutonElevatorArm(70,90, 0,3));
 

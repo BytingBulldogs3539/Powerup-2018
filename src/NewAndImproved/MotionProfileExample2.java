@@ -255,6 +255,11 @@ public class MotionProfileExample2 {
 						_setValue = SetValueMotionProfile.Hold;
 						_state = 0;
 						_loopTimeout = -1;
+						if(_status.isUnderrun) 
+						{
+							System.out.println("yeah----------");
+							
+						}
 					}
 					break;
 			}

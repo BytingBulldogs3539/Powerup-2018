@@ -40,9 +40,9 @@ public class ScaleRightToLeft extends CommandGroup
 		addParallel(new AutonIntakeCommand(1,5));
 		
 		addSequential(new AutonWaitCommand(.2));
-		addSequential(new AutonTurnGyroCommand(-185,3));
+		addSequential(new AutonTurnGyroCommand(145,4));
 		addParallel( new AutonElevatorArm(80,90,0,3));
-		addSequential(new AutonWaitCommand(.2));
+		addSequential(new AutonWaitCommand(.3));
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch3cube2.kNumPoints,true));
 		addSequential(new IntakeSolenoidCommand());
 
