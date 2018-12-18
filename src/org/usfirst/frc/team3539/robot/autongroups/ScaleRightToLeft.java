@@ -30,7 +30,7 @@ public class ScaleRightToLeft extends CommandGroup
 	{
 		addParallel( new AutonElevatorArm(70,80, 4,3));
 		addSequential(new AutonMotionProfileEx2(firstcrossR.Points,firstcrossR.kNumPoints,true));
-		addSequential(new AutonIntakeCommand(-.4, .35));
+		addSequential(new AutonIntakeCommand(-.6, 1));
 		addSequential(new IntakeSolenoidCommand());
 		addSequential(new AutonTurnGyroCommand(-150,3));
 		addParallel(new AutonElevatorArm(0,105,0,5));
@@ -40,7 +40,7 @@ public class ScaleRightToLeft extends CommandGroup
 		addParallel(new AutonIntakeCommand(1,5));
 		
 		addSequential(new AutonWaitCommand(.2));
-		addSequential(new AutonTurnGyroCommand(145,4));
+		addSequential(new AutonTurnGyroCommand(140,4));
 		addParallel( new AutonElevatorArm(80,90,0,3));
 		addSequential(new AutonWaitCommand(.3));
 		addSequential(new AutonMotionProfileEx2(mpswitch3cube2.Points,mpswitch3cube2.kNumPoints,true));
